@@ -1,0 +1,57 @@
+
+<?php
+if (isset($_POST['otpverify'])) {
+    $bid = $_REQUEST['bid'];
+    $mid = $_REQUEST['mid'];
+    $user = $_POST['uid'];
+    $selectnodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `id` = '$mid' "));
+    $modelimg = $selectnodel['product_image'];
+    $mobilename = $selectnodel['product_name'];
+    $catid = $selectnodel['categoryid'];
+    // model questions start
+    $selectquestion = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `watchquestions` WHERE `status` = 'active' AND `product_name` = '$mid' "));
+    $uptovalue = $selectquestion['uptovalue'];
+    $switchof = $selectquestion['switchof'];
+    $under3 = $selectquestion['under3'];
+    $u3to6 = $selectquestion['3to6'];
+    $u6to11 = $selectquestion['6to11'];
+    $above11 = $selectquestion['above11'];
+    $touchfaulty = $selectquestion['touchfaulty'];
+    $fwifi = $selectquestion['wifi'];
+    $batteryfault = $selectquestion['batteryfault'];
+    $magnetic = $selectquestion['magnetic'];
+    $sidebutton = $selectquestion['sidebutton'];
+    $digitalcrown = $selectquestion['digitalcrown'];
+    $fspeaker = $selectquestion['speaker'];
+    $opticalheart = $selectquestion['opticalheart'];
+    $bluetoothfault = $selectquestion['bluetoothfault'];
+    $fcharger = $selectquestion['charger'];
+    $box = $selectquestion['box'];
+    $fstrap = $selectquestion['strap'];
+    $bill = $selectquestion['bill'];
+    $flawless = $selectquestion['flawless'];
+    $good = $selectquestion['good'];
+    $averege = $selectquestion['averege'];
+    $belowavere = $selectquestion['belowavere'];
+    $outofwarrenty = $selectquestion['outofwarrenty'];
+    // model questions end
+
+    // user questions 
+    $switch = $_POST['switch'];
+    $touchscreen = $_POST['touchscreen'];
+    $battery = $_POST['battery'];
+    $wifi = $_POST['wifi'];
+    $speaker = $_POST['speaker'];
+    $charging = $_POST['charging'];
+    $dc = $_POST['dc'];
+    $button = $_POST['button'];
+    $optical = $_POST['optical'];
+    $bluetooth = $_POST['bluetooth'];
+    $warin = $_POST['warin'];
+    $age = $_POST['age'];
+    $condition = $_POST['condition'];
+    //  functional question start
+    $charger = $_POST['charger'];
+    $strap = $_POST['strap'];
+    $boximei = $_POST['boximei'];
+    $billimei = $_POST['billimei 

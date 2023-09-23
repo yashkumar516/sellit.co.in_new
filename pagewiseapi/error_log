@@ -1,0 +1,88 @@
+[21-Jul-2021 05:27:25 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(19): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:28:56 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(19): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:28:57 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(19): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:28:58 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(19): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:32:16 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(21): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:32:18 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(21): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:32:19 UTC] PHP Fatal error:  Uncaught ArgumentCountError: PDO::__construct() expects at least 1 parameter, 0 given in /home/w6maohec8wnv/public_html/api/index1.php:6
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(6): PDO->__construct()
+#1 /home/w6maohec8wnv/public_html/api/index1.php(21): API->select()
+#2 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 6
+[21-Jul-2021 05:33:42 UTC] PHP Notice:  Undefined variable: con in /home/w6maohec8wnv/public_html/api/index1.php on line 7
+[21-Jul-2021 05:33:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/w6maohec8wnv/public_html/api/index1.php:7
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(20): API->select()
+#1 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 7
+[21-Jul-2021 05:33:43 UTC] PHP Notice:  Undefined variable: con in /home/w6maohec8wnv/public_html/api/index1.php on line 7
+[21-Jul-2021 05:33:43 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/w6maohec8wnv/public_html/api/index1.php:7
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(20): API->select()
+#1 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 7
+[21-Jul-2021 05:33:44 UTC] PHP Notice:  Undefined variable: con in /home/w6maohec8wnv/public_html/api/index1.php on line 7
+[21-Jul-2021 05:33:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/w6maohec8wnv/public_html/api/index1.php:7
+Stack trace:
+#0 /home/w6maohec8wnv/public_html/api/index1.php(20): API->select()
+#1 {main}
+  thrown in /home/w6maohec8wnv/public_html/api/index1.php on line 7
+[21-Jul-2021 05:43:41 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:43:41 UTC] PHP Warning:  mcrypt_encrypt(): Key of size 14 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:44:25 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:44:25 UTC] PHP Warning:  mcrypt_encrypt(): Key of size 14 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:44:49 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:44:49 UTC] PHP Warning:  mcrypt_encrypt(): Key of size 14 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:45:03 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:45:03 UTC] PHP Warning:  mcrypt_encrypt(): Key of size 14 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:45:54 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:45:54 UTC] PHP Warning:  mcrypt_encrypt(): Key of size 14 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:46:15 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:46:15 UTC] PHP Warning:  mcrypt_encrypt(): Key of size 14 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported in /home/w6maohec8wnv/public_html/api/index.php on line 41
+[21-Jul-2021 05:47:22 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:22 UTC] PHP Warning:  mcrypt_encrypt() expects parameter 2 to be string, array given in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:35 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:35 UTC] PHP Warning:  mcrypt_encrypt() expects parameter 2 to be string, array given in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:37 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:37 UTC] PHP Warning:  mcrypt_encrypt() expects parameter 2 to be string, array given in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:37 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:37 UTC] PHP Warning:  mcrypt_encrypt() expects parameter 2 to be string, array given in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:43 UTC] PHP Deprecated:  Function mcrypt_encrypt() is deprecated in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:47:43 UTC] PHP Warning:  mcrypt_encrypt() expects parameter 2 to be string, array given in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:48:15 UTC] PHP Fatal error:  Cannot use [] for reading in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:48:27 UTC] PHP Fatal error:  Cannot use [] for reading in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:48:28 UTC] PHP Fatal error:  Cannot use [] for reading in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:48:32 UTC] PHP Fatal error:  Cannot use [] for reading in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:48:33 UTC] PHP Fatal error:  Cannot use [] for reading in /home/w6maohec8wnv/public_html/api/index.php on line 40
+[21-Jul-2021 05:48:33 UTC] PHP Fatal error:  Cannot use [] for reading in /home/w6maohec8wnv/public_html/api/index.php on line 40

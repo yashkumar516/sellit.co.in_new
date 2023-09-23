@@ -1,0 +1,5 @@
+ErrorDocument 404 /404.php
+RewriteEngine On
+
+RewriteRule ^sell-old-mobile-phones/([a-zA-Z0-9\-=&_@\.\,\)\(]*)$ mobile.php?id=$1 [NC,L]
+RewriteRule ^sell-old-iphone/([a-zA-Z0-9\-=&_@\.\,\)\(]*)$ oldmobile.php?id=$1 [NC,L]
