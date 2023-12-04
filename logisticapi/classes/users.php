@@ -215,6 +215,7 @@
               $userrecord = mysqli_fetch_assoc(mysqli_query($this->conn,"SELECT * FROM `userrecord` WHERE `id` = '$customerid'"));
               $usermobileno = $userrecord['mobile'];
               $name = $userrecord['name'];
+              echo "<<<--->>>".$accountno;
               // $upiid = $accountdetail['upi'];
               // new code start
               date_default_timezone_set("Asia/Calcutta"); 
@@ -313,7 +314,7 @@
                 ];
 
                 $apostData = json_encode($request);
-
+               
                 $httpUrl = "https://apibankingone.icicibank.com/api/v1/composite-payment";
 
                 $acurl = curl_init();
@@ -330,10 +331,10 @@
                 ));
  
                 $aresponse = curl_exec($acurl);
-
+               
                 $aerr = curl_error($acurl);
                 $httpcode = curl_getinfo($acurl, CURLINFO_HTTP_CODE);
-
+                
                 if ($aerr) {
     
                  echo "cURL Error #:" . $aerr;
@@ -344,6 +345,7 @@
                  fclose($fp);
                  $res = openssl_get_privatekey($priv_key, "");
                  $data = json_decode($aresponse);
+               
                  openssl_private_decrypt(base64_decode($data->encryptedKey), $key, $priv_key);
                  $encData = openssl_decrypt(base64_decode($data->encryptedData),"aes-128-cbc",$key,OPENSSL_PKCS1_PADDING);
                  $newsource = substr($encData, 16);

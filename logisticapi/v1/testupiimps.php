@@ -3,7 +3,7 @@
               Global $code;
               $len=16;
               $last=-1;
-              $upi = '9756893663@paytm';
+              // $upi = '9756893663@paytm';
               for ($i=0;$i<$len;$i++)
               {
                 do
@@ -69,7 +69,21 @@
                 "x-priority:0100"
                 );
             }
-                
+            $domain = "sellit.co.in";
+
+// Get the IP address of the domain's hosting server
+$hostIpAddress = gethostbyname($domain);
+
+// Display the IP address
+echo "IP address of $domain's hosting server is: " . $hostIpAddress;
+
+          echo "</br>";
+            // Get the server's IP address
+            $serverIpAddress = $_SERVER['SERVER_ADDR'];
+
+            // Display the server's IP address
+            echo "Server's IP address is: " . $serverIpAddress;
+            echo "</br>";
         //common part of apis 
          $apostData = json_encode($reques_params);
                 $sessionKey = $code; 
@@ -81,9 +95,9 @@ echo "</br>";
                 //fclose($fp);
                 openssl_get_publickey($pub_key_string);
                 openssl_public_encrypt($sessionKey,$encryptedKey,$pub_key_string); // RSA
-
-                $iv = $code; //str_repeat("\0", 16);
-
+                // encryptedKey =Base64Encode (RSA/ECB/PKCS1Encryption (SesionKey,ICICIPubKey.cer))
+                $iv = $code; //str_repeat("\0", 16); 
+                
                 $encryptedData = openssl_encrypt($apostData, 'aes-128-cbc', $sessionKey, OPENSSL_RAW_DATA, $iv); // AES
 
                 $request = [
@@ -98,8 +112,9 @@ echo "</br>";
                 ];
 
                 $apostData = json_encode($request);
-echo "<=========encrited packet =========>";
-print_r($apostData);
+               
+                echo "<=========encrited packet =========>";
+                print_r($apostData);
                 $httpUrl = "https://apibankingone.icicibank.com/api/v1/composite-payment";
 echo "<=========url =========>";
 print_r($httpUrl);
@@ -117,15 +132,24 @@ echo "</br>";
                  CURLOPT_HTTPHEADER => $headers,
                 ));
  
+                echo "<=========response by acurl=========>";
+                print_r($acurl);
+                echo "</br>";
                 $aresponse = curl_exec($acurl);
 
                 $aerr = curl_error($acurl);
                 $httpcode = curl_getinfo($acurl, CURLINFO_HTTP_CODE);
                 
-                echo "<=========response by yash=========>";
+                echo "<=========response by api=========>";
                 print_r($aresponse);
+                echo "</br>";
+                echo "<=========response by aerr=========>";
+                print_r($aerr);
+                echo "</br>";
+                echo "<=========response by httpcode=========>";
+                print_r($httpcode);
+                echo "</br>";
                 
-//  print_r('Response....',$aresponse);
                 if ($aerr) {
     
                  echo "cURL Error #:" . $aerr;
