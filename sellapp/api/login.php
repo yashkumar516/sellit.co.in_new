@@ -32,8 +32,8 @@ if (isset($_POST['mobile'])) {
         $usertype = "new";
         $uid = '';
     }
-    if ($mobile == '9252066487') {
-        $phone = '919252066487';
+    if ($mobile == '8010033312') {
+        $phone = '918010033312';
         $otp = 123456;
     } else {
         $phone = '91' . $mobile;
