@@ -1,1 +1,8 @@
 /* Add here all your CSS customizations */
+
+
+#datatable-ecommerce-list_filter{
+    position: relative;
+    top: -36px;
+    right: 14px;
+}
