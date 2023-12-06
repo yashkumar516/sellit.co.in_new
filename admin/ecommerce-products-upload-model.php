@@ -16,7 +16,7 @@ $questionsManager = new QuestionsManager($con);
  
 
     if (isset($_POST["uploadWithBrandCSV"])) {
-        $desiredHeaders = ['Brand', 'Brand Image', 'Series', 'Model', 'Model Image', 'Varient', 'Varient Price', 'Display Value', 'Copy Display', 'Front Camera', 'Back Camera', 'Volume Button', 'Finger Touch', 'Speaker', 'Power Button', 'Face Sensor', 'Charging Port', 'Audio Reciever', 'Camera Glass', 'Wifi', 'Silent Button', 'Battery', 'Bluetooth', 'Vibrator', 'Microphone', 'Call Not Recieve', 'Below 3 Months', '3-6 Months', '6-11 Months', 'Above 11 Months', 'Touch screen', 'Large spots', 'Multiple spots', 'Minor spots', 'No spots', 'Display faded', 'Multiple lines', 'No lines', 'Screen cracked', 'Damaged screen', 'Heavy scratches', '1-2 scratches', 'No scratches', 'Major scratches', 'Less than 2 scratches', 'Multiple/heavy dents', 'Less than 2 dents', 'No dents', 'Cracked/ broken side or back panel', 'Missing side or back panel', 'No defect on side or back panel', 'Bent/ curved panel', 'Loose screen (Gap in screen and body)', 'No Bents', 'Orignal Charger', 'Original Earphones', 'Box with same IMEI', 'Bill with same IMEI'];
+        $desiredHeaders = ['Brand', 'Brand Image', 'Series', 'Model', 'Model Image', 'Varient', 'Varient Price', 'Display Value', 'Copy Display', 'Front Camera', 'Back Camera', 'Volume Button', 'Finger Touch', 'Speaker', 'Power Button', 'Face Sensor', 'Charging Port', 'Audio Reciever', 'Camera Glass', 'Wifi', 'Silent Button', 'Battery', 'Bluetooth', 'Vibrator', 'Microphone', 'Call Not Recieve', 'Below 3 Months', '3-6 Months', '6-11 Months', 'Above 11 Months', 'Touch screen', 'Large spots', 'Multiple spots', 'Minor spots', 'No spots', 'Display faded', 'Multiple lines', 'No lines', 'Screen cracked', 'Damaged screen', 'Heavy scratches', '1-2 scratches', 'No scratches', 'Major scratches', 'Less than 2 scratches', 'No body scratches', 'Multiple/heavy dents', 'Less than 2 dents', 'No dents', 'Cracked/ broken side or back panel', 'Missing side or back panel', 'No defect on side or back panel', 'Bent/ curved panel', 'Loose screen (Gap in screen and body)', 'No Bents', 'Orignal Charger', 'Original Earphones', 'Box with same IMEI', 'Bill with same IMEI'];
         $filename = $_FILES["csvfile"]["tmp_name"];
         if ($_FILES["csvfile"]["size"] > 0) {
             $file = fopen($filename, "r"); // Read the header to handle column names
@@ -214,7 +214,7 @@ $questionsManager = new QuestionsManager($con);
                                     <th>No scratches</th>
                                     <th>Major scratches</th>
                                     <th>Less than 2 scratches</th>
-                                    <th>No scratches</th>
+                                    <th>No body scratches</th>
                                     <th>Multiple/heavy dents</th>
                                     <th>Less than 2 dents</th>
                                     <th>No dents</th>
@@ -676,7 +676,7 @@ var demoWithBrandCSV = [{
     "No scratches": "",
     "Major scratches": "",
     "Less than 2 scratches": "",
-    "No scratches": "",
+    "No body scratches": "",
     "Multiple/heavy dents": "",
     "Less than 2 dents": "",
     "No dents": "",

@@ -177,7 +177,7 @@ class SubCategoryManager {
         // body questions starts
         $majorscratch = $getdata["Major scratches"];
         $bodyscratches2 = $getdata["Less than 2 scratches"];
-        $nobodysratches = $getdata["No scratches"];
+        $nobodysratches = $getdata["No body scratches"];
         $heavydents = $getdata["Multiple/heavy dents"];
         $dents2 = $getdata["Less than 2 dents"];
         $nodents = $getdata["No dents"];        
