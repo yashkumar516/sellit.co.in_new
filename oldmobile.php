@@ -220,7 +220,7 @@ if (isset($_SESSION['user'])) {
                     ?>
                     <div class="col-lg-2 col-4 mt-2 px-1">
                         <a class="text-decoration-none"
-                            href="../../sell-old-phones/sell-old-<?= strtolower($subcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$id ?>">
+                            href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ','-',$subcatname['subcategory_name']).'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$id ?>">
                             <div class="text-center" id="md">
                                 <img style="margin-top: 15px;"
                                     src="../../admin/img/<?php echo $armodel['product_image'] ?>" width="100%"
@@ -297,7 +297,7 @@ if (isset($_SESSION['user'])) {
       ?>
                 <div class="item my-3">
                     <a
-                        href="../../sell-old-mobile-phones/sell-old-<?= strtolower($artop['subcategory_name']) ?>/<?php echo $artop['id'];  ?>">
+                        href="../../sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ','-',$artop['subcategory_name'])) ?>/<?php echo $artop['id'];  ?>">
                         <img src="../../admin/img/<?php echo $artop['subcategory_image'];  ?>" class="img-fluid box1"
                             alt="">
                     </a>
@@ -334,7 +334,7 @@ if (isset($_SESSION['user'])) {
      ?>
                 <div class="item my-3">
                     <a
-                        href="../../sell-old-phones/sell-old-<?= strtolower($topsubcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
+                        href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ','-',$topsubcatname['subcategory_name']).'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
                         <div class="text-center" id="md">
                             <img src="../../admin/img/<?php echo $armodel['product_image'];  ?>" class="img-fluid"
                                 alt="">

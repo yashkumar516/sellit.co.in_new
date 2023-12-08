@@ -13,7 +13,7 @@
 
 <div class="col-lg-2 col-4 mt-4">
     <a
-        href="../../sell-old-phones/sell-old-<?= strtolower($subcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
+        href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ','-',$subcatname['subcategory_name']).'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
         <div class="text-center" id="md">
             <img style="margin-top: 15px;" src="../../admin/img/<?php echo $armodel['product_image'] ?>" width="100%"
                 class="img-fluid" alt="">
