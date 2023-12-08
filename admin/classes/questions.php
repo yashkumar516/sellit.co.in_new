@@ -8,12 +8,12 @@ class QuestionsManager {
     }
 
     public function upsertQuestions($getdata, $categoryId, $productId, $brandId, $seriesId) {
-        // Check if the questions already exists 
-        // $questions = trim($getdata["Questions"]); 
-        // $questionsPrice = trim($getdata["Questions Price"]); 
-        //  'Display Value', 'Copy Display', 'Front Camera', 'Back Camera', 'Volume Button', 'Finger Touch',
-        //  'Speaker', 'Power Button', 'Face Sensor', 'Charging Port', 'Audio Reciever', 
-        // 'Camera Glass', 'Wifi', 'Silent Button', 'Battery', 'Bluetooth', 'Vibrator', 'Microphone',
+        // Create a DateTime object from the input string
+        $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
+
+        // Format the DateTime object
+        $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
+        // Check if the questions already exists  
         $displayValue = $getdata["Display Value"];
         $copyDisplay = $getdata["Copy Display"];
         $frontCamera = $getdata["Front Camera"];
@@ -69,12 +69,13 @@ class QuestionsManager {
                             `bluetooth` = ?,
                             `vibrator` = ?,
                             `microphone` = ?,
-                            `displayvalue` = ?
+                            `displayvalue` = ?,
+                            `modify_date` = ?
                         WHERE
                             `id` = ?";
 
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("ssssssssssssssssssssssi", $categoryId, $brandId, $seriesId, $productId, $copyDisplay, $frontCamera, $backCamera, $volumeButton, $fingerTouch, $speaker, $powerButton, $faceSensor, $chargingPort, $audioReciever, $cameraGlass, $wifi, $silentButton, $battery, $bluetooth, $vibrator, $microphone, $displayValue, $questionsId);
+            $updateStmt->bind_param("sssssssssssssssssssssssi", $categoryId, $brandId, $seriesId, $productId, $copyDisplay, $frontCamera, $backCamera, $volumeButton, $fingerTouch, $speaker, $powerButton, $faceSensor, $chargingPort, $audioReciever, $cameraGlass, $wifi, $silentButton, $battery, $bluetooth, $vibrator, $microphone, $displayValue, $nowDate, $questionsId);
 
             $updateStmt->execute();
         

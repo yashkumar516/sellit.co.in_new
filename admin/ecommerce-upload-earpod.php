@@ -14,9 +14,9 @@ $childCategoryManager = new ChildCategoryManager($con);
 $variantManager = new VariantManager($con);
 $questionsManager = new QuestionsManager($con);
  
-
+$desiredHeaders = ["Brand Name","Brand Image","Series","Model","Model Image","Variant","Variant Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone","Call Not Recieve","Below 3 Months","3-6 Months","6-11 Months","Above 11 Months","Touch screen","Large spots","Multiple spots","Minor spots","No spots","Display faded","Multiple lines","No lines","Screen cracked","Damaged screen","Heavy scratches","1-2 scratches","No scratches","Major scratches","Less than 2 scratches","No body scratches","Multiple/heavy dents","Less than 2 dents","No dents","Cracked/ broken side or back panel","Missing side or back panel","No defect on side or back panel","Bent/ curved panel","Loose screen (Gap in screen and body)","No Bents","Orignal Charger","Original Earphones","Box with same IMEI","Bill with same IMEI" ];
+$headerCount=count($desiredHeaders);  
     if (isset($_POST["uploadWithBrandCSV"])) {
-        $desiredHeaders = ['Brand', 'Brand Image', 'Series', 'Model', 'Model Image', 'Varient', 'Varient Price', 'Display Value', 'Copy Display', 'Front Camera', 'Back Camera', 'Volume Button', 'Finger Touch', 'Speaker', 'Power Button', 'Face Sensor', 'Charging Port', 'Audio Reciever', 'Camera Glass', 'Wifi', 'Silent Button', 'Battery', 'Bluetooth', 'Vibrator', 'Microphone', 'Call Not Recieve', 'Below 3 Months', '3-6 Months', '6-11 Months', 'Above 11 Months', 'Touch screen', 'Large spots', 'Multiple spots', 'Minor spots', 'No spots', 'Display faded', 'Multiple lines', 'No lines', 'Screen cracked', 'Damaged screen', 'Heavy scratches', '1-2 scratches', 'No scratches', 'Major scratches', 'Less than 2 scratches', 'No body scratches', 'Multiple/heavy dents', 'Less than 2 dents', 'No dents', 'Cracked/ broken side or back panel', 'Missing side or back panel', 'No defect on side or back panel', 'Bent/ curved panel', 'Loose screen (Gap in screen and body)', 'No Bents', 'Orignal Charger', 'Original Earphones', 'Box with same IMEI', 'Bill with same IMEI'];
         $filename = $_FILES["csvfile"]["tmp_name"];
         if ($_FILES["csvfile"]["size"] > 0) {
             $file = fopen($filename, "r"); // Read the header to handle column names
@@ -28,14 +28,14 @@ $questionsManager = new QuestionsManager($con);
                     $headerIndexes[$header] = $headerIndex;
                 }
             }
-            while (($getdata = fgetcsv($file, 1000, ",")) !== false) {
+            while (($getdata = fgetcsv($file, 1000, ",")) !== false) { 
                 if (
                     isset($getdata) &&
                     isset($getdata[0]) &&
                     isset($getdata[1]) &&
                     isset($getdata[3])
                 ) {
-                    $categoryId = 1;
+                    $categoryId = 4;
                     $rowData = [];
                     foreach ($headerIndexes as $header => $index) {
                         $rowData[$header] = isset($getdata[$index])
@@ -43,7 +43,7 @@ $questionsManager = new QuestionsManager($con);
                             : null;
                     }
     
-                    $SubCategoryInfo = $subCategoryManager->upsertSubcategoryByKey(
+                    $SubCategoryInfo = $subCategoryManager->upsertSubcategoryByKeyId(
                         $rowData,
                         $categoryId
                     );
@@ -63,12 +63,14 @@ $questionsManager = new QuestionsManager($con);
             }
             
             if ($SubCategoryInfo && $productInfo && $variantInfo) {
-                echo "<script> alert('Brand upload successfully');
-                    window.location.href = 'ecommerce-products-form.php';
+                echo "<script> 
+                // alert('Brand upload successfully');
+                    window.location.href = 'ecommerce-upload-mobile.php';
                     </script>";
             } else {
-                echo "<script> alert('Brand upload failed');
-                    window.location.href = 'ecommerce-products-form.php';
+                echo "<script> 
+                // alert('Brand upload failed');
+                    window.location.href = 'ecommerce-upload-mobile.php';
                     </script>";
             } 
         }
@@ -77,7 +79,7 @@ $questionsManager = new QuestionsManager($con);
 
 <section role="main" class="content-body content-body-modern mt-0">
     <header class="page-header page-header-left-inline-breadcrumb">
-        <h2 class="font-weight-bold text-6">Upload </h2>
+        <h2 class="font-weight-bold text-6">Upload Earpod</h2>
         <div class="right-wrapper">
             <ol class="breadcrumbs">
                 <li><span>Home</span></li>
@@ -89,145 +91,70 @@ $questionsManager = new QuestionsManager($con);
     </header>
 
 
-    <!-- <div class="row action-buttons my-3">
-        <div class="col-12 col-md-auto   ">
-
-            <a href="ecommerce-products-form.php"
-                class="cancel-button btn btn-light btn-px-4 my-3 border font-weight-semibold text-color-dark text-3">Single
-                Model</a>
-        </div>
-        <div class="col-12 col-md-auto px-0  ">
-            <a href="#"
-                class="cancel-button btn btn-primary btn-px-4 my-3 border font-weight-semibold text-color-dark text-3">Upload
-                CSV</a>
-        </div>
-    </div> -->
-
-
-    <!-- start: page -->
     <div class="row pt-5">
         <div class="col">
             <section class="card card-modern card-big-info">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-2-5 col-xl-1-5 text-center">
-                            <i class="card-big-info-icon bx bx-box"></i>
-                            <h2 class="card-big-info-title">Upload CSV</h2>
-                            <p class="card-big-info-desc">Upload here the Brand, Model with all details and varient
-                                information.</p>
 
-                        </div>
-                        <div class="col-lg-3-5 col-xl-4-5">
-                            <div class="form-group row align-items-end  py-2 text-lg-right ">
-                                <div class=" col-12 float-right">
-                                    <button class="btn btn-light  "
-                                        onclick="downloadCSV(demoWithBrandCSV, 'sample.csv')">Sample CSV
-                                    </button>
+                    <div class="datatables-header-footer-wrapper table1">
+                        <div class="datatable-header">
+                            <div class="row  px-3 pt-3">
+                                <div class="col-5">
+                                    <form action="#" enctype="multipart/form-data" method="POST">
+                                        <div class="pb-2">
+                                            <span class="dragBox w-100">
+                                                <!-- Darg and Drop .csv here -->
+                                                <div class="dragInner">
+                                                    <i class="bx bx-file text-4 mr-2"></i>
+                                                    <span>Upload File</span>
+                                                </div>
+                                                <input type="file" onChange="dragNdrop(event)" id="uploadFile"
+                                                    name="csvfile" required />
+                                            </span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
+                                            value="upload" name="uploadWithBrandCSV"> <i
+                                                class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
+                                    </form>
+                                </div>
+
+                                <div class="col-2"></div>
+                                <div class="col-5 w-100">
+                                    <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span
+                                            class="fa fa-search form-control-feedback"></span> <input type="text"
+                                            class="form-control" placeholder="Search"></div>
+                                    <!-- <button id="csvButton">Download CSV</button> -->
+                                    <div class="d-inline-flex w-100 pt-2">
+
+                                        <button type="button" class="btn btn-primary w-100 mr-2 px-1"
+                                            onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-brand.csv')">
+                                            <i class="bx bx-download text-4 mr-2"></i>Download
+                                            Template
+                                        </button>
+
+                                        <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
+                                                class="bx bx-download text-4 mr-2"></i>
+                                            Download CSV
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <form action="#" enctype="multipart/form-data" method="POST">
-
-                                <div class="form-group row align-items-center  py-5">
-                                    <label class="col-lg-4 col-xl-3 control-label text-lg-right mb-0">CSV File
-                                    </label>
-                                    <div class="col-lg-6 col-xl-6">
-
-                                        <input type="file" class="form form-control" name="csvfile" required>
-
-                                    </div>
-
-                                    <div class="col-lg-2 col-xl-3">
-                                        <input type="submit" class="btn btn-primary" value="upload"
-                                            name="uploadWithBrandCSV">
-                                    </div>
-                                </div>
-                            </form>
-
-
                         </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
 
-    <!-- end: page -->
-
-    <div class="row pt-5">
-        <div class="col">
-            <section class="card card-modern card-big-info">
-                <div class="card-body">
-
-                    <div class="datatables-header-footer-wrapper">
-
-
+                        <div class="row hide-load-table">
+                            <p class="  p-2 m-1 "></p>
+                        </div>
                         <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list"
                             style="min-width: 550px;">
 
                             <thead>
                                 <tr>
-                                    <!-- <th>ID</th>
-                                     <th>varientid</th> -->
-                                    <th>Brand</th>
-                                    <th>Brand Image</th>
-                                    <th>Series</th>
-                                    <th>Model</th>
-                                    <th>Model Image</th>
-                                    <th>Varient</th>
-                                    <th>Varient Price</th>
-                                    <!-- <th>Brand Name</th> -->
-                                    <th>Display Value</th>
-                                    <th>Copy Display</th>
-                                    <th>Front Camera</th>
-                                    <th>Back Camera</th>
-                                    <th>Volume Button</th>
-                                    <th>Finger Touch</th>
-                                    <th>Speaker</th>
-                                    <th>Power Button</th>
-                                    <th>Face Sensor</th>
-                                    <th>Charging Port</th>
-                                    <th>Audio Reciever</th>
-                                    <th>Camera Glass </th>
-                                    <th>Wifi</th>
-                                    <th>Silent Button</th>
-                                    <th>Battery</th>
-                                    <th>Bluetooth</th>
-                                    <th>Vibrator</th>
-                                    <th>Microphone</th>
-                                    <th>Call Not Recieve</th>
-                                    <th>Below 3 Months</th>
-                                    <th>3-6 Months</th>
-                                    <th>6-11 Months</th>
-                                    <th>Above 11 Months</th>
-                                    <th>Touch screen</th>
-                                    <th>Large spots</th>
-                                    <th>Multiple spots</th>
-                                    <th>Minor spots</th>
-                                    <th>No spots</th>
-                                    <th>Display faded</th>
-                                    <th>Multiple lines</th>
-                                    <th>No lines</th>
-                                    <th>Screen cracked</th>
-                                    <th>Damaged screen</th>
-                                    <th>Heavy scratches</th>
-                                    <th>1-2 scratches</th>
-                                    <th>No scratches</th>
-                                    <th>Major scratches</th>
-                                    <th>Less than 2 scratches</th>
-                                    <th>No body scratches</th>
-                                    <th>Multiple/heavy dents</th>
-                                    <th>Less than 2 dents</th>
-                                    <th>No dents</th>
-                                    <th>Cracked/ broken side or back panel</th>
-                                    <th>Missing side or back panel</th>
-                                    <th>No defect on side or back panel</th>
-                                    <th>Bent/ curved panel</th>
-                                    <th>Loose screen (Gap in screen and body)</th>
-                                    <th>No Bents</th>
-                                    <th>Orignal Charger</th>
-                                    <th>Original Earphones</th>
-                                    <th>Box with same IMEI</th>
-                                    <th>Bill with same IMEI</th>
+                                    <?php
+                                        foreach ($desiredHeaders as $header) {
+                                            echo "<th>$header</th>";
+                                        }
+                                    ?>
+                                    <th>Modify Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -237,8 +164,8 @@ $questionsManager = new QuestionsManager($con);
                                     $con,
                                     "SELECT questions.product_name as pid,varient.id as vid,questions.displayvalue,questions.copydisplay,questions.front_camera, 
                                    questions.back_camera,questions.volume,questions.finger_touch,questions.speaker,questions.power_btn,questions.face_sensor,questions.charging_port,questions.audio_receiver,
-                                   questions.camera_glass,questions.wifi,questions.silent_btn,questions.battery,questions.bluetooth,questions.vibrator,questions.microphone,varient.varient,varient.uptovalue 
-                                   FROM `questions` JOIN `varient` ON varient.product_name = questions.product_name WHERE questions.categoryid = '1'"
+                                   questions.camera_glass,questions.wifi,questions.silent_btn,questions.battery,questions.bluetooth,questions.vibrator,questions.microphone,questions.modify_date,varient.varient,varient.uptovalue 
+                                   FROM `questions` JOIN `varient` ON varient.product_name = questions.product_name WHERE questions.categoryid = '1' ORDER BY `questions`.`modify_date` DESC;"
                                 );
                                 while (
                                     $arproduct = mysqli_fetch_assoc(
@@ -249,6 +176,7 @@ $questionsManager = new QuestionsManager($con);
                                     //childcategoryid
                                     $childCategory1 = "";
                                     $productid = $arproduct["pid"];
+                                    $modifyDate = date('y/m/d',strtotime($arproduct['modify_date'])); 
                                     $row = mysqli_num_rows(
                                         mysqli_query(
                                             $con,
@@ -306,9 +234,17 @@ $questionsManager = new QuestionsManager($con);
                                         ]; ?>
                                     </td>
 
-                                    <td><a href="#"><img src="img/<?php echo $fetchbb[
-                                        "subcategory_image"
-                                    ]; ?>" alt="img" width="100px"></a>
+                                    <td><a href="#">
+                                            <?php
+                                                $imageUrl = $fetchbb["subcategory_image"]; 
+                                                $urlComponents = parse_url($imageUrl); 
+                                                if ($urlComponents !== false && isset($urlComponents['scheme'])) { 
+                                                    echo "<img src=\"$imageUrl\" alt=\"img\" width=\"100px\">";
+                                                } else { 
+                                                    echo "<img src=\"img/{$fetchbb['subcategory_image']}\" alt=\"img\" width=\"100px\">";
+                                                }
+                                            ?>
+                                        </a>
                                         <p style="display:none;"><?php echo $fetchbb[
                                             "subcategory_image"
                                         ]; ?></p>
@@ -323,9 +259,18 @@ $questionsManager = new QuestionsManager($con);
                                         ]; ?>
                                     </td>
 
-                                    <td><a href="#"><img src="img/<?php echo $selproduct[
-                                        "product_image"
-                                    ]; ?>" alt="img" width="100px"></a>
+                                    <td><a href="#">
+                                            <?php
+                                                $imageUrl = $selproduct["product_image"]; 
+                                                $urlComponents = parse_url($imageUrl); 
+                                                if ($urlComponents !== false && isset($urlComponents['scheme'])) { 
+                                                    echo "<img src=\"$imageUrl\" alt=\"img\" width=\"100px\">";
+                                                } else { 
+                                                    echo "<img src=\"img/{$selproduct['product_image']}\" alt=\"img\" width=\"100px\">";
+                                                }
+                                            ?>
+
+                                        </a>
                                         <p style="display:none;"><?php echo $selproduct[
                                             "product_image"
                                         ]; ?></p>
@@ -505,6 +450,9 @@ $questionsManager = new QuestionsManager($con);
                                     <td>
                                         <?= $fetchbb["billimei"] ?>
                                     </td>
+                                    <td>
+                                        <?php echo $modifyDate; ?>
+                                    </td>
                                 </tr>
                                 <?php
                                 }
@@ -614,84 +562,62 @@ ga('send', 'pageview');
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+    var headerCount = <?php echo $headerCount ?>;
+
     $('.table').DataTable({
         dom: 'Bfrtip',
+        order: [
+            [headerCount, 'desc']
+        ],
         buttons: [{
             extend: 'csv',
-            className: 'btn btn-light px-3 mx-3 mt-3'
+            className: 'd-none'
         }]
+    })
+    var table = $('#datatable-ecommerce-list').DataTable();
+    // hide-load-table
+
+    $('.dataTables_filter label').html(
+        '');
+    $('.hide-load-table').html(
+        '');
+    // Refresh DataTables search functionality after modifications
+    $('#has-search input').on('keyup', function() {
+        table.search(this.value).draw();
     });
 });
 </script>
+
 <script>
 $(document).ready(function() {
-    var table = $('#datatable-ecommerce-list').DataTable();
+    var dataTable = $('.table').DataTable();
+
+    // CSV button click event
+    $('#csvButton').on('click', function() {
+        dataTable.button('.buttons-csv').trigger();
+    });
+
+    // // XLSX button click event
+    // $('#xlsxButton').on('click', function() {
+    //     dataTable.button('.buttons-excel').trigger();
+    // });
+
+    // // PDF button click event
+    // $('#pdfButton').on('click', function() {
+    //     dataTable.button('.buttons-pdf').trigger();
+    // });
 });
+</script>
+<script>
+function dragNdrop(event) {
+    var fileName = event.target.files[0] || {};
+
+    $('.dragInner span').html(
+        'Upload File ' + fileName.name);
+}
 </script>
 
 <script>
-var demoWithBrandCSV = [{
-    "Brand": "",
-    "Brand Image": "",
-    "Series": "",
-    "Model": "",
-    "Model Image": "",
-    "Varient": "",
-    "Varient Price": "",
-    "Display Value": "",
-    "Copy Display": "",
-    "Front Camera": "",
-    "Back Camera": "",
-    "Volume Button": "",
-    "Finger Touch": "",
-    "Speaker": "",
-    "Power Button": "",
-    "Face Sensor": "",
-    "Charging Port": "",
-    "Audio Reciever": "",
-    "Camera Glass": "",
-    "Wifi": "",
-    "Silent Button": "",
-    "Battery": "",
-    "Bluetooth": "",
-    "Vibrator": "",
-    "Microphone": "",
-    "Call Not Recieve": "",
-    "Below 3 Months": "",
-    "3-6 Months": "",
-    "6-11 Months": "",
-    "Above 11 Months": "",
-    "Touch screen": "",
-    "Large spots": "",
-    "Multiple spots": "",
-    "Minor spots": "",
-    "No spots": "",
-    "Display faded": "",
-    "Multiple lines": "",
-    "No lines": "",
-    "Screen cracked": "",
-    "Damaged screen": "",
-    "Heavy scratches": "",
-    "1-2 scratches": "",
-    "No scratches": "",
-    "Major scratches": "",
-    "Less than 2 scratches": "",
-    "No body scratches": "",
-    "Multiple/heavy dents": "",
-    "Less than 2 dents": "",
-    "No dents": "",
-    "Cracked/ broken side or back panel": "",
-    "Missing side or back panel": "",
-    "No defect on side or back panel": "",
-    "Bent/ curved panel": "",
-    "Loose screen (Gap in screen and body)": "",
-    "No Bents": "",
-    "Orignal Charger": "",
-    "Original Earphones": "",
-    "Box with same IMEI": "",
-    "Bill with same IMEI": "",
-}];
-
 function createCSV(array) {
     var keys = Object.keys(array[0]); //Collects Table Headers
 
@@ -710,8 +636,16 @@ function createCSV(array) {
 }
 
 
-function downloadCSV(array, fileName) {
-    csv = 'data:text/csv;charset=utf-8,' + createCSV(array); //Creates CSV File Format
+async function downloadCSV(arrayStrings, fileName) {
+    var array = arrayStrings.split(',');
+    var arrayObjects = [];
+    var obj = {};
+    for (var i = 0; i < array.length; i++) {
+
+        obj[array[i]] = "";
+    }
+    arrayObjects.push(obj);
+    csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
     excel = encodeURI(csv); //Links to CSV 
 
     link = document.createElement('a');
@@ -721,84 +655,7 @@ function downloadCSV(array, fileName) {
 }
 </script>
 
-<!--varient model upto start-->
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#varintmobupto').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ]
-    });
-});
-</script>
 
 </body>
 
 </html>
-
-<script>
-$(document).ready(function(e) {
-    var html =
-        '<div class="row my-3" id="rmtag"><div class="col-1"><label class=" control-label text-lg-right mb-0">Varient </label></div><div class="col-3"><input type="text" class="form-control form-control-modern" name="varient[]" value="" required /></div><div class="col-2"><label class=" control-label text-lg-right mb-0">upto value</label></div><div class="col-4"><input type="text" class="form-control form-control-modern" name="upto[]" value="" required /></div><div class="col-2"><button class="btn btn-primary" id="removed">remove</button></div></div>';
-    $("#addtag").click(function(e) {
-        $("#tag").append(html);
-    });
-
-    $("#tag").on('click', '#removed', function(e) {
-        $("#rmtag").remove();
-    })
-});
-</script>
-
-<script>
-function callsubcat() {
-    var id = $('#category').val();
-    if (id != null) {
-        $.ajax({
-            method: "post",
-            url: "subdajax.php",
-            data: {
-                cid: id
-            },
-            dataType: "html",
-            success: function(result) {
-                $('#subcategory').html(result);
-            }
-        });
-    }
-}
-</script>
-
-<script>
-function callchildcat() {
-    var id = $('#subcategory').val();
-    if (id != null) {
-        $.ajax({
-            method: "post",
-            url: "childajax.php",
-            data: {
-                sid: id
-            },
-            dataType: "html",
-            success: function(result) {
-                $('#childcategory').html(result);
-            }
-        });
-    }
-}
-</script>
-
-<!-- <script>
- $('#modelform').on('submit',function(e){
-	$.ajax({
-		url:"savemodel.php",
-		type:"post",
-		data: $(this).serialize(),
-		success:function(result){
-			alert(result);
-		}
-	});
-    e.preventDefault();
- });
-</script> -->

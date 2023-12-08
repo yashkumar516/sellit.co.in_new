@@ -11,7 +11,7 @@ include_once "./classes/questions.php";
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
-$varientManager = new VarientManager($con);
+$variantManager = new VariantManager($con);
 $questionsManager = new QuestionsManager($con);
 // questions
 // ChildCategoryManager
@@ -129,14 +129,14 @@ if (isset($_POST["uploadWithBrandCSV"])) {
                 $seriesId= $SubCategoryInfo["id"];
                  $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
                  $productId= $productInfo["id"];
-                 $varientInfo = $varientManager->upsertVarient($rowData, $categoryId, $productId, $brandId, $seriesId);
+                 $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
                  $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
                  
                  
             }
         }
         
-        if ($SubCategoryInfo && $productInfo && $varientInfo) {
+        if ($SubCategoryInfo && $productInfo && $variantInfo) {
             echo "<script> alert('Brand upload successfully');
                 window.location.href = 'ecommerce-products-form.php';
                 </script>";
@@ -1523,7 +1523,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-// "Category ID","Brand ID", "Model Name","Varient","Varient Price", "Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","microphone"
+// "Category ID","Brand ID", "Model Name","Variant","Variant Price", "Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","microphone"
 var demoCSV = [{
     "Category ID": "",
     "Brand ID": "",
@@ -1552,7 +1552,7 @@ var demoCSV = [{
     "microphone": ""
 }]
 var demoWithBrandCSV = [{
-    // "Brand","Brand Image","Series","Model","Model Image","Varient","Varient Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone","Call Not Recieve","Below 3 Months","3-6 Months","6-11 Months","Above 11 Months","Touch screen","Large spots","Multiple spots","Minor spots","No spots","Display faded","Multiple lines","No lines","Screen cracked","Damaged screen","Heavy scratches","1-2 scratches","No scratches","Major scratches","Less than 2 scratches","No scratches","Multiple/heavy dents","Less than 2 dents","No dents","Cracked/ broken side or back panel","Missing side or back panel","No defect on side or back panel","Bent/ curved panel","Loose screen (Gap in screen and body)","No Bents","Orignal Charger","Original Earphones","Box with same IMEI","Bill with same IMEI"
+    // "Brand","Brand Image","Series","Model","Model Image","Variant","Variant Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone","Call Not Recieve","Below 3 Months","3-6 Months","6-11 Months","Above 11 Months","Touch screen","Large spots","Multiple spots","Minor spots","No spots","Display faded","Multiple lines","No lines","Screen cracked","Damaged screen","Heavy scratches","1-2 scratches","No scratches","Major scratches","Less than 2 scratches","No scratches","Multiple/heavy dents","Less than 2 dents","No dents","Cracked/ broken side or back panel","Missing side or back panel","No defect on side or back panel","Bent/ curved panel","Loose screen (Gap in screen and body)","No Bents","Orignal Charger","Original Earphones","Box with same IMEI","Bill with same IMEI"
 
     "Brand": "",
     "Brand Image": "",

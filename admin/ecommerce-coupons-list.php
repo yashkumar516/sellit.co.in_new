@@ -258,7 +258,16 @@
             $('#datatable-ecommerce-list').DataTable( {
                dom: 'Bfrtip',
                buttons: [
-             'csv', 'excel', 'pdf'
+             {
+                extend: 'csv',
+                className: 'btn btn-primary px-3 mx-1 '
+            }, {
+                extend: 'excel',
+                className: 'btn btn-primary px-3 mx-1 '
+            }, {
+                extend: 'pdf',
+                className: 'btn btn-primary px-3 mx-1'
+            }
           ]
        } );
     } );

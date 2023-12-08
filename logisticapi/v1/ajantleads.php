@@ -31,13 +31,8 @@ function GENERATELOGS_API($DATA,$BLOCK,$flag=0) {
 }
     
 if($_SERVER['REQUEST_METHOD'] === "POST"){
-<<<<<<< HEAD
-
-     GENERATELOGS_API($_POST,"[REQUEST PACKET]",1);
-=======
     
     GENERATELOGS_API($_POST,"[REQUEST PACKET]",1);
->>>>>>> 3b04bb312b95978b7b2d98f8b90770cc4121cf2b
 
     if(!empty($_POST['vendorid']) && !empty($_POST['ajentid']) && !empty($_POST['flag'])){ 
     $user_obj->vendorid = $_POST['vendorid'];

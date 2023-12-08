@@ -8,13 +8,34 @@ class ChildCategoryManager {
     }
 
     public function upsertChildCategory($getdata, $categoryId, $brandId) {
+        // Create a DateTime object from the input string
+        $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
+ 
+        // Format the DateTime object
+        $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
         // Check if the childcategory already exists 
-        $seriesName = trim($getdata["Series"]); 
+        
+        $seriesName = isset($getdata["Series"]) &&trim($getdata["Series"])!==""?trim($getdata["Series"]): trim($getdata["Serie Name"]);
+        $id = (int)$getdata["Serie ID"];  
+       
         $status="active";
-        $checkQuery ="SELECT * FROM `childcategory` WHERE `childcategory` = ? AND `subcatid` = ? AND  `categoryid` = ?";
+        $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `childcategory` WHERE  `id` = ? ":"SELECT * FROM `childcategory` WHERE `childcategory` = ? AND `subcatid` = ? AND  `categoryid` = ?";
+        // $checkQuery ="SELECT * FROM `subcategory` WHERE (`subcategory_name` = ? OR `id` = ?) AND `category_id` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
-        $checkStmt->bind_param("sss", $seriesName, $brandId, $categoryId);
+        $checkId=$id!=="" && $id!==null && $id>0?$id:$seriesName;
 
+        // $seriesName = trim($getdata["Series"]); 
+        
+        // $checkQuery ="SELECT * FROM `childcategory` WHERE `childcategory` = ? AND `subcatid` = ? AND  `categoryid` = ?";
+        // $checkStmt = $this->conn->prepare($checkQuery);
+        // $checkStmt->bind_param("sss", $checkId, $brandId, $categoryId);
+        if($id!=="" && $id!==null && $id>0){
+            $checkStmt->bind_param("s", $checkId);
+        } else{
+            $checkStmt->bind_param("sss", $checkId, $brandId, $categoryId);
+        }
+        // echo "---<br/>------------------checkId---------".$checkId;
+        // echo "---<br/>------------------categoryId".$categoryId;
         $checkStmt->execute();
         $checkResult = $checkStmt->get_result();
 
@@ -22,18 +43,19 @@ class ChildCategoryManager {
             // ChildCategory exists, update it
             $existingChildCategory = $checkResult->fetch_assoc(); // Fetch existing childcategory data
             $childcategoryId = $existingChildCategory['id']; // Get the existing childcategory ID
-            
+             
             $updateQuery = " UPDATE `childcategory`
             SET
                 `categoryid` = ?,
                 `subcatid` = ?,
                 `childcategory` = ?,
-                `status` = ?
+                `status` = ?,
+                `modify` = ?
             WHERE
                 `id` = ?
             ";
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("ssssi", $categoryId, $brandId, $seriesName, $status, $childcategoryId);
+            $updateStmt->bind_param("sssssi", $categoryId, $brandId, $seriesName, $status, $nowDate, $childcategoryId);
             $updateStmt->execute();
         
             // Fetch and return updated childcategory information
@@ -65,6 +87,8 @@ class ChildCategoryManager {
             return $insertedChildCategory;
         }
     }
+
+    // upsertChildCategorySerie
 }
 
 ?>

@@ -3,6 +3,83 @@
  <?php include 'includes/sidebar.php' ?>
  <!-- end sidebar  header -->
  <?php
+include_once "./classes/products.php";
+include_once "./classes/childcategory.php";  
+include_once "./classes/subcategory.php";  
+include_once "./classes/varient.php";  
+include_once "./classes/questions.php";  
+$productManager = new ProductManager($con);
+$subCategoryManager = new SubCategoryManager($con);
+$childCategoryManager = new ChildCategoryManager($con);
+$variantManager = new VariantManager($con);
+$questionsManager = new QuestionsManager($con);
+ 
+$desiredHeaders = [ "Model ID","Model Name","Model Image","Variant ID","Variant Name","Variant Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone"];
+$headerCount=count($desiredHeaders);  
+    if (isset($_POST["uploadWithBrandCSV"]) && isset($_POST["subCategory"]) && isset($_POST["childCategory"])) {
+        
+     
+        $brandId= $_POST["subCategory"];
+                     
+        $seriesId= $_POST["childCategory"];
+        $filename = $_FILES["csvfile"]["tmp_name"];
+        if ($_FILES["csvfile"]["size"] > 0) {
+            $file = fopen($filename, "r"); // Read the header to handle column names
+            $headers = fgetcsv($file, 1000, ","); // Find the indexes of the desired headers
+            $headerIndexes = [];
+            foreach ($desiredHeaders as $header) {
+                $headerIndex=false;
+                 if($header==="Model ID"){
+                    $headerIndex = array_search('Model ID (Optional)', $headers);
+                 } else if($header==="Variant ID"){
+                    $headerIndex = array_search('Variant ID (Optional)', $headers);
+                 } else{
+
+                    $headerIndex = array_search($header, $headers);
+                 }
+                if ($headerIndex !== false) {
+                    $headerIndexes[$header] = $headerIndex;
+                } 
+            }
+            while (($getdata = fgetcsv($file, 1000, ",")) !== false) { 
+                if (
+                    isset($getdata) &&
+                    isset($getdata[0]) &&
+                    isset($getdata[1]) &&
+                    isset($getdata[3])
+                ) {
+                    $categoryId = 1;
+                    $rowData = [];
+                    foreach ($headerIndexes as $header => $index) {
+                        $rowData[$header] = isset($getdata[$index])
+                            ? $getdata[$index]
+                            : null;
+                    }
+                    $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
+                    $productId= $productInfo["id"];
+                    $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
+                    $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
+                    
+                    
+                }
+            }
+            
+            // if ($SubCategoryInfo && $productInfo && $variantInfo) {
+            //     echo "<script> 
+            //     // alert('Brand upload successfully');
+            //         window.location.href = 'ecommerce-products-form.php';
+            //         </script>";
+            // } else {
+            //     echo "<script> 
+            //     // alert('Brand upload failed');
+            //         window.location.href = 'ecommerce-products-form.php';
+            //         </script>";
+            // } 
+        }
+    } 
+?>
+
+ <?php
 function GENERATELOGS_API($DATA,$BLOCK,$flag=0) {
         $file_name = "/var/log/aakarist/addproduct.txt";
         if(file_exists($file_name)) {
@@ -152,20 +229,6 @@ if(isset($_POST['productss']))
          </div>
      </header>
 
-
-     <div class="row action-buttons my-3">
-         <div class="col-12 col-md-auto   ">
-
-             <a href="#"
-                 class="cancel-button btn btn-primary btn-px-4 my-3 border font-weight-semibold text-color-dark text-3">Single
-                 Model</a>
-         </div>
-         <div class="col-12 col-md-auto px-0 ">
-             <a href="ecommerce-products-upload-model.php"
-                 class="cancel-button btn btn-light btn-px-4 my-3 border font-weight-semibold text-color-dark text-3">
-                 Upload CSV</a>
-         </div>
-     </div>
 
      <!-- start: page -->
      <form action="" method="post" enctype="multipart/form-data">
@@ -337,11 +400,6 @@ if(isset($_POST['productss']))
                  <a href="#"
                      class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Cancel</a>
              </div>
-             <!-- <div class="col-12 col-md-auto ml-md-auto mt-3 mt-md-0">
-								<a href="#" class="delete-button btn btn-danger btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
-							      <i class="bx bx-trash text-4 mr-2"></i> Delete Product
-									</a>
-								</div> -->
          </div>
      </form>
      <!-- end: page -->
@@ -349,97 +407,103 @@ if(isset($_POST['productss']))
      <!-- start question table -->
      <div class="row mt-5">
 
-         <!--uptovalue from excel start-->
-         <!-- <div class="card card-modern " >
-						
-									<div class="datatables-header-footer-wrapper">
-										<div class="datatable-header">
-											<div class="row align-items-center mb-3">
-												<div class="col-12 col-lg-auto mb-3 mb-lg-0">
-
-												</div>
-											</div>
-											<div class="col-5 mx-auto">
-										       <form action="uptocsv.php" enctype="multipart/form-data" method="POST" >
-                                               <div class="row">
-											   <div class="col-8" >
-										       <input type="file" class="form form-control" name="uptofile" required >
-											   </div>
-											    <div class="col-4" >
-										       <input type="submit" class="btn btn-primary" value="upload" name="pricecsv" >
-											   </div>
-											   </div>
-										       </form>
-										</div>
-										</div>
-										
-										<table class=" table-responsive table-bordered table-striped mb-0 " id="varintmobupto" style="min-width: 550px;">
-										
-											<thead>
-												<tr>
-										         <th width="20%">varient Id</th>
-										          <th width="20%">model Name</th>
-										          <th width="20%">model Brand</th>
-										          <th width="20%">model Varient</th>
-										          <th width="20%">model Upto Value</th>
-												</tr>
-											</thead>
-											<tbody>
-											    <php
-											     $selectvarientupto = mysqli_query($con,"SELECT varient.id as vid,varient.varient,varient.uptovalue,product.product_name as model,
-											     subcategory.subcategory_name FROM varient LEFT JOIN product on varient.product_name = product.id LEFT JOIN subcategory on product.subcategoryid = subcategory.id");
-											     while($arv = mysqli_fetch_assoc($selectvarientupto)){
-											    ?>
-												<tr>
-												 <td><= $arv['vid'] ?></td>
-										          <td><= $arv['model'] ?></td>
-										          <td><= $arv['subcategory_name'] ?></td>
-										          <td><= $arv['varient'] ?></td>
-										          <td><= $arv['uptovalue'] ?></td>
-												</tr>
-												<php
-											     }
-											     ?>
-											</tbody>
-										</table>
-										<hr class="solid mt-5 opacity-4">
-										<div class="datatable-footer">
-											<div class="row align-items-center justify-content-between mt-3">
-												<div class="col-lg-auto text-center order-3 order-lg-2">
-													<div class="results-info-wrapper"></div>
-												</div>
-												<div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
-													<div class="pagination-wrapper"></div>
-												</div>
-											</div>
-										</div>
-									</table>
-								</div>
-
-						</div> -->
-         <!--uptovalue from excel end-->
-
          <div class="card card-modern">
 
              <div class="datatables-header-footer-wrapper">
+
                  <div class="datatable-header">
-                     <div class="row align-items-center mb-3">
-                         <div class="col-12 col-lg-auto mb-3 mb-lg-0">
-                             <!-- <a href="ecommerce-products-form.php" class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Add Model</a> -->
+                     <div class="row  px-3 pt-3">
+                         <div class="col-5">
+                             <form action="#" enctype="multipart/form-data" method="POST">
+                                 <div class="pb-2">
+                                     <span class="dragBox w-100">
+                                         <!-- Darg and Drop .csv here -->
+                                         <div class="dragInner">
+                                             <i class="bx bx-file text-4 mr-2"></i>
+                                             <span>Upload File</span>
+                                         </div>
+                                         <input type="file" onChange="dragNdrop(event)" id="uploadFile" name="csvfile"
+                                             required />
+                                     </span>
+                                 </div>
+                                 <div class="row p-0 m-0 pb-2">
+                                     <div class="col-lg-6 col-xl-6 px-0">
+                                         <select name="subCategory" id="subcategory1"
+                                             class="form-control form-control-modern" onchange="callChildcategory()"
+                                             required>
+                                             <!-- pre selected code start -->
+                                             <?php
+                                                           if(isset($_POST['product'])){
+															  $b = $_POST['subcategory'];
+															  $bf = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `subcategory` WHERE `id` = '$b'"));
+															  ?>
+                                             <option value="<?php echo $bf['id'] ?>"
+                                                 class="form-control form-control-modern" selected>
+                                                 <?php echo $bf['subcategory_name'] ?></option>
+                                             <?php
+														   }
+														  ?>
+
+                                             <!-- pre selected code end -->
+                                             <option value="" class="form-control form-control-modern"> Select Brand
+                                             </option>
+                                         </select>
+
+                                     </div>
+                                     <div class="col-lg-6 col-xl-6 px-0">
+                                         <select name="childCategory" id="childcategory1"
+                                             class="form-control form-control-modern" required>
+                                             <!-- pre selected code start -->
+                                             <?php
+                                                           if(isset($_POST['product'])){
+															  $s = $_POST['childcategory'];
+															  $sf = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `childcategory` WHERE `id` = '$s'"));
+															  ?>
+                                             <option value="<?php echo $sf['id'] ?>"
+                                                 class="form-control form-control-modern" selected>
+                                                 <?php echo $sf['childcategory'] ?></option>
+                                             <?php
+														   }
+														  ?>
+
+                                             <!-- pre selected code end -->
+                                             <option value="" class="form-control form-control-modern">select Series
+                                             </option>
+                                         </select>
+
+                                     </div>
+                                 </div>
+                                 <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
+                                     value="upload" name="uploadWithBrandCSV"> <i
+                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
+                             </form>
+                         </div>
+
+                         <div class="col-2"></div>
+                         <div class="col-5 w-100">
+                             <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span
+                                     class="fa fa-search form-control-feedback"></span> <input type="text"
+                                     class="form-control" placeholder="Search"></div>
+                             <!-- <button id="csvButton">Download CSV</button> -->
+                             <div class="d-inline-flex w-100 mt-5 pt-2">
+
+                                 <button type="button" class="btn btn-primary w-100 mr-2 px-1"
+                                     onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-model.csv')">
+                                     <i class="bx bx-download text-4 mr-2"></i>Download
+                                     Template
+                                 </button>
+
+                                 <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
+                                         class="bx bx-download text-4 mr-2"></i>
+                                     Download CSV
+                                 </button>
+                             </div>
                          </div>
                      </div>
-                     <div class="col-5 mx-auto">
-                         <form action="csv.php" enctype="multipart/form-data" method="POST">
-                             <div class="row">
-                                 <div class="col-8">
-                                     <input type="file" class="form form-control" name="csvfile" required>
-                                 </div>
-                                 <div class="col-4">
-                                     <input type="submit" class="btn btn-primary" value="upload" name="uploadcsv">
-                                 </div>
-                             </div>
-                         </form>
-                     </div>
+                 </div>
+
+                 <div class="row hide-load-table">
+                     <p class="  p-2 m-1 "></p>
                  </div>
 
                  <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list"
@@ -447,164 +511,197 @@ if(isset($_POST['productss']))
 
                      <thead>
                          <tr>
-                             <th>ID</th>
-                             <th>varientid</th>
-                             <th>Model Name</th>
-                             <th>Varient Name</th>
-                             <th>Varient Price</th>
-                             <th>Brand Name</th>
-                             <th>Display Value</th>
-                             <th>Copy Display</th>
-                             <th>Front Camera</th>
-                             <th>Back Camera</th>
-                             <th>Volume Button</th>
-                             <th>Finger Touch</th>
-                             <th>Speaker</th>
-                             <th>Power Button</th>
-                             <th>Face Sensor</th>
-                             <th>Charging Port</th>
-                             <th>Audio Reciever</th>
-                             <th>Camera Glass </th>
-                             <th>Wifi</th>
-                             <th>Silent Button</th>
-                             <th>Battery</th>
-                             <th>Bluetooth</th>
-                             <th>Vibrator</th>
-                             <th>microphone</th>
-                             <th>brand id</th>
-                             <th>Call Not Recieve</th>
-                             <th>Below 3 Months</th>
-                             <th>3-6 Months</th>
-                             <th>6-11 Months</th>
-                             <th>Above 11 Months</th>
-                             <th>Touch screen</th>
-                             <th>Large spots</th>
-                             <th>Multiple spots</th>
-                             <th>Minor spots</th>
-                             <th>No spots</th>
-                             <th>Display faded</th>
-                             <th>Multiple lines</th>
-                             <th>No lines</th>
-                             <th>Screen cracked</th>
-                             <th>Damaged screen</th>
-                             <th>Heavy scratches</th>
-                             <th>1-2 scratches</th>
-                             <th>No scratches</th>
-                             <th>Major scratches</th>
-                             <th>Less than 2 scratches</th>
-                             <th>No scratches</th>
-                             <th>Multiple/heavy dents</th>
-                             <th>Less than 2 dents</th>
-                             <th>No dents</th>
-                             <th>Cracked/ broken side or back panel</th>
-                             <th>Missing side or back panel</th>
-                             <th>No defect on side or back panel</th>
-                             <th>Bent/ curved panel</th>
-                             <th>Loose screen (Gap in screen and body)</th>
-                             <th>No Bents</th>
-                             <th>Orignal Charger</th>
-                             <th>Original Earphones</th>
-                             <th>Box with same IMEI</th>
-                             <th>Bill with same IMEI</th>
+                             <?php
+                                        foreach ($desiredHeaders as $header) {
+                                            echo "<th>$header</th>";
+                                        }
+                                    ?>
+                             <th>Modify Date</th>
                          </tr>
                      </thead>
                      <tbody>
                          <!-- fetch category details start -->
                          <?php
-												$fetchproduct = mysqli_query($con,"SELECT questions.product_name as pid,varient.id as vid,questions.displayvalue,questions.copydisplay,questions.front_camera, 
-												questions.back_camera,questions.volume,questions.finger_touch,questions.speaker,questions.power_btn,questions.face_sensor,questions.charging_port,questions.audio_receiver,
-												questions.camera_glass,questions.wifi,questions.silent_btn,questions.battery,questions.bluetooth,questions.vibrator,questions.microphone,varient.varient,varient.uptovalue 
-												FROM `questions` JOIN `varient` ON varient.product_name = questions.product_name WHERE questions.categoryid = '1'");
-												while($arproduct = mysqli_fetch_assoc($fetchproduct))
-												{
-													$productid = $arproduct['pid'];    
-													$row = mysqli_num_rows(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$productid' "));
-													if($row >= 1){
-													$selproduct = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$productid' "));
-													$brndid = $selproduct['subcategoryid']; 
-													$fetchbb = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `subcategory` WHERE `id` = '$brndid'")); 
-												} 
-												                             
-											  ?>
+                                $fetchproduct = mysqli_query(
+                                    $con,
+                                    "SELECT questions.product_name as pid,varient.id as vid,questions.displayvalue,questions.copydisplay,questions.front_camera, 
+                                   questions.back_camera,questions.volume,questions.finger_touch,questions.speaker,questions.power_btn,questions.face_sensor,questions.charging_port,questions.audio_receiver,
+                                   questions.camera_glass,questions.wifi,questions.silent_btn,questions.battery,questions.bluetooth,questions.vibrator,questions.microphone,questions.modify_date,varient.varient,varient.uptovalue 
+                                   FROM `questions` JOIN `varient` ON varient.product_name = questions.product_name WHERE questions.categoryid = '1' ORDER BY `questions`.`modify_date` DESC;"
+                                );
+                                while (
+                                    $arproduct = mysqli_fetch_assoc(
+                                        $fetchproduct
+                                    )
+                                ) {
+
+                                    //childcategoryid
+                                    $childCategory1 = "";
+                                    $productid = $arproduct["pid"];
+                                    $modifyDate = date('y/m/d',strtotime($arproduct['modify_date'])); 
+                                    $row = mysqli_num_rows(
+                                        mysqli_query(
+                                            $con,
+                                            "SELECT * FROM `product` WHERE `id` = '$productid' "
+                                        )
+                                    );
+                                    if ($row >= 1) {
+                                        // childcategoryid
+                                        $selproduct = mysqli_fetch_assoc(
+                                            mysqli_query(
+                                                $con,
+                                                "SELECT * FROM `product` WHERE `id` = '$productid' "
+                                            )
+                                        );
+                                        $brndid = $selproduct["subcategoryid"];
+                                        $childcategoryid =
+                                            $selproduct["childcategoryid"]; //    echo "-----------------childcategoryid---outer------------". $childcategoryid;
+                                        if (
+                                            isset($childcategoryid) &&
+                                            $childcategoryid !== null &&
+                                            $childcategoryid !== "" &&
+                                            is_numeric($childcategoryid)
+                                        ) {
+                                            // The variable is set and not empty
+                                            $childCategoryQuery = mysqli_query(
+                                                $con,
+                                                "SELECT * FROM `childcategory` WHERE `id` = '$childcategoryid' "
+                                            );
+                                            if (
+                                                mysqli_num_rows(
+                                                    $childCategoryQuery
+                                                ) > 0
+                                            ) {
+                                                $child = mysqli_fetch_assoc(
+                                                    $childCategoryQuery
+                                                );
+                                                $childCategory1 =
+                                                    $child["childcategory"];
+                                            }
+                                        }
+                                        $fetchbb = mysqli_fetch_assoc(
+                                            mysqli_query(
+                                                $con,
+                                                "SELECT * FROM `subcategory` WHERE `id` = '$brndid'"
+                                            )
+                                        );
+                                    }
+                                    ?>
                          <!-- fetch category details end -->
                          <tr>
-                             <td><strong><?php echo $productid ?></strong></td>
-                             <td><strong><?php echo $arproduct ['vid'] ?></strong></td>
-                             <td><?php echo $selproduct['product_name'] ?></td>
-                             <td><?php echo $arproduct['varient'] ?></td>
-                             <td><?php echo $arproduct['uptovalue'] ?></td>
-                             <td class="text-capitalize"><?php echo $fetchbb['subcategory_name'] ?></td>
-                             <td><?php echo $arproduct['displayvalue'] ?></td>
-                             <td><?php echo $arproduct['copydisplay'] ?></td>
-                             <td><?php echo $arproduct['front_camera'] ?></td>
-                             <td><?php echo $arproduct['back_camera'] ?></td>
-                             <td><?php echo $arproduct['volume'] ?></td>
-                             <td><?php echo $arproduct['finger_touch'] ?></td>
-                             <td><?php echo $arproduct['speaker'] ?></td>
-                             <td><?php echo $arproduct['power_btn'] ?></td>
-                             <td><?php echo $arproduct['face_sensor'] ?></td>
-                             <td><?php echo $arproduct['charging_port'] ?></td>
-                             <td><?php echo $arproduct['audio_receiver'] ?></td>
-                             <td><?php echo $arproduct['camera_glass'] ?></td>
-                             <td><?php echo $arproduct['wifi'] ?></td>
-                             <td><?php echo $arproduct['silent_btn'] ?></td>
-                             <td><?php echo $arproduct['battery'] ?></td>
-                             <td><?php echo $arproduct['bluetooth'] ?></td>
-                             <td><?php echo $arproduct['vibrator'] ?></td>
-                             <td><?php echo $arproduct['microphone'] ?></td>
-                             <td><?= $fetchbb['id'] ?></td>
-                             <td><?= $fetchbb['callvalue'] ?></td>
-                             <td><?= $fetchbb['3months'] ?></td>
-                             <td><?= $fetchbb['3to6months'] ?></td>
-                             <td><?= $fetchbb['6to11months'] ?></td>
-                             <td><?= $fetchbb['above11'] ?></td>
-                             <td><?= $fetchbb['touchscreen'] ?></td>
-                             <td><?= $fetchbb['largespot'] ?></td>
-                             <td><?= $fetchbb['multiplespot'] ?></td>
-                             <td><?= $fetchbb['minorspot'] ?></td>
-                             <td><?= $fetchbb['nospot'] ?></td>
-                             <td><?= $fetchbb['displayfade'] ?></td>
-                             <td><?= $fetchbb['multilines'] ?></td>
-                             <td><?= $fetchbb['nolines'] ?></td>
-                             <td><?= $fetchbb['crackedscreen'] ?></td>
-                             <td><?= $fetchbb['damegescreen'] ?></td>
-                             <td><?= $fetchbb['heavyscracthes'] ?></td>
-                             <td><?= $fetchbb['12scratches'] ?></td>
-                             <td><?= $fetchbb['noscratches'] ?></td>
-                             <td><?= $fetchbb['majorscratch'] ?></td>
-                             <td><?= $fetchbb['2bodyscratches'] ?></td>
-                             <td><?= $fetchbb['nobodysratches'] ?></td>
-                             <td><?= $fetchbb['heavydents'] ?></td>
-                             <td><?= $fetchbb['2dents'] ?></td>
-                             <td><?= $fetchbb['nodents'] ?></td>
-                             <td><?= $fetchbb['crackedsideback'] ?></td>
-                             <td><?= $fetchbb['missingsideback'] ?></td>
-                             <td><?= $fetchbb['nodefectssideback'] ?></td>
-                             <td><?= $fetchbb['bentcurvedpanel'] ?></td>
-                             <td><?= $fetchbb['loosescreen'] ?></td>
-                             <td><?= $fetchbb['nobents'] ?></td>
-                             <td><?= $fetchbb['charger'] ?></td>
-                             <td><?= $fetchbb['earphone'] ?></td>
-                             <td><?= $fetchbb['boximei'] ?></td>
-                             <td><?= $fetchbb['billimei'] ?></td>
+
+                             <td>
+                                 <?php echo $selproduct["id"]; ?>
+                             </td>
+
+                             <td>
+                                 <?php echo $selproduct["product_name"]; ?>
+                             </td>
+
+                             <td><a href="#">
+                                     <?php
+                                                $imageUrl = $selproduct["product_image"]; 
+                                                $urlComponents = parse_url($imageUrl); 
+                                                if ($urlComponents !== false && isset($urlComponents['scheme'])) { 
+                                                    echo "<img src=\"$imageUrl\" alt=\"img\" width=\"100px\">";
+                                                } else { 
+                                                    echo "<img src=\"img/{$selproduct['product_image']}\" alt=\"img\" width=\"100px\">";
+                                                }
+                                            ?>
+
+                                 </a>
+                                 <p style="display:none;"><?php echo $selproduct[
+                                            "product_image"
+                                        ]; ?></p>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["vid"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["varient"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["uptovalue"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct[
+                                            "displayvalue"
+                                        ]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["copydisplay"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct[
+                                            "front_camera"
+                                        ]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["back_camera"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["volume"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct[
+                                            "finger_touch"
+                                        ]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["speaker"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["power_btn"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["face_sensor"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct[
+                                            "charging_port"
+                                        ]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct[
+                                            "audio_receiver"
+                                        ]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct[
+                                            "camera_glass"
+                                        ]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["wifi"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["silent_btn"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["battery"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["bluetooth"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["vibrator"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $arproduct["microphone"]; ?>
+                             </td>
+                             <td>
+                                 <?php echo $modifyDate; ?>
+                             </td>
                          </tr>
                          <?php
-												}
-												?>
+                                }
+                                ?>
                      </tbody>
                  </table>
                  <hr class="solid mt-5 opacity-4">
                  <div class="datatable-footer">
                      <div class="row align-items-center justify-content-between mt-3">
-                         <!-- <div class="col-md-auto order-1 mb-3 mb-lg-0">
-													<div class="d-flex align-items-stretch">
-														<select class="form-control select-style-1 bulk-action mr-3" name="bulk-action" style="min-width: 170px;">
-															<option value="" selected>Bulk Actions</option>
-															<option value="delete">Delete</option>
-														</select>
-														<a href="#" class="bulk-action-apply btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Apply</a>
-													</div>
-												</div> -->
+
                          <div class="col-lg-auto text-center order-3 order-lg-2">
                              <div class="results-info-wrapper"></div>
                          </div>
@@ -753,18 +850,105 @@ ga('send', 'pageview');
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
  <script type="text/javascript">
 $(document).ready(function() {
+    var headerCount = <?php echo $headerCount ?>;
+    callSubcategory();
     $('.table').DataTable({
         dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ]
+        order: [
+            [headerCount, 'desc']
+        ],
+        buttons: [{
+            extend: 'csv',
+            className: 'd-none'
+        }]
+    })
+    var table = $('#datatable-ecommerce-list').DataTable();
+    // hide-load-table
+
+    $('.dataTables_filter label').html(
+        '');
+    $('.hide-load-table').html(
+        '');
+    // Refresh DataTables search functionality after modifications
+    $('#has-search input').on('keyup', function() {
+        table.search(this.value).draw();
     });
 });
  </script>
+
  <script>
 $(document).ready(function() {
-    var table = $('#datatable-ecommerce-list').DataTable();
+    var dataTable = $('.table').DataTable();
+
+    // CSV button click event
+    $('#csvButton').on('click', function() {
+        dataTable.button('.buttons-csv').trigger();
+    });
+
+    // // XLSX button click event
+    // $('#xlsxButton').on('click', function() {
+    //     dataTable.button('.buttons-excel').trigger();
+    // });
+
+    // // PDF button click event
+    // $('#pdfButton').on('click', function() {
+    //     dataTable.button('.buttons-pdf').trigger();
+    // });
 });
+ </script>
+ <script>
+function dragNdrop(event) {
+    var fileName = event.target.files[0] || {};
+
+    $('.dragInner span').html(
+        'Upload File ' + fileName.name);
+}
+ </script>
+
+ <script>
+function createCSV(array) {
+    var keys = Object.keys(array[0]); //Collects Table Headers
+
+    var result = ''; //CSV Contents
+    result += keys.join(','); //Comma Seperates Headers
+    result += '\n'; //New Row
+
+    array.forEach(function(item) { //Goes Through Each Array Object
+        keys.forEach(function(key) { //Goes Through Each Object value
+            result += item[key] + ','; //Comma Seperates Each Key Value in a Row
+        })
+        result += '\n'; //Creates New Row
+    })
+
+    return result;
+}
+
+
+async function downloadCSV(arrayStrings, fileName) {
+    var array = arrayStrings.split(',');
+    var arrayObjects = [];
+    var obj = {};
+    for (var i = 0; i < array.length; i++) {
+
+        if (i === 0) {
+            obj["Model ID (Optional)"] = "";
+        } else if (i === 3) {
+            obj["Variant ID (Optional)"] = "";
+        } else {
+            obj[array[i]] = "";
+        }
+        // obj[array[i]] = "";
+
+    }
+    arrayObjects.push(obj);
+    csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
+    excel = encodeURI(csv); //Links to CSV 
+
+    link = document.createElement('a');
+    link.setAttribute('href', excel); //Links to CSV File 
+    link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
+    link.click();
+}
  </script>
 
 
@@ -787,7 +971,7 @@ $(document).ready(function() {
  <script>
 $(document).ready(function(e) {
     var html =
-        '<div class="row my-3" id="rmtag"><div class="col-1"><label class=" control-label text-lg-right mb-0">Varient </label></div><div class="col-3"><input type="text" class="form-control form-control-modern" name="varient[]" value="" required /></div><div class="col-2"><label class=" control-label text-lg-right mb-0">upto value</label></div><div class="col-4"><input type="text" class="form-control form-control-modern" name="upto[]" value="" required /></div><div class="col-2"><button class="btn btn-primary" id="removed">remove</button></div></div>';
+        '<div class="row my-3" id="rmtag"><div class="col-1"><label class=" control-label text-lg-right mb-0">Variant </label></div><div class="col-3"><input type="text" class="form-control form-control-modern" name="varient[]" value="" required /></div><div class="col-2"><label class=" control-label text-lg-right mb-0">upto value</label></div><div class="col-4"><input type="text" class="form-control form-control-modern" name="upto[]" value="" required /></div><div class="col-2"><button class="btn btn-primary" id="removed">remove</button></div></div>';
     $("#addtag").click(function(e) {
         $("#tag").append(html);
     });
@@ -799,6 +983,24 @@ $(document).ready(function(e) {
  </script>
 
  <script>
+function callSubcategory() {
+    var id = 1;
+    // console.log()
+    if (id != null) {
+        $.ajax({
+            method: "post",
+            url: "subdajax.php",
+            data: {
+                cid: id
+            },
+            dataType: "html",
+            success: function(result) {
+                $('#subcategory1').html(result);
+            }
+        });
+    }
+}
+
 function callsubcat() {
     var id = $('#category').val();
     if (id != null) {
@@ -818,6 +1020,23 @@ function callsubcat() {
  </script>
 
  <script>
+function callChildcategory() {
+    var id = $('#subcategory1').val();
+    if (id != null) {
+        $.ajax({
+            method: "post",
+            url: "childajax.php",
+            data: {
+                sid: id
+            },
+            dataType: "html",
+            success: function(result) {
+                $('#childcategory1').html(result);
+            }
+        });
+    }
+}
+
 function callchildcat() {
     var id = $('#subcategory').val();
     if (id != null) {
