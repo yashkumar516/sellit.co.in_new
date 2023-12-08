@@ -235,7 +235,7 @@
                                         Mobile CSV
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a class="nav-link" href="ecommerce-upload-tablet.php">
                                         Tablet CSV
                                     </a>
@@ -249,7 +249,7 @@
                                     <a class="nav-link" href="ecommerce-upload-earpod.php">
                                         Earpod CSV
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <!-- ecommerce-upload-earpod -->

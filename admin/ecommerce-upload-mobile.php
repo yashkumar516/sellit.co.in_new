@@ -127,7 +127,7 @@ $headerCount=count($desiredHeaders);
                                     <div class="d-inline-flex w-100 pt-2">
 
                                         <button type="button" class="btn btn-primary w-100 mr-2 px-1"
-                                            onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-brand.csv')">
+                                            onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'master-template.csv')">
                                             <i class="bx bx-download text-4 mr-2"></i>Download
                                             Template
                                         </button>
