@@ -10,19 +10,19 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <?php
-      $selectbanner = mysqli_query($con, "SELECT * FROM `homebanner` WHERE `status` = 'active'");
+      $queryBanner = mysqli_query($con, "SELECT * FROM `homebanner` WHERE `status` = 'active'");
       $active = 0;
-      while ($arbanner = mysqli_fetch_assoc($selectbanner)) {
+      while ($bannerData = mysqli_fetch_assoc($queryBanner)) {
         if ($active == '0') {
       ?>
             <div class="carousel-item active">
-                <img class="d-block w-100" src="admin/img/<?php echo $arbanner['image'] ?>" alt="First slide">
+                <img class="d-block w-100" src="admin/img/<?php echo $bannerData['image'] ?>" alt="First slide">
             </div>
             <?php
         } else {
         ?>
             <div class="carousel-item ">
-                <img class="d-block w-100" src="admin/img/<?php echo $arbanner['image'] ?>" alt="First slide">
+                <img class="d-block w-100" src="admin/img/<?php echo $bannerData['image'] ?>" alt="First slide">
             </div>
             <?php
         }
@@ -92,12 +92,12 @@
 
 <section class="watch-div mt-3">
     <?php
-  $selmob = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Sell Phone' "));
+  $selectBanner = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Sell Phone' "));
   ?>
     <div class="container watch-row">
         <div class="row">
             <div class="col-lg-8 col-8" id="yalign" style="margin-top: 5%;">
-                <h3 class="tablet-heading pl-2 "><?php echo $selmob['title'] ?></h3>
+                <h3 class="tablet-heading pl-2 "><?php echo $selectBanner['title'] ?></h3>
                 <div class="col-lg-8 offset-lg-1 search-option">
                     <form action="/action_page.php">
                         <div class="input-group">
@@ -122,13 +122,14 @@
                     </div>
                     <div class="row px-1">
                         <?php
-            $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 1 ORDER BY `id` ASC LIMIT 4 ");
-            while ($ar = mysqli_fetch_assoc($selectquery)) {
+            $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 1 ORDER BY `id` ASC LIMIT 4 ");
+            while ($brandData = mysqli_fetch_assoc($queryBrand)) {
             ?>
                         <div class="col-lg-3 col-3">
                             <a
-                                href="sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ','-',$ar['subcategory_name'])) ?>/<?php echo $ar['id'] ?>">
-                                <img src="admin/img/<?php echo $ar['subcategory_image'] ?>" class="img-fluid" alt="">
+                                href="sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ','-',$brandData['subcategory_name'])) ?>/<?php echo $brandData['id'] ?>">
+                                <img src="admin/img/<?php echo $brandData['subcategory_image'] ?>" class="img-fluid"
+                                    alt="">
                             </a>
                         </div>
                         <?php
@@ -142,7 +143,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-4" id="ymalign">
-                <img src="admin/img/<?php echo  $selmob['banner_image'] ?>" class="img-fluid" alt="">
+                <img src="admin/img/<?php echo  $selectBanner['banner_image'] ?>" class="img-fluid" alt="">
             </div>
         </div>
     </div>
@@ -151,14 +152,14 @@
 <section id="have">
     <div class="container tablet-div">
         <?php
-    $seltab = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Tablet' "));
+    $selectBanner = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Tablet' "));
     ?>
         <div class="row" id="prow">
             <div class="col-lg-4 col-4" id="ymalign">
-                <img src="admin/img/<?php echo $seltab['banner_image'] ?>" class="img-fluid" alt="">
+                <img src="admin/img/<?php echo $selectBanner['banner_image'] ?>" class="img-fluid" alt="">
             </div>
             <div class="col-lg-8 col-8" id="yalign" style="margin-top: 5%;">
-                <h3 class="tablet-heading  d-flex justify-content-end"><?php echo $seltab['title'] ?></h3>
+                <h3 class="tablet-heading  d-flex justify-content-end"><?php echo $selectBanner['title'] ?></h3>
 
                 <div class="col-lg-8 offset-lg-3 search-option">
                     <form action="/action_page.php">
@@ -183,11 +184,11 @@
                     </div>
                     <div class="row px-1">
                         <?php
-            $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 3 ORDER BY `id` ASC LIMIT 4 ");
-            while ($ar = mysqli_fetch_assoc($selectquery)) {
+            $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 3 ORDER BY `id` ASC LIMIT 4 ");
+            while ($brandData = mysqli_fetch_assoc($queryBrand)) {
             ?>
-                        <div class="col-lg-3 col-3"><a href="oldtablet.php?id=<?php echo $ar['id'] ?>"><img
-                                    src="admin/img/<?php echo $ar['subcategory_image'] ?>" width="100%"
+                        <div class="col-lg-3 col-3"><a href="oldtablet.php?id=<?php echo $brandData['id'] ?>"><img
+                                    src="admin/img/<?php echo $brandData['subcategory_image'] ?>" width="100%"
                                     class="img-fluid" alt=""></a></div>
                         <?php
             }
@@ -210,11 +211,11 @@
 <section class="watch-div">
     <div class="container watch-row">
         <?php
-    $selwatch = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Watch' "));
+    $selectBanner = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Watch' "));
     ?>
         <div class="row ">
             <div class="col-lg-8 col-8" id="yalign" style="margin-top: 5%">
-                <h3 class="tablet-heading pl-1 "><?php echo $selwatch['title'] ?></h3>
+                <h3 class="tablet-heading pl-1 "><?php echo $selectBanner['title'] ?></h3>
                 <div class="col-lg-8 offset-lg-1 search-option">
                     <form action="/action_page.php">
                         <div class="input-group">
@@ -237,12 +238,12 @@
                     </div>
                     <div class="row px-1">
                         <?php
-            $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 2 ORDER BY `id` ASC LIMIT 4 ");
-            while ($ar = mysqli_fetch_assoc($selectquery)) {
+            $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 2 ORDER BY `id` ASC LIMIT 4 ");
+            while ($brandData = mysqli_fetch_assoc($queryBrand)) {
             ?>
                         <div class="col-lg-3 col-3">
-                            <a href="oldwatch.php?id=<?php echo $ar['id'] ?>">
-                                <img src="admin/img/<?php echo $ar['subcategory_image'] ?>" width="100%"
+                            <a href="oldwatch.php?id=<?php echo $brandData['id'] ?>">
+                                <img src="admin/img/<?php echo $brandData['subcategory_image'] ?>" width="100%"
                                     class="img-fluid" alt="">
                             </a>
                         </div>
@@ -258,7 +259,7 @@
 
             </div>
             <div class="col-lg-4 col-4" id="ymalign">
-                <img src="admin/img/<?php echo $selwatch['banner_image'] ?>" class="img-fluid" alt="">
+                <img src="admin/img/<?php echo $selectBanner['banner_image'] ?>" class="img-fluid" alt="">
             </div>
         </div>
     </div>
@@ -267,14 +268,15 @@
 <section id="have">
     <div class="container tablet-div">
         <?php
-    $seltab = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Ear Buds' "));
+    $selectBanner = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `banner` WHERE `status` = 'active' AND `category` = 'Ear Buds' "));
     ?>
         <div class="row" id="prow">
             <div class="col-lg-4 col-4" id="ymalign">
-                <img src="admin/img/<?php echo $seltab['banner_image'] ?>" class="img-fluid" alt="">
+                <img src="admin/img/<?php echo $selectBanner['banner_image'] ?>" class="img-fluid" alt="">
             </div>
             <div class="col-lg-8 col-8" id="yalign" style="margin-top: 5%;">
-                <h3 class="tablet-heading  d-flex justify-content-end mr-5 pr-3 "><?php echo $seltab['title'] ?></h3>
+                <h3 class="tablet-heading  d-flex justify-content-end mr-5 pr-3 "><?php echo $selectBanner['title'] ?>
+                </h3>
 
                 <div class="col-lg-8 offset-lg-3 search-option">
                     <form action="/action_page.php">
@@ -299,11 +301,11 @@
                     </div>
                     <div class="row px-1">
                         <?php
-            $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 4 ORDER BY `id` ASC LIMIT 4 ");
-            while ($ar = mysqli_fetch_assoc($selectquery)) {
+            $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = 4 ORDER BY `id` ASC LIMIT 4 ");
+            while ($brandData = mysqli_fetch_assoc($queryBrand)) {
             ?>
-                        <div class="col-lg-3 col-3"><a href="oldearpod.php?id=<?php echo $ar['id'] ?>"><img
-                                    src="admin/img/<?php echo $ar['subcategory_image'] ?>" width="100%"
+                        <div class="col-lg-3 col-3"><a href="oldearpod.php?id=<?php echo $brandData['id'] ?>"><img
+                                    src="admin/img/<?php echo $brandData['subcategory_image'] ?>" width="100%"
                                     class="img-fluid" alt=""></a></div>
                         <?php
             }

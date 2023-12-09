@@ -18,11 +18,11 @@ $selectupto = mysqli_fetch_assoc(
 <div class="container-fluid" id="sold">
     <div class="row">
         <div class="col-12 col-lg-7 mx-auto py-5" id="soldpage">
-         <h3>Sell Old <span class="sell-title-head"> <?php echo $selectquery[
+            <h3>Sell Old <span class="sell-title-head"> <?php echo $selectquery[
              'subcategory_name'
          ]; ?> </span>Watch</h3>
+        </div>
     </div>
-</div> 
     <br><br>
     <div class="row pb-5">
         <div class="col-12 col-lg-7 mx-auto">
@@ -42,11 +42,12 @@ $selectupto = mysqli_fetch_assoc(
                         'uptovalue'
                     ]; ?>/-</h1>
                     <?php } else { ?>
-                        <span class="class-danger" >price not defined</span>
-                         <?php } ?>
+                    <span class="class-danger">price not defined</span>
+                    <?php } ?>
                     <div class="mt-4">
                         <a href="watch-query.php?mid=<?php echo $mid; ?>&&bid=<?php echo $bid; ?>">
-                            <button class="btn contin-btn">Get Exact Value <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                            <button class="btn contin-btn">Get Exact Value <i class="fas fa-arrow-right"
+                                    aria-hidden="true"></i></button>
                         </a>
                     </div>
                 </div>

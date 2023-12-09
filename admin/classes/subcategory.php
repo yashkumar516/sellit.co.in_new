@@ -147,6 +147,7 @@ class SubCategoryManager {
             return $insertedSubcategory;
         }
     }
+
     public function upsertSubcategoryByKey($getdata, $categoryId) {
         // Check if the product already exists 
        
@@ -299,6 +300,7 @@ class SubCategoryManager {
             return $insertedSubcategory;
         }
     }
+    
     public function upsertSubcategoryByKeyId($getdata, $categoryId) {
        
         // Create a DateTime object from the input string

@@ -77,7 +77,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="child-category-list.php">
+                                    <a class="nav-link" href="child-category-list.php?category=1">
                                         Series List
                                     </a>
                                 </li>
@@ -126,7 +126,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="child-category-list.php">
+                                    <a class="nav-link" href="child-category-list.php?category=2">
                                         Series List
                                     </a>
                                 </li>
@@ -168,7 +168,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="child-category-list.php">
+                                    <a class="nav-link" href="child-category-list.php?category=3">
                                         Series List
                                     </a>
                                 </li>

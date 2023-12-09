@@ -23,14 +23,39 @@
                  <div class="card-body">
                      <div class="datatables-header-footer-wrapper">
                          <div class="datatable-header">
-                             <div class="row align-items-center mb-3">
-                                 <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                             <div class="row  mb-3">
+                                 <div class="col-5 col-lg-5 mb-3 mb-lg-0">
                                      <a href="subcategory.php"
                                          class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Add
                                          Brand</a>
                                  </div>
 
+                                 <div class="col-2"></div>
+                                 <div class="col-5 w-100">
+                                     <div class="form-group float-right     mb-0 w-100" id="has-search"> <span
+                                             class="fa fa-search form-control-feedback"></span> <input type="text"
+                                             class="form-control" placeholder="Search"></div>
+                                     <!-- <button id="csvButton">Download CSV</button> -->
+                                     <div class="d-inline-flex w-100  ">
+                                         <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
+                                                 class="bx bx-download text-4 mr-2"></i>
+                                             CSV
+                                         </button>
+                                         <button type="button" class="btn btn-primary w-100 px-1" id="excelButton"><i
+                                                 class="bx bx-download text-4 mr-2"></i>
+                                             Excel
+                                         </button>
+                                         <button type="button" class="btn btn-primary w-100 px-1" id="pdfButton"><i
+                                                 class="bx bx-download text-4 mr-2"></i>
+                                             PDF
+                                         </button>
+                                     </div>
+                                 </div>
                              </div>
+                         </div>
+
+                         <div class="row hide-load-table">
+                             <p class="  p-2 m-1 "></p>
                          </div>
                          <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
                              style="min-width: 550px;">
@@ -74,7 +99,11 @@
                                      <td><?php echo $arsub['subcategory_name'] ?></td>
                                      <td><a href="#"><img src="img/<?php echo $arsub['subcategory_image'] ?>" alt="img"
                                                  width="100px"></a></td>
-                                     <td><?php echo date('d/m/y',strtotime($arsub['modify_date']))  ?></td>
+
+                                     <td><span
+                                             class="d-none"><?php echo date('y/m/d',strtotime($arsub['modify_date']))  ?></span>
+                                         <?php echo date('F j, Y',strtotime($arsub['modify_date']))  ?>
+                                     </td>
                                      <td>
                                          <?php
 													$sid = $arsub['id'];
@@ -233,6 +262,8 @@
  <!-- Theme Custom -->
  <script src="js/custom.js"></script>
 
+ <script src="js/customBfrtip.js" data-order=6 data-orderType="desc"></script>
+
  <!-- Theme Initialization Files -->
  <script src="js/theme.init.js"></script>
  <!-- Analytics to Track Preview Website -->
@@ -261,31 +292,7 @@ ga('send', 'pageview');
  <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
  <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
- <script type="text/javascript">
-$(document).ready(function() {
-    $('.table').DataTable({
-        dom: 'Bfrtip',
-        buttons: [{
-                extend: 'csv',
-                className: 'btn btn-primary px-3 mx-1 '
-            }, {
-                extend: 'excel',
-                className: 'btn btn-primary px-3 mx-1 '
-            }, {
-                extend: 'pdf',
-                className: 'btn btn-primary px-3 mx-1'
-            }
 
-        ]
-    });
-});
- </script>
- <script>
-$(document).ready(function() {
-    // var table = $('#datatable-ecommerce-list').DataTable();
-
-});
- </script>
 
  </body>
 

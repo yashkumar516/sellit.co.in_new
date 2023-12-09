@@ -486,6 +486,7 @@ $headerCount=count($desiredHeaders);
 
 <!-- Theme Custom -->
 <script src="js/custom.js"></script>
+<script src="js/customBfrtip.js" data-order=<?php echo $headerCount ?>></script>
 
 <!-- Theme Initialization Files -->
 <script src="js/theme.init.js"></script>
@@ -520,62 +521,6 @@ ga('send', 'pageview');
 <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    var headerCount = <?php echo $headerCount ?>;
-
-    $('.table').DataTable({
-        dom: 'Bfrtip',
-        order: [
-            [headerCount, 'desc']
-        ],
-        buttons: [{
-            extend: 'csv',
-            className: 'd-none'
-        }]
-    })
-    var table = $('#datatable-ecommerce-list').DataTable();
-    // hide-load-table
-
-    $('.dataTables_filter label').html(
-        '');
-    $('.hide-load-table').html(
-        '');
-    // Refresh DataTables search functionality after modifications
-    $('#has-search input').on('keyup', function() {
-        table.search(this.value).draw();
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    var dataTable = $('.table').DataTable();
-
-    // CSV button click event
-    $('#csvButton').on('click', function() {
-        dataTable.button('.buttons-csv').trigger();
-    });
-
-    // // XLSX button click event
-    // $('#xlsxButton').on('click', function() {
-    //     dataTable.button('.buttons-excel').trigger();
-    // });
-
-    // // PDF button click event
-    // $('#pdfButton').on('click', function() {
-    //     dataTable.button('.buttons-pdf').trigger();
-    // });
-});
-</script>
-<script>
-function dragNdrop(event) {
-    var fileName = event.target.files[0] || {};
-
-    $('.dragInner span').html(
-        'Upload File ' + fileName.name);
-}
-</script>
 
 <script>
 function createCSV(array) {

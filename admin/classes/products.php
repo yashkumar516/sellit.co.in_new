@@ -75,6 +75,7 @@ class ProductManager {
             return $insertedProduct;
         }
     }
+    
     public function upsertProductId($getdata, $categoryId, $brandId, $seriesId) {
         // Create a DateTime object from the input string
         $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
@@ -88,7 +89,7 @@ class ProductManager {
         $id = (int)$getdata["Model ID"];  
      
         $modelImage = isset($getdata["Model Image"])?$getdata["Model Image"]:"";
- 
+         
         $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `product` WHERE  `id` = ? ":"SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
        
         // $checkQuery ="SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";

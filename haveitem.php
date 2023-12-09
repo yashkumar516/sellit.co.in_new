@@ -2,7 +2,7 @@
 <?php include 'include/haveitem1.php'; ?>
 <?php include 'include/calenquiry.php' ?>
 <?php 
-$selectmodel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
+$selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 
 <?php
@@ -25,10 +25,10 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
         <div class="row">
             <div class="col-lg-5 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectmodel['product_image'] ?>"
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel['product_image'] ?>"
                             class="img-fluid" width="75%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectmodel['product_name'] ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectModel['product_name'] ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>

@@ -13,13 +13,13 @@
         </div>
         <div class="owl-carousel owl-carousel-12 owl-theme col-12">
             <?php
-      $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
-      while ($artop = mysqli_fetch_assoc($selectquery)) {
+      $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
+      while ($brandData = mysqli_fetch_assoc($queryBrand)) {
       ?>
             <div class="item my-3">
                 <a
-                    href="/sell-old-mobile-phones/sell-old-<?= strtolower($artop['subcategory_name']) ?>/<?php echo $artop['id'];  ?>">
-                    <img src="admin/img/<?php echo $artop['subcategory_image'];  ?>" class="img-fluid box1" alt="">
+                    href="/sell-old-mobile-phones/sell-old-<?= strtolower($brandData['subcategory_name']) ?>/<?php echo $brandData['id'];  ?>">
+                    <img src="admin/img/<?php echo $brandData['subcategory_image'];  ?>" class="img-fluid box1" alt="">
                 </a>
             </div>
             <?php
@@ -47,18 +47,18 @@
   <div class="container mb-5"> -->
         <div class="owl-carousel owl-carousel-12 owl-theme col-12">
             <?php 
-        $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
-      while ($armodel = mysqli_fetch_assoc($selectmodel)) {
-        $topsubcatid = $armodel['subcategoryid'];
+        $selectModel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
+      while ($modelData = mysqli_fetch_assoc($selectModel)) {
+        $topsubcatid = $modelData['subcategoryid'];
         $topsubcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$topsubcatid' "));
      ?>
             <div class="item my-3">
                 <a
-                    href="/sell-old-phones/sell-old-<?= strtolower($topsubcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
+                    href="/sell-old-phones/sell-old-<?= strtolower($topsubcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$modelData['product_name']))).'/'.$modelData['id'].'_'.$modelData['subcategoryid'] ?>">
                     <div class="text-center" id="md">
-                        <img src="admin/img/<?php echo $armodel['product_image'];  ?>" class="img-fluid" alt="">
+                        <img src="admin/img/<?php echo $modelData['product_image'];  ?>" class="img-fluid" alt="">
                         <span class="sum-heading1 text-center"
-                            style="color:black;"><?php echo $armodel['product_name'] ?></span>
+                            style="color:black;"><?php echo $modelData['product_name'] ?></span>
                     </div>
                 </a>
             </div>
@@ -460,7 +460,14 @@ $('.owl-carousel').owlCarousel({
     }
 })
 </script>
-
+<?php 
+        $httpHost = $_SERVER['HTTP_HOST'];
+        if($httpHost==="localhost"){
+            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+        } else{
+            echo '<script src="/admin/js/imageReplace.js"></script>';
+        }
+    ?>
 </body>
 
 </html>

@@ -456,6 +456,14 @@ $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
     })
     </script>
 
+    <?php 
+        $httpHost = $_SERVER['HTTP_HOST'];
+        if($httpHost==="localhost"){
+            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+        } else{
+            echo '<script src="/admin/js/imageReplace.js"></script>';
+        }
+    ?>
 </body>
 
 </html>
