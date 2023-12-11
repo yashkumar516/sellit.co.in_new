@@ -476,7 +476,89 @@ class SubCategoryManager {
         $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
            // Check if the product already exists 
         $brandName = trim($getdata["Brand Name"]);
-        $id = (int)$getdata["Brand ID"];  
+        $id =isset($getdata["Brand ID"])? (int)$getdata["Brand ID"]:"";  
+      
+        $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
+         
+
+        $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `subcategory` WHERE  `id` = ? ":"SELECT * FROM `subcategory` WHERE `subcategory_name` = ?  AND `category_id` = ?";
+        // $checkQuery ="SELECT * FROM `subcategory` WHERE (`subcategory_name` = ? OR `id` = ?) AND `category_id` = ?";
+        $checkStmt = $this->conn->prepare($checkQuery);
+        $checkId=$id!=="" && $id!==null && $id>0?$id:$brandName;
+        // $checkStmt->bind_param("ss", $checkId, $categoryId); 
+        if($id!=="" && $id!==null && $id>0){
+            $checkStmt->bind_param("s", $checkId);
+        } else{
+            $checkStmt->bind_param("ss",  $checkId, $categoryId);
+        }
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result(); 
+
+
+
+        if ($checkResult->num_rows > 0) {
+            // Subcategory exists, update it
+            $existingSubcategory = $checkResult->fetch_assoc(); // Fetch existing product data
+            $brandId = $existingSubcategory['id']; // Get the existing product ID
+            $subcategory_name = $brandName !=="" ? $brandName : $existingSubcategory['subcategory_name']; // Get the existing product ID
+            $subcategory_image = $brandImage !=="" ? $brandImage : $existingSubcategory['subcategory_image']; // Get the existing product ID
+            $updateQuery = "UPDATE `subcategory`
+                        SET 
+                            `category_id` = ?,
+                            `subcategory_name` = ?,
+                            `subcategory_image` = ?,
+                            `modify_date` = ?
+                        WHERE
+                            `id` = ?";
+
+            $updateStmt = $this->conn->prepare($updateQuery);
+            $updateStmt->bind_param("sssss", 
+            $categoryId,  $subcategory_name, $subcategory_image, $nowDate, $brandId);
+
+            $updateStmt->execute();
+         
+            $updatedSubcategoryQuery = "SELECT * FROM subcategory WHERE id = ?";
+            $updatedSubcategoryStmt = $this->conn->prepare($updatedSubcategoryQuery);
+            $updatedSubcategoryStmt->bind_param("d", $brandId);
+            $updatedSubcategoryStmt->execute();
+            $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
+            $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
+
+            return $updateSubcategory;
+        } else {
+            // Subcategory doesn't exist, insert it 
+                         
+            $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`)
+            VALUES(?,?,?)";
+
+            $insertStmt = $this->conn->prepare($insertQuery);
+            $insertStmt->bind_param("dss", 
+            $categoryId, $brandName, $brandImage);
+
+            $insertStmt->execute();
+
+            // Fetch and return inserted product information
+            $insertedSubcategoryId = $insertStmt->insert_id;
+            $insertedSubcategoryQuery = "SELECT * FROM subcategory WHERE id = ?";
+            $insertedSubcategoryStmt = $this->conn->prepare($insertedSubcategoryQuery);
+            $insertedSubcategoryStmt->bind_param("d", $insertedSubcategoryId);
+            $insertedSubcategoryStmt->execute();
+            $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
+            $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
+
+            return $insertedSubcategory;
+        }
+    }
+    public function upsertSubcategoryAll($getdata, $categoryId) {
+       
+        // Create a DateTime object from the input string
+        $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
+ 
+        // Format the DateTime object
+        $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
+           // Check if the product already exists 
+        $brandName = trim($getdata["Brand Name"]); 
+        $id =isset($getdata["Brand ID"])? (int)$getdata["Brand ID"]:"";  
       
         $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
          

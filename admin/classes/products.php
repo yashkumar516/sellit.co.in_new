@@ -86,7 +86,7 @@ class ProductManager {
 
         
         $modelName = trim($getdata["Model Name"]);
-        $id = (int)$getdata["Model ID"];  
+        $id =isset($getdata["Model ID"])? (int)$getdata["Model ID"]:"";  
      
         $modelImage = isset($getdata["Model Image"])?$getdata["Model Image"]:"";
          

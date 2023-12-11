@@ -303,6 +303,7 @@ if(isset($_POST['product']))
      </form>
      <!-- end: page -->
 
+     <script src="js/selectImage.js"></script>
      <!-- start question table -->
      <div class="row mt-5">
          <div class="card card-modern">
@@ -315,12 +316,17 @@ if(isset($_POST['product']))
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
+                                         <div class="view" onclick={importCSVFile(event)} ondragover="dragNdrop(event)"
+                                             ondrop="dropFile(event)">
+                                             <input type="file" onchange={changeFile(event)} name="csvfile"
+                                                 style="display: none;" />
+                                         </div>
                                          <div class="dragInner">
                                              <i class="bx bx-file text-4 mr-2"></i>
                                              <span>Upload File</span>
                                          </div>
-                                         <input type="file" onchange="dragNdrop(event)" id="uploadFile" name="csvfile"
-                                             required />
+                                         <input type="file" onchange={changeFile(event)} id="importCSV" name="csvfile"
+                                             style="display: none;" />
                                      </span>
                                  </div>
                                  <button type="submit" class="btn btn-primary w-100" value="upload" name="uploadcsv"> <i

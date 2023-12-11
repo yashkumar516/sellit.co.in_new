@@ -15,8 +15,9 @@ class ChildCategoryManager {
         $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
         // Check if the childcategory already exists 
         
-        $seriesName = isset($getdata["Series"]) &&trim($getdata["Series"])!==""?trim($getdata["Series"]): trim($getdata["Serie Name"]);
-        $id = (int)$getdata["Serie ID"];  
+        $seriesName = isset($getdata["Series"]) &&trim($getdata["Series"])!==""?trim($getdata["Series"]): trim($getdata["Series Name"]);
+      
+        $id =isset($getdata["Series ID"])? (int)$getdata["Series ID"]:"";  
        
         $status="active";
         $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `childcategory` WHERE  `id` = ? ":"SELECT * FROM `childcategory` WHERE `childcategory` = ? AND `subcatid` = ? AND  `categoryid` = ?";

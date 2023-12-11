@@ -9,8 +9,8 @@ $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
  
 $categoryId = $_REQUEST['category'];
-$desiredHeaders = ["Brand ID","Brand Name", "Serie ID","Serie Name" ];
-$headersValidation = [ "Brand Name", "Serie Name" ];
+$desiredHeaders = ["Brand ID","Brand Name", "Series ID","Series Name" ];
+$headersValidation = [ "Brand Name", "Series Name" ];
 $headerCount=count($desiredHeaders);  
     if (isset($_POST["uploadWithBrandCSV"])) {
         $filename = $_FILES["csvfile"]["tmp_name"];
@@ -22,8 +22,22 @@ $headerCount=count($desiredHeaders);
                 $headerIndex=false;
                  if($header==="Brand ID"){
                     $headerIndex = array_search('Brand ID (Optional)', $headers);
-                 } else if($header==="Serie ID"){
-                    $headerIndex = array_search('Serie ID (Optional)', $headers);
+                    if(!$headerIndex){
+                        $headerIndex = array_search('Brand ID', $headers);
+                    }
+                 } else if($header==="Series ID"){
+                    $headerIndex = array_search('Series ID (Optional)', $headers); 
+                    if(!$headerIndex){
+                        $headerIndex = array_search('Series ID', $headers);
+                    }
+                    if(!$headerIndex){
+                        $headerIndex = array_search('Serie ID', $headers);
+                    }
+                 } else if($header==="Series Name"){
+                    $headerIndex = array_search('Series Name', $headers); 
+                    if(!$headerIndex){
+                        $headerIndex = array_search('Serie Name', $headers);
+                    } 
                  } else{
                     $headerIndex = array_search($header, $headers);
                  }
@@ -54,7 +68,7 @@ $headerCount=count($desiredHeaders);
                     isset($categoryId) &&
                     isset($rowData) &&
                     isset($rowData['Brand Name']) &&
-                    isset($rowData["Serie Name"]) 
+                    isset($rowData["Series Name"]) 
                 ) {
                     // $categoryId = 2;
                     
@@ -226,6 +240,7 @@ $headerCount=count($desiredHeaders);
     </form>
     <!-- end: page -->
 
+    <script src="js/selectImage.js"></script>
     <div class="row pt-5">
         <div class="col">
             <section class="card card-modern card-big-info">
@@ -239,12 +254,17 @@ $headerCount=count($desiredHeaders);
                                         <div class="pb-2">
                                             <span class="dragBox w-100">
                                                 <!-- Darg and Drop .csv here -->
+                                                <div class="view" onclick={importCSVFile(event)}
+                                                    ondragover="dragNdrop(event)" ondrop="dropFile(event)">
+                                                    <input type="file" onchange={changeFile(event)} name="csvfile"
+                                                        style="display: none;" />
+                                                </div>
                                                 <div class="dragInner">
                                                     <i class="bx bx-file text-4 mr-2"></i>
                                                     <span>Upload File</span>
                                                 </div>
-                                                <input type="file" onChange="dragNdrop(event)" id="uploadFile"
-                                                    name="csvfile" required />
+                                                <input type="file" onchange={changeFile(event)} id="importCSV"
+                                                    name="csvfile" style="display: none;" />
                                             </span>
                                         </div>
                                         <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
@@ -299,8 +319,8 @@ $headerCount=count($desiredHeaders);
                                     ?> -->
                                     <th width="10%">Brand ID</th>
                                     <th width="35%">Brand Name</th>
-                                    <th width="10%">Serie ID</th>
-                                    <th width="45%">Serie Name</th>
+                                    <th width="10%">Series ID</th>
+                                    <th width="45%">Series Name</th>
                                     <th width="35%">Modify Date</th>
                                 </tr>
                             </thead>
@@ -549,7 +569,7 @@ async function downloadCSV(arrayStrings, fileName) {
         if (i === 0) {
             obj["Brand ID (Optional)"] = "";
         } else if (i === 2) {
-            obj["Serie ID (Optional)"] = "";
+            obj["Series ID (Optional)"] = "";
         } else {
             obj[array[i]] = "";
         }

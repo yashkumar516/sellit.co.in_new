@@ -54,17 +54,18 @@
     display: inline-block;
     transition: transform 0.3s;
     background: #007bff14;
-    div{
-        display: grid;
-        cursor: pointer;
-        font-weight: 400;
-        padding: 8px;
-        color:#000;
-    }
+    .dragInner{
+      display: grid;
+      cursor: pointer;
+      font-weight: 400;
+      /* padding: 8px; */
+      color:#000;
+  }
     i{
         font-size: 30px !important;
         line-height: 38px;
         cursor: pointer;
+        padding: 6px;
         font-weight: 400;
         color: #007bff;
     }
@@ -76,6 +77,13 @@
       opacity: 0;
       top: 0;
       left: 0;
+      /* display: none; */
+    }
+    .view {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 80px;
     }
   }
   /* .dragBox .dragInner {

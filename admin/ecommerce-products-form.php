@@ -6,7 +6,7 @@
 include_once "./classes/products.php";
 include_once "./classes/childcategory.php";  
 include_once "./classes/subcategory.php";  
-include_once "./classes/varient.php";  
+include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
@@ -16,13 +16,14 @@ $questionsManager = new QuestionsManager($con);
  
 $desiredHeaders = [ "Model ID","Model Name","Model Image","Variant ID","Variant Name","Variant Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone"];
 $headerCount=count($desiredHeaders);  
-    if (isset($_POST["uploadWithBrandCSV"]) && isset($_POST["subCategory"]) && isset($_POST["childCategory"])) {
+    if (isset($_POST["uploadWithBrandCSV"]) && isset($_POST["subCategory"]) ) {
         
      
         $brandId= $_POST["subCategory"];
                      
         $seriesId= $_POST["childCategory"];
         $filename = $_FILES["csvfile"]["tmp_name"];
+        // echo "--<br/>-<br/>-<br/>-<br/>-<br/>-<br/>-<br/>----------------------------filename-------------------".$filename;
         if ($_FILES["csvfile"]["size"] > 0) {
             $file = fopen($filename, "r"); // Read the header to handle column names
             $headers = fgetcsv($file, 1000, ","); // Find the indexes of the desired headers
@@ -31,8 +32,14 @@ $headerCount=count($desiredHeaders);
                 $headerIndex=false;
                  if($header==="Model ID"){
                     $headerIndex = array_search('Model ID (Optional)', $headers);
+                    if(!$headerIndex){
+                        $headerIndex = array_search('Model ID', $headers);
+                    }
                  } else if($header==="Variant ID"){
                     $headerIndex = array_search('Variant ID (Optional)', $headers);
+                    if(!$headerIndex){
+                        $headerIndex = array_search('Variant ID', $headers);
+                    }
                  } else{
 
                     $headerIndex = array_search($header, $headers);
@@ -48,6 +55,7 @@ $headerCount=count($desiredHeaders);
                     isset($getdata[1]) &&
                     isset($getdata[3])
                 ) {
+                   
                     $categoryId = 1;
                     $rowData = [];
                     foreach ($headerIndexes as $header => $index) {
@@ -55,6 +63,11 @@ $headerCount=count($desiredHeaders);
                             ? $getdata[$index]
                             : null;
                     }
+                    // foreach($rowData as $var){ 
+                    //          echo "{$var}<br/>"; 
+                    //          echo "--<br/>-<br/>-<br/>-<br/>-<br/>-<br/>-<br/>----------------------------var-------------------".$var;
+                    
+                    // }
                     $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
                     $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
@@ -215,6 +228,7 @@ if(isset($_POST['productss']))
 }
    ?>
 
+ <script src="js/selectImage.js"></script>
  <section role="main" class="content-body content-body-modern mt-0">
      <header class="page-header page-header-left-inline-breadcrumb">
          <h2 class="font-weight-bold text-6">Model Name</h2>
@@ -403,6 +417,7 @@ if(isset($_POST['productss']))
      </form>
      <!-- end: page -->
 
+     <script src="js/selectImage.js"></script>
      <!-- start question table -->
      <div class="row mt-5">
 
@@ -413,16 +428,21 @@ if(isset($_POST['productss']))
                  <div class="datatable-header">
                      <div class="row  px-3 pt-3">
                          <div class="col-5">
-                             <form action="#" enctype="multipart/form-data" method="POST">
+                             <form id="uploadCSVForm" action="#" enctype="multipart/form-data" method="POST">
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
+                                         <div class="view" onclick={importCSVFile(event)} ondragover="dragNdrop(event)"
+                                             ondrop="dropFile(event)">
+                                             <!-- <input type="file" onchange={changeFile(event)} name="csvfile"
+                                                 style="display: none;" /> -->
+                                         </div>
                                          <div class="dragInner">
                                              <i class="bx bx-file text-4 mr-2"></i>
                                              <span>Upload File</span>
                                          </div>
-                                         <input type="file" onChange="dragNdrop(event)" id="uploadFile" name="csvfile"
-                                             required />
+                                         <input type="file" onchange={changeFile(event)} id="importCSV" name="csvfile"
+                                             style="display: none;" />
                                      </span>
                                  </div>
                                  <div class="row p-0 m-0 pb-2">
@@ -451,7 +471,7 @@ if(isset($_POST['productss']))
                                      </div>
                                      <div class="col-lg-6 col-xl-6 px-0">
                                          <select name="childCategory" id="childcategory1"
-                                             class="form-control form-control-modern" required>
+                                             class="form-control form-control-modern">
                                              <!-- pre selected code start -->
                                              <?php
                                                            if(isset($_POST['product'])){
@@ -472,9 +492,9 @@ if(isset($_POST['productss']))
 
                                      </div>
                                  </div>
-                                 <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
-                                     value="upload" name="uploadWithBrandCSV"> <i
-                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
+                                 <button type="submit" class="btn btn-primary w-100" value="upload"
+                                     name="uploadWithBrandCSV"> <i class="bx bx-upload text-4 mr-2"></i>Upload CSV
+                                 </button>
                              </form>
                          </div>
 
@@ -851,15 +871,6 @@ ga('send', 'pageview');
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
  <script>
-function dragNdrop(event) {
-    var fileName = event.target.files[0] || {};
-
-    $('.dragInner span').html(
-        'Upload File ' + fileName.name);
-}
- </script>
-
- <script>
 function createCSV(array) {
     var keys = Object.keys(array[0]); //Collects Table Headers
 
@@ -937,6 +948,11 @@ $(document).ready(function(e) {
  </script>
 
  <script>
+window.onload = function() {
+    // Call your function here
+    callSubcategory();
+};
+
 function callSubcategory() {
     var id = 1;
     // console.log()

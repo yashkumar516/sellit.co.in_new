@@ -93,8 +93,8 @@ class VariantManager {
         $varientPrice = trim($getdata["Variant Price"]); 
         $status="active";
 
-        $varient = trim($getdata["Variant Name"]);
-        $id = (int)$getdata["Variant ID"];  
+        $varient = trim($getdata["Variant Name"]); 
+        $id =isset($getdata["Variant ID"])? (int)$getdata["Variant ID"]:"";  
         
         $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `varient` WHERE  `id` = ?":"SELECT * FROM `varient` WHERE `product_name` = ? AND `varient` = ?";
        

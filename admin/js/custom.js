@@ -31,15 +31,4 @@
 
   // Insert the icon before the input field within the label
   searchLabel.insertBefore(searchIcon, searchLabel.firstChild);
-
-  // function dragNdrop(event) {
-  //   var fileName = event.target.files[0] || {};
-
-  //   $(".dragInner span").html("Upload File " + fileName.name);
-  // }
-  function dragNdrop(event) {
-    var fileName = event.target.files[0] || {};
-
-    $(".dragInner span").html("Upload File " + fileName.name);
-  }
 }

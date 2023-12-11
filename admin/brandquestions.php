@@ -6,7 +6,7 @@
 include_once "./classes/products.php";
 include_once "./classes/childcategory.php";  
 include_once "./classes/subcategory.php";  
-include_once "./classes/varient.php";  
+include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
@@ -26,8 +26,10 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                 $headerIndex=false;
                 if($header==="ID"){
                    $headerIndex = array_search('ID (Optional)', $headers);
+                   if(!$headerIndex){
+                    $headerIndex = array_search('ID', $headers);
+                   }
                 }  else{
-
                    $headerIndex = array_search($header, $headers);
                 }
                if ($headerIndex !== false) {
@@ -93,6 +95,7 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
          </div>
      </header>
 
+     <script src="js/selectImage.js"></script>
      <!-- start question table -->
      <div class="row mt-5">
 
@@ -107,12 +110,17 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
+                                         <div class="view" onclick={importCSVFile(event)} ondragover="dragNdrop(event)"
+                                             ondrop="dropFile(event)">
+                                             <input type="file" onchange={changeFile(event)} name="csvfile"
+                                                 style="display: none;" />
+                                         </div>
                                          <div class="dragInner">
                                              <i class="bx bx-file text-4 mr-2"></i>
                                              <span>Upload File</span>
                                          </div>
-                                         <input type="file" onChange="dragNdrop(event)" id="uploadFile" name="csvfile"
-                                             required />
+                                         <input type="file" onchange={changeFile(event)} id="importCSV" name="csvfile"
+                                             style="display: none;" />
                                      </span>
                                  </div>
                                  <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
@@ -347,6 +355,7 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
 
  <!-- Theme Custom -->
  <script src="js/custom.js"></script>
+ <script src="js/customBfrtip.js"></script>
 
  <!-- Theme Initialization Files -->
  <script src="js/theme.init.js"></script>
@@ -392,55 +401,7 @@ $(document).ready(function() {
     var table = $('#datatable-ecommerce-list').DataTable();
 });
  </script> -->
- <script type="text/javascript">
-$(document).ready(function() {
 
-    $('.table').DataTable({
-        dom: 'Bfrtip',
-        // columnDefs: [{
-        //     type: 'Modify Date',
-        //     targets: 38
-        // }, ],
-        order: [
-            [37, 'desc']
-        ],
-        buttons: [{
-            extend: 'csv',
-            className: 'd-none'
-        }]
-    })
-    var table = $('#datatable-ecommerce-list').DataTable();
-    // hide-load-table
-
-    $('.dataTables_filter label').html(
-        '');
-    $('.hide-load-table').html(
-        '');
-    // Refresh DataTables search functionality after modifications
-    $('#has-search input').on('keyup', function() {
-        table.search(this.value).draw();
-    });
-});
- </script>
-
- <script>
-$(document).ready(function() {
-    var dataTable = $('.table').DataTable();
-
-    // CSV button click event
-    $('#csvButton').on('click', function() {
-        dataTable.button('.buttons-csv').trigger();
-    });
-});
- </script>
- <script>
-function dragNdrop(event) {
-    var fileName = event.target.files[0] || {};
-
-    $('.dragInner span').html(
-        'Upload File ' + fileName.name);
-}
- </script>
 
  <script>
 var demoWithBrandCSV = [{

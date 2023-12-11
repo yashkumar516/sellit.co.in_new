@@ -6,7 +6,7 @@
 include_once "./classes/products.php";
 include_once "./classes/childcategory.php";  
 include_once "./classes/subcategory.php";  
-include_once "./classes/varient.php";  
+include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
