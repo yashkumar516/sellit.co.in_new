@@ -8,6 +8,8 @@ include_once "./classes/childcategory.php";
 include_once "./classes/subcategory.php";  
 include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
+include_once "./classes/syncImage.php";  
+$imageManager = new SyncImageManager($con);
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
@@ -70,12 +72,18 @@ $headerCount=count($desiredHeaders);
                     // }
                     $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
+                    $productImageURL= $productInfo["image_url"];
+                    if( $productImageURL === "external"){
+                        $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
+                    }
                     $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
             
                 }
             }
             
+            // $imageManager->syncBrandImage();
+            $imageManager->syncProductImage();
             if ($questionsInfo && $productInfo && $variantInfo) {
                 echo "<script> 
                 alert('Model upload successfully');
@@ -618,13 +626,15 @@ if(isset($_POST['productss']))
                              </td>
 
                              <td><a href="#">
+
+
                                      <?php
                                                 $imageUrl = $selproduct["product_image"]; 
                                                 $urlComponents = parse_url($imageUrl); 
-                                                if ($urlComponents !== false && isset($urlComponents['scheme'])) { 
-                                                    echo "<img src=\"$imageUrl\" alt=\"img\" width=\"100px\">";
+                                                if ($urlComponents !== false && isset($urlComponents['scheme'])) {  
+                                                    echo "<img   src=\"$imageUrl\" alt=\"img\" width=\"100px\" >";
                                                 } else { 
-                                                    echo "<img src=\"img/{$selproduct['product_image']}\" alt=\"img\" width=\"100px\">";
+                                                    echo "<img   src=\"img/{$selproduct['product_image']}\" alt=\"img\" width=\"100px\" >";
                                                 }
                                             ?>
 

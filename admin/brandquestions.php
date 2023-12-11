@@ -8,6 +8,8 @@ include_once "./classes/childcategory.php";
 include_once "./classes/subcategory.php";  
 include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
+include_once "./classes/syncImage.php";  
+$imageManager = new SyncImageManager($con);
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
@@ -50,16 +52,20 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                             ? $getdata[$index]
                             : null;
                     }
-    
                     $subCategoryInfo = $subCategoryManager->upsertSubcategoryByKeyId(
                         $rowData,
                         $categoryId
                     );
                     $brandId= $subCategoryInfo["id"];
+                    $imageURL= $subCategoryInfo["image_url"];
+                    if( $imageURL === "external"){
+                        $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
+                    }
+                   
                                         
                 }
             }
-            
+            //   $imageManager->syncBrandImage();
             if ($subCategoryInfo ) { 
                 echo "<script> alert('Brand upload successfully');
                     window.location.href = 'brandquestions.php';

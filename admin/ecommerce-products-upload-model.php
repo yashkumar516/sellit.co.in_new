@@ -8,6 +8,8 @@ include_once "./classes/childcategory.php";
 include_once "./classes/subcategory.php";  
 include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
+include_once "./classes/syncImage.php";  
+$imageManager = new SyncImageManager($con);
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
@@ -47,7 +49,11 @@ $questionsManager = new QuestionsManager($con);
                         $rowData,
                         $categoryId
                     );
-                    $brandId= $SubCategoryInfo["id"];
+                    $brandId= $subCategoryInfo["id"];
+                    $brandImageURL= $subCategoryInfo["image_url"];
+                    if( $brandImageURL === "external"){
+                        $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
+                    }
                     
                     $SubCategoryInfo = $childCategoryManager->upsertChildCategory(
                         $rowData, $categoryId, $brandId
@@ -55,6 +61,10 @@ $questionsManager = new QuestionsManager($con);
                     $seriesId= $SubCategoryInfo["id"];
                     $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
+                    $productImageURL= $productInfo["image_url"];
+                    if( $productImageURL === "external"){
+                        $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
+                    }
                     $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
                     
@@ -62,6 +72,8 @@ $questionsManager = new QuestionsManager($con);
                 }
             }
             
+            $imageManager->syncBrandImage();
+            $imageManager->syncProductImage();
             if ($SubCategoryInfo && $productInfo && $variantInfo) {
                 echo "<script> alert('Brand upload successfully');
                     window.location.href = 'ecommerce-products-form.php';

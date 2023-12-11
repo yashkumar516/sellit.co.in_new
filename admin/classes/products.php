@@ -16,6 +16,8 @@ class ProductManager {
         // Check if the product already exists 
         $modelName = trim($getdata["Model"]);
         $modelImage = isset($getdata["Model Image"])?$getdata["Model Image"]:"";
+        $urlComponents = parse_url($modelImage); 
+        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
         $checkQuery ="SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
         $checkStmt->bind_param("sss", $modelName, $brandId, $categoryId);
@@ -37,12 +39,13 @@ class ProductManager {
                 `childcategoryid` = ?,
                 `product_name` = ?,
                 `product_image` = ?,
-                `modify_date` = ?
+                `modify_date` = ?,
+                `image_url` = ?
             WHERE
                 `id` = ?
             ";
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("dsssssi", $categoryId, $brandId, $seriesId, $product_name, $product_image, $nowDate, $productId);
+            $updateStmt->bind_param("dssssssi", $categoryId, $brandId, $seriesId, $product_name, $product_image, $nowDate, $imageUrlStatus, $productId);
             $updateStmt->execute();
         
             // Fetch and return updated product information
@@ -56,10 +59,10 @@ class ProductManager {
             return $updatedProduct;  
         } else {
             // Product doesn't exist, insert it 
-            $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`)  VALUES(?,?,?,?,?)";
+            $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
          
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage);
+            $insertStmt->bind_param("dssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage, $imageUrlStatus);
           
             $insertStmt->execute();
 
@@ -89,6 +92,11 @@ class ProductManager {
         $id =isset($getdata["Model ID"])? (int)$getdata["Model ID"]:"";  
      
         $modelImage = isset($getdata["Model Image"])?$getdata["Model Image"]:"";
+         
+        $urlComponents = parse_url($modelImage); 
+        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
+        // "ALTER TABLE `subcategory` ADD `image_url` ENUM('external', 'internal') NOT NULL DEFAULT 'internal' AFTER `top`;
+        // "
          
         $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `product` WHERE  `id` = ? ":"SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
        
@@ -121,12 +129,13 @@ class ProductManager {
                 `childcategoryid` = ?,
                 `product_name` = ?,
                 `product_image` = ?,
-                `modify_date` = ?
+                `modify_date` = ?,
+                `image_url`=?
             WHERE
                 `id` = ?
             ";
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("dsssssi", $categoryId, $brandId, $seriesId, $product_name, $product_image, $nowDate, $productId);
+            $updateStmt->bind_param("dssssssi", $categoryId, $brandId, $seriesId, $product_name, $product_image, $nowDate, $imageUrlStatus, $productId);
             $updateStmt->execute();
         
             // Fetch and return updated product information
@@ -140,10 +149,10 @@ class ProductManager {
             return $updatedProduct;  
         } else {
             // Product doesn't exist, insert it 
-            $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`)  VALUES(?,?,?,?,?)";
+            $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
          
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage);
+            $insertStmt->bind_param("dssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage, $imageUrlStatus);
           
             $insertStmt->execute();
 

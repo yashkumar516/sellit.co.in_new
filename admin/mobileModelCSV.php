@@ -5,6 +5,8 @@ include_once "./classes/childcategory.php";
 include_once "./classes/subcategory.php";  
 include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
+include_once "./classes/syncImage.php";  
+$imageManager = new SyncImageManager($con);
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);

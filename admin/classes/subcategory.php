@@ -151,8 +151,10 @@ class SubCategoryManager {
     public function upsertSubcategoryByKey($getdata, $categoryId) {
         // Check if the product already exists 
        
-        $brandName = trim($getdata["Brand"]); 
+        $brandName = trim($getdata["Brand"]);  
         $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
+        $urlComponents = parse_url($brandImage); 
+        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
  
         $callvalue = $getdata["Call Not Recieve"];
         $threemonths = $getdata["Below 3 Months"];
@@ -310,9 +312,12 @@ class SubCategoryManager {
         $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
            // Check if the product already exists 
         $brandName = trim($getdata["Brand Name"]);
-        $id = (int)$getdata["ID"];  
+        // $id = (int)$getdata["ID"];  
+        $id =isset($getdata["ID"])? (int)$getdata["ID"]:"";  
       
-        $brandImage = $getdata["Brand Image"];
+        $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
+        $urlComponents = parse_url($brandImage); 
+        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
  
         $callvalue = $getdata["Call Not Recieve"];
         $threemonths = $getdata["Below 3 Months"];
@@ -410,16 +415,17 @@ class SubCategoryManager {
                             `earphone` = ?,
                             `boximei` = ?,
                             `billimei` = ?,
-                            `modify_date` = ?
+                            `modify_date` = ?,
+                            `image_url` = ?
                         WHERE
                             `id` = ?";
 
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("sssssssssssssssssssssssssssssssssssssss", 
+            $updateStmt->bind_param("ssssssssssssssssssssssssssssssssssssssss", 
             $categoryId,  $subcategory_name, $subcategory_image, $callvalue, $threemonths, $threeto6months, $sixto11months, $above11, $touchscreen, $largespot, 
             $multiplespot, $minorspot, $nospot, $displayfade, $multilines, $nolines, $crackedscreen, $damegescreen, $heavyscracthes, $scratches12, 
             $noscratches, $majorscratch, $bodyscratches2, $nobodysratches, $heavydents, $dents2, $nodents, $crackedsideback, $missingsideback, $nodefectssideback, 
-            $bentcurvedpanel, $loosescreen, $nobents, $charger, $earphone, $boximei, $billimei, $nowDate, $brandId);
+            $bentcurvedpanel, $loosescreen, $nobents, $charger, $earphone, $boximei, $billimei, $nowDate, $imageUrlStatus, $brandId);
 
             $updateStmt->execute();
         
@@ -439,18 +445,40 @@ class SubCategoryManager {
         } else {
             // Subcategory doesn't exist, insert it 
                          
-            $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`,`callvalue`,`3months`,`3to6months`,`6to11months`,
-            `above11`,`touchscreen`,`largespot`,`multiplespot`,`minorspot`,`nospot`,`displayfade`,`multilines`,`nolines`,`crackedscreen`,`damegescreen`,`heavyscracthes`,
-            `12scratches`,`noscratches`,`majorscratch`,`2bodyscratches`,`nobodysratches`,`heavydents`,`2dents`,`nodents`,`crackedsideback`,`missingsideback`,`nodefectssideback`,`bentcurvedpanel`,
-            `loosescreen`,`nobents`,`charger`,`earphone`,`boximei`,`billimei`)
-            VALUES(?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?)";
+            // $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`,`callvalue`,`3months`,`3to6months`,`6to11months`,
+            // `above11`,`touchscreen`,`largespot`,`multiplespot`,`minorspot`,`nospot`,`displayfade`,`multilines`,
+            // `nolines`,`crackedscreen`,`damegescreen`,`heavyscracthes`,
+            // `12scratches`,`noscratches`,`majorscratch`,
+            // `2bodyscratches`,`nobodysratches`,`heavydents`,`2dents`,`nodents`,`crackedsideback`,`missingsideback`,
+            // `nodefectssideback`,`bentcurvedpanel`,
+            // `loosescreen`,`nobents`,`charger`,`earphone`,`boximei`,`billimei`,`image_url`)
+            // VALUES(?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?,?,? ,?,?,?)";
 
+            // Define the fields and their types
+            $fields = [
+                'category_id', 'subcategory_name', 'subcategory_image', 'callvalue', '3months', '3to6months', '6to11months',
+                'above11', 'touchscreen', 'largespot', 'multiplespot', 'minorspot', 'nospot', 'displayfade', 'multilines',
+                'nolines', 'crackedscreen', 'damegescreen', 'heavyscracthes', '12scratches', 'noscratches', 'majorscratch',
+                '2bodyscratches', 'nobodysratches', 'heavydents', '2dents', 'nodents', 'crackedsideback', 'missingsideback',
+                'nodefectssideback', 'bentcurvedpanel', 'loosescreen', 'nobents', 'charger', 'earphone', 'boximei', 'billimei', 'image_url'
+            ];
+
+            // Create placeholders (?, ?, ?, ...)
+            $placeholders = implode(', ', array_fill(0, count($fields), '?'));
+
+            // Create types ("dssssssssssssssssssssssssssssssssssss")
+            $types = str_repeat('s', count($fields)); // Assuming all parameters are strings, adjust if needed
+
+            // Build the SQL query
+            $insertQuery = "INSERT INTO `subcategory` (`" . implode('`,`', $fields) . "`) VALUES($placeholders)";
+            
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dssssssssssssssssssssssssssssssssssss", 
+            // $insertStmt->bind_param("dssssssssssssssssssssssssssssssssssss", 
+            $insertStmt->bind_param($types, 
             $categoryId, $brandName, $brandImage, $callvalue, $threemonths, $threeto6months, $sixto11months, $above11, $touchscreen, $largespot, 
             $multiplespot, $minorspot, $nospot, $displayfade, $multilines, $nolines, $crackedscreen, $damegescreen, $heavyscracthes, $scratches12, 
             $noscratches, $majorscratch, $bodyscratches2, $nobodysratches, $heavydents, $dents2, $nodents, $crackedsideback, $missingsideback, $nodefectssideback, 
-            $bentcurvedpanel, $loosescreen, $nobents, $charger, $earphone, $boximei, $billimei);
+            $bentcurvedpanel, $loosescreen, $nobents, $charger, $earphone, $boximei, $billimei, $imageUrlStatus);
 
             $insertStmt->execute();
 
@@ -467,7 +495,7 @@ class SubCategoryManager {
         }
     }
     
-    public function upsertSubcategorySerie($getdata, $categoryId) {
+    public function upsertSubcategorySeries($getdata, $categoryId) {
        
         // Create a DateTime object from the input string
         $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
@@ -479,6 +507,8 @@ class SubCategoryManager {
         $id =isset($getdata["Brand ID"])? (int)$getdata["Brand ID"]:"";  
       
         $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
+        $urlComponents = parse_url($brandImage); 
+        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
          
 
         $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `subcategory` WHERE  `id` = ? ":"SELECT * FROM `subcategory` WHERE `subcategory_name` = ?  AND `category_id` = ?";
@@ -507,13 +537,14 @@ class SubCategoryManager {
                             `category_id` = ?,
                             `subcategory_name` = ?,
                             `subcategory_image` = ?,
-                            `modify_date` = ?
+                            `modify_date` = ?,
+                            `image_url` = ?
                         WHERE
                             `id` = ?";
 
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("sssss", 
-            $categoryId,  $subcategory_name, $subcategory_image, $nowDate, $brandId);
+            $updateStmt->bind_param("ssssss", 
+            $categoryId,  $subcategory_name, $subcategory_image, $nowDate, $imageUrlStatus, $brandId);
 
             $updateStmt->execute();
          
@@ -528,12 +559,12 @@ class SubCategoryManager {
         } else {
             // Subcategory doesn't exist, insert it 
                          
-            $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`)
-            VALUES(?,?,?)";
+            $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`, `image_url`)
+            VALUES(?,?,?,?)";
 
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dss", 
-            $categoryId, $brandName, $brandImage);
+            $insertStmt->bind_param("dsss", 
+            $categoryId, $brandName, $brandImage, $imageUrlStatus);
 
             $insertStmt->execute();
 
@@ -561,8 +592,9 @@ class SubCategoryManager {
         $id =isset($getdata["Brand ID"])? (int)$getdata["Brand ID"]:"";  
       
         $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
-         
-
+        $urlComponents = parse_url($brandImage); 
+        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
+          
         $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `subcategory` WHERE  `id` = ? ":"SELECT * FROM `subcategory` WHERE `subcategory_name` = ?  AND `category_id` = ?";
         // $checkQuery ="SELECT * FROM `subcategory` WHERE (`subcategory_name` = ? OR `id` = ?) AND `category_id` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
@@ -589,13 +621,14 @@ class SubCategoryManager {
                             `category_id` = ?,
                             `subcategory_name` = ?,
                             `subcategory_image` = ?,
-                            `modify_date` = ?
+                            `modify_date` = ?,
+                            `image_url` = ?
                         WHERE
                             `id` = ?";
 
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("sssss", 
-            $categoryId,  $subcategory_name, $subcategory_image, $nowDate, $brandId);
+            $updateStmt->bind_param("ssssss", 
+            $categoryId,  $subcategory_name, $subcategory_image, $nowDate, $imageUrlStatus, $brandId);
 
             $updateStmt->execute();
          
@@ -605,17 +638,20 @@ class SubCategoryManager {
             $updatedSubcategoryStmt->execute();
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
+            if($imageUrlStatus ==="external"){
+                // $variantInfo=  syncExternalImage($brandId, $brandImage);
+            }
 
             return $updateSubcategory;
         } else {
             // Subcategory doesn't exist, insert it 
                          
-            $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`)
-            VALUES(?,?,?)";
+            $insertQuery = "INSERT INTO `subcategory` (`category_id`,`subcategory_name`,`subcategory_image`, `image_url` = ?)
+            VALUES(?,?,?,?)";
 
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dss", 
-            $categoryId, $brandName, $brandImage);
+            $insertStmt->bind_param("dsss", 
+            $categoryId, $brandName, $brandImage, $imageUrlStatus);
 
             $insertStmt->execute();
 
@@ -631,6 +667,7 @@ class SubCategoryManager {
             return $insertedSubcategory;
         }
     }
+ 
 }
 
 ?>

@@ -4,7 +4,9 @@
 <!-- header and slider end  -->
 <?php 
 include_once "./classes/childcategory.php";  
-include_once "./classes/subcategory.php";   
+include_once "./classes/subcategory.php";  
+include_once "./classes/syncImage.php";  
+$imageManager = new SyncImageManager($con); 
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
  
@@ -73,12 +75,16 @@ $headerCount=count($desiredHeaders);
                     // $categoryId = 2;
                     
     
-                    $SubCategoryInfo = $subCategoryManager->upsertSubcategorySerie(
+                    $SubCategoryInfo = $subCategoryManager->upsertSubcategorySeries(
                         $rowData,
                         $categoryId
                     );
                     $brandId= $SubCategoryInfo["id"];
-                    
+                     
+                    $imageURL= $subCategoryInfo["image_url"];
+                    if( $imageURL === "external"){
+                        $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
+                    }
                     $childCategoryInfo = $childCategoryManager->upsertChildCategory(
                         $rowData, $categoryId, $brandId
                     );
