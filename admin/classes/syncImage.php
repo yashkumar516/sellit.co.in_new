@@ -133,7 +133,7 @@ class SyncImageManager {
         
         // Check if the image was successfully saved
         if ($imageContent !== false) {
-            echo 'Image downloaded successfully and saved to ' . $localFilePath;
+            // echo 'Image downloaded successfully and saved to ' . $localFilePath;
             
 
         $subcategory_image = "external/".strtolower(str_replace(' ','_',$row['subcategory_name'])).'_'.$subcategoryId .'.png';// $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
@@ -152,6 +152,8 @@ class SyncImageManager {
             // Handle error, e.g., the image couldn't be saved
             echo 'Failed to save the image.';
         }
+        
+        return;
     }
 
     public function syncProductImageByRow($row) {
@@ -197,12 +199,12 @@ class SyncImageManager {
         
         // Check if the image was successfully saved
         if ($imageContent !== false) {
-            echo 'Image downloaded successfully and saved to ' . $localFilePath;
+            // echo 'Image downloaded successfully and saved to ' . $localFilePath;
             
 
         $product_image = "external/".strtolower(str_replace(' ','-',$row['product_name'])).'_'.$productId .'.png';// $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
         
-        $updateQuery = " UPDATE `subcategory`
+        $updateQuery = " UPDATE `product`
         SET
             `product_image` = ?, 
             `image_url` = ?
@@ -216,6 +218,7 @@ class SyncImageManager {
             // Handle error, e.g., the image couldn't be saved
             echo 'Failed to save the image.';
         }
+        return;
         
     }
 
@@ -279,7 +282,7 @@ class SyncImageManager {
 
             $product_image = "external/".strtolower(str_replace(' ','-',$row['product_name'])).'_'.$productId .'.png';// $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
            
-            $updateQuery = " UPDATE `subcategory`
+            $updateQuery = " UPDATE `product`
             SET
                 `product_image` = ?, 
                 `image_url` = ?

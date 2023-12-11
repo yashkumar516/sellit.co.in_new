@@ -152,7 +152,7 @@ class ProductManager {
             $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
          
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage, $imageUrlStatus);
+            $insertStmt->bind_param("dsssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage, $imageUrlStatus);
           
             $insertStmt->execute();
 

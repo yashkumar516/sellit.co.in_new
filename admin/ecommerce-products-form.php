@@ -64,12 +64,7 @@ $headerCount=count($desiredHeaders);
                         $rowData[$header] = isset($getdata[$index])
                             ? $getdata[$index]
                             : null;
-                    }
-                    // foreach($rowData as $var){ 
-                    //          echo "{$var}<br/>"; 
-                    //          echo "--<br/>-<br/>-<br/>-<br/>-<br/>-<br/>-<br/>----------------------------var-------------------".$var;
-                    
-                    // }
+                    } 
                     $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
@@ -81,9 +76,7 @@ $headerCount=count($desiredHeaders);
             
                 }
             }
-            
-            // $imageManager->syncBrandImage();
-            $imageManager->syncProductImage();
+             
             if ($questionsInfo && $productInfo && $variantInfo) {
                 echo "<script> 
                 alert('Model upload successfully');
