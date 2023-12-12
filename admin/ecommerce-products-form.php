@@ -68,9 +68,9 @@ $headerCount=count($desiredHeaders);
                     $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
-                    // if( $productImageURL === "external"){
-                    //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                    // }
+                    if( $productImageURL === "external"){
+                        $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
+                    }
                     $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
             
