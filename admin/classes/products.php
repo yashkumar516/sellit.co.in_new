@@ -1,24 +1,33 @@
 <?php
 
-class ProductManager {
+class ProductManager
+{
     private $conn;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    public function upsertProduct($getdata, $categoryId, $brandId, $seriesId) {
+    public function upsertProduct($getdata, $categoryId, $brandId, $seriesId)
+    {
         // Create a DateTime object from the input string
-        $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
+        $currentDateTimeObject = new DateTime(); //::createFromFormat('Y-m-d H:i:s.u', $inputString);
 
         // Format the DateTime object
-        $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
-        // Check if the product already exists 
+        $nowDate = $currentDateTimeObject->format("Y-m-d H:i:s.u");
+        // Check if the product already exists
         $modelName = trim($getdata["Model"]);
-        $modelImage = isset($getdata["Model Image"])?$getdata["Model Image"]:"";
-        $urlComponents = parse_url($modelImage); 
-        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
-        $checkQuery ="SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
+        $modelImage = isset($getdata["Model Image"])
+            ? $getdata["Model Image"]
+            : "";
+        $urlComponents = parse_url($modelImage);
+        $imageUrlStatus =
+            $urlComponents !== false && isset($urlComponents["scheme"])
+                ? "external"
+                : "internal";
+        $checkQuery =
+            "SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
         $checkStmt->bind_param("sss", $modelName, $brandId, $categoryId);
 
@@ -28,10 +37,16 @@ class ProductManager {
         if ($checkResult->num_rows > 0) {
             // Product exists, update it
             $existingProduct = $checkResult->fetch_assoc(); // Fetch existing product data
-            $productId = $existingProduct['id']; // Get the existing product ID
-            $product_name = $modelName !=="" ? $modelName : $existingProduct['product_name']; // Get the existing product ID
-            $product_image = $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
-           
+            $productId = $existingProduct["id"]; // Get the existing product ID
+            $product_name =
+                $modelName !== ""
+                    ? $modelName
+                    : $existingProduct["product_name"]; // Get the existing product ID
+            $product_image =
+                $modelImage !== ""
+                    ? $modelImage
+                    : $existingProduct["product_image"]; // Get the existing product ID
+
             $updateQuery = " UPDATE `product`
             SET
                 `categoryid` = ?,
@@ -45,25 +60,44 @@ class ProductManager {
                 `id` = ?
             ";
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("dssssssi", $categoryId, $brandId, $seriesId, $product_name, $product_image, $nowDate, $imageUrlStatus, $productId);
+            $updateStmt->bind_param(
+                "dssssssi",
+                $categoryId,
+                $brandId,
+                $seriesId,
+                $product_name,
+                $product_image,
+                $nowDate,
+                $imageUrlStatus,
+                $productId
+            );
             $updateStmt->execute();
-        
+
             // Fetch and return updated product information
             $updatedProduct = $existingProduct; // Use the existing product data
-            $updatedProduct['categoryid'] = $categoryId;
-            $updatedProduct['subcategoryid'] = $brandId;
-            $updatedProduct['childcategoryid'] = $seriesId;
-            $updatedProduct['product_name'] = $modelName;
-            $updatedProduct['product_image'] = $modelImage;
-        
-            return $updatedProduct;  
+            $updatedProduct["categoryid"] = $categoryId;
+            $updatedProduct["subcategoryid"] = $brandId;
+            $updatedProduct["childcategoryid"] = $seriesId;
+            $updatedProduct["product_name"] = $modelName;
+            $updatedProduct["product_image"] = $modelImage;
+
+            return $updatedProduct;
         } else {
-            // Product doesn't exist, insert it 
-            $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
-         
+            // Product doesn't exist, insert it
+            $insertQuery =
+                "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
+
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage, $imageUrlStatus);
-          
+            $insertStmt->bind_param(
+                "dssss",
+                $categoryId,
+                $brandId,
+                $seriesId,
+                $modelName,
+                $modelImage,
+                $imageUrlStatus
+            );
+
             $insertStmt->execute();
 
             // Fetch and return inserted product information
@@ -78,36 +112,54 @@ class ProductManager {
             return $insertedProduct;
         }
     }
-    
-    public function upsertProductId($getdata, $categoryId, $brandId, $seriesId) {
+
+    public function upsertProductId($getdata, $categoryId, $brandId, $seriesId)
+    {
+        // Get the full path to the current script
+        $currentScriptPath = __FILE__;
+
+        // Get the project directory by removing the script filename from the path
+        $projectDirectory = dirname($currentScriptPath);
+
+        // Define the full path to the background process PHP file
+        $backgroundProcessFile =
+            $projectDirectory . "/background_products_process.php";
+
         // Create a DateTime object from the input string
-        $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
+        $currentDateTimeObject = new DateTime(); //::createFromFormat('Y-m-d H:i:s.u', $inputString);
 
         // Format the DateTime object
-        $nowDate= $currentDateTimeObject->format('Y-m-d H:i:s.u');
-        // Check if the product already exists 
+        $nowDate = $currentDateTimeObject->format("Y-m-d H:i:s.u");
+        // Check if the product already exists
 
-        
         $modelName = trim($getdata["Model Name"]);
-        $id =isset($getdata["Model ID"])? (int)$getdata["Model ID"]:"";  
-     
-        $modelImage = isset($getdata["Model Image"])?$getdata["Model Image"]:"";
-         
-        $urlComponents = parse_url($modelImage); 
-        $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme'])?"external": "internal";
+        $id = isset($getdata["Model ID"]) ? (int) $getdata["Model ID"] : "";
+
+        $modelImage = isset($getdata["Model Image"])
+            ? $getdata["Model Image"]
+            : "";
+
+        $urlComponents = parse_url($modelImage);
+        $imageUrlStatus =
+            $urlComponents !== false && isset($urlComponents["scheme"])
+                ? "external"
+                : "internal";
         // "ALTER TABLE `subcategory` ADD `image_url` ENUM('external', 'internal') NOT NULL DEFAULT 'internal' AFTER `top`;
         // "
-         
-        $checkQuery = $id!=="" && $id!==null && $id>0? "SELECT * FROM `product` WHERE  `id` = ? ":"SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
-       
+
+        $checkQuery =
+            $id !== "" && $id !== null && $id > 0
+                ? "SELECT * FROM `product` WHERE  `id` = ? "
+                : "SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
+
         // $checkQuery ="SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
-        $checkId=$id!=="" && $id!==null && $id>0?$id:$modelName;
-        
+        $checkId = $id !== "" && $id !== null && $id > 0 ? $id : $modelName;
+
         $checkStmt = $this->conn->prepare($checkQuery);
-        if($id!=="" && $id!==null && $id>0){
+        if ($id !== "" && $id !== null && $id > 0) {
             $checkStmt->bind_param("s", $checkId);
-        } else{
+        } else {
             $checkStmt->bind_param("sss", $checkId, $brandId, $categoryId);
         }
 
@@ -117,11 +169,17 @@ class ProductManager {
         if ($checkResult->num_rows > 0) {
             // Product exists, update it
             $existingProduct = $checkResult->fetch_assoc(); // Fetch existing product data
-            $productId = $existingProduct['id']; // Get the existing product ID
-            
-            $product_name = $modelName !=="" ? $modelName : $existingProduct['product_name']; // Get the existing product ID
-            $product_image = $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
-            
+            $productId = $existingProduct["id"]; // Get the existing product ID
+
+            $product_name =
+                $modelName !== ""
+                    ? $modelName
+                    : $existingProduct["product_name"]; // Get the existing product ID
+            $product_image =
+                $modelImage !== ""
+                    ? $modelImage
+                    : $existingProduct["product_image"]; // Get the existing product ID
+
             $updateQuery = " UPDATE `product`
             SET
                 `categoryid` = ?,
@@ -135,25 +193,51 @@ class ProductManager {
                 `id` = ?
             ";
             $updateStmt = $this->conn->prepare($updateQuery);
-            $updateStmt->bind_param("dssssssi", $categoryId, $brandId, $seriesId, $product_name, $product_image, $nowDate, $imageUrlStatus, $productId);
+            $updateStmt->bind_param(
+                "dssssssi",
+                $categoryId,
+                $brandId,
+                $seriesId,
+                $product_name,
+                $product_image,
+                $nowDate,
+                $imageUrlStatus,
+                $productId
+            );
             $updateStmt->execute();
-        
+
             // Fetch and return updated product information
             $updatedProduct = $existingProduct; // Use the existing product data
-            $updatedProduct['categoryid'] = $categoryId;
-            $updatedProduct['subcategoryid'] = $brandId;
-            $updatedProduct['childcategoryid'] = $seriesId;
-            $updatedProduct['product_name'] = $modelName;
-            $updatedProduct['product_image'] = $modelImage;
-        
-            return $updatedProduct;  
+            $updatedProduct["categoryid"] = $categoryId;
+            $updatedProduct["subcategoryid"] = $brandId;
+            $updatedProduct["childcategoryid"] = $seriesId;
+            $updatedProduct["product_name"] = $modelName;
+            $updatedProduct["product_image"] = $modelImage;
+            $updatedProduct["image_url"] = $imageUrlStatus;
+            if ($imageUrlStatus === "external") {
+                // Start background process to download the image and update the table
+                echo "-------------------backgroundProcessFile--------------".$backgroundProcessFile;
+                exec(
+                    "php $backgroundProcessFile $productId $modelImage > /dev/null 2>&1 &"
+                ); 
+            }
+            return $updatedProduct;
         } else {
-            // Product doesn't exist, insert it 
-            $insertQuery=  "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
-         
+            // Product doesn't exist, insert it
+            $insertQuery =
+                "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
+
             $insertStmt = $this->conn->prepare($insertQuery);
-            $insertStmt->bind_param("dsssss", $categoryId, $brandId, $seriesId, $modelName, $modelImage, $imageUrlStatus);
-          
+            $insertStmt->bind_param(
+                "dsssss",
+                $categoryId,
+                $brandId,
+                $seriesId,
+                $modelName,
+                $modelImage,
+                $imageUrlStatus
+            );
+
             $insertStmt->execute();
 
             // Fetch and return inserted product information
@@ -164,7 +248,13 @@ class ProductManager {
             $insertedProductStmt->execute();
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") {
+                echo "-------------------backgroundProcessFile------insert--------".$backgroundProcessFile;
+                // Start background process to download the image and update the table
+                exec(
+                    "php $backgroundProcessFile $insertedProductId $modelImage > /dev/null 2>&1 &"
+                ); 
+            }
             return $insertedProduct;
         }
     }
