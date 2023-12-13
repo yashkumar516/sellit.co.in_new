@@ -157,6 +157,8 @@ class SyncImageManager {
     }
 
     public function syncProductImageByRow($row) {
+        ini_set('max_execution_time', 300);
+
         $imageUrlStatus =  "internal";//"external";
 
         // $subcategories[] = $row;

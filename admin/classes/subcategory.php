@@ -282,7 +282,7 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -313,7 +313,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
@@ -468,7 +468,7 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -521,7 +521,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
@@ -598,7 +598,7 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -623,7 +623,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
@@ -701,7 +701,7 @@ class SubCategoryManager {
             }
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -726,7 +726,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                // exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }

@@ -96,7 +96,7 @@ class ProductManager
             $updatedProduct["product_image"] = $product_image;
             if ($imageUrlStatus === "external") { 
                 $modelName=strtolower(str_replace(" ", "_", $modelName));
-                // exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"); 
             }
             return $updatedProduct;
         } else {
@@ -127,7 +127,7 @@ class ProductManager
             $insertedProduct = $insertedProductResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $modelName=strtolower(str_replace(" ", "_", $modelName));
-                // exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName > /dev/null 2>&1 &"); 
             }
             return $insertedProduct;
         }
@@ -256,9 +256,9 @@ class ProductManager
                 // }
 
                 
-                //  exec(
-                //     "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"
-                // ); 
+                 exec(
+                    "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"
+                ); 
             }
             return $updatedProduct;
         } else {
@@ -304,9 +304,9 @@ class ProductManager
                 //  else {
                 //     echo "Command executed successfully";
                 // }
-                //  exec(
-                //     "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName >  3>&1 &"
-                // ); 
+                 exec(
+                    "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName >  3>&1 &"
+                ); 
             }
             return $insertedProduct;
         }

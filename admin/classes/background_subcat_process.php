@@ -5,6 +5,7 @@ $dbUsername = "sellit";
 $dbPassword = "NqPTi#HY9A8wKM";
 $dbDatabase = "stage_sellit";
 
+ini_set('max_execution_time', 500);
 $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
 
 if (count($argv) < 4) {

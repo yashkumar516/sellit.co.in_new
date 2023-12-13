@@ -68,26 +68,26 @@ $headerCount=count($desiredHeaders);
                     $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
-                    if( $productImageURL === "external"){
-                        $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                    }
+                    // if( $productImageURL === "external"){
+                    //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
+                    // }
                     $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
             
                 }
             }
              
-            // if ($questionsInfo && $productInfo && $variantInfo) {
-            //     echo "<script> 
-            //     alert('Model upload successfully');
-            //         window.location.href = 'ecommerce-products-form.php';
-            //         </script>";
-            // } else {
-            //     echo "<script> 
-            //     alert('Model upload failed');
-            //         window.location.href = 'ecommerce-products-form.php';
-            //         </script>";
-            // } 
+            if ($questionsInfo && $productInfo && $variantInfo) {
+                echo "<script> 
+                alert('Model upload successfully');
+                    window.location.href = 'ecommerce-products-form.php';
+                    </script>";
+            } else {
+                echo "<script> 
+                alert('Model upload failed');
+                    window.location.href = 'ecommerce-products-form.php';
+                    </script>";
+            } 
         }
     } 
 ?>
