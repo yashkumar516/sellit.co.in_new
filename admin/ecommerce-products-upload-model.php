@@ -51,9 +51,9 @@ $questionsManager = new QuestionsManager($con);
                     );
                     $brandId= $subCategoryInfo["id"];
                     $brandImageURL= $subCategoryInfo["image_url"];
-                    if( $brandImageURL === "external"){
-                        $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
-                    }
+                    // if( $brandImageURL === "external"){
+                    //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
+                    // }
                     
                     $SubCategoryInfo = $childCategoryManager->upsertChildCategory(
                         $rowData, $categoryId, $brandId
@@ -62,9 +62,9 @@ $questionsManager = new QuestionsManager($con);
                     $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
-                    if( $productImageURL === "external"){
-                        $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                    }
+                    // if( $productImageURL === "external"){
+                    //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
+                    // }
                     $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
                     
@@ -72,8 +72,8 @@ $questionsManager = new QuestionsManager($con);
                 }
             }
             
-            $imageManager->syncBrandImage();
-            $imageManager->syncProductImage();
+            // $imageManager->syncBrandImage();
+            // $imageManager->syncProductImage();
             if ($SubCategoryInfo && $productInfo && $variantInfo) {
                 echo "<script> alert('Brand upload successfully');
                     window.location.href = 'ecommerce-products-form.php';

@@ -1,5 +1,8 @@
 <?php
-
+function downloadImage($url, $localPath) {
+    $contents = file_get_contents($url);
+    file_put_contents($localPath, $contents);
+}
 class ProductManager
 {
     private $conn;
@@ -11,6 +14,17 @@ class ProductManager
 
     public function upsertProduct($getdata, $categoryId, $brandId, $seriesId)
     {
+        
+        // Get the full path to the current script
+        $currentScriptPath = __FILE__;
+
+        // Get the project directory by removing the script filename from the path
+        $projectDirectory = dirname($currentScriptPath);
+
+        // Define the full path to the background process PHP file
+        $backgroundProcessFile =
+            $projectDirectory . "/background_products_process.php";
+            
         // Create a DateTime object from the input string
         $currentDateTimeObject = new DateTime(); //::createFromFormat('Y-m-d H:i:s.u', $inputString);
 
@@ -78,9 +92,12 @@ class ProductManager
             $updatedProduct["categoryid"] = $categoryId;
             $updatedProduct["subcategoryid"] = $brandId;
             $updatedProduct["childcategoryid"] = $seriesId;
-            $updatedProduct["product_name"] = $modelName;
-            $updatedProduct["product_image"] = $modelImage;
-
+            $updatedProduct["product_name"] = $product_name;
+            $updatedProduct["product_image"] = $product_image;
+            if ($imageUrlStatus === "external") { 
+                $modelName=strtolower(str_replace(" ", "_", $modelName));
+                exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"); 
+            }
             return $updatedProduct;
         } else {
             // Product doesn't exist, insert it
@@ -108,13 +125,18 @@ class ProductManager
             $insertedProductStmt->execute();
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $modelName=strtolower(str_replace(" ", "_", $modelName));
+                exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName > /dev/null 2>&1 &"); 
+            }
             return $insertedProduct;
         }
     }
 
     public function upsertProductId($getdata, $categoryId, $brandId, $seriesId)
     {
+  
+        
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -124,6 +146,8 @@ class ProductManager
         // Define the full path to the background process PHP file
         $backgroundProcessFile =
             $projectDirectory . "/background_products_process.php";
+        // Define the full path to the background process PHP file
+        // $backgroundProcessFile = "/etc/background_process/background_products_process.php";
 
         // Create a DateTime object from the input string
         $currentDateTimeObject = new DateTime(); //::createFromFormat('Y-m-d H:i:s.u', $inputString);
@@ -211,14 +235,29 @@ class ProductManager
             $updatedProduct["categoryid"] = $categoryId;
             $updatedProduct["subcategoryid"] = $brandId;
             $updatedProduct["childcategoryid"] = $seriesId;
-            $updatedProduct["product_name"] = $modelName;
-            $updatedProduct["product_image"] = $modelImage;
+            $updatedProduct["product_name"] = $modelName = $product_name;
+            $updatedProduct["product_image"] = $modelImage = $product_image;
             $updatedProduct["image_url"] = $imageUrlStatus;
-            if ($imageUrlStatus === "external") {
-                // Start background process to download the image and update the table
-                echo "-------------------backgroundProcessFile--------------".$backgroundProcessFile;
-                exec(
-                    "php $backgroundProcessFile $productId $modelImage > /dev/null 2>&1 &"
+            // echo "-----------------modelName-----------------".$modelName;
+            if ($imageUrlStatus === "external") { 
+                $modelName=strtolower(str_replace(" ", "_", $modelName));
+                $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName";
+
+                // Execute the command
+                // exec($command, $output, $returnVar);
+                
+                // // Output any error messages
+                // if ($returnVar !== 0) {
+                //     echo "-------Error----: " . implode("\n", $output);
+                // }
+                //  else {
+                //     echo "Command executed successfully";
+                //     echo "--<br/>-----successfully----: " . implode("\n", $output);
+                // }
+
+                
+                 exec(
+                    "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"
                 ); 
             }
             return $updatedProduct;
@@ -249,10 +288,24 @@ class ProductManager
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                echo "-------------------backgroundProcessFile------insert--------".$backgroundProcessFile;
+                $modelName=strtolower(str_replace(" ", "_", $modelName));
+                // echo "-------------------backgroundProcessFile------insert--------".$backgroundProcessFile;
                 // Start background process to download the image and update the table
-                exec(
-                    "php $backgroundProcessFile $insertedProductId $modelImage > /dev/null 2>&1 &"
+                // exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName", $output, $returnVar);
+                $command = "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName";
+
+                // Execute the command
+                // exec($command, $output, $returnVar);
+                
+                // // Output any error messages
+                // if ($returnVar !== 0) {
+                //     echo "-------Error: " . implode("\n", $output);
+                // }
+                //  else {
+                //     echo "Command executed successfully";
+                // }
+                 exec(
+                    "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName >  3>&1 &"
                 ); 
             }
             return $insertedProduct;

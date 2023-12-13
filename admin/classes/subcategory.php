@@ -151,6 +151,16 @@ class SubCategoryManager {
     public function upsertSubcategoryByKey($getdata, $categoryId) {
         // Check if the product already exists 
        
+        // Get the full path to the current script
+        $currentScriptPath = __FILE__;
+
+        // Get the project directory by removing the script filename from the path
+        $projectDirectory = dirname($currentScriptPath);
+
+        // Define the full path to the background process PHP file
+        $backgroundProcessFile =
+            $projectDirectory . "/background_subcat_process.php";
+            
         $brandName = trim($getdata["Brand"]);  
         $brandImage = isset($getdata["Brand Image"])?$getdata["Brand Image"]:"";
         $urlComponents = parse_url($brandImage); 
@@ -270,7 +280,10 @@ class SubCategoryManager {
             $updatedSubcategoryStmt->execute();
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+            }
             return $updateSubcategory;
         } else {
             // Subcategory doesn't exist, insert it 
@@ -298,13 +311,26 @@ class SubCategoryManager {
             $insertedSubcategoryStmt->execute();
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+            }
             return $insertedSubcategory;
         }
     }
     
     public function upsertSubcategoryByKeyId($getdata, $categoryId) {
        
+        // Get the full path to the current script
+        $currentScriptPath = __FILE__;
+
+        // Get the project directory by removing the script filename from the path
+        $projectDirectory = dirname($currentScriptPath);
+
+        // Define the full path to the background process PHP file
+        $backgroundProcessFile =
+            $projectDirectory . "/background_subcat_process.php";
+            
         // Create a DateTime object from the input string
         $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
  
@@ -440,7 +466,10 @@ class SubCategoryManager {
             $updatedSubcategoryStmt->execute();
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+            }
             return $updateSubcategory;
         } else {
             // Subcategory doesn't exist, insert it 
@@ -490,13 +519,26 @@ class SubCategoryManager {
             $insertedSubcategoryStmt->execute();
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+            }
             return $insertedSubcategory;
         }
     }
     
     public function upsertSubcategorySeries($getdata, $categoryId) {
        
+        // Get the full path to the current script
+        $currentScriptPath = __FILE__;
+
+        // Get the project directory by removing the script filename from the path
+        $projectDirectory = dirname($currentScriptPath);
+
+        // Define the full path to the background process PHP file
+        $backgroundProcessFile =
+            $projectDirectory . "/background_subcat_process.php";
+            
         // Create a DateTime object from the input string
         $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
  
@@ -554,7 +596,10 @@ class SubCategoryManager {
             $updatedSubcategoryStmt->execute();
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+            }
             return $updateSubcategory;
         } else {
             // Subcategory doesn't exist, insert it 
@@ -576,12 +621,25 @@ class SubCategoryManager {
             $insertedSubcategoryStmt->execute();
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+            }
             return $insertedSubcategory;
         }
     }
     public function upsertSubcategoryAll($getdata, $categoryId) {
        
+        // Get the full path to the current script
+        $currentScriptPath = __FILE__;
+
+        // Get the project directory by removing the script filename from the path
+        $projectDirectory = dirname($currentScriptPath);
+
+        // Define the full path to the background process PHP file
+        $backgroundProcessFile =
+            $projectDirectory . "/background_subcat_process.php";
+            
         // Create a DateTime object from the input string
         $currentDateTimeObject =new DateTime();//::createFromFormat('Y-m-d H:i:s.u', $inputString);
  
@@ -641,7 +699,10 @@ class SubCategoryManager {
             if($imageUrlStatus ==="external"){
                 // $variantInfo=  syncExternalImage($brandId, $brandImage);
             }
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+            }
             return $updateSubcategory;
         } else {
             // Subcategory doesn't exist, insert it 
@@ -663,7 +724,10 @@ class SubCategoryManager {
             $insertedSubcategoryStmt->execute();
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
-
+            if ($imageUrlStatus === "external") { 
+                $brandName=strtolower(str_replace(" ", "_", $brandName));
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+            }
             return $insertedSubcategory;
         }
     }

@@ -10,15 +10,15 @@ $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
 if (count($argv) < 4) {
     echo "Connected Error";
     die(
-        "Usage: php background_products_process.php <productId> <modelImage> <modelName>\n"
+        "Usage: php background_subcat_process.php <subcategoryId> <brandImage> <brandName>\n"
     );
 }
 
-$productId = $argv[1];
+$subcategoryId = $argv[1];
 
 // URL of the image you want to download
 $urlImage = $argv[2];
-$modelName = $argv[3];
+$brandName = $argv[3];
 
 if ($conn->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
@@ -47,53 +47,37 @@ if ($conn->connect_error) {
     // Construct the local file path
     $localFilePath =
         $localDirectory .
-        "/" .$modelName .
+        "/" .$brandName .
         "_" .
-        $productId .
+        $subcategoryId .
         ".png";
 
     try {
         if (ini_get("allow_url_fopen")) {
             // allow_url_fopen is enabled
-    echo "<br/>--------------------------------------enabled-------------" ;
+    // echo "<br/>--------------------------------------enabled-------------" ;
         } else {
             // allow_url_fopen is disabled
-    echo "<br/>--------------------------------------disabled-------------" ;
+    // echo "<br/>--------------------------------------disabled-------------" ;
         }
         // Download the image and save it locally
-        // $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
-        // $imageContent = file_get_contents($imageUrl, false, $context);
-
-        $maxRetries = 3;
-        $retryCount = 0;
-
-        while ($retryCount < $maxRetries) {
-            $imageContent = file_get_contents($imageUrl);
-
-            if ($imageContent !== false) {
-                // Successfully fetched the image content
-                break;
-            }
-
-            // Increment the retry count
-            $retryCount++;
-        }
         // $imageContent = file_get_contents($imageUrl); 
+        $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
+        $imageContent = file_get_contents($imageUrl, false, $context);
+       
         if ($imageContent !== false) {
             // Save the image to the local directory
             file_put_contents($localFilePath, $imageContent);
 
-            $product_image =
-                "drive/" .$modelName.
+            $subcategory_image =
+                "drive/" .$brandName.
                 "_" .
-                $productId .
+                $subcategoryId .
                 ".png";
 
-            $updateQuery = "UPDATE product SET product_image = '$product_image', image_url = '$imageUrlStatus' WHERE id = $productId";
+            $updateQuery = "UPDATE subcategory SET subcategory_image = '$subcategory_image', image_url = '$imageUrlStatus' WHERE id = $subcategoryId";
             $conn->query($updateQuery);
-            
-    // echo "<br/>----------";
-    // echo "<br/>--------------------------------------product_image-------------".$product_image;
+             
         } else {
             // Output an error message
             // echo "<br/>-Failed to download the image from the URL: $imageUrl\n";

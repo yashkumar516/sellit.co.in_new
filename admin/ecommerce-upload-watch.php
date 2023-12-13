@@ -51,9 +51,9 @@ $headerCount=count($desiredHeaders);
                     );
                     $brandId= $subCategoryInfo["id"];
                     $imageURL= $subCategoryInfo["image_url"];
-                    if( $imageURL === "external"){
-                        $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
-                    }
+                    // if( $imageURL === "external"){
+                    //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
+                    // }
                     
                     $SubCategoryInfo = $childCategoryManager->upsertChildCategory(
                         $rowData, $categoryId, $brandId
@@ -62,18 +62,16 @@ $headerCount=count($desiredHeaders);
                     $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
-                    if( $productImageURL === "external"){
-                        $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                    }
+                    // if( $productImageURL === "external"){
+                    //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
+                    // }
                     $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
                     
                     
                 }
             }
-            
-            $imageManager->syncBrandImage();
-            $imageManager->syncProductImage();
+             
             if ($SubCategoryInfo && $productInfo && $variantInfo) {
                 echo "<script> 
                 // alert('Brand upload successfully');
