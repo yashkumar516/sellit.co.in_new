@@ -1,19 +1,18 @@
 <?php
 
-ini_set("max_execution_time", 500);
-
 if (count($argv) < 9) {
     echo "Connected Error";
     die(
-        "Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n"
+        "Usage: php background_products_process.php <subcategoryId> <brandImage> <brandName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n"
     );
 }
-
-$productId = $argv[1];
+ 
+ini_set("max_execution_time", 1000);
+$subcategoryId = $argv[1];
 
 // URL of the image you want to download
 $urlImage = $argv[2];
-$modelName = $argv[3];
+$brandName = $argv[3];
 
 $dbHost = $argv[4];
 $dbUsername = $argv[5];
@@ -21,6 +20,7 @@ $dbPassword = $argv[6];
 $dbDatabase = $argv[7];
 $dirNameProject = $argv[8];
 
+echo "<br/>--------------------------------------disabled-------dbHost------".$dbHost."--dbUsername-----". $dbUsername."--dbPassword-----". $dbPassword."--dbDatabase-----". $dbDatabase ;
 $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
 if ($conn->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
@@ -42,6 +42,7 @@ if ($conn->connect_error) {
  
     $localDirectory = "/var/www/" . $dirNameProject . "/admin/img/drive";
 
+    echo "<br/>--------------------------------------localDirectory-------------".$localDirectory ;
     if (!is_dir($localDirectory)) {
         mkdir($localDirectory, 0775, true);
     }
@@ -60,7 +61,7 @@ if ($conn->connect_error) {
     // echo "<br/>--------------------------------------enabled-------------" ;
         } else {
             // allow_url_fopen is disabled
-    // echo "<br/>--------------------------------------disabled-------------" ;
+    echo "<br/>--------------------------------------disabled-------------" ;
         }
         // Download the image and save it locally
         $imageContent = file_get_contents($imageUrl); 
@@ -79,10 +80,11 @@ if ($conn->connect_error) {
 
             $updateQuery = "UPDATE subcategory SET subcategory_image = '$subcategory_image', image_url = '$imageUrlStatus' WHERE id = $subcategoryId";
             $conn->query($updateQuery);
+            echo "<br/>-Success image from the URL: $subcategory_image\n";
              
         } else {
             // Output an error message
-            // echo "<br/>-Failed to download the image from the URL: $imageUrl\n";
+            echo "<br/>-Failed to download the image from the URL: $imageUrl\n";
         }
     } catch (Exception $e) {
         error_log("<br/>----Error creating directory: " . $e->getMessage());

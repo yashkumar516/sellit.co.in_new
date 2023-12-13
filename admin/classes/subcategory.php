@@ -511,6 +511,19 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
+                // $command = "/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
+
+                // // Execute the command
+                // exec($command, $output, $returnVar);
+                
+                // // Output any error messages
+                // if ($returnVar !== 0) {
+                //     echo "-------Error----: " . implode("\n", $output);
+                // }
+                //  else {
+                //     echo "Command executed successfully";
+                //     echo "--<br/>-----successfully----: " . implode("\n", $output);
+                // }
                 exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
