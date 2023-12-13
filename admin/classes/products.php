@@ -244,16 +244,16 @@ class ProductManager
                 $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName";
 
                 // Execute the command
-                // exec($command, $output, $returnVar);
+                exec($command, $output, $returnVar);
                 
-                // // Output any error messages
-                // if ($returnVar !== 0) {
-                //     echo "-------Error----: " . implode("\n", $output);
-                // }
-                //  else {
-                //     echo "Command executed successfully";
-                //     echo "--<br/>-----successfully----: " . implode("\n", $output);
-                // }
+                // Output any error messages
+                if ($returnVar !== 0) {
+                    echo "-------Error----: " . implode("\n", $output);
+                }
+                 else {
+                    echo "Command executed successfully";
+                    echo "--<br/>-----successfully----: " . implode("\n", $output);
+                }
 
                 
                  exec(

@@ -77,17 +77,17 @@ $headerCount=count($desiredHeaders);
                 }
             }
              
-            // if ($questionsInfo && $productInfo && $variantInfo) {
-            //     echo "<script> 
-            //     alert('Model upload successfully');
-            //         window.location.href = 'ecommerce-products-form.php';
-            //         </script>";
-            // } else {
-            //     echo "<script> 
-            //     alert('Model upload failed');
-            //         window.location.href = 'ecommerce-products-form.php';
-            //         </script>";
-            // } 
+            if ($questionsInfo && $productInfo && $variantInfo) {
+                echo "<script> 
+                alert('Model upload successfully');
+                    window.location.href = 'ecommerce-products-form.php';
+                    </script>";
+            } else {
+                echo "<script> 
+                alert('Model upload failed');
+                    window.location.href = 'ecommerce-products-form.php';
+                    </script>";
+            } 
         }
     } 
 ?>
