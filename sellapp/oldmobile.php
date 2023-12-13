@@ -47,7 +47,7 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
             <h1 class="select pb-3">Select Mobile</h1>
             <div class="row" id="ajaxrespon">
                 <?php
-                $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$id' ORDER BY `product_name` ASC");
+                $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$id' ORDER BY `modify_date` DESC");
                 while ($armodel = mysqli_fetch_assoc($selectmodel)) {
                 ?>
                     <div class="col-lg-2 col-4 mt-2 px-1">

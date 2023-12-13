@@ -1,4 +1,3 @@
-
 <?php
 function GENERATELOGS_API($DATA, $BLOCK, $flag = 0)
 {
@@ -651,7 +650,7 @@ if (isset($_POST['otpverify'])) {
         if ($lastidquery) {
           $lastid = $lastidquery['id'];
           mysqli_query($con, "UPDATE `enquiry` SET  `vendor_id`='15' WHERE `id` = '$lastid'");
-          $redurl = "https://sellit.co.in/price-summary.php?vid=$vid&&mid=$mid&&bid=$bid&&enid=$lastid";
+          $redurl = $publicUrl."price-summary.php?vid=$vid&&mid=$mid&&bid=$bid&&enid=$lastid";
           GENERATELOGS_API($redurl, "redirect url", 1);
           echo '<script>
                window.location.assign("' . $redurl . '");
@@ -697,7 +696,7 @@ if (isset($_POST['otpverify'])) {
           $lastid = $lastidquery['id'];
           mysqli_query($con, "UPDATE `enquiry` SET  `vendor_id`='15' WHERE `id` = '$lastid'");
 
-          $redurl = "https://sellit.co.in/price-summary.php?vid=$vid&&mid=$mid&&bid=$bid&&enid=$lastid";
+          $redurl = $publicUrl."/price-summary.php?vid=$vid&&mid=$mid&&bid=$bid&&enid=$lastid";
           GENERATELOGS_API($redurl, "redirect url", 1);
           echo '<script>
                window.location.assign("' . $redurl . '");

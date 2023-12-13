@@ -4,12 +4,15 @@ if (isset($_SERVER['DB_PASSWORD']) && !empty($_SERVER['DB_PASSWORD'])) {
     $dbUsername = $_SERVER['DB_USERNAME'];
     $dbPassword = $_SERVER['DB_PASSWORD'];
     $dbDatabase = $_SERVER['DB_DATABASE'];
+    $publicUrl = $_SERVER['PUBLIC_URL'];
 } else {
     $dbHost = "localhost";
     $dbUsername = "sellit";
     $dbPassword = 'demo';
     $dbDatabase = "sellit";
+    $publicUrl = "http://localhost/sellit/";
 }
+ 
 
 $con = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase); 
 ?>

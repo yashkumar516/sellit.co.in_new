@@ -183,7 +183,7 @@ if (isset($_SESSION['user'])) {
                 <h3 class="select-brand-heading pb-3">Select Brand</h3>
                 <div class="row">
                     <?php
-           $selectquery = mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '$cid' ");
+           $selectquery = mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '$cid' ORDER BY `subcategory_name` ASC");
            while($artop = mysqli_fetch_assoc( $selectquery ))
            {
           ?>

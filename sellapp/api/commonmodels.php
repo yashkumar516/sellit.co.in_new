@@ -44,7 +44,7 @@
         }
     } 
     $output = new mobbrand();
-    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid' ORDER BY `product_name` ASC"),$bid);
+    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid' ORDER BY `modify_date` DESC"),$bid);
  }else{
          $list = [
                 'status' => '0',
