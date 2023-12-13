@@ -58,14 +58,13 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                     );
                     $brandId= $subCategoryInfo["id"];
                     $imageURL= $subCategoryInfo["image_url"];
-                    // if( $imageURL === "external"){
-                    //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
-                    // }
+                    if( $imageURL === "external"){
+                        $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
+                    }
                    
                                         
                 }
-            }
-            //   $imageManager->syncBrandImage();
+            } 
             if ($subCategoryInfo ) { 
                 echo "<script> alert('Brand upload successfully');
                     window.location.href = 'brandquestions.php';

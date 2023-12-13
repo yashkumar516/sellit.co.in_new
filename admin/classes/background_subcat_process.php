@@ -61,9 +61,9 @@ if ($conn->connect_error) {
     // echo "<br/>--------------------------------------disabled-------------" ;
         }
         // Download the image and save it locally
-        // $imageContent = file_get_contents($imageUrl); 
-        $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
-        $imageContent = file_get_contents($imageUrl, false, $context);
+        $imageContent = file_get_contents($imageUrl); 
+        // $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
+        // $imageContent = file_get_contents($imageUrl, false, $context);
        
         if ($imageContent !== false) {
             // Save the image to the local directory

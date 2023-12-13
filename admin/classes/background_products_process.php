@@ -64,21 +64,21 @@ if ($conn->connect_error) {
         // $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
         // $imageContent = file_get_contents($imageUrl, false, $context);
 
-        $maxRetries = 3;
-        $retryCount = 0;
+        // $maxRetries = 3;
+        // $retryCount = 0;
 
-        while ($retryCount < $maxRetries) {
-            $imageContent = file_get_contents($imageUrl);
+        // while ($retryCount < $maxRetries) {
+        //     $imageContent = file_get_contents($imageUrl);
 
-            if ($imageContent !== false) {
-                // Successfully fetched the image content
-                break;
-            }
+        //     if ($imageContent !== false) {
+        //         // Successfully fetched the image content
+        //         break;
+        //     }
 
-            // Increment the retry count
-            $retryCount++;
-        }
-        // $imageContent = file_get_contents($imageUrl); 
+        //     // Increment the retry count
+        //     $retryCount++;
+        // }
+        $imageContent = file_get_contents($imageUrl); 
         if ($imageContent !== false) {
             // Save the image to the local directory
             file_put_contents($localFilePath, $imageContent);
@@ -93,10 +93,10 @@ if ($conn->connect_error) {
             $conn->query($updateQuery);
             
     // echo "<br/>----------";
-    // echo "<br/>--------------------------------------product_image-------------".$product_image;
+    echo "<br/>--------------------------------------product_image-------------".$product_image;
         } else {
             // Output an error message
-            // echo "<br/>-Failed to download the image from the URL: $imageUrl\n";
+            echo "<br/>-Failed to download the image from the URL: $imageUrl\n";
         }
     } catch (Exception $e) {
         error_log("<br/>----Error creating directory: " . $e->getMessage());
