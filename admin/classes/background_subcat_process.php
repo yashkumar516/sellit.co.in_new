@@ -1,26 +1,27 @@
 <?php
 
-$dbHost = "localhost";
-$dbUsername = "sellit";
-$dbPassword = "NqPTi#HY9A8wKM";
-$dbDatabase = "stage_sellit";
+ini_set("max_execution_time", 500);
 
-ini_set('max_execution_time', 500);
-$conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
-
-if (count($argv) < 4) {
+if (count($argv) < 9) {
     echo "Connected Error";
     die(
-        "Usage: php background_subcat_process.php <subcategoryId> <brandImage> <brandName>\n"
+        "Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n"
     );
 }
 
-$subcategoryId = $argv[1];
+$productId = $argv[1];
 
 // URL of the image you want to download
 $urlImage = $argv[2];
-$brandName = $argv[3];
+$modelName = $argv[3];
 
+$dbHost = $argv[4];
+$dbUsername = $argv[5];
+$dbPassword = $argv[6];
+$dbDatabase = $argv[7];
+$dirNameProject = $argv[8];
+
+$conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
 if ($conn->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
     echo "DB Connected failed \n";
@@ -38,8 +39,8 @@ if ($conn->connect_error) {
 
     // Perform the replacement for the first URL
     $imageUrl = preg_replace($pattern, $replacement, $urlImage);
-
-    $localDirectory = "/var/www/stage.sellit.co.in/admin/img/drive";
+ 
+    $localDirectory = "/var/www/" . $dirNameProject . "/admin/img/drive";
 
     if (!is_dir($localDirectory)) {
         mkdir($localDirectory, 0775, true);
@@ -86,5 +87,6 @@ if ($conn->connect_error) {
     } catch (Exception $e) {
         error_log("<br/>----Error creating directory: " . $e->getMessage());
     }
+    mysqli_close($conn);
 }
 ?>

@@ -5,12 +5,15 @@ if (isset($_SERVER['DB_PASSWORD']) && !empty($_SERVER['DB_PASSWORD'])) {
     $dbPassword = $_SERVER['DB_PASSWORD'];
     $dbDatabase = $_SERVER['DB_DATABASE'];
     $publicUrl = $_SERVER['PUBLIC_URL'];
+    $dirNameProject = $_SERVER['PROJECT_ROOT_PATH'];
+    
 } else {
     $dbHost = "localhost";
     $dbUsername = "sellit";
     $dbPassword = 'demo';
     $dbDatabase = "sellit";
     $publicUrl = "http://localhost/sellit/";
+    $dirNameProject="";
 }
  
 

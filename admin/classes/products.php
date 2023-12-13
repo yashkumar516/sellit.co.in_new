@@ -2,19 +2,52 @@
 function downloadImage($url, $localPath) {
     $contents = file_get_contents($url);
     file_put_contents($localPath, $contents);
-}
+} 
 class ProductManager
 {
     private $conn;
-
+    private $dbHost;
+    private $dbUsername;
+    private $dbPassword;
+    private $dbDatabase;
+    private $publicUrl;
+    private $dirNameProject;
+ 
     public function __construct($db)
     {
         $this->conn = $db;
+        $this->loadConfig();
     }
+
+    private function loadConfig()
+    {
+        if (isset($_SERVER['DB_PASSWORD']) && !empty($_SERVER['DB_PASSWORD'])) {
+            $this->dbHost = $_SERVER['DB_HOST'];
+            $this->dbUsername = $_SERVER['DB_USERNAME'];
+            $this->dbPassword = $_SERVER['DB_PASSWORD'];
+            $this->dbDatabase = $_SERVER['DB_DATABASE'];
+            $this->publicUrl = $_SERVER['PUBLIC_URL'];
+            $this->dirNameProject = $_SERVER['PROJECT_ROOT_PATH'];
+            // $this->setDirNameProject($_SERVER['PROJECT_ROOT_PATH']);
+        } else {
+            $this->dbHost = "localhost";
+            $this->dbUsername = "sellit";
+            $this->dbPassword="demo";
+            $this->dbDatabase = "sellit";
+            $this->publicUrl = "http://localhost/sellit/";
+            $this->dirNameProject="";
+        }
+    } 
+ 
 
     public function upsertProduct($getdata, $categoryId, $brandId, $seriesId)
     {
-        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
+         
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -96,7 +129,7 @@ class ProductManager
             $updatedProduct["product_image"] = $product_image;
             if ($imageUrlStatus === "external") { 
                 $modelName=strtolower(str_replace(" ", "_", $modelName));
-                exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $updatedProduct;
         } else {
@@ -127,7 +160,7 @@ class ProductManager
             $insertedProduct = $insertedProductResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $modelName=strtolower(str_replace(" ", "_", $modelName));
-                exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $insertedProduct;
         }
@@ -136,7 +169,11 @@ class ProductManager
     public function upsertProductId($getdata, $categoryId, $brandId, $seriesId)
     {
   
-        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -241,7 +278,7 @@ class ProductManager
             // echo "-----------------modelName-----------------".$modelName;
             if ($imageUrlStatus === "external") { 
                 $modelName=strtolower(str_replace(" ", "_", $modelName));
-                $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName";
+                $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // // Execute the command
                 // exec($command, $output, $returnVar);
@@ -257,7 +294,7 @@ class ProductManager
 
                 
                  exec(
-                    "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName > /dev/null 2>&1 &"
+                    "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"
                 ); 
             }
             return $updatedProduct;
@@ -291,8 +328,8 @@ class ProductManager
                 $modelName=strtolower(str_replace(" ", "_", $modelName));
                 // echo "-------------------backgroundProcessFile------insert--------".$backgroundProcessFile;
                 // Start background process to download the image and update the table
-                // exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName", $output, $returnVar);
-                $command = "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName";
+                // exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject", $output, $returnVar);
+                $command = "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // Execute the command
                 // exec($command, $output, $returnVar);
@@ -305,7 +342,7 @@ class ProductManager
                 //     echo "Command executed successfully";
                 // }
                  exec(
-                    "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName >  3>&1 &"
+                    "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject >  3>&1 &"
                 ); 
             }
             return $insertedProduct;

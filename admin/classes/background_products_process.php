@@ -1,17 +1,11 @@
 <?php
 
-$dbHost = "localhost";
-$dbUsername = "sellit";
-$dbPassword = "NqPTi#HY9A8wKM";
-$dbDatabase = "stage_sellit";
+ini_set("max_execution_time", 500);
 
-ini_set('max_execution_time', 500);
-$conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
-
-if (count($argv) < 4) {
+if (count($argv) < 9) {
     echo "Connected Error";
     die(
-        "Usage: php background_products_process.php <productId> <modelImage> <modelName>\n"
+        "Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n"
     );
 }
 
@@ -21,6 +15,13 @@ $productId = $argv[1];
 $urlImage = $argv[2];
 $modelName = $argv[3];
 
+$dbHost = $argv[4];
+$dbUsername = $argv[5];
+$dbPassword = $argv[6];
+$dbDatabase = $argv[7];
+$dirNameProject = $argv[8];
+
+$conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbDatabase);
 if ($conn->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
     echo "DB Connected failed \n";
@@ -39,7 +40,7 @@ if ($conn->connect_error) {
     // Perform the replacement for the first URL
     $imageUrl = preg_replace($pattern, $replacement, $urlImage);
 
-    $localDirectory = "/var/www/stage.sellit.co.in/admin/img/drive";
+    $localDirectory = "/var/www/" . $dirNameProject . "/admin/img/drive";
 
     if (!is_dir($localDirectory)) {
         mkdir($localDirectory, 0775, true);
@@ -47,54 +48,28 @@ if ($conn->connect_error) {
 
     // Construct the local file path
     $localFilePath =
-        $localDirectory .
-        "/" .$modelName .
-        "_" .
-        $productId .
-        ".png";
+        $localDirectory . "/" . $modelName . "_" . $productId . ".png";
 
     try {
         if (ini_get("allow_url_fopen")) {
             // allow_url_fopen is enabled
-    echo "<br/>--------------------------------------enabled-------------" ;
+            // echo "<br/>--------------------------------------enabled-------------";
         } else {
             // allow_url_fopen is disabled
-    echo "<br/>--------------------------------------disabled-------------" ;
+            echo "<br/>--------------------------------------disabled-------------";
         }
-        // Download the image and save it locally
-        // $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
-        // $imageContent = file_get_contents($imageUrl, false, $context);
-
-        // $maxRetries = 3;
-        // $retryCount = 0;
-
-        // while ($retryCount < $maxRetries) {
-        //     $imageContent = file_get_contents($imageUrl);
-
-        //     if ($imageContent !== false) {
-        //         // Successfully fetched the image content
-        //         break;
-        //     }
-
-        //     // Increment the retry count
-        //     $retryCount++;
-        // }
-        $imageContent = file_get_contents($imageUrl); 
+        $imageContent = file_get_contents($imageUrl);
         if ($imageContent !== false) {
             // Save the image to the local directory
             file_put_contents($localFilePath, $imageContent);
 
-            $product_image =
-                "drive/" .$modelName.
-                "_" .
-                $productId .
-                ".png";
+            $product_image = "drive/" . $modelName . "_" . $productId . ".png";
 
             $updateQuery = "UPDATE product SET product_image = '$product_image', image_url = '$imageUrlStatus' WHERE id = $productId";
             $conn->query($updateQuery);
-            
-    // echo "<br/>----------";
-    echo "<br/>--------------------------------------product_image-------------".$product_image;
+
+            // echo "<br/>----------";
+            // echo "<br/>--------------------------------------product_image-------------".$product_image;
         } else {
             // Output an error message
             echo "<br/>-Failed to download the image from the URL: $imageUrl\n";
@@ -102,5 +77,6 @@ if ($conn->connect_error) {
     } catch (Exception $e) {
         error_log("<br/>----Error creating directory: " . $e->getMessage());
     }
+    mysqli_close($conn);
 }
 ?>

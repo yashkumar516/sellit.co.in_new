@@ -2,12 +2,46 @@
 
 class SubCategoryManager {
     private $conn;
-
-    public function __construct($db) {
+    private $dbHost;
+    private $dbUsername;
+    private $dbPassword;
+    private $dbDatabase;
+    private $publicUrl;
+    private $dirNameProject;
+ 
+    public function __construct($db)
+    {
         $this->conn = $db;
+        $this->loadConfig();
     }
 
+    private function loadConfig()
+    {
+        if (isset($_SERVER['DB_PASSWORD']) && !empty($_SERVER['DB_PASSWORD'])) {
+            $this->dbHost = $_SERVER['DB_HOST'];
+            $this->dbUsername = $_SERVER['DB_USERNAME'];
+            $this->dbPassword = $_SERVER['DB_PASSWORD'];
+            $this->dbDatabase = $_SERVER['DB_DATABASE'];
+            $this->publicUrl = $_SERVER['PUBLIC_URL'];
+            $this->dirNameProject = $_SERVER['PROJECT_ROOT_PATH'];
+            // $this->setDirNameProject($_SERVER['PROJECT_ROOT_PATH']);
+        } else {
+            $this->dbHost = "localhost";
+            $this->dbUsername = "sellit";
+            $this->dbPassword="demo";
+            $this->dbDatabase = "sellit";
+            $this->publicUrl = "http://localhost/sellit/";
+            $this->dirNameProject="";
+        }
+    } 
+
     public function upsertSubcategory($getdata, $categoryId) {
+        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
         // Check if the product already exists 
        
         $brandName = trim($getdata[0]);
@@ -149,8 +183,12 @@ class SubCategoryManager {
     }
 
     public function upsertSubcategoryByKey($getdata, $categoryId) {
-        // Check if the product already exists 
        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -282,7 +320,7 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -313,7 +351,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
@@ -321,6 +359,11 @@ class SubCategoryManager {
     
     public function upsertSubcategoryByKeyId($getdata, $categoryId) {
        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -468,7 +511,7 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -521,7 +564,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
@@ -529,6 +572,11 @@ class SubCategoryManager {
     
     public function upsertSubcategorySeries($getdata, $categoryId) {
        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -598,7 +646,7 @@ class SubCategoryManager {
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -623,13 +671,18 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
     }
     public function upsertSubcategoryAll($getdata, $categoryId) {
        
+        $dbHost=$this->dbHost;
+        $dbUsername=$this->dbUsername;
+        $dbPassword=$this->dbPassword;
+        $dbDatabase=$this->dbDatabase;
+        $dirNameProject=$this->dirNameProject;
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -701,7 +754,7 @@ class SubCategoryManager {
             }
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $updateSubcategory;
         } else {
@@ -726,7 +779,7 @@ class SubCategoryManager {
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") { 
                 $brandName=strtolower(str_replace(" ", "_", $brandName));
-                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName > /dev/null 2>&1 &"); 
+                exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
             }
             return $insertedSubcategory;
         }
