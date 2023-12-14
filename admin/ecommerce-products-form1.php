@@ -3,7 +3,7 @@
  <?php include 'includes/sidebar.php' ?>
  <!-- end sidebar  header -->
  <?php
-include_once "./classes/products.php";
+include_once "./classes/products1.php";
 include_once "./classes/childcategory.php";  
 include_once "./classes/subcategory.php";  
 include_once "./classes/variant.php";  
@@ -25,7 +25,7 @@ $headerCount=count($desiredHeaders);
                      
         $seriesId= $_POST["childCategory"];
         $filename = $_FILES["csvfile"]["tmp_name"];
-        // echo "--<br/>-<br/>-<br/>-<br/>-<br/>-<br/>-<br/>----------------------------filename-------------------".$filename;
+        echo "--<br/>-<br/>-<br/>-<br/>-<br/>-<br/>-<br/>----------------------------filename-------------------".$filename;
         if ($_FILES["csvfile"]["size"] > 0) {
             $file = fopen($filename, "r"); // Read the header to handle column names
             $headers = fgetcsv($file, 1000, ","); // Find the indexes of the desired headers
@@ -50,12 +50,16 @@ $headerCount=count($desiredHeaders);
                     $headerIndexes[$header] = $headerIndex;
                 } 
             }
+            
+            $counter = 1;
+
             while (($getdata = fgetcsv($file, 1000, ",")) !== false) { 
+                // $counter = $i;
                 if (
                     isset($getdata) &&
-                    isset($getdata[0]) &&
+                    // isset($getdata[0]) &&
                     isset($getdata[1]) &&
-                    isset($getdata[3])
+                    isset($getdata[4])
                 ) {
                    
                     $categoryId = 1;
@@ -65,7 +69,8 @@ $headerCount=count($desiredHeaders);
                             ? $getdata[$index]
                             : null;
                     } 
-                    $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
+                    echo "-<br/>---------------------------------------------------------------------------counter".$counter;
+                    $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId, $counter);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
                     // if( $productImageURL === "external"){
@@ -73,21 +78,22 @@ $headerCount=count($desiredHeaders);
                     // }
                     $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
-            
+                  
+                $counter++;
                 }
             }
              
-            if ($questionsInfo && $productInfo && $variantInfo) {
-                echo "<script> 
-                alert('Model upload successfully');
-                    window.location.href = 'ecommerce-products-form.php';
-                    </script>";
-            } else {
-                echo "<script> 
-                alert('Model upload failed');
-                    window.location.href = 'ecommerce-products-form.php';
-                    </script>";
-            } 
+            // if ($questionsInfo && $productInfo && $variantInfo) {
+            //     echo "<script> 
+            //     alert('Model upload successfully');
+            //         window.location.href = 'ecommerce-products-form.php';
+            //         </script>";
+            // } else {
+            //     echo "<script> 
+            //     alert('Model upload failed');
+            //         window.location.href = 'ecommerce-products-form.php';
+            //         </script>";
+            // } 
         }
     } 
 ?>

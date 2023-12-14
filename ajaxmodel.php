@@ -6,7 +6,7 @@
     $subcatid = $_POST['subcatid'];
       
     $subcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$subcatid' "));
-    $selectmodel = mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `childcategoryid` = '$seriesid' ORDER BY `modify_date` DESC");
+    $selectmodel = mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `childcategoryid` = '$seriesid' ORDER BY `counter` DESC, `modify_date` DESC");
     while($armodel = mysqli_fetch_assoc($selectmodel))
     {
    ?>

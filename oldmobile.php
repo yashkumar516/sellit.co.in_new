@@ -215,7 +215,7 @@ if (isset($_SESSION['user'])) {
                 <div class="row" id="ajaxrespon">
                     <?php
                     $subcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$id' "));
-                    $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$id' ORDER BY `modify_date` DESC");
+                    $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$id' ORDER BY `counter` DESC, `modify_date` DESC");
                     while ($armodel = mysqli_fetch_assoc($selectmodel)) {
                     ?>
                     <div class="col-lg-2 col-4 mt-2 px-1">

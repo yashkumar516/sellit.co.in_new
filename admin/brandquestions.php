@@ -175,7 +175,7 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                      </thead>
                      <tbody>
                          <?php 
-                                          $fetchbrques = mysqli_query($con,"SELECT * FROM `subcategory`  WHERE `category_id`=1 ORDER BY `subcategory`.`modify_date` DESC;");
+                                          $fetchbrques = mysqli_query($con,"SELECT * FROM `subcategory`  WHERE `category_id`=1 ORDER BY `modify_date` DESC;");
                                           while($ar = mysqli_fetch_assoc($fetchbrques)){
                                          ?>
                          <!-- fetch category details start -->

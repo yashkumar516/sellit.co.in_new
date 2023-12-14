@@ -7,7 +7,7 @@ if (count($argv) < 9) {
     );
 }
  
-ini_set("max_execution_time", 1000);
+ini_set("max_execution_time", 2000);
 $subcategoryId = $argv[1];
 
 // URL of the image you want to download
@@ -81,8 +81,7 @@ if ($conn->connect_error) {
             $updateQuery = "UPDATE subcategory SET subcategory_image = '$subcategory_image', image_url = '$imageUrlStatus' WHERE id = $subcategoryId";
             $conn->query($updateQuery);
             echo "<br/>-Success image from the URL: $subcategory_image\n";
-             
-            mysqli_close($conn);
+              
         } else {
             // Output an error message
             echo "<br/>-Failed to download the image from the URL: $imageUrl\n";
@@ -90,6 +89,6 @@ if ($conn->connect_error) {
     } catch (Exception $e) {
         error_log("<br/>----Error creating directory: " . $e->getMessage());
     }
-    mysqli_close($conn);
+    // mysqli_close($conn);
 }
 ?>

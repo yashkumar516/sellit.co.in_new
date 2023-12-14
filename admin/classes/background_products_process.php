@@ -1,12 +1,12 @@
 <?php
 
-ini_set("max_execution_time", 1000);
 if (count($argv) < 9) {
     echo "Connected Error";
     die(
         "Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n"
     );
 }
+ini_set("max_execution_time", 2000);
 
 $productId = $argv[1];
 
@@ -50,6 +50,7 @@ if ($conn->connect_error) {
         $localDirectory . "/" . $modelName . "_" . $productId . ".png";
 
     try {
+        echo "<br/>--------------------------------------        max_execution_time   -------------".ini_get("max_execution_time");
         if (ini_get("allow_url_fopen")) {
             // allow_url_fopen is enabled
             // echo "<br/>--------------------------------------enabled-------------";
@@ -67,7 +68,6 @@ if ($conn->connect_error) {
             $updateQuery = "UPDATE product SET product_image = '$product_image', image_url = '$imageUrlStatus' WHERE id = $productId";
             $conn->query($updateQuery);
 
-            mysqli_close($conn);
             // echo "<br/>----------";
             // echo "<br/>--------------------------------------product_image-------------".$product_image;
         } else {
@@ -77,6 +77,6 @@ if ($conn->connect_error) {
     } catch (Exception $e) {
         error_log("<br/>----Error creating directory: " . $e->getMessage());
     }
-    mysqli_close($conn);
+    // mysqli_close($conn);
 }
 ?>
