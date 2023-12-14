@@ -50,6 +50,8 @@ $headerCount=count($desiredHeaders);
                     $headerIndexes[$header] = $headerIndex;
                 } 
             }
+            $i = 1;
+
             while (($getdata = fgetcsv($file, 1000, ",")) !== false) { 
                 if (
                     isset($getdata) &&
@@ -65,7 +67,8 @@ $headerCount=count($desiredHeaders);
                             ? $getdata[$index]
                             : null;
                     } 
-                    $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId);
+                    $counter = $i;
+                    $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId, $counter);
                     $productId= $productInfo["id"];
                     $productImageURL= $productInfo["image_url"];
                     // if( $productImageURL === "external"){
@@ -73,7 +76,7 @@ $headerCount=count($desiredHeaders);
                     // }
                     $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
-            
+                    $i++;
                 }
             }
              

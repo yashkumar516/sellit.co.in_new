@@ -82,6 +82,7 @@ if ($conn->connect_error) {
             $conn->query($updateQuery);
             echo "<br/>-Success image from the URL: $subcategory_image\n";
              
+            mysqli_close($conn);
         } else {
             // Output an error message
             echo "<br/>-Failed to download the image from the URL: $imageUrl\n";

@@ -1,6 +1,6 @@
 <?php
 
-ini_set("max_execution_time", 500);
+ini_set("max_execution_time", 1000);
 if (count($argv) < 9) {
     echo "Connected Error";
     die(
@@ -67,6 +67,7 @@ if ($conn->connect_error) {
             $updateQuery = "UPDATE product SET product_image = '$product_image', image_url = '$imageUrlStatus' WHERE id = $productId";
             $conn->query($updateQuery);
 
+            mysqli_close($conn);
             // echo "<br/>----------";
             // echo "<br/>--------------------------------------product_image-------------".$product_image;
         } else {

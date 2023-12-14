@@ -166,9 +166,8 @@ class ProductManager
         }
     }
 
-    public function upsertProductId($getdata, $categoryId, $brandId, $seriesId)
+    public function upsertProductId($getdata, $categoryId, $brandId, $seriesId, $counter)
     {
-  
         $dbHost=$this->dbHost;
         $dbUsername=$this->dbUsername;
         $dbPassword=$this->dbPassword;
@@ -249,13 +248,14 @@ class ProductManager
                 `product_name` = ?,
                 `product_image` = ?,
                 `modify_date` = ?,
+                `counter` = ?,
                 `image_url`=?
             WHERE
                 `id` = ?
             ";
             $updateStmt = $this->conn->prepare($updateQuery);
             $updateStmt->bind_param(
-                "dssssssi",
+                "dsssssssi",
                 $categoryId,
                 $brandId,
                 $seriesId,
@@ -263,6 +263,7 @@ class ProductManager
                 $product_image,
                 $nowDate,
                 $imageUrlStatus,
+                $counter,
                 $productId
             );
             $updateStmt->execute();
@@ -301,16 +302,17 @@ class ProductManager
         } else {
             // Product doesn't exist, insert it
             $insertQuery =
-                "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`, `image_url`)  VALUES(?,?,?,?,?,?)";
+                "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`,`counter`,`image_url`)  VALUES(?,?,?,?,?,?)";
 
             $insertStmt = $this->conn->prepare($insertQuery);
             $insertStmt->bind_param(
-                "dsssss",
+                "dssssss",
                 $categoryId,
                 $brandId,
                 $seriesId,
                 $modelName,
                 $modelImage,
+                $counter,
                 $imageUrlStatus
             );
 
