@@ -240,7 +240,7 @@ class ProductManager
                     ? $modelImage
                     : $existingProduct["product_image"]; // Get the existing product ID
 
-                    echo "-<br/>---------------------------update------------------------------------------------counter".$counter;
+                    // echo "-<br/>---------------------------update------------------------------------------------counter".$counter;
             $updateQuery = " UPDATE `product`
             SET
                 `categoryid` = ?,
