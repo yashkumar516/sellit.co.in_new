@@ -1,8 +1,9 @@
 <?php
-function downloadImage($url, $localPath) {
+function downloadImage($url, $localPath)
+{
     $contents = file_get_contents($url);
     file_put_contents($localPath, $contents);
-} 
+}
 class ProductManager
 {
     private $conn;
@@ -12,7 +13,7 @@ class ProductManager
     private $dbDatabase;
     private $publicUrl;
     private $dirNameProject;
- 
+
     public function __construct($db)
     {
         $this->conn = $db;
@@ -32,22 +33,22 @@ class ProductManager
         } else {
             $this->dbHost = "localhost";
             $this->dbUsername = "sellit";
-            $this->dbPassword="demo";
+            $this->dbPassword = "demo";
             $this->dbDatabase = "sellit";
             $this->publicUrl = "http://localhost/sellit/";
-            $this->dirNameProject="";
+            $this->dirNameProject = "";
         }
-    } 
- 
+    }
+
 
     public function upsertProduct($getdata, $categoryId, $brandId, $seriesId)
     {
-        $dbHost=$this->dbHost;
-        $dbUsername=$this->dbUsername;
-        $dbPassword=$this->dbPassword;
-        $dbDatabase=$this->dbDatabase;
-        $dirNameProject=$this->dirNameProject;
-         
+        $dbHost = $this->dbHost;
+        $dbUsername = $this->dbUsername;
+        $dbPassword = $this->dbPassword;
+        $dbDatabase = $this->dbDatabase;
+        $dirNameProject = $this->dirNameProject;
+
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -57,7 +58,7 @@ class ProductManager
         // Define the full path to the background process PHP file
         $backgroundProcessFile =
             $projectDirectory . "/background_products_process.php";
-            
+
         // Create a DateTime object from the input string
         $currentDateTimeObject = new DateTime(); //::createFromFormat('Y-m-d H:i:s.u', $inputString);
 
@@ -71,8 +72,8 @@ class ProductManager
         $urlComponents = parse_url($modelImage);
         $imageUrlStatus =
             $urlComponents !== false && isset($urlComponents["scheme"])
-                ? "external"
-                : "internal";
+            ? "external"
+            : "internal";
         $checkQuery =
             "SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
@@ -87,12 +88,12 @@ class ProductManager
             $productId = $existingProduct["id"]; // Get the existing product ID
             $product_name =
                 $modelName !== ""
-                    ? $modelName
-                    : $existingProduct["product_name"]; // Get the existing product ID
+                ? $modelName
+                : $existingProduct["product_name"]; // Get the existing product ID
             $product_image =
                 $modelImage !== ""
-                    ? $modelImage
-                    : $existingProduct["product_image"]; // Get the existing product ID
+                ? $modelImage
+                : $existingProduct["product_image"]; // Get the existing product ID
 
             $updateQuery = " UPDATE `product`
             SET
@@ -127,9 +128,9 @@ class ProductManager
             $updatedProduct["childcategoryid"] = $seriesId;
             $updatedProduct["product_name"] = $product_name;
             $updatedProduct["product_image"] = $product_image;
-            if ($imageUrlStatus === "external") { 
-                $modelName=strtolower(str_replace(" ", "_", $modelName));
-                exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
+            if ($imageUrlStatus === "external") {
+                $modelName = strtolower(str_replace(" ", "_", $modelName));
+                exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $updatedProduct;
         } else {
@@ -139,7 +140,7 @@ class ProductManager
 
             $insertStmt = $this->conn->prepare($insertQuery);
             $insertStmt->bind_param(
-                "dssss",
+                "ssssss",
                 $categoryId,
                 $brandId,
                 $seriesId,
@@ -158,9 +159,9 @@ class ProductManager
             $insertedProductStmt->execute();
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
-            if ($imageUrlStatus === "external") { 
-                $modelName=strtolower(str_replace(" ", "_", $modelName));
-                exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"); 
+            if ($imageUrlStatus === "external") {
+                $modelName = strtolower(str_replace(" ", "_", $modelName));
+                exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $insertedProduct;
         }
@@ -168,11 +169,11 @@ class ProductManager
 
     public function upsertProductId($getdata, $categoryId, $brandId, $seriesId, $counter)
     {
-        $dbHost=$this->dbHost;
-        $dbUsername=$this->dbUsername;
-        $dbPassword=$this->dbPassword;
-        $dbDatabase=$this->dbDatabase;
-        $dirNameProject=$this->dirNameProject;
+        $dbHost = $this->dbHost;
+        $dbUsername = $this->dbUsername;
+        $dbPassword = $this->dbPassword;
+        $dbDatabase = $this->dbDatabase;
+        $dirNameProject = $this->dirNameProject;
         // Get the full path to the current script
         $currentScriptPath = __FILE__;
 
@@ -202,15 +203,15 @@ class ProductManager
         $urlComponents = parse_url($modelImage);
         $imageUrlStatus =
             $urlComponents !== false && isset($urlComponents["scheme"])
-                ? "external"
-                : "internal";
+            ? "external"
+            : "internal";
         // "ALTER TABLE `subcategory` ADD `image_url` ENUM('external', 'internal') NOT NULL DEFAULT 'internal' AFTER `top`;
         // "
 
         $checkQuery =
             $id !== "" && $id !== null && $id > 0
-                ? "SELECT * FROM `product` WHERE  `id` = ? "
-                : "SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
+            ? "SELECT * FROM `product` WHERE  `id` = ? "
+            : "SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
 
         // $checkQuery ="SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
@@ -233,14 +234,14 @@ class ProductManager
 
             $product_name =
                 $modelName !== ""
-                    ? $modelName
-                    : $existingProduct["product_name"]; // Get the existing product ID
+                ? $modelName
+                : $existingProduct["product_name"]; // Get the existing product ID
             $product_image =
                 $modelImage !== ""
-                    ? $modelImage
-                    : $existingProduct["product_image"]; // Get the existing product ID
+                ? $modelImage
+                : $existingProduct["product_image"]; // Get the existing product ID
 
-                    echo "-<br/>---------------------------update------------------------------------------------counter".$counter;
+            echo "-<br/>---------------------------update------------------------------------------------counter" . $counter;
             $updateQuery = " UPDATE `product`
             SET
                 `categoryid` = ?,
@@ -277,37 +278,52 @@ class ProductManager
             $updatedProduct["product_name"] = $modelName = $product_name;
             $updatedProduct["product_image"] = $modelImage = $product_image;
             $updatedProduct["image_url"] = $imageUrlStatus;
-            // echo "-----------------modelName-----------------".$modelName;
-            if ($imageUrlStatus === "external") { 
-                $modelName=strtolower(str_replace(" ", "_", $modelName));
+            echo "-----------------modelName-----------------" . $modelName;
+            if ($imageUrlStatus === "external") {
+                $modelName = strtolower(str_replace(" ", "_", $modelName));
                 $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // // Execute the command
                 exec($command, $output, $returnVar);
-                
+
                 // Output any error messages
                 if ($returnVar !== 0) {
                     echo "-------Error----: " . implode("\n", $output);
-                }
-                 else {
+                } else {
                     echo "Command executed successfully";
                     echo "--<br/>-----successfully----: " . implode("\n", $output);
                 }
 
-                
-                 exec(
+
+                exec(
                     "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"
-                ); 
+                );
             }
             return $updatedProduct;
         } else {
-            // Product doesn't exist, insert it
-            $insertQuery =
-                "INSERT INTO `product` (`categoryid`,`subcategoryid`,`childcategoryid`,`product_name`,`product_image`,`counter`,`image_url`)  VALUES(?,?,?,?,?,?)";
+            error_reporting(E_ALL);
+            ini_set('display_errors', 'on');
+            echo "<br/>---------------------------insert------------------------------------------------categoryId--" . $categoryId;
+            echo "<br/>------------------------------insert------------------------------------------------brandId--" . $brandId;
+            echo "<br/>------------------------------insert------------------------------------------------modelName--" .  $modelName;
+ 
+            // Define the fields and their types
+            $fields = [
+                'categoryid', 'subcategoryid', 'childcategoryid', 'product_name', 'product_image', 'counter', 'image_url'
+            ];
+
+            // Create placeholders (?, ?, ?, ...)
+            $placeholders = implode(', ', array_fill(0, count($fields), '?'));
+
+            // Create types ("dssssssssssssssssssssssssssssssssssss")
+            $types = str_repeat('s', count($fields)); // Assuming all parameters are strings, adjust if needed
+
+            // Build the SQL query
+            $insertQuery = "INSERT INTO `product` (`" . implode('`,`', $fields) . "`) VALUES($placeholders)";
 
             $insertStmt = $this->conn->prepare($insertQuery);
             $insertStmt->bind_param(
-                "dssssss",
+                $types,
                 $categoryId,
                 $brandId,
                 $seriesId,
@@ -316,9 +332,12 @@ class ProductManager
                 $counter,
                 $imageUrlStatus
             );
-
-            $insertStmt->execute();
-
+  
+            if ($insertStmt->execute()) {
+                echo "Record inserted successfully";
+            } else {
+                echo "Error: " . $insertStmt->error;
+            }
             // Fetch and return inserted product information
             $insertedProductId = $insertStmt->insert_id;
             $insertedProductQuery = "SELECT * FROM product WHERE id = ?";
@@ -327,30 +346,29 @@ class ProductManager
             $insertedProductStmt->execute();
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
+            echo "-------------------insertedProductId------insertedProductId--------" . $insertedProductId;
+            echo "----------------------------------backgroundProcessFile--------------" . $backgroundProcessFile;
             if ($imageUrlStatus === "external") {
-                $modelName=strtolower(str_replace(" ", "_", $modelName));
-                // echo "-------------------backgroundProcessFile------insert--------".$backgroundProcessFile;
+                $modelName = strtolower(str_replace(" ", "_", $modelName));
+                echo "----------------------------------backgroundProcessFile------insert--------" . $backgroundProcessFile;
                 // Start background process to download the image and update the table
                 // exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject", $output, $returnVar);
                 $command = "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // Execute the command
-                // exec($command, $output, $returnVar);
-                
-                // // Output any error messages
-                // if ($returnVar !== 0) {
-                //     echo "-------Error: " . implode("\n", $output);
-                // }
-                //  else {
-                //     echo "Command executed successfully";
-                // }
-                 exec(
+                exec($command, $output, $returnVar);
+
+                // Output any error messages
+                if ($returnVar !== 0) {
+                    echo "-------Error: " . implode("\n", $output);
+                } else {
+                    echo "Command executed successfully";
+                }
+                exec(
                     "/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject >  3>&1 &"
-                ); 
+                );
             }
             return $insertedProduct;
         }
     }
 }
-
-?>
