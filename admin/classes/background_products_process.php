@@ -2,11 +2,9 @@
 
 if (count($argv) < 9) {
     echo "Connected Error";
-    die(
-        "Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n"
-    );
+    die("Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n");
 }
-ini_set("max_execution_time", 2000);
+ini_set("max_execution_time", 3000);
 
 $productId = $argv[1];
 
@@ -50,7 +48,7 @@ if ($conn->connect_error) {
         $localDirectory . "/" . $modelName . "_" . $productId . ".png";
 
     try {
-        echo "<br/>--------------------------------------        max_execution_time   -------------".ini_get("max_execution_time");
+        echo "<br/>--------------------------------------        max_execution_time   -------------" . ini_get("max_execution_time");
         if (ini_get("allow_url_fopen")) {
             // allow_url_fopen is enabled
             // echo "<br/>--------------------------------------enabled-------------";
@@ -79,4 +77,3 @@ if ($conn->connect_error) {
     }
     // mysqli_close($conn);
 }
-?>

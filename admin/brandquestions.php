@@ -3,42 +3,42 @@
  <?php include 'includes/sidebar.php' ?>
  <!-- end sidebar  header -->
  <?php
-include_once "./classes/products.php";
-include_once "./classes/childcategory.php";  
-include_once "./classes/subcategory.php";  
-include_once "./classes/variant.php";  
-include_once "./classes/questions.php";  
-include_once "./classes/syncImage.php";  
-$imageManager = new SyncImageManager($con);
-$productManager = new ProductManager($con);
-$subCategoryManager = new SubCategoryManager($con);
-$childCategoryManager = new ChildCategoryManager($con);
-$variantManager = new VariantManager($con);
-$questionsManager = new QuestionsManager($con);
-$desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Months","3-6 Months","6-11 Months","Above 11 Months","Touch screen","Large spots","Multiple spots","Minor spots","No spots","Display faded","Multiple lines","No lines","Screen cracked","Damaged screen","Heavy scratches","1-2 scratches","No scratches","Major scratches","Less than 2 scratches","No body scratches","Multiple/heavy dents","Less than 2 dents","No dents","Cracked/ broken side or back panel","Missing side or back panel","No defect on side or back panel","Bent/ curved panel","Loose screen (Gap in screen and body)","No Bents","Orignal Charger","Original Earphones","Box with same IMEI","Bill with same IMEI"];
-		
+    include_once "./classes/products.php";
+    include_once "./classes/childcategory.php";
+    include_once "./classes/subcategory.php";
+    include_once "./classes/variant.php";
+    include_once "./classes/questions.php";
+    include_once "./classes/syncImage.php";
+    $imageManager = new SyncImageManager($con);
+    $productManager = new ProductManager($con);
+    $subCategoryManager = new SubCategoryManager($con);
+    $childCategoryManager = new ChildCategoryManager($con);
+    $variantManager = new VariantManager($con);
+    $questionsManager = new QuestionsManager($con);
+    $desiredHeaders = ["ID", "Brand Name", "Brand Image", "Call Not Recieve", "Below 3 Months", "3-6 Months", "6-11 Months", "Above 11 Months", "Touch screen", "Large spots", "Multiple spots", "Minor spots", "No spots", "Display faded", "Multiple lines", "No lines", "Screen cracked", "Damaged screen", "Heavy scratches", "1-2 scratches", "No scratches", "Major scratches", "Less than 2 scratches", "No body scratches", "Multiple/heavy dents", "Less than 2 dents", "No dents", "Cracked/ broken side or back panel", "Missing side or back panel", "No defect on side or back panel", "Bent/ curved panel", "Loose screen (Gap in screen and body)", "No Bents", "Orignal Charger", "Original Earphones", "Box with same IMEI", "Bill with same IMEI"];
+
 
     if (isset($_POST["uploadWithBrandCSV"])) {
-         $filename = $_FILES["csvfile"]["tmp_name"];
+        $filename = $_FILES["csvfile"]["tmp_name"];
         if ($_FILES["csvfile"]["size"] > 0) {
             $file = fopen($filename, "r"); // Read the header to handle column names
             $headers = fgetcsv($file, 1000, ","); // Find the indexes of the desired headers
             $headerIndexes = [];
             foreach ($desiredHeaders as $header) {
-                $headerIndex=false;
-                if($header==="ID"){
-                   $headerIndex = array_search('ID (Optional)', $headers);
-                   if(!$headerIndex){
-                    $headerIndex = array_search('ID', $headers);
-                   }
-                }  else{
-                   $headerIndex = array_search($header, $headers);
+                $headerIndex = false;
+                if ($header === "ID") {
+                    $headerIndex = array_search('ID (Optional)', $headers);
+                    if (!$headerIndex) {
+                        $headerIndex = array_search('ID', $headers);
+                    }
+                } else {
+                    $headerIndex = array_search($header, $headers);
                 }
-               if ($headerIndex !== false) {
-                   $headerIndexes[$header] = $headerIndex;
-               } 
-            } 
-            while (($getdata = fgetcsv($file, 1000, ",")) !== false) { 
+                if ($headerIndex !== false) {
+                    $headerIndexes[$header] = $headerIndex;
+                }
+            }
+            while (($getdata = fgetcsv($file, 1000, ",")) !== false) {
                 if (
                     isset($getdata) &&
                     // isset($getdata[0]) &&
@@ -46,8 +46,8 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                     isset($getdata[3])
                 ) {
                     $categoryId = 1;
-                    $rowData = []; 
-                    foreach ($headerIndexes as $header => $index) { 
+                    $rowData = [];
+                    foreach ($headerIndexes as $header => $index) {
                         $rowData[$header] = isset($getdata[$index])
                             ? $getdata[$index]
                             : null;
@@ -56,16 +56,16 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                         $rowData,
                         $categoryId
                     );
-                    $brandId= $subCategoryInfo["id"];
-                    $imageURL= $subCategoryInfo["image_url"];
+                    $brandId = $subCategoryInfo["id"];
+                    // $imageURL= $subCategoryInfo["image_url"];
                     // if( $imageURL === "external"){
                     //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
                     // }
-                   
-                                        
+
+
                 }
-            } 
-            if ($subCategoryInfo ) { 
+            }
+            if ($subCategoryInfo) {
                 echo "<script> alert('Brand upload successfully');
                     window.location.href = 'brandquestions.php';
                     </script>";
@@ -73,7 +73,7 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                 echo "<script> alert('Brand upload failed');
                     window.location.href = 'brandquestions.php';
                     </script>";
-            } 
+            }
             // if ($subCategoryInfo ) { 
             //     echo "<script> alert('Brand upload successfully');
             //         window.location.href = 'brandquestions.php';
@@ -84,8 +84,8 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
             //         </script>";
             // } 
         }
-    } 
-?>
+    }
+    ?>
 
  <section role="main" class="content-body content-body-modern mt-0">
      <header class="page-header page-header-left-inline-breadcrumb">
@@ -115,40 +115,31 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
-                                         <div class="view" onclick={importCSVFile(event)} ondragover="dragNdrop(event)"
-                                             ondrop="dropFile(event)">
-                                             <input type="file" onchange={changeFile(event)} name="csvfile"
-                                                 style="display: none;" />
+                                         <div class="view" onclick={importCSVFile(event)} ondragover="dragNdrop(event)" ondrop="dropFile(event)">
+                                             <input type="file" onchange={changeFile(event)} name="csvfile" style="display: none;" />
                                          </div>
                                          <div class="dragInner">
                                              <i class="bx bx-file text-4 mr-2"></i>
                                              <span>Upload File</span>
                                          </div>
-                                         <input type="file" onchange={changeFile(event)} id="importCSV" name="csvfile"
-                                             style="display: none;" />
+                                         <input type="file" onchange={changeFile(event)} id="importCSV" name="csvfile" style="display: none;" />
                                      </span>
                                  </div>
-                                 <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
-                                     value="upload" name="uploadWithBrandCSV"> <i
-                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
+                                 <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()" value="upload" name="uploadWithBrandCSV"> <i class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
                              </form>
                          </div>
 
                          <div class="col-2"></div>
                          <div class="col-5 w-100">
-                             <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span
-                                     class="fa fa-search form-control-feedback"></span> <input type="text"
-                                     class="form-control" placeholder="Search"></div>
+                             <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span class="fa fa-search form-control-feedback"></span> <input type="text" class="form-control" placeholder="Search"></div>
                              <!-- <button id="csvButton">Download CSV</button> -->
                              <div class="d-inline-flex w-100 pt-2">
 
-                                 <button type="button" class="btn btn-primary w-100 mr-2 px-1"
-                                     onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-brand.csv')">
+                                 <button type="button" class="btn btn-primary w-100 mr-2 px-1" onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-brand.csv')">
                                      <i class="bx bx-download text-4 mr-2"></i>Download
                                      Template
                                  </button>
-                                 <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
-                                         class="bx bx-download text-4 mr-2"></i>
+                                 <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i class="bx bx-download text-4 mr-2"></i>
                                      Download CSV
                                  </button>
                              </div>
@@ -160,76 +151,71 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
                      <p class="  p-2 m-1 "></p>
                  </div>
 
-                 <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list"
-                     style="min-width: 550px;">
+                 <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list" style="min-width: 550px;">
 
                      <thead>
                          <tr>
                              <?php
-								foreach ($desiredHeaders as $header) {
-									echo "<th>$header</th>";
-								}
-							?>
+                                foreach ($desiredHeaders as $header) {
+                                    echo "<th>$header</th>";
+                                }
+                                ?>
                              <th>Modify Date</th>
                          </tr>
                      </thead>
                      <tbody>
-                         <?php 
-                                          $fetchbrques = mysqli_query($con,"SELECT * FROM `subcategory`  WHERE `category_id`=1 ORDER BY `modify_date` DESC;");
-                                          while($ar = mysqli_fetch_assoc($fetchbrques)){
-                                         ?>
-                         <!-- fetch category details start -->
-                         <tr>
-                             <td><strong><?= $ar['id'] ?></strong></td>
-                             <td><strong><?= $ar['subcategory_name'] ?></strong></td>
+                         <?php
+                            $fetchbrques = mysqli_query($con, "SELECT * FROM `subcategory`  WHERE `category_id`=1 ORDER BY `modify_date` DESC;");
+                            while ($ar = mysqli_fetch_assoc($fetchbrques)) {
+                            ?>
+                             <!-- fetch category details start -->
+                             <tr>
+                                 <td><strong><?= $ar['id'] ?></strong></td>
+                                 <td><strong><?= $ar['subcategory_name'] ?></strong></td>
 
-                             <td><a href="#"><img src="img/<?php echo $ar[
-                                        "subcategory_image"
-                                    ]; ?>" alt="img" width="100px"></a>
-                                 <p style="display:none;"><?php echo $ar[
-                                            "subcategory_image"
-                                        ]; ?></p>
+                                 <td><a href="#"><img src="img/<?php echo $ar["subcategory_image"]; ?>" alt="img" width="100px"></a>
+                                     <p style="display:none;"><?php echo $ar["subcategory_image"]; ?></p>
 
-                             </td>
-                             <td><?= $ar['callvalue'] ?></td>
-                             <td><?= $ar['3months'] ?></td>
-                             <td><?= $ar['3to6months'] ?></td>
-                             <td><?= $ar['6to11months'] ?></td>
-                             <td><?= $ar['above11'] ?></td>
-                             <td><?= $ar['touchscreen'] ?></td>
-                             <td><?= $ar['largespot'] ?></td>
-                             <td><?= $ar['multiplespot'] ?></td>
-                             <td><?= $ar['minorspot'] ?></td>
-                             <td><?= $ar['nospot'] ?></td>
-                             <td><?= $ar['displayfade'] ?></td>
-                             <td><?= $ar['multilines'] ?></td>
-                             <td><?= $ar['nolines'] ?></td>
-                             <td><?= $ar['crackedscreen'] ?></td>
-                             <td><?= $ar['damegescreen'] ?></td>
-                             <td><?= $ar['heavyscracthes'] ?></td>
-                             <td><?= $ar['12scratches'] ?></td>
-                             <td><?= $ar['noscratches'] ?></td>
-                             <td><?= $ar['majorscratch'] ?></td>
-                             <td><?= $ar['2bodyscratches'] ?></td>
-                             <td><?= $ar['nobodysratches'] ?></td>
-                             <td><?= $ar['heavydents'] ?></td>
-                             <td><?= $ar['2dents'] ?></td>
-                             <td><?= $ar['nodents'] ?></td>
-                             <td><?= $ar['crackedsideback'] ?></td>
-                             <td><?= $ar['missingsideback'] ?></td>
-                             <td><?= $ar['nodefectssideback'] ?></td>
-                             <td><?= $ar['bentcurvedpanel'] ?></td>
-                             <td><?= $ar['loosescreen'] ?></td>
-                             <td><?= $ar['nobents'] ?></td>
-                             <td><?= $ar['charger'] ?></td>
-                             <td><?= $ar['earphone'] ?></td>
-                             <td><?= $ar['boximei'] ?></td>
-                             <td><?= $ar['billimei'] ?></td>
-                             <td><?php echo date('y/m/d',strtotime($ar['modify_date']))  ?></td>
-                         </tr>
-                         <?php 
-                                              }
-                                            ?>
+                                 </td>
+                                 <td><?= $ar['callvalue'] ?></td>
+                                 <td><?= $ar['3months'] ?></td>
+                                 <td><?= $ar['3to6months'] ?></td>
+                                 <td><?= $ar['6to11months'] ?></td>
+                                 <td><?= $ar['above11'] ?></td>
+                                 <td><?= $ar['touchscreen'] ?></td>
+                                 <td><?= $ar['largespot'] ?></td>
+                                 <td><?= $ar['multiplespot'] ?></td>
+                                 <td><?= $ar['minorspot'] ?></td>
+                                 <td><?= $ar['nospot'] ?></td>
+                                 <td><?= $ar['displayfade'] ?></td>
+                                 <td><?= $ar['multilines'] ?></td>
+                                 <td><?= $ar['nolines'] ?></td>
+                                 <td><?= $ar['crackedscreen'] ?></td>
+                                 <td><?= $ar['damegescreen'] ?></td>
+                                 <td><?= $ar['heavyscracthes'] ?></td>
+                                 <td><?= $ar['12scratches'] ?></td>
+                                 <td><?= $ar['noscratches'] ?></td>
+                                 <td><?= $ar['majorscratch'] ?></td>
+                                 <td><?= $ar['2bodyscratches'] ?></td>
+                                 <td><?= $ar['nobodysratches'] ?></td>
+                                 <td><?= $ar['heavydents'] ?></td>
+                                 <td><?= $ar['2dents'] ?></td>
+                                 <td><?= $ar['nodents'] ?></td>
+                                 <td><?= $ar['crackedsideback'] ?></td>
+                                 <td><?= $ar['missingsideback'] ?></td>
+                                 <td><?= $ar['nodefectssideback'] ?></td>
+                                 <td><?= $ar['bentcurvedpanel'] ?></td>
+                                 <td><?= $ar['loosescreen'] ?></td>
+                                 <td><?= $ar['nobents'] ?></td>
+                                 <td><?= $ar['charger'] ?></td>
+                                 <td><?= $ar['earphone'] ?></td>
+                                 <td><?= $ar['boximei'] ?></td>
+                                 <td><?= $ar['billimei'] ?></td>
+                                 <td><?php echo date('y/m/d', strtotime($ar['modify_date']))  ?></td>
+                             </tr>
+                         <?php
+                            }
+                            ?>
                      </tbody>
                  </table>
                  <hr class="solid mt-5 opacity-4">
@@ -366,18 +352,18 @@ $desiredHeaders =["ID","Brand Name","Brand Image","Call Not Recieve","Below 3 Mo
  <script src="js/theme.init.js"></script>
  <!-- Analytics to Track Preview Website -->
  <script>
-(function(i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-42715764-8', 'auto');
-ga('send', 'pageview');
+     (function(i, s, o, g, r, a, m) {
+         i['GoogleAnalyticsObject'] = r;
+         i[r] = i[r] || function() {
+             (i[r].q = i[r].q || []).push(arguments)
+         }, i[r].l = 1 * new Date();
+         a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+         a.async = 1;
+         a.src = g;
+         m.parentNode.insertBefore(a, m)
+     })(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
+     ga('create', 'UA-42715764-8', 'auto');
+     ga('send', 'pageview');
  </script>
  <!-- Examples -->
  <script src="js/examples/examples.ecommerce.form.js"></script>
@@ -409,96 +395,96 @@ $(document).ready(function() {
 
 
  <script>
-var demoWithBrandCSV = [{
-    "ID": "",
-    "Brand Name": "",
-    "Brand Image": "",
-    "Call Not Recieve": "",
-    "3 Months": "",
-    "3 to 6 Months": "",
-    "6 to 11 Months": "",
-    "Above 11 Months": "",
-    "Touchscreen": "",
-    "Largespot": "",
-    "Multiplespots": "",
-    "Minorspots": "",
-    "Nospot": "",
-    "Display Faded": "",
-    "Multilines": "",
-    "Nolines": "",
-    "Cracked Screen": "",
-    "Damage Screen": "",
-    "Heavy Screcthes": "",
-    "1-2 Screcthes": "",
-    "No Screcthes": "",
-    "Major Screcthes": "",
-    "Less than 2 Body scratches": "",
-    "No Body Screcthes": "",
-    "Heavy Dents": "",
-    "Less than 2 dents": "",
-    "No dents": "",
-    "Cracked Side Back Panel": "",
-    "Missing Side Back Panel": "",
-    "No Defect On Side Back Panel": "",
-    "Bent / Curved Panel": "",
-    "Loose Screen Or Gap in Screen": "",
-    "No Bents": "",
-    "Charger": "",
-    "Earphone": "",
-    "Boximei": "",
-    "Billimei": ""
-}];
+     var demoWithBrandCSV = [{
+         "ID": "",
+         "Brand Name": "",
+         "Brand Image": "",
+         "Call Not Recieve": "",
+         "3 Months": "",
+         "3 to 6 Months": "",
+         "6 to 11 Months": "",
+         "Above 11 Months": "",
+         "Touchscreen": "",
+         "Largespot": "",
+         "Multiplespots": "",
+         "Minorspots": "",
+         "Nospot": "",
+         "Display Faded": "",
+         "Multilines": "",
+         "Nolines": "",
+         "Cracked Screen": "",
+         "Damage Screen": "",
+         "Heavy Screcthes": "",
+         "1-2 Screcthes": "",
+         "No Screcthes": "",
+         "Major Screcthes": "",
+         "Less than 2 Body scratches": "",
+         "No Body Screcthes": "",
+         "Heavy Dents": "",
+         "Less than 2 dents": "",
+         "No dents": "",
+         "Cracked Side Back Panel": "",
+         "Missing Side Back Panel": "",
+         "No Defect On Side Back Panel": "",
+         "Bent / Curved Panel": "",
+         "Loose Screen Or Gap in Screen": "",
+         "No Bents": "",
+         "Charger": "",
+         "Earphone": "",
+         "Boximei": "",
+         "Billimei": ""
+     }];
 
-function createCSV(array) {
-    var keys = Object.keys(array[0]); //Collects Table Headers
+     function createCSV(array) {
+         var keys = Object.keys(array[0]); //Collects Table Headers
 
-    var result = ''; //CSV Contents
-    result += keys.join(','); //Comma Seperates Headers
-    result += '\n'; //New Row
+         var result = ''; //CSV Contents
+         result += keys.join(','); //Comma Seperates Headers
+         result += '\n'; //New Row
 
-    array.forEach(function(item) { //Goes Through Each Array Object
-        keys.forEach(function(key) { //Goes Through Each Object value
-            result += item[key] + ','; //Comma Seperates Each Key Value in a Row
-        })
-        result += '\n'; //Creates New Row
-    })
+         array.forEach(function(item) { //Goes Through Each Array Object
+             keys.forEach(function(key) { //Goes Through Each Object value
+                 result += item[key] + ','; //Comma Seperates Each Key Value in a Row
+             })
+             result += '\n'; //Creates New Row
+         })
 
-    return result;
-}
+         return result;
+     }
 
 
-async function downloadCSV(arrayStrings, fileName) {
-    var array = arrayStrings.split(',');
-    var arrayObjects = [];
-    var obj = {};
-    for (var i = 0; i < array.length; i++) {
-        if (i === 0) {
-            obj["ID (Optional)"] = "";
-        } else {
-            obj[array[i]] = "";
-        }
-    }
-    arrayObjects.push(obj);
-    csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
-    excel = encodeURI(csv); //Links to CSV 
+     async function downloadCSV(arrayStrings, fileName) {
+         var array = arrayStrings.split(',');
+         var arrayObjects = [];
+         var obj = {};
+         for (var i = 0; i < array.length; i++) {
+             if (i === 0) {
+                 obj["ID (Optional)"] = "";
+             } else {
+                 obj[array[i]] = "";
+             }
+         }
+         arrayObjects.push(obj);
+         csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
+         excel = encodeURI(csv); //Links to CSV 
 
-    link = document.createElement('a');
-    link.setAttribute('href', excel); //Links to CSV File 
-    link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
-    link.click();
-}
+         link = document.createElement('a');
+         link.setAttribute('href', excel); //Links to CSV File 
+         link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
+         link.click();
+     }
  </script>
 
  <!--varient model upto start-->
  <script type="text/javascript">
-$(document).ready(function() {
-    $('#varintmobupto').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ]
-    });
-});
+     $(document).ready(function() {
+         $('#varintmobupto').DataTable({
+             dom: 'Bfrtip',
+             buttons: [
+                 'csv'
+             ]
+         });
+     });
  </script>
 
  </body>
