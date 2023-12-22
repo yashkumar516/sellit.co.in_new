@@ -141,8 +141,8 @@
                              </form>
                          </div>
 
-                         <div class="col-2"></div>
-                         <div class="col-5 w-100">
+                         <div class="col-1"></div>
+                         <div class="col-6 w-100">
                              <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span
                                      class="fa fa-search form-control-feedback"></span> <input type="text"
                                      class="form-control" placeholder="Search"></div>
