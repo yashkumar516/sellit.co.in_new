@@ -94,17 +94,17 @@ if (isset($_POST["uploadWithBrandCSV"])) {
             }
         }
 
-        // if ($SubCategoryInfo && $childCategoryInfo ) {
-        //     echo "<script> 
-        //     alert('Series upload successfully');
-        //         window.location.href = 'child-category.php?category=$categoryId';
-        //         </script>";
-        // } else {
-        //     echo "<script> 
-        //     alert('Series upload failed');
-        //         window.location.href = 'child-category.php?category=$categoryId';
-        //         </script>";
-        // } 
+        if ($SubCategoryInfo && $childCategoryInfo) {
+            echo "<script> 
+            alert('Series upload successfully');
+                window.location.href = 'child-category.php?category=$categoryId';
+                </script>";
+        } else {
+            echo "<script> 
+            alert('Series upload failed');
+                window.location.href = 'child-category.php?category=$categoryId';
+                </script>";
+        }
     }
 }
 ?>
