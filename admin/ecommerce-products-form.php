@@ -996,25 +996,6 @@ $(document).ready(function() {
  </html>
 
  <script>
-function syncImage() {
-    $.ajax({
-        method: "post",
-        url: "ajaxSyncImage.php",
-        data: {
-            syncOn: "model"
-        },
-        dataType: "html",
-        success: function(result) {
-            // alert(result)
-            console.log({
-                result
-            })
-        }
-    });
-
-}
- </script>
- <script>
 $(document).ready(function(e) {
     var html =
         '<div class="row my-3" id="rmtag"><div class="col-1"><label class=" control-label text-lg-right mb-0">Variant </label></div><div class="col-3"><input type="text" class="form-control form-control-modern" name="varient[]" value="" required /></div><div class="col-2"><label class=" control-label text-lg-right mb-0">upto value</label></div><div class="col-4"><input type="text" class="form-control form-control-modern" name="upto[]" value="" required /></div><div class="col-2"><button class="btn btn-primary" id="removed">remove</button></div></div>';

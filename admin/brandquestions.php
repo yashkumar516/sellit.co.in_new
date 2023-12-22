@@ -367,22 +367,6 @@
  </aside>
 
  </section>
- <script>
-function syncImage() {
-    $.ajax({
-        method: "post",
-        url: "ajaxSyncImage.php",
-        data: {
-            syncOn: "brand"
-        },
-        dataType: "html",
-        success: function(result) {
-            alert(result)
-        }
-    });
-
-}
- </script>
 
  <!-- Vendor -->
  <script src="vendor/jquery/jquery.js"></script>
