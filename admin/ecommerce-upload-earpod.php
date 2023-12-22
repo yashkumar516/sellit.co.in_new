@@ -73,12 +73,12 @@ if (isset($_POST["uploadWithBrandCSV"])) {
 
         if ($SubCategoryInfo && $productInfo && $variantInfo) {
             echo "<script> 
-                // alert('Brand upload successfully');
+                 alert('Brand upload successfully');
                     window.location.href = 'ecommerce-upload-mobile.php';
                     </script>";
         } else {
             echo "<script> 
-                // alert('Brand upload failed');
+                 alert('Brand upload failed');
                     window.location.href = 'ecommerce-upload-mobile.php';
                     </script>";
         }
