@@ -85,6 +85,7 @@ if (isset($_POST["uploadWithBrandCSV"])) {
                 // if( $imageURL === "external"){
                 //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
                 // }
+                // echo
                 $childCategoryInfo = $childCategoryManager->upsertChildCategory(
                     $rowData,
                     $categoryId,
