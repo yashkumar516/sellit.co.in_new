@@ -11,12 +11,12 @@ class SyncImageManager
 
     public function syncBrandImage()
     {
-        $imageUrlStatus1 =  "external"; //"external";
         $imageUrlStatus =  "internal"; //"external";
 
         $query = "SELECT * FROM `subcategory` WHERE `image_url` = ? ORDER BY `id` ASC";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("s", $imageUrlStatus1);
+        $imageUrlValue = "external";
+        $stmt->bind_param("s", $imageUrlValue);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -105,11 +105,11 @@ class SyncImageManager
 
     public function syncBrandImageUrl()
     {
-        $imageUrlStatus1 =  "external"; //"external";
-
+ 
         $query = "SELECT * FROM `subcategory` WHERE `image_url` = ? ORDER BY `id` ASC";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("s", $imageUrlStatus1);
+        $imageUrlValue = "external";
+        $stmt->bind_param("s", $imageUrlValue);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -301,7 +301,10 @@ class SyncImageManager
 
         $query = "SELECT * FROM `product` WHERE `image_url` = ? ORDER BY `id` ASC";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", "external");
+        $imageUrlValue = "external";
+
+
+        $stmt->bind_param("s", $imageUrlValue);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -313,8 +316,7 @@ class SyncImageManager
             $totalCount = $totalCount + 1;
             // $subcategories[] = $row;
             $productId = $row['id']; // Get the existing product ID
-
-
+ 
             // URL of the image you want to download
             $urlImage = $row['product_image'];
 
@@ -394,7 +396,8 @@ class SyncImageManager
     {
         $query = "SELECT * FROM `product` WHERE `image_url` = ? ORDER BY `id` ASC";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", "external");
+        $imageUrlValue = "external";
+        $stmt->bind_param("s", $imageUrlValue);
         $stmt->execute();
 
         $result = $stmt->get_result();

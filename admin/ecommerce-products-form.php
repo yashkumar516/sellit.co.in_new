@@ -9,6 +9,7 @@ include_once "./classes/subcategory.php";
 include_once "./classes/variant.php";  
 include_once "./classes/questions.php";  
 include_once "./classes/syncImage.php";  
+include_once "./classes/syncImage.php";
 $imageManager = new SyncImageManager($con);
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
@@ -16,6 +17,8 @@ $childCategoryManager = new ChildCategoryManager($con);
 $variantManager = new VariantManager($con);
 $questionsManager = new QuestionsManager($con);
  
+$syncImageManager = new SyncImageManager($con);
+
 $desiredHeaders = [ "Model ID","Model Name","Model Image","Variant ID","Variant Name","Variant Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone"];
 $headerCount=count($desiredHeaders);  
     if (isset($_POST["uploadWithBrandCSV"]) && isset($_POST["subCategory"]) ) {
@@ -93,6 +96,28 @@ $headerCount=count($desiredHeaders);
             } 
         }
     } 
+     
+    if(isset($_POST["syncImageModel"])){
+        
+        $result =  $syncImageManager->syncProductImage();
+        $errorValue = $result['error'];
+        $dataValue = $result['data'];
+        $totalValue = $result['totalData'];
+
+        if (!$errorValue) {
+            // echo " Sync brand image $totalValue out of $dataValue ";
+            echo "<script> 
+            alert('Model image $dataValue out of $totalValue have been synced successfully');
+                window.location.href = 'ecommerce-products-form.php';
+                </script>";
+        } else {
+            // echo "Sync brand image failed";
+            echo "<script> 
+            alert('Model image sync failed');
+                window.location.href = 'ecommerce-products-form.php';
+                </script>";
+        }
+    }
 ?>
 
  <?php
@@ -512,14 +537,45 @@ if(isset($_POST['productss']))
 
                                  <button type="button" class="btn btn-primary w-100 mr-2 px-1"
                                      onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-model.csv')">
-                                     <i class="bx bx-download text-4 mr-2"></i>Download
+                                     <i class="bx bx-download text-4 mr-1"></i>
                                      Template
                                  </button>
 
-                                 <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
-                                         class="bx bx-download text-4 mr-2"></i>
-                                     Download CSV
+                                 <button type="button" class="btn btn-primary w-100 mr-2  px-1" id="csvButton"><i
+                                         class="bx bx-download text-4 mr-1"></i>
+                                     CSV
                                  </button>
+                                 <?php
+                                    // SELECT COUNT(*)  FROM `product` WHERE `image_url`="external";
+                                    $query = "SELECT COUNT(*) AS `id`  FROM `product` WHERE `image_url`='external'";
+
+                                    $result = $con->query($query);
+
+                                    if ($result) {
+                                        $row = $result->fetch_assoc();
+                                        $rowCount = $row['id']; 
+                                        if ($rowCount > 0) {
+                                    ?>
+                                 <form action="#" enctype="multipart/form-data" method="POST" class="w-100">
+                                     <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"><i
+                                             class="bx bx-sync text-4 mr-1"></i>Sync <?php echo $rowCount?> Image
+                                     </button>
+                                 </form>
+                                 <?php
+                                        } else {
+                                        ?>
+
+
+                                 <button type="button" class="btn btn-primary w-100 px-1" disabled><i
+                                         class="bx bx-sync text-4 mr-2"></i> Sync Image
+                                 </button>
+
+                                 <?php
+                                        }
+                                    } else {
+                                        // echo "Query failed: " . $conn->error;
+                                    }
+                                    ?>
                              </div>
                          </div>
                      </div>
@@ -939,6 +995,25 @@ $(document).ready(function() {
 
  </html>
 
+ <script>
+function syncImage() {
+    $.ajax({
+        method: "post",
+        url: "ajaxSyncImage.php",
+        data: {
+            syncOn: "model"
+        },
+        dataType: "html",
+        success: function(result) {
+            // alert(result)
+            console.log({
+                result
+            })
+        }
+    });
+
+}
+ </script>
  <script>
 $(document).ready(function(e) {
     var html =
