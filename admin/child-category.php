@@ -80,7 +80,7 @@ if (isset($_POST["uploadWithBrandCSV"])) {
                     $categoryId
                 );
                 $brandId = $SubCategoryInfo["id"];
-
+                echo "<br/><br/><br/><br/>------------------------------------brandId--------" . $brandId;
                 // $imageURL= $subCategoryInfo["image_url"];
                 // if( $imageURL === "external"){
                 //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
