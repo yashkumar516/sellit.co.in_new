@@ -33,8 +33,8 @@ class SyncImageManager
             // URL of the image you want to download
             $urlImage = $row['subcategory_image'];
 
-            echo "--------------------------<br/>-----------subcategory_name----------------------------------" . $row['subcategory_name'];
-            echo "--------------------------<br/>-------------------------------subcategory_image------------" . $urlImage;
+            // echo "--------------------------<br/>-----------subcategory_name----------------------------------" . $row['subcategory_name'];
+            // echo "--------------------------<br/>-------------------------------subcategory_image------------" . $urlImage;
             // Pattern for matching Google Drive file URLs with different query parameters
             $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
 
@@ -43,7 +43,7 @@ class SyncImageManager
 
             // Perform the replacement for the first URL
             $imageUrl = preg_replace($pattern, $replacement, $urlImage);
-            echo "--------------------------<br/>--------imageUrl----------" . $imageUrl;
+            // echo "--------------------------<br/>--------imageUrl----------" . $imageUrl;
             // $imageUrl = 'https://example.com/path/to/image.jpg';
 
             // Get the image content
