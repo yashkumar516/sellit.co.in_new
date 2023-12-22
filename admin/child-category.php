@@ -80,9 +80,9 @@ if (isset($_POST["uploadWithBrandCSV"])) {
                     $categoryId
                 );
                 $brandId = $SubCategoryInfo["id"];
-                error_reporting(E_ALL);
-                ini_set('display_errors', 1);
-                echo "<br/><br/><br/><br/>------------------------------------brandId--------" . $brandId;
+                // error_reporting(E_ALL);
+                // ini_set('display_errors', 1);
+                // echo "<br/><br/><br/><br/>------------------------------------brandId--------" . $brandId;
                 // $imageURL= $subCategoryInfo["image_url"];
                 // if( $imageURL === "external"){
                 //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
@@ -168,23 +168,25 @@ if (isset($_POST['submit'])) {
                                             <label class="col-lg-5 col-xl-3 control-label text-lg-right mb-0"> Select
                                                 category</label>
                                             <div class="col-lg-7 col-xl-6">
-                                                <select name="category" id="category" class="form-control form-control-modern" onchange="callsubcat()">
+                                                <select name="category" id="category"
+                                                    class="form-control form-control-modern" onchange="callsubcat()">
                                                     <option value="">choose your category</option>
 
                                                     <?php if (isset($_REQUEST['category'])) {
                                                         $c = $_REQUEST['category'];
                                                         $cf = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `category` WHERE `id` = '$c'"));
                                                     ?>
-                                                        <option value="<?php echo $cf['id'] ?>" class="form-control form-control-modern">
-                                                            <?php echo $cf['category_name'] ?>
-                                                        </option>
-                                                        <?php
+                                                    <option value="<?php echo $cf['id'] ?>"
+                                                        class="form-control form-control-modern">
+                                                        <?php echo $cf['category_name'] ?>
+                                                    </option>
+                                                    <?php
                                                     } else {
                                                         $selectcat = mysqli_query($con, "SELECT * FROM `category` WHERE `id` != '4' ");
                                                         while ($ar = mysqli_fetch_assoc($selectcat)) {
                                                         ?>
-                                                            <option value="<?php echo $ar['id'] ?>">
-                                                                <?php echo $ar['category_name'] ?></option>
+                                                    <option value="<?php echo $ar['id'] ?>">
+                                                        <?php echo $ar['category_name'] ?></option>
                                                     <?php
                                                         }
                                                     }
@@ -197,7 +199,8 @@ if (isset($_POST['submit'])) {
                                             <label class="col-lg-5 col-xl-3 control-label text-lg-right mb-0"> Select
                                                 Brand</label>
                                             <div class="col-lg-7 col-xl-6">
-                                                <select name="subcategory" id="subcategory" class="form-control form-control-modern">
+                                                <select name="subcategory" id="subcategory"
+                                                    class="form-control form-control-modern">
                                                     <option value="">choose your brand</option>
                                                 </select>
                                             </div>
@@ -207,7 +210,8 @@ if (isset($_POST['submit'])) {
                                                 <label class="col-3 control-label text-lg-right mb-0"> Series
                                                     Name</label>
                                                 <div class="col-lg-6 col-xl-6">
-                                                    <input type="text" class="form-control form-control-modern" name="Name[]" value="" required />
+                                                    <input type="text" class="form-control form-control-modern"
+                                                        name="Name[]" value="" required />
 
                                                 </div>
                                                 <div class="col-3">
@@ -228,12 +232,15 @@ if (isset($_POST['submit'])) {
 
         <div class="row action-buttons">
             <div class="col-12 col-md-auto">
-                <button type="submit" name="submit" class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1" data-loading-text="Loading...">
+                <button type="submit" name="submit"
+                    class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1"
+                    data-loading-text="Loading...">
                     <i class="bx bx-save text-4 mr-2"></i> Save Series
                 </button>
             </div>
             <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
-                <a href="#" class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Cancel</a>
+                <a href="#"
+                    class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Cancel</a>
             </div>
         </div>
     </form>
@@ -253,32 +260,41 @@ if (isset($_POST['submit'])) {
                                         <div class="pb-2">
                                             <span class="dragBox w-100">
                                                 <!-- Darg and Drop .csv here -->
-                                                <div class="view" onclick={importCSVFile(event)} ondragover="dragNdrop(event)" ondrop="dropFile(event)">
-                                                    <input type="file" onchange={changeFile(event)} name="csvfile" style="display: none;" />
+                                                <div class="view" onclick={importCSVFile(event)}
+                                                    ondragover="dragNdrop(event)" ondrop="dropFile(event)">
+                                                    <input type="file" onchange={changeFile(event)} name="csvfile"
+                                                        style="display: none;" />
                                                 </div>
                                                 <div class="dragInner">
                                                     <i class="bx bx-file text-4 mr-2"></i>
                                                     <span>Upload File</span>
                                                 </div>
-                                                <input type="file" onchange={changeFile(event)} id="importCSV" name="csvfile" style="display: none;" />
+                                                <input type="file" onchange={changeFile(event)} id="importCSV"
+                                                    name="csvfile" style="display: none;" />
                                             </span>
                                         </div>
-                                        <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()" value="upload" name="uploadWithBrandCSV"> <i class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
+                                        <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
+                                            value="upload" name="uploadWithBrandCSV"> <i
+                                                class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
                                     </form>
                                 </div>
 
                                 <div class="col-2"></div>
                                 <div class="col-5 w-100">
-                                    <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span class="fa fa-search form-control-feedback"></span> <input type="text" class="form-control" placeholder="Search"></div>
+                                    <div class="form-group float-right  pb-3  mb-0 w-100" id="has-search"> <span
+                                            class="fa fa-search form-control-feedback"></span> <input type="text"
+                                            class="form-control" placeholder="Search"></div>
                                     <!-- <button id="csvButton">Download CSV</button> -->
                                     <div class="d-inline-flex w-100 pt-2">
 
-                                        <button type="button" class="btn btn-primary w-100 mr-2 px-1" onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-serie.csv')">
+                                        <button type="button" class="btn btn-primary w-100 mr-2 px-1"
+                                            onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-serie.csv')">
                                             <i class="bx bx-download text-4 mr-2"></i>Download
                                             Template
                                         </button>
 
-                                        <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i class="bx bx-download text-4 mr-2"></i>
+                                        <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
+                                                class="bx bx-download text-4 mr-2"></i>
                                             Download CSV
                                         </button>
                                     </div>
@@ -289,7 +305,8 @@ if (isset($_POST['submit'])) {
                         <div class="row hide-load-table">
                             <p class="  p-2 m-1 "></p>
                         </div>
-                        <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list" style="min-width: 550px;">
+                        <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list"
+                            style="min-width: 550px;">
 
                             <!-- <tr>
 													<th width="3%"><input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="" /></th>
@@ -329,15 +346,15 @@ if (isset($_POST['submit'])) {
 
                                     // $modifyDate = date('y/m/d',strtotime($data['modifyDate'])); 
                                 ?>
-                                    <tr>
+                                <tr>
 
-                                        <td class="text-capitalize">
-                                            <?php echo $data["brandId"]; ?>
-                                        </td>
-                                        <td class="text-capitalize">
-                                            <?php echo $data["brandName"]; ?>
-                                        </td>
-                                        <!-- 
+                                    <td class="text-capitalize">
+                                        <?php echo $data["brandId"]; ?>
+                                    </td>
+                                    <td class="text-capitalize">
+                                        <?php echo $data["brandName"]; ?>
+                                    </td>
+                                    <!-- 
                                     <td><a href="#">
                                             <?php
                                             $imageUrl = $data["brandImage"];
@@ -352,17 +369,17 @@ if (isset($_POST['submit'])) {
                                         <p style="display:none;"><?php echo $data["brandImage"]; ?></p>
 
                                     </td> -->
-                                        <td>
-                                            <?php echo $data["serieId"]; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $data["serieName"]; ?>
-                                        </td>
+                                    <td>
+                                        <?php echo $data["serieId"]; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $data["serieName"]; ?>
+                                    </td>
 
-                                        <td>
-                                            <?php echo date('y/m/d', strtotime($data['modifyDate'])) ?>
-                                        </td>
-                                    </tr>
+                                    <td>
+                                        <?php echo date('y/m/d', strtotime($data['modifyDate'])) ?>
+                                    </td>
+                                </tr>
                                 <?php
                                 }
                                 ?>
@@ -491,18 +508,18 @@ if (isset($_POST['submit'])) {
 <script src="js/theme.init.js"></script>
 <!-- Analytics to Track Preview Website -->
 <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-42715764-8', 'auto');
-    ga('send', 'pageview');
+(function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42715764-8', 'auto');
+ga('send', 'pageview');
 </script>
 <!-- Examples -->
 
@@ -522,46 +539,46 @@ if (isset($_POST['submit'])) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 <script>
-    function createCSV(array) {
-        var keys = Object.keys(array[0]); //Collects Table Headers
+function createCSV(array) {
+    var keys = Object.keys(array[0]); //Collects Table Headers
 
-        var result = ''; //CSV Contents
-        result += keys.join(','); //Comma Seperates Headers
-        result += '\n'; //New Row
+    var result = ''; //CSV Contents
+    result += keys.join(','); //Comma Seperates Headers
+    result += '\n'; //New Row
 
-        array.forEach(function(item) { //Goes Through Each Array Object
-            keys.forEach(function(key) { //Goes Through Each Object value
-                result += item[key] + ','; //Comma Seperates Each Key Value in a Row
-            })
-            result += '\n'; //Creates New Row
+    array.forEach(function(item) { //Goes Through Each Array Object
+        keys.forEach(function(key) { //Goes Through Each Object value
+            result += item[key] + ','; //Comma Seperates Each Key Value in a Row
         })
+        result += '\n'; //Creates New Row
+    })
 
-        return result;
-    }
+    return result;
+}
 
 
-    async function downloadCSV(arrayStrings, fileName) {
-        var array = arrayStrings.split(',');
-        var arrayObjects = [];
-        var obj = {};
-        for (var i = 0; i < array.length; i++) {
-            if (i === 0) {
-                obj["Brand ID (Optional)"] = "";
-            } else if (i === 2) {
-                obj["Series ID (Optional)"] = "";
-            } else {
-                obj[array[i]] = "";
-            }
+async function downloadCSV(arrayStrings, fileName) {
+    var array = arrayStrings.split(',');
+    var arrayObjects = [];
+    var obj = {};
+    for (var i = 0; i < array.length; i++) {
+        if (i === 0) {
+            obj["Brand ID (Optional)"] = "";
+        } else if (i === 2) {
+            obj["Series ID (Optional)"] = "";
+        } else {
+            obj[array[i]] = "";
         }
-        arrayObjects.push(obj);
-        csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
-        excel = encodeURI(csv); //Links to CSV 
-
-        link = document.createElement('a');
-        link.setAttribute('href', excel); //Links to CSV File 
-        link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
-        link.click();
     }
+    arrayObjects.push(obj);
+    csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
+    excel = encodeURI(csv); //Links to CSV 
+
+    link = document.createElement('a');
+    link.setAttribute('href', excel); //Links to CSV File 
+    link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
+    link.click();
+}
 </script>
 
 </body>
@@ -569,34 +586,34 @@ if (isset($_POST['submit'])) {
 </html>
 
 <script>
-    $(document).ready(function(e) {
-        var html =
-            '<div class="row my-1" id="rmtag"><label class="col-3 control-label text-lg-right"> Series Name</label><div class="col-lg-6 col-xl-6"><input type="text" class="form-control form-control-modern" name="Name[]" value="" required /></div><div class="col-3"><a id="removed">X</a></div></div>';
-        $("#addtag").click(function(e) {
-            $("#tag").append(html);
-        });
-
-        $("#tag").on('click', '#removed', function(e) {
-            $("#rmtag").remove();
-        })
+$(document).ready(function(e) {
+    var html =
+        '<div class="row my-1" id="rmtag"><label class="col-3 control-label text-lg-right"> Series Name</label><div class="col-lg-6 col-xl-6"><input type="text" class="form-control form-control-modern" name="Name[]" value="" required /></div><div class="col-3"><a id="removed">X</a></div></div>';
+    $("#addtag").click(function(e) {
+        $("#tag").append(html);
     });
+
+    $("#tag").on('click', '#removed', function(e) {
+        $("#rmtag").remove();
+    })
+});
 </script>
 
 <script>
-    function callsubcat() {
-        var id = $('#category').val();
-        if (id != null) {
-            $.ajax({
-                method: "post",
-                url: "subdajax.php",
-                data: {
-                    cid: id
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('#subcategory').html(result);
-                }
-            });
-        }
+function callsubcat() {
+    var id = $('#category').val();
+    if (id != null) {
+        $.ajax({
+            method: "post",
+            url: "subdajax.php",
+            data: {
+                cid: id
+            },
+            dataType: "html",
+            success: function(result) {
+                $('#subcategory').html(result);
+            }
+        });
     }
+}
 </script>
