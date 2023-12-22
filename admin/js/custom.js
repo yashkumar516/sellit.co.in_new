@@ -17,13 +17,8 @@
       var oldSrc = $(this).attr("src");
       oldSrc = oldSrc.replace(/^(\.\.\/)+/, "");
       if (oldSrc.indexOf("https://drive.google.com") !== -1) {
-        var newSrc = oldSrc.replace(/admin\/img\//, "");
-        newSrc = newSrc.replace(/img\//, "");
-        newSrc = newSrc.replace(/admin\//, "");
-        // newSrc = newSrc.replace(
-        //   /https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=sharing/,
-        //   "https://drive.google.com/uc?id=$1"
-        // );
+        // Remove everything before https
+        newSrc = oldSrc.replace(/.*https/, "https");
 
         // Replace the second link format
         newSrc = newSrc.replace(

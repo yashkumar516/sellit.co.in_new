@@ -4,6 +4,7 @@ if (count($argv) < 9) {
     echo "Connected Error";
     die("Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n");
 }
+set_time_limit(60);
 ini_set("max_execution_time", 3000);
 
 $productId = $argv[1];
@@ -56,7 +57,19 @@ if ($conn->connect_error) {
             // allow_url_fopen is disabled
             echo "<br/>--------------------------------------disabled-------------";
         }
-        $imageContent = file_get_contents($imageUrl);
+        $context = stream_context_create([
+            'http' => [
+                'timeout' => 50,
+            ],
+        ]);
+
+        // Replace $imageUrl with the actual image URL
+        // $imageUrl = "https://drive.google.com/uc?id=YOUR_FILE_ID";
+
+        // Use file_get_contents with the custom context
+        $imageContent = file_get_contents($imageUrl, false, $context);
+
+        // $imageContent = file_get_contents($imageUrl);
         if ($imageContent !== false) {
             // Save the image to the local directory
             file_put_contents($localFilePath, $imageContent);

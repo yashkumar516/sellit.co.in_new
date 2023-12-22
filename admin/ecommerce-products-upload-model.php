@@ -4,84 +4,75 @@
 <!-- end sidebar  header -->
 <?php
 include_once "./classes/products.php";
-include_once "./classes/childcategory.php";  
-include_once "./classes/subcategory.php";  
-include_once "./classes/variant.php";  
-include_once "./classes/questions.php";  
-include_once "./classes/syncImage.php";  
-$imageManager = new SyncImageManager($con);
+include_once "./classes/childcategory.php";
+include_once "./classes/subcategory.php";
+include_once "./classes/variant.php";
+include_once "./classes/questions.php";
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
 $variantManager = new VariantManager($con);
 $questionsManager = new QuestionsManager($con);
- 
 
-    if (isset($_POST["uploadWithBrandCSV"])) {
-        $desiredHeaders = ['Brand', 'Brand Image', 'Series', 'Model', 'Model Image', 'Varient', 'Varient Price', 'Display Value', 'Copy Display', 'Front Camera', 'Back Camera', 'Volume Button', 'Finger Touch', 'Speaker', 'Power Button', 'Face Sensor', 'Charging Port', 'Audio Reciever', 'Camera Glass', 'Wifi', 'Silent Button', 'Battery', 'Bluetooth', 'Vibrator', 'Microphone', 'Call Not Recieve', 'Below 3 Months', '3-6 Months', '6-11 Months', 'Above 11 Months', 'Touch screen', 'Large spots', 'Multiple spots', 'Minor spots', 'No spots', 'Display faded', 'Multiple lines', 'No lines', 'Screen cracked', 'Damaged screen', 'Heavy scratches', '1-2 scratches', 'No scratches', 'Major scratches', 'Less than 2 scratches', 'No body scratches', 'Multiple/heavy dents', 'Less than 2 dents', 'No dents', 'Cracked/ broken side or back panel', 'Missing side or back panel', 'No defect on side or back panel', 'Bent/ curved panel', 'Loose screen (Gap in screen and body)', 'No Bents', 'Orignal Charger', 'Original Earphones', 'Box with same IMEI', 'Bill with same IMEI'];
-        $filename = $_FILES["csvfile"]["tmp_name"];
-        if ($_FILES["csvfile"]["size"] > 0) {
-            $file = fopen($filename, "r"); // Read the header to handle column names
-            $headers = fgetcsv($file, 1000, ","); // Find the indexes of the desired headers
-            $headerIndexes = [];
-            foreach ($desiredHeaders as $header) {
-                $headerIndex = array_search($header, $headers);
-                if ($headerIndex !== false) {
-                    $headerIndexes[$header] = $headerIndex;
-                }
+
+if (isset($_POST["uploadWithBrandCSV"])) {
+    $desiredHeaders = ['Brand', 'Brand Image', 'Series', 'Model', 'Model Image', 'Varient', 'Varient Price', 'Display Value', 'Copy Display', 'Front Camera', 'Back Camera', 'Volume Button', 'Finger Touch', 'Speaker', 'Power Button', 'Face Sensor', 'Charging Port', 'Audio Reciever', 'Camera Glass', 'Wifi', 'Silent Button', 'Battery', 'Bluetooth', 'Vibrator', 'Microphone', 'Call Not Recieve', 'Below 3 Months', '3-6 Months', '6-11 Months', 'Above 11 Months', 'Touch screen', 'Large spots', 'Multiple spots', 'Minor spots', 'No spots', 'Display faded', 'Multiple lines', 'No lines', 'Screen cracked', 'Damaged screen', 'Heavy scratches', '1-2 scratches', 'No scratches', 'Major scratches', 'Less than 2 scratches', 'No body scratches', 'Multiple/heavy dents', 'Less than 2 dents', 'No dents', 'Cracked/ broken side or back panel', 'Missing side or back panel', 'No defect on side or back panel', 'Bent/ curved panel', 'Loose screen (Gap in screen and body)', 'No Bents', 'Orignal Charger', 'Original Earphones', 'Box with same IMEI', 'Bill with same IMEI'];
+    $filename = $_FILES["csvfile"]["tmp_name"];
+    if ($_FILES["csvfile"]["size"] > 0) {
+        $file = fopen($filename, "r"); // Read the header to handle column names
+        $headers = fgetcsv($file, 1000, ","); // Find the indexes of the desired headers
+        $headerIndexes = [];
+        foreach ($desiredHeaders as $header) {
+            $headerIndex = array_search($header, $headers);
+            if ($headerIndex !== false) {
+                $headerIndexes[$header] = $headerIndex;
             }
-            while (($getdata = fgetcsv($file, 1000, ",")) !== false) {
-                if (
-                    isset($getdata) &&
-                    isset($getdata[0]) &&
-                    isset($getdata[1]) &&
-                    isset($getdata[3])
-                ) {
-                    $categoryId = 1;
-                    $rowData = [];
-                    foreach ($headerIndexes as $header => $index) {
-                        $rowData[$header] = isset($getdata[$index])
-                            ? $getdata[$index]
-                            : null;
-                    }
-    
-                    $SubCategoryInfo = $subCategoryManager->upsertSubcategoryByKey(
-                        $rowData,
-                        $categoryId
-                    );
-                    $brandId= $subCategoryInfo["id"];
-                    $brandImageURL= $subCategoryInfo["image_url"];
-                    // if( $brandImageURL === "external"){
-                    //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
-                    // }
-                    
-                    $SubCategoryInfo = $childCategoryManager->upsertChildCategory(
-                        $rowData, $categoryId, $brandId
-                    );
-                    $seriesId= $SubCategoryInfo["id"];
-                    $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
-                    $productId= $productInfo["id"];
-                    $productImageURL= $productInfo["image_url"];
-                    // if( $productImageURL === "external"){
-                    //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                    // }
-                    $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
-                    $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
-                    
-                    
-                }
-            } 
-            if ($SubCategoryInfo && $productInfo && $variantInfo) {
-                echo "<script> alert('Brand upload successfully');
-                    window.location.href = 'ecommerce-products-form.php';
-                    </script>";
-            } else {
-                echo "<script> alert('Brand upload failed');
-                    window.location.href = 'ecommerce-products-form.php';
-                    </script>";
-            } 
         }
-    } 
+        while (($getdata = fgetcsv($file, 1000, ",")) !== false) {
+            if (
+                isset($getdata) &&
+                isset($getdata[0]) &&
+                isset($getdata[1]) &&
+                isset($getdata[3])
+            ) {
+                $categoryId = 1;
+                $rowData = [];
+                foreach ($headerIndexes as $header => $index) {
+                    $rowData[$header] = isset($getdata[$index])
+                        ? $getdata[$index]
+                        : null;
+                }
+
+                $SubCategoryInfo = $subCategoryManager->upsertSubcategoryByKey(
+                    $rowData,
+                    $categoryId
+                );
+                $brandId = $subCategoryInfo["id"];
+
+                $SubCategoryInfo = $childCategoryManager->upsertChildCategory(
+                    $rowData,
+                    $categoryId,
+                    $brandId
+                );
+                $seriesId = $SubCategoryInfo["id"];
+                $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
+                $productId = $productInfo["id"];
+
+                $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
+                $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
+            }
+        }
+        if ($SubCategoryInfo && $productInfo && $variantInfo) {
+            echo "<script> alert('Brand upload successfully');
+                    window.location.href = 'ecommerce-products-form.php';
+                    </script>";
+        } else {
+            echo "<script> alert('Brand upload failed');
+                    window.location.href = 'ecommerce-products-form.php';
+                    </script>";
+        }
+    }
+}
 ?>
 
 <section role="main" class="content-body content-body-modern mt-0">
@@ -129,8 +120,7 @@ $questionsManager = new QuestionsManager($con);
                         <div class="col-lg-3-5 col-xl-4-5">
                             <div class="form-group row align-items-end  py-2 text-lg-right ">
                                 <div class=" col-12 float-right">
-                                    <button class="btn btn-light  "
-                                        onclick="downloadCSV(demoWithBrandCSV, 'sample.csv')">Sample CSV
+                                    <button class="btn btn-light  " onclick="downloadCSV(demoWithBrandCSV, 'sample.csv')">Sample CSV
                                     </button>
                                 </div>
                             </div>
@@ -146,8 +136,7 @@ $questionsManager = new QuestionsManager($con);
                                     </div>
 
                                     <div class="col-lg-2 col-xl-3">
-                                        <input type="submit" class="btn btn-primary" value="upload"
-                                            name="uploadWithBrandCSV">
+                                        <input type="submit" class="btn btn-primary" value="upload" name="uploadWithBrandCSV">
                                     </div>
                                 </div>
                             </form>
@@ -170,8 +159,7 @@ $questionsManager = new QuestionsManager($con);
                     <div class="datatables-header-footer-wrapper">
 
 
-                        <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list"
-                            style="min-width: 550px;">
+                        <table class="table table-responsive table-striped mb-0 " id="datatable-ecommerce-list" style="min-width: 550px;">
 
                             <thead>
                                 <tr>
@@ -305,216 +293,192 @@ $questionsManager = new QuestionsManager($con);
                                             )
                                         );
                                     }
-                                    ?>
-                                <!-- fetch category details end -->
-                                <tr>
+                                ?>
+                                    <!-- fetch category details end -->
+                                    <tr>
 
-                                    <td class="text-capitalize">
-                                        <?php echo $fetchbb[
-                                            "subcategory_name"
-                                        ]; ?>
-                                    </td>
+                                        <td class="text-capitalize">
+                                            <?php echo $fetchbb["subcategory_name"]; ?>
+                                        </td>
 
-                                    <td><a href="#"><img src="img/<?php echo $fetchbb[
-                                        "subcategory_image"
-                                    ]; ?>" alt="img" width="100px"></a>
-                                        <p style="display:none;"><?php echo $fetchbb[
-                                            "subcategory_image"
-                                        ]; ?></p>
+                                        <td><a href="#"><img src="img/<?php echo $fetchbb["subcategory_image"]; ?>" alt="img" width="100px"></a>
+                                            <p style="display:none;"><?php echo $fetchbb["subcategory_image"]; ?></p>
 
-                                    </td>
-                                    <td>
-                                        <?php echo $childCategory1; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $selproduct[
-                                            "product_name"
-                                        ]; ?>
-                                    </td>
+                                        </td>
+                                        <td>
+                                            <?php echo $childCategory1; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $selproduct["product_name"]; ?>
+                                        </td>
 
-                                    <td><a href="#"><img src="img/<?php echo $selproduct[
-                                        "product_image"
-                                    ]; ?>" alt="img" width="100px"></a>
-                                        <p style="display:none;"><?php echo $selproduct[
-                                            "product_image"
-                                        ]; ?></p>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["varient"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["uptovalue"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct[
-                                            "displayvalue"
-                                        ]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["copydisplay"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct[
-                                            "front_camera"
-                                        ]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["back_camera"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["volume"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct[
-                                            "finger_touch"
-                                        ]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["speaker"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["power_btn"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["face_sensor"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct[
-                                            "charging_port"
-                                        ]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct[
-                                            "audio_receiver"
-                                        ]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct[
-                                            "camera_glass"
-                                        ]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["wifi"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["silent_btn"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["battery"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["bluetooth"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["vibrator"]; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $arproduct["microphone"]; ?>
-                                    </td>
+                                        <td><a href="#"><img src="img/<?php echo $selproduct["product_image"]; ?>" alt="img" width="100px"></a>
+                                            <p style="display:none;"><?php echo $selproduct["product_image"]; ?></p>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["varient"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["uptovalue"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["displayvalue"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["copydisplay"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["front_camera"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["back_camera"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["volume"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["finger_touch"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["speaker"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["power_btn"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["face_sensor"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["charging_port"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["audio_receiver"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["camera_glass"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["wifi"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["silent_btn"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["battery"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["bluetooth"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["vibrator"]; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $arproduct["microphone"]; ?>
+                                        </td>
 
-                                    <td>
-                                        <?= $fetchbb["callvalue"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["3months"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["3to6months"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["6to11months"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["above11"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["touchscreen"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["largespot"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["multiplespot"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["minorspot"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["nospot"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["displayfade"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["multilines"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["nolines"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["crackedscreen"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["damegescreen"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["heavyscracthes"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["12scratches"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["noscratches"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["majorscratch"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["2bodyscratches"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["nobodysratches"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["heavydents"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["2dents"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["nodents"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["crackedsideback"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["missingsideback"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["nodefectssideback"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["bentcurvedpanel"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["loosescreen"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["nobents"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["charger"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["earphone"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["boximei"] ?>
-                                    </td>
-                                    <td>
-                                        <?= $fetchbb["billimei"] ?>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <?= $fetchbb["callvalue"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["3months"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["3to6months"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["6to11months"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["above11"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["touchscreen"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["largespot"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["multiplespot"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["minorspot"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["nospot"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["displayfade"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["multilines"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["nolines"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["crackedscreen"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["damegescreen"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["heavyscracthes"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["12scratches"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["noscratches"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["majorscratch"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["2bodyscratches"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["nobodysratches"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["heavydents"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["2dents"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["nodents"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["crackedsideback"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["missingsideback"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["nodefectssideback"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["bentcurvedpanel"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["loosescreen"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["nobents"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["charger"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["earphone"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["boximei"] ?>
+                                        </td>
+                                        <td>
+                                            <?= $fetchbb["billimei"] ?>
+                                        </td>
+                                    </tr>
                                 <?php
                                 }
                                 ?>
@@ -596,18 +560,18 @@ $questionsManager = new QuestionsManager($con);
 <!-- Analytics to Track Preview Website -->
 
 <script>
-(function(i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-42715764-8', 'auto');
-ga('send', 'pageview');
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '../../../www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-42715764-8', 'auto');
+    ga('send', 'pageview');
 </script>
 <!-- Examples -->
 <script src="js/examples/examples.ecommerce.form.js"></script>
@@ -622,124 +586,124 @@ ga('send', 'pageview');
 <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.table').DataTable({
-        dom: 'Bfrtip',
-        buttons: [{
-            extend: 'csv',
-            className: 'btn btn-light px-3 mx-3 mt-3'
-        }]
+    $(document).ready(function() {
+        $('.table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'csv',
+                className: 'btn btn-light px-3 mx-3 mt-3'
+            }]
+        });
     });
-});
 </script>
 <script>
-$(document).ready(function() {
-    var table = $('#datatable-ecommerce-list').DataTable();
-});
+    $(document).ready(function() {
+        var table = $('#datatable-ecommerce-list').DataTable();
+    });
 </script>
 
 <script>
-var demoWithBrandCSV = [{
-    "Brand": "",
-    "Brand Image": "",
-    "Series": "",
-    "Model": "",
-    "Model Image": "",
-    "Varient": "",
-    "Varient Price": "",
-    "Display Value": "",
-    "Copy Display": "",
-    "Front Camera": "",
-    "Back Camera": "",
-    "Volume Button": "",
-    "Finger Touch": "",
-    "Speaker": "",
-    "Power Button": "",
-    "Face Sensor": "",
-    "Charging Port": "",
-    "Audio Reciever": "",
-    "Camera Glass": "",
-    "Wifi": "",
-    "Silent Button": "",
-    "Battery": "",
-    "Bluetooth": "",
-    "Vibrator": "",
-    "Microphone": "",
-    "Call Not Recieve": "",
-    "Below 3 Months": "",
-    "3-6 Months": "",
-    "6-11 Months": "",
-    "Above 11 Months": "",
-    "Touch screen": "",
-    "Large spots": "",
-    "Multiple spots": "",
-    "Minor spots": "",
-    "No spots": "",
-    "Display faded": "",
-    "Multiple lines": "",
-    "No lines": "",
-    "Screen cracked": "",
-    "Damaged screen": "",
-    "Heavy scratches": "",
-    "1-2 scratches": "",
-    "No scratches": "",
-    "Major scratches": "",
-    "Less than 2 scratches": "",
-    "No body scratches": "",
-    "Multiple/heavy dents": "",
-    "Less than 2 dents": "",
-    "No dents": "",
-    "Cracked/ broken side or back panel": "",
-    "Missing side or back panel": "",
-    "No defect on side or back panel": "",
-    "Bent/ curved panel": "",
-    "Loose screen (Gap in screen and body)": "",
-    "No Bents": "",
-    "Orignal Charger": "",
-    "Original Earphones": "",
-    "Box with same IMEI": "",
-    "Bill with same IMEI": "",
-}];
+    var demoWithBrandCSV = [{
+        "Brand": "",
+        "Brand Image": "",
+        "Series": "",
+        "Model": "",
+        "Model Image": "",
+        "Varient": "",
+        "Varient Price": "",
+        "Display Value": "",
+        "Copy Display": "",
+        "Front Camera": "",
+        "Back Camera": "",
+        "Volume Button": "",
+        "Finger Touch": "",
+        "Speaker": "",
+        "Power Button": "",
+        "Face Sensor": "",
+        "Charging Port": "",
+        "Audio Reciever": "",
+        "Camera Glass": "",
+        "Wifi": "",
+        "Silent Button": "",
+        "Battery": "",
+        "Bluetooth": "",
+        "Vibrator": "",
+        "Microphone": "",
+        "Call Not Recieve": "",
+        "Below 3 Months": "",
+        "3-6 Months": "",
+        "6-11 Months": "",
+        "Above 11 Months": "",
+        "Touch screen": "",
+        "Large spots": "",
+        "Multiple spots": "",
+        "Minor spots": "",
+        "No spots": "",
+        "Display faded": "",
+        "Multiple lines": "",
+        "No lines": "",
+        "Screen cracked": "",
+        "Damaged screen": "",
+        "Heavy scratches": "",
+        "1-2 scratches": "",
+        "No scratches": "",
+        "Major scratches": "",
+        "Less than 2 scratches": "",
+        "No body scratches": "",
+        "Multiple/heavy dents": "",
+        "Less than 2 dents": "",
+        "No dents": "",
+        "Cracked/ broken side or back panel": "",
+        "Missing side or back panel": "",
+        "No defect on side or back panel": "",
+        "Bent/ curved panel": "",
+        "Loose screen (Gap in screen and body)": "",
+        "No Bents": "",
+        "Orignal Charger": "",
+        "Original Earphones": "",
+        "Box with same IMEI": "",
+        "Bill with same IMEI": "",
+    }];
 
-function createCSV(array) {
-    var keys = Object.keys(array[0]); //Collects Table Headers
+    function createCSV(array) {
+        var keys = Object.keys(array[0]); //Collects Table Headers
 
-    var result = ''; //CSV Contents
-    result += keys.join(','); //Comma Seperates Headers
-    result += '\n'; //New Row
+        var result = ''; //CSV Contents
+        result += keys.join(','); //Comma Seperates Headers
+        result += '\n'; //New Row
 
-    array.forEach(function(item) { //Goes Through Each Array Object
-        keys.forEach(function(key) { //Goes Through Each Object value
-            result += item[key] + ','; //Comma Seperates Each Key Value in a Row
+        array.forEach(function(item) { //Goes Through Each Array Object
+            keys.forEach(function(key) { //Goes Through Each Object value
+                result += item[key] + ','; //Comma Seperates Each Key Value in a Row
+            })
+            result += '\n'; //Creates New Row
         })
-        result += '\n'; //Creates New Row
-    })
 
-    return result;
-}
+        return result;
+    }
 
 
-function downloadCSV(array, fileName) {
-    csv = 'data:text/csv;charset=utf-8,' + createCSV(array); //Creates CSV File Format
-    excel = encodeURI(csv); //Links to CSV 
+    function downloadCSV(array, fileName) {
+        csv = 'data:text/csv;charset=utf-8,' + createCSV(array); //Creates CSV File Format
+        excel = encodeURI(csv); //Links to CSV 
 
-    link = document.createElement('a');
-    link.setAttribute('href', excel); //Links to CSV File 
-    link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
-    link.click();
-}
+        link = document.createElement('a');
+        link.setAttribute('href', excel); //Links to CSV File 
+        link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
+        link.click();
+    }
 </script>
 
 <!--varient model upto start-->
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#varintmobupto').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ]
+    $(document).ready(function() {
+        $('#varintmobupto').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv'
+            ]
+        });
     });
-});
 </script>
 
 </body>
@@ -747,55 +711,55 @@ $(document).ready(function() {
 </html>
 
 <script>
-$(document).ready(function(e) {
-    var html =
-        '<div class="row my-3" id="rmtag"><div class="col-1"><label class=" control-label text-lg-right mb-0">Varient </label></div><div class="col-3"><input type="text" class="form-control form-control-modern" name="varient[]" value="" required /></div><div class="col-2"><label class=" control-label text-lg-right mb-0">upto value</label></div><div class="col-4"><input type="text" class="form-control form-control-modern" name="upto[]" value="" required /></div><div class="col-2"><button class="btn btn-primary" id="removed">remove</button></div></div>';
-    $("#addtag").click(function(e) {
-        $("#tag").append(html);
+    $(document).ready(function(e) {
+        var html =
+            '<div class="row my-3" id="rmtag"><div class="col-1"><label class=" control-label text-lg-right mb-0">Varient </label></div><div class="col-3"><input type="text" class="form-control form-control-modern" name="varient[]" value="" required /></div><div class="col-2"><label class=" control-label text-lg-right mb-0">upto value</label></div><div class="col-4"><input type="text" class="form-control form-control-modern" name="upto[]" value="" required /></div><div class="col-2"><button class="btn btn-primary" id="removed">remove</button></div></div>';
+        $("#addtag").click(function(e) {
+            $("#tag").append(html);
+        });
+
+        $("#tag").on('click', '#removed', function(e) {
+            $("#rmtag").remove();
+        })
     });
-
-    $("#tag").on('click', '#removed', function(e) {
-        $("#rmtag").remove();
-    })
-});
 </script>
 
 <script>
-function callsubcat() {
-    var id = $('#category').val();
-    if (id != null) {
-        $.ajax({
-            method: "post",
-            url: "subdajax.php",
-            data: {
-                cid: id
-            },
-            dataType: "html",
-            success: function(result) {
-                $('#subcategory').html(result);
-            }
-        });
+    function callsubcat() {
+        var id = $('#category').val();
+        if (id != null) {
+            $.ajax({
+                method: "post",
+                url: "subdajax.php",
+                data: {
+                    cid: id
+                },
+                dataType: "html",
+                success: function(result) {
+                    $('#subcategory').html(result);
+                }
+            });
+        }
     }
-}
 </script>
 
 <script>
-function callchildcat() {
-    var id = $('#subcategory').val();
-    if (id != null) {
-        $.ajax({
-            method: "post",
-            url: "childajax.php",
-            data: {
-                sid: id
-            },
-            dataType: "html",
-            success: function(result) {
-                $('#childcategory').html(result);
-            }
-        });
+    function callchildcat() {
+        var id = $('#subcategory').val();
+        if (id != null) {
+            $.ajax({
+                method: "post",
+                url: "childajax.php",
+                data: {
+                    sid: id
+                },
+                dataType: "html",
+                success: function(result) {
+                    $('#childcategory').html(result);
+                }
+            });
+        }
     }
-}
 </script>
 
 <!-- <script>

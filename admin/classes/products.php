@@ -74,6 +74,18 @@ class ProductManager
             $urlComponents !== false && isset($urlComponents["scheme"])
             ? "external"
             : "internal";
+
+        if ($imageUrlStatus === "external") {
+            $pattern =
+                "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+
+            // Replacement pattern
+            $replacement = "https://drive.google.com/uc?id=$1";
+
+            // Perform the replacement for the first URL
+            $modelImage = preg_replace($pattern, $replacement, $modelImage);
+        }
+
         $checkQuery =
             "SELECT * FROM `product` WHERE `product_name` = ? AND `subcategoryid` = ? AND  `categoryid` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
@@ -205,6 +217,17 @@ class ProductManager
             $urlComponents !== false && isset($urlComponents["scheme"])
             ? "external"
             : "internal";
+
+        if ($imageUrlStatus === "external") {
+            $pattern =
+                "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+
+            // Replacement pattern
+            $replacement = "https://drive.google.com/uc?id=$1";
+
+            // Perform the replacement for the first URL
+            $modelImage = preg_replace($pattern, $replacement, $modelImage);
+        }
         // "ALTER TABLE `subcategory` ADD `image_url` ENUM('external', 'internal') NOT NULL DEFAULT 'internal' AFTER `top`;
         // "
 

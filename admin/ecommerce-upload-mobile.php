@@ -8,8 +8,6 @@ include_once "./classes/childcategory.php";
 include_once "./classes/subcategory.php";
 include_once "./classes/variant.php";
 include_once "./classes/questions.php";
-include_once "./classes/syncImage.php";
-$imageManager = new SyncImageManager($con);
 $productManager = new ProductManager($con);
 $subCategoryManager = new SubCategoryManager($con);
 $childCategoryManager = new ChildCategoryManager($con);
@@ -50,10 +48,6 @@ if (isset($_POST["uploadWithBrandCSV"])) {
                     $categoryId
                 );
                 $brandId = $subCategoryInfo["id"];
-                // $imageURL= $subCategoryInfo["image_url"];
-                // if( $imageURL === "external"){
-                //     $imageManager2= $imageManager->syncBrandImageByRow($subCategoryInfo);
-                // }
 
                 $SubCategoryInfo = $childCategoryManager->upsertChildCategory(
                     $rowData,
@@ -63,10 +57,7 @@ if (isset($_POST["uploadWithBrandCSV"])) {
                 $seriesId = $SubCategoryInfo["id"];
                 $productInfo = $productManager->upsertProduct($rowData, $categoryId, $brandId, $seriesId);
                 $productId = $productInfo["id"];
-                $productImageURL = $productInfo["image_url"];
-                // if( $productImageURL === "external"){
-                //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                // }
+
                 $variantInfo = $variantManager->upsertVariant($rowData, $categoryId, $productId, $brandId, $seriesId);
                 $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
             }

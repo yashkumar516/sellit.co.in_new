@@ -61,8 +61,14 @@ if ($conn->connect_error) {
             // allow_url_fopen is disabled
             echo "<br/>--------------------------------------disabled-------------";
         }
+        $context = stream_context_create([
+            'http' => [
+                'timeout' => 50,
+            ],
+        ]);
+
         // Download the image and save it locally
-        $imageContent = file_get_contents($imageUrl);
+        $imageContent = file_get_contents($imageUrl, false, $context);
         // $context = stream_context_create(['http' => ['user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3']]);
         // $imageContent = file_get_contents($imageUrl, false, $context);
 

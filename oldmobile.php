@@ -25,25 +25,17 @@ if (isset($_SESSION['user'])) {
     <title>Sell Old iPhone Online in India | Sell Old Apple Phones Online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="q-24As6IUgQYlnT2-RVsVVYP07YI6kxtdMd_gNndDVg" />
-    <meta name="description"
-        content="Sell Old iPhone Online in India at Best Price- Sell your old Apple iPhone phone online with ease at Sellit.co.in. To Check or Sell old apple iphone online device's value, visit our website now and get started! ">
+    <meta name="description" content="Sell Old iPhone Online in India at Best Price- Sell your old Apple iPhone phone online with ease at Sellit.co.in. To Check or Sell old apple iphone online device's value, visit our website now and get started! ">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
     <link rel="stylesheet" href="../../assets/css/index.css">
@@ -53,14 +45,14 @@ if (isset($_SESSION['user'])) {
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E422DMN5YS"></script>
 
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-E422DMN5YS');
+        gtag('config', 'G-E422DMN5YS');
     </script>
 </head>
 
@@ -71,14 +63,12 @@ if (isset($_SESSION['user'])) {
                 <div class="col-lg-12 col-xl-11 col-12 mx-auto">
                     <div class="row header-content">
                         <div class="col-lg-3 col-8">
-                            <a href="../../index.php"><img src="../../assets/images/logo-1.png" alt=""
-                                    class="logo img-fluid"></a>
+                            <a href="../../index.php"><img src="../../assets/images/logo-1.png" alt="" class="logo img-fluid"></a>
                         </div>
                         <div class="col-lg-7 order-lg-2 order-sm-3 order-3 search">
                             <div class="row">
                                 <div class="input-group col-lg-11 col-12">
-                                    <input type="text" class="form-control" id="modalsearch"
-                                        placeholder="Search your Device" name="search" autocomplete="off">
+                                    <input type="text" class="form-control" id="modalsearch" placeholder="Search your Device" name="search" autocomplete="off">
                                 </div>
                                 <div class="col-11 col-lg-10" id="filter">
                                     <div class="row px-5" id="modals">
@@ -106,25 +96,20 @@ if (isset($_SESSION['user'])) {
                                                     echo '../../login.php';
                                                 } else {
                                                     echo '../../userdashboard.php';
-                                                } ?>" class="text-primary"><img
-                                            src="../../assets/images/My-profile.png" width="60%"
-                                            class="img-fluid newimg22"></a>
+                                                } ?>" class="text-primary"><img src="../../assets/images/My-profile.png" width="60%" class="img-fluid newimg22"></a>
                                 </div>
                                 <?php
                                 if ($number == null) {
                                 ?>
-                                <div class="col-6">
-                                    <a href="../../login.php" class="text-primary"><img
-                                            src="../../assets/images/login-1.png " width="60%"
-                                            class="img-fluid newimg22"></a>
-                                </div>
+                                    <div class="col-6">
+                                        <a href="../../login.php" class="text-primary"><img src="../../assets/images/login-1.png " width="60%" class="img-fluid newimg22"></a>
+                                    </div>
                                 <?php
                                 } else {
                                 ?>
-                                <div class="col-6">
-                                    <a href="../../logout.php" class="text-primary"><img
-                                            src="../../assets/images/log-out.png" width="60%" class="img-fluid"></a>
-                                </div>
+                                    <div class="col-6">
+                                        <a href="../../logout.php" class="text-primary"><img src="../../assets/images/log-out.png" width="60%" class="img-fluid"></a>
+                                    </div>
                                 <?php
                                 }
                                 ?>
@@ -147,15 +132,15 @@ if (isset($_SESSION['user'])) {
                     <?php
                     if ($number == null) {
                     ?>
-                    <a href="../../login.php">
-                        <p><i class="fas fa-sign-in-alt"></i> Login</p>
-                    </a>
+                        <a href="../../login.php">
+                            <p><i class="fas fa-sign-in-alt"></i> Login</p>
+                        </a>
                     <?php
                     } else {
                     ?>
-                    <a href="../../userdashboard.php">
-                        <p><i class="fas fa-user"></i> Profile</p>
-                    </a>
+                        <a href="../../userdashboard.php">
+                            <p><i class="fas fa-user"></i> Profile</p>
+                        </a>
                     <?php
                     }
                     ?>
@@ -182,27 +167,26 @@ if (isset($_SESSION['user'])) {
     $row = mysqli_num_rows($selectseries);
     if ($row >= 1) {
     ?>
-    <section class="galaxy">
-        <div class="container">
-            <div class="col-lg-12 mx-auto">
-                <h6 class="select mb-3">Select Series</h6>
+        <section class="galaxy">
+            <div class="container">
+                <div class="col-lg-12 mx-auto">
+                    <h6 class="select mb-3">Select Series</h6>
 
-                <div class="row">
-                    <?php
+                    <div class="row">
+                        <?php
                         while ($arseries = mysqli_fetch_assoc($selectseries)) {
                         ?>
-                    <div class="col-lg-3 col-6"><button class="box2"
-                            onclick="return getmodel(<?php echo $arseries['id'] ?>,<?php echo $arseries['subcatid'] ?> )">
-                            <b>
-                                <?php echo $arseries['childcategory'] ?> </b></button></div>
-                    <?php
+                            <div class="col-lg-3 col-6"><button class="box2" onclick="return getmodel(<?php echo $arseries['id'] ?>,<?php echo $arseries['subcatid'] ?> )">
+                                    <b>
+                                        <?php echo $arseries['childcategory'] ?> </b></button></div>
+                        <?php
                         }
                         ?>
-                </div>
+                    </div>
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     <?php
     }
     ?>
@@ -214,28 +198,24 @@ if (isset($_SESSION['user'])) {
                 <h3 class="select pb-3">Select Mobile</h3>
                 <div class="row" id="ajaxrespon">
                     <?php
-                    $subcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$id' "));
+                    $subcatname = mysqli_fetch_assoc(mysqli_query($con, "select * from `subcategory` WHERE `id` = '$id' "));
                     $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$id' ORDER BY `counter` DESC, `modify_date` DESC");
                     while ($armodel = mysqli_fetch_assoc($selectmodel)) {
                     ?>
-                    <div class="col-lg-2 col-4 mt-2 px-1">
-                        <a class="text-decoration-none"
-                            href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ','-',$subcatname['subcategory_name']).'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$id ?>">
-                            <div class="text-center" id="md">
-                                <img style="margin-top: 15px;"
-                                    src="../../admin/img/<?php echo $armodel['product_image'] ?>" width="100%"
-                                    class="img-fluid" alt="">
-                                <div class="container mn px-1">
-                                    <div class="row h-100 ">
-                                        <div class="col-12 my-auto">
-                                            <span
-                                                class="sum-heading1 text-center  mt-3"><?php echo $armodel['product_name'] ?></span>
+                        <div class="col-lg-2 col-4 mt-2 px-1">
+                            <a class="text-decoration-none" href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ', '-', $subcatname['subcategory_name']) . '-' . strtolower(str_replace(' ', '-', $armodel['product_name']))) . '/' . $armodel['id'] . '_' . $id ?>">
+                                <div class="text-center" id="md">
+                                    <img style="margin-top: 15px;" src="<?php echo $armodel['image_url'] === "external" ?  $armodel['product_image'] :   "../../admin/img/" . $armodel['product_image'] ?>" width="100%" class="img-fluid" alt="">
+                                    <div class="container mn px-1">
+                                        <div class="row h-100 ">
+                                            <div class="col-12 my-auto">
+                                                <span class="sum-heading1 text-center  mt-3"><?php echo $armodel['product_name'] ?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
 
                     <?php
                     }
@@ -292,19 +272,17 @@ if (isset($_SESSION['user'])) {
             </div>
             <div class="owl-carousel owl-carousel-12 owl-theme col-12">
                 <?php
-      $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
-      while ($artop = mysqli_fetch_assoc($selectquery)) {
-      ?>
-                <div class="item my-3">
-                    <a
-                        href="../../sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ','-',$artop['subcategory_name'])) ?>/<?php echo $artop['id'];  ?>">
-                        <img src="../../admin/img/<?php echo $artop['subcategory_image'];  ?>" class="img-fluid box1"
-                            alt="">
-                    </a>
-                </div>
+                $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
+                while ($artop = mysqli_fetch_assoc($selectquery)) {
+                ?>
+                    <div class="item my-3">
+                        <a href="../../sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ', '-', $artop['subcategory_name'])) ?>/<?php echo $artop['id'];  ?>">
+                            <img src="../../admin/img/<?php echo $artop['subcategory_image'];  ?>" class="img-fluid box1" alt="">
+                        </a>
+                    </div>
                 <?php
-      }
-      ?>
+                }
+                ?>
 
             </div>
         </div>
@@ -326,26 +304,23 @@ if (isset($_SESSION['user'])) {
             <!-- </div>
   <div class="container mb-5"> -->
             <div class="owl-carousel owl-carousel-12 owl-theme col-12">
-                <?php 
-        $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
-      while ($armodel = mysqli_fetch_assoc($selectmodel)) {
-        $topsubcatid = $armodel['subcategoryid'];
-        $topsubcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$topsubcatid' "));
-     ?>
-                <div class="item my-3">
-                    <a
-                        href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ','-',$topsubcatname['subcategory_name']).'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
-                        <div class="text-center" id="md">
-                            <img src="../../admin/img/<?php echo $armodel['product_image'];  ?>" class="img-fluid"
-                                alt="">
-                            <span class="sum-heading1 text-center"
-                                style="color:black;"><?php echo $armodel['product_name'] ?></span>
-                        </div>
-                    </a>
-                </div>
                 <?php
-      }
-      ?>
+                $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
+                while ($armodel = mysqli_fetch_assoc($selectmodel)) {
+                    $topsubcatid = $armodel['subcategoryid'];
+                    $topsubcatname = mysqli_fetch_assoc(mysqli_query($con, "select * from `subcategory` WHERE `id` = '$topsubcatid' "));
+                ?>
+                    <div class="item my-3">
+                        <a href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ', '-', $topsubcatname['subcategory_name']) . '-' . strtolower(str_replace(' ', '-', $armodel['product_name']))) . '/' . $armodel['id'] . '_' . $armodel['subcategoryid'] ?>">
+                            <div class="text-center" id="md">
+                                <img src="../../admin/img/<?php echo $armodel['product_image'];  ?>" class="img-fluid" alt="">
+                                <span class="sum-heading1 text-center" style="color:black;"><?php echo $armodel['product_name'] ?></span>
+                            </div>
+                        </a>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </section>
@@ -365,8 +340,7 @@ if (isset($_SESSION['user'])) {
             <div class="owl-carousel owl-theme col-12">
 
                 <div class=" col-12 mx-1 my-3 text-center">
-                    <div class="row nice"
-                        style="margin-top:-5px; border-radius: 20px; margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                    <div class="row nice" style="margin-top:-5px; border-radius: 20px; margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                         <div class="col-lg-12 col-12">
                             <div class="col-6 mx-auto">
                                 <img src="../../assets/images/safe.png" alt=""></a>
@@ -381,8 +355,7 @@ if (isset($_SESSION['user'])) {
                 </div>
 
                 <div class=" col-12 text-center">
-                    <div class="row nice"
-                        style="margin-top:10px; border-radius: 20px; margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                    <div class="row nice" style="margin-top:10px; border-radius: 20px; margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                         <div class="col-lg-12 col-12 ">
                             <div class="col-6 mx-auto">
                                 <a><img src="../../assets/images/instant.png" alt=""></a>
@@ -396,8 +369,7 @@ if (isset($_SESSION['user'])) {
                 </div>
 
                 <div class=" col-12 text-center">
-                    <div class="row nice"
-                        style="margin-top:10px; border-radius: 20px; margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                    <div class="row nice" style="margin-top:10px; border-radius: 20px; margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                         <div class="col-lg-12 col-12 ">
                             <div class="col-6 mx-auto">
                                 <a><img src="../../assets/images/bestprice.png" alt=""></a>
@@ -423,10 +395,10 @@ if (isset($_SESSION['user'])) {
         <div class="container">
             <div class="owl-carousel owl-theme ">
                 <?php
-        $fetchreview = mysqli_query($con, "SELECT * FROM `product_reviews` WHERE `status` = 'active'  ");
-        while ($arrrev = mysqli_fetch_assoc($fetchreview)) {
-        ?>
-                <!-- <div class="col-12 my-3 mx-1" >
+                $fetchreview = mysqli_query($con, "SELECT * FROM `product_reviews` WHERE `status` = 'active'  ");
+                while ($arrrev = mysqli_fetch_assoc($fetchreview)) {
+                ?>
+                    <!-- <div class="col-12 my-3 mx-1" >
         <div class="row p-3 nice" style="margin-top:10px; border-radius: 20px;
          margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
          height:270px;overflow:hidden;"> 
@@ -453,29 +425,27 @@ if (isset($_SESSION['user'])) {
         </div>
           </div> -->
                 <?php
-        }
-        ?>
+                }
+                ?>
             </div>
             <script src="https://apps.elfsight.com/p/platform.js" defer></script>
             <div class="elfsight-app-bcb6c556-cfdd-4cf6-91c2-46397d872b38"></div>
         </div>
         <?php
-if(isset($_SESSION['user'])){
-?>
-        <div class="text-center d-none" style="margin-top: 40px;">
-            <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;"
-                data-toggle="modal" data-target=".bd-example-modal-lg">Write Review</button>
-        </div>
+        if (isset($_SESSION['user'])) {
+        ?>
+            <div class="text-center d-none" style="margin-top: 40px;">
+                <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal" data-target=".bd-example-modal-lg">Write Review</button>
+            </div>
         <?php
-}else{
-  ?>
-        <div class="text-center d-none" style="margin-top: 40px;">
-            <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;"
-                data-toggle="modal" data-target=".bd-example-modal-lg">Write Review</button>
-        </div>
-        <?php 
-}
-?>
+        } else {
+        ?>
+            <div class="text-center d-none" style="margin-top: 40px;">
+                <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal" data-target=".bd-example-modal-lg">Write Review</button>
+            </div>
+        <?php
+        }
+        ?>
         </div>
     </section>
 
@@ -598,13 +568,10 @@ if(isset($_SESSION['user'])){
                     <div class="col-lg-3 col-6">
                         <h3 class="footer-heading">Follow Us</h3>
                         <div class="footer-social-icon">
-                            <a href="https://twitter.com/sellit.co.in"><img src="../../assets/images/1.png" class="px-1"
-                                    alt="twitter" width="17%"></a>
+                            <a href="https://twitter.com/sellit.co.in"><img src="../../assets/images/1.png" class="px-1" alt="twitter" width="17%"></a>
                             <a href=""><img src="../../assets/images/2.png" class="px-1" alt="inbox" width="17%"></a>
-                            <a href="https://facebook.com/sellit.co.in"><img src="../../assets/images/3.png"
-                                    class="px-1" alt="facebook" width="17%"></a>
-                            <a href="https://instagram.com/sellit.co.in"><img src="../../assets/images/4.png"
-                                    class="px-1" alt="instagram" width="17%"></a>
+                            <a href="https://facebook.com/sellit.co.in"><img src="../../assets/images/3.png" class="px-1" alt="facebook" width="17%"></a>
+                            <a href="https://instagram.com/sellit.co.in"><img src="../../assets/images/4.png" class="px-1" alt="instagram" width="17%"></a>
                         </div>
                     </div>
 
@@ -618,8 +585,7 @@ if(isset($_SESSION['user'])){
             </div>
     </footer>
     <!-- rating model box -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content py-5">
                 <h4 class="text-center" style="color:#23699D;"> Please Give your Reviews And Rating.. </h4>
@@ -627,27 +593,22 @@ if(isset($_SESSION['user'])){
                 <div class="container px-5">
                     <form action="reviews.php" method="post">
                         <div class="form-group">
-                            <div class="rateyo" id="rating" data-rateyo-rating="0" data-rateyo-num-stars="5"
-                                data-rateyo-score="3">
+                            <div class="rateyo" id="rating" data-rateyo-rating="0" data-rateyo-num-stars="5" data-rateyo-score="3">
                             </div>
                             <span class='result'>0</span>
                             <input type="hidden" name="rating" value="">
                         </div>
                         <div class="form-group my-1">
-                            <input type="text" name="rname" class="form-control" placeholder="Enter Your Name"
-                                style="color:#23699D;" required>
+                            <input type="text" name="rname" class="form-control" placeholder="Enter Your Name" style="color:#23699D;" required>
                         </div>
                         <div class="form-group my-1">
-                            <input type="text" name="rcity" class="form-control" placeholder="Enter Your City"
-                                style="color:#23699D;" required>
+                            <input type="text" name="rcity" class="form-control" placeholder="Enter Your City" style="color:#23699D;" required>
                         </div>
                         <div class="form-group my-1">
-                            <textarea class="form-control" name="msg" placeholder="please write your riview"
-                                maxlength="200" style="color:#23699D;" required></textarea>
+                            <textarea class="form-control" name="msg" placeholder="please write your riview" maxlength="200" style="color:#23699D;" required></textarea>
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn text-white" name="review"
-                                style="background-color:#23699D;">Submit</button>
+                            <button type="submit" class="btn text-white" name="review" style="background-color:#23699D;">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -660,83 +621,81 @@ if(isset($_SESSION['user'])){
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- carousel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <!-- rating script -->
     <script>
-    $(function() {
-        $("#rating").rateYo({
-            ratedFill: "#23699D"
-        });
+        $(function() {
+            $("#rating").rateYo({
+                ratedFill: "#23699D"
+            });
 
-    })
+        })
     </script>
     <script>
-    $(function() {
-        $(".rateyo").rateYo().on("rateyo.change", function(e, data) {
-            var rating = data.rating;
-            $(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
-            $(this).parent().find('.result').text('Rating :' + rating);
-            $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
-        });
+        $(function() {
+            $(".rateyo").rateYo().on("rateyo.change", function(e, data) {
+                var rating = data.rating;
+                $(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
+                $(this).parent().find('.result').text('Rating :' + rating);
+                $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
+            });
 
-    });
+        });
     </script>
 
     <!-- rating script end -->
 
     <script>
-    $('.owl-carousel-12').owlCarousel({
-        loop: true,
-        margin: 12,
-        // nav:true,
-        responsive: {
-            0: {
-                items: 3
-            },
-            600: {
-                items: 4
-            },
-            1000: {
-                items: 6
+        $('.owl-carousel-12').owlCarousel({
+            loop: true,
+            margin: 12,
+            // nav:true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
             }
-        }
-    })
+        })
     </script>
 
     <script>
-    $('.owl-carousel').owlCarousel({
-        // loop:true,
-        margin: 12,
-        // nav:true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 3
+        $('.owl-carousel').owlCarousel({
+            // loop:true,
+            margin: 12,
+            // nav:true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
             }
-        }
-    })
+        })
     </script>
 
-    <?php 
-        $httpHost = $_SERVER['HTTP_HOST'];
-        if($httpHost==="localhost"){
-            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
-        } else{
-            echo '<script src="/admin/js/imageReplace.js"></script>';
-        }
+    <?php
+    $httpHost = $_SERVER['HTTP_HOST'];
+    if ($httpHost === "localhost") {
+        echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+    } else {
+        echo '<script src="/admin/js/imageReplace.js"></script>';
+    }
     ?>
 
     <!-- Theme Custom -->
@@ -746,212 +705,212 @@ if(isset($_SESSION['user'])){
 </html>
 <!-- ajax data start -->
 <script>
-$(document).ready(function() {
-    $("#modalsearch").keyup(function() {
-        var search = $("#modalsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../modalfound.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('#ajaxresponse').fadeIn();
-                    $("#filter").css("display", "block");
-                    $('#ajaxresponse').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#modalsearch").keyup(function() {
+            var search = $("#modalsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../modalfound.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('#ajaxresponse').fadeIn();
+                        $("#filter").css("display", "block");
+                        $('#ajaxresponse').html(result);
+                    }
+                });
+            } else {
+                $('#ajaxresponse').fadeOut();
+                $("#filter").css("display", "none");
+                $('#ajaxresponse').html("");
+            }
+        });
+        $("#modalsearch").focusout(function() {
             $('#ajaxresponse').fadeOut();
-            $("#filter").css("display", "none");
-            $('#ajaxresponse').html("");
-        }
+            $('#modalsearch').val("");
+        })
     });
-    $("#modalsearch").focusout(function() {
-        $('#ajaxresponse').fadeOut();
-        $('#modalsearch').val("");
-    })
-});
 </script>
 <!-- model start -->
 <script>
-$(document).ready(function() {
-    $("#searchmobile").keyup(function() {
-        var search = $("#searchmobile").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../modalfound1.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter').fadeIn();
-                    $(".filter").css("display", "block");
-                    $('.response').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#searchmobile").keyup(function() {
+            var search = $("#searchmobile").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../modalfound1.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter').fadeIn();
+                        $(".filter").css("display", "block");
+                        $('.response').html(result);
+                    }
+                });
+            } else {
+                $('.filter').fadeOut();
+                $(".filter").css("display", "none");
+                $('.response').html("");
+            }
+        })
+        $("#searchmobile").focusout(function() {
             $('.filter').fadeOut();
-            $(".filter").css("display", "none");
-            $('.response').html("");
-        }
-    })
-    $("#searchmobile").focusout(function() {
-        $('.filter').fadeOut();
-        $('#searchmobile').val("");
-    })
-});
+            $('#searchmobile').val("");
+        })
+    });
 </script>
 <!-- model end -->
 <!--earbud start-->
 <script>
-$(document).ready(function() {
-    $("#earbudsearch").keyup(function() {
-        var search = $("#earbudsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../foundearbud.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filterear').fadeIn();
-                    $(".filterear").css("display", "block");
-                    $('.responseear').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#earbudsearch").keyup(function() {
+            var search = $("#earbudsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../foundearbud.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filterear').fadeIn();
+                        $(".filterear").css("display", "block");
+                        $('.responseear').html(result);
+                    }
+                });
+            } else {
+                $('.filterear').fadeOut();
+                $(".filterear").css("display", "none");
+                $('.responseear').html("");
+            }
+        })
+        $("#tabletsearch").focusout(function() {
             $('.filterear').fadeOut();
-            $(".filterear").css("display", "none");
-            $('.responseear').html("");
-        }
-    })
-    $("#tabletsearch").focusout(function() {
-        $('.filterear').fadeOut();
-        $('#earbudsearch').val("");
-    })
-});
+            $('#earbudsearch').val("");
+        })
+    });
 </script>
 <!--eaerbud end-->
 <!-- tablet started -->
 <script>
-$(document).ready(function() {
-    $("#tabletsearch").keyup(function() {
-        var search = $("#tabletsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../foundtablet.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter1').fadeIn();
-                    $(".filter1").css("display", "block");
-                    $('.response1').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#tabletsearch").keyup(function() {
+            var search = $("#tabletsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../foundtablet.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter1').fadeIn();
+                        $(".filter1").css("display", "block");
+                        $('.response1').html(result);
+                    }
+                });
+            } else {
+                $('.filter1').fadeOut();
+                $(".filter1").css("display", "none");
+                $('.response1').html("");
+            }
+        })
+        $("#tabletsearch").focusout(function() {
             $('.filter1').fadeOut();
-            $(".filter1").css("display", "none");
-            $('.response1').html("");
-        }
-    })
-    $("#tabletsearch").focusout(function() {
-        $('.filter1').fadeOut();
-        $('#tabletsearch').val("");
-    })
-});
+            $('#tabletsearch').val("");
+        })
+    });
 </script>
 <!-- tablet end -->
 <!-- watch started -->
 <script>
-$(document).ready(function() {
-    $("#watchsearch").keyup(function() {
-        var search = $("#watchsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../foundwatch.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter2').fadeIn();
-                    $(".filter2").css("display", "block");
-                    $('.response2').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#watchsearch").keyup(function() {
+            var search = $("#watchsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../foundwatch.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter2').fadeIn();
+                        $(".filter2").css("display", "block");
+                        $('.response2').html(result);
+                    }
+                });
+            } else {
+                $('.filter2').fadeOut();
+                $(".filter2").css("display", "none");
+                $('.response2').html("");
+            }
+        })
+        $("#watchsearch").focusout(function() {
             $('.filter2').fadeOut();
-            $(".filter2").css("display", "none");
-            $('.response2').html("");
-        }
-    })
-    $("#watchsearch").focusout(function() {
-        $('.filter2').fadeOut();
-        $('#watchsearch').val("");
-    })
-});
+            $('#watchsearch').val("");
+        })
+    });
 </script>
 <!-- watch end -->
 <!-- ajax data end -->
 
 <script>
-$(document).ready(function() {
-    $("#userpic").on('click', function() {
-        $("#prof").toggle();
-    });
-});
-</script>
-<script>
-// Instantiate the Bootstrap carousel
-$('.multi-item-carousel').carousel({
-    interval: false
-});
-
-// for every slide in carousel, copy the next slide's item in the slide.
-// Do the same for the next, next item.
-$('.multi-item-carousel .item').each(function() {
-    var next = $(this).next();
-    if (!next.length) {
-        next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
-
-    if (next.next().length > 0) {
-        next.next().children(':first-child').clone().appendTo($(this));
-    } else {
-        $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-    }
-});
-</script>
-
-<script>
-function getmodel(gid, subcatid) {
-    var sid = gid;
-    if (sid != null && subcatid) {
-        $.ajax({
-            method: "post",
-            url: "../../ajaxmodel.php",
-            data: {
-                series: sid,
-                subcatid: subcatid
-            },
-            dataType: "html",
-            success: function(result) {
-                $("#ajaxrespon").html('');
-                $("#ajaxrespon").html(result);
-            }
+    $(document).ready(function() {
+        $("#userpic").on('click', function() {
+            $("#prof").toggle();
         });
+    });
+</script>
+<script>
+    // Instantiate the Bootstrap carousel
+    $('.multi-item-carousel').carousel({
+        interval: false
+    });
+
+    // for every slide in carousel, copy the next slide's item in the slide.
+    // Do the same for the next, next item.
+    $('.multi-item-carousel .item').each(function() {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        if (next.next().length > 0) {
+            next.next().children(':first-child').clone().appendTo($(this));
+        } else {
+            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
+
+<script>
+    function getmodel(gid, subcatid) {
+        var sid = gid;
+        if (sid != null && subcatid) {
+            $.ajax({
+                method: "post",
+                url: "../../ajaxmodel.php",
+                data: {
+                    series: sid,
+                    subcatid: subcatid
+                },
+                dataType: "html",
+                success: function(result) {
+                    $("#ajaxrespon").html('');
+                    $("#ajaxrespon").html(result);
+                }
+            });
+        }
     }
-}
 </script>

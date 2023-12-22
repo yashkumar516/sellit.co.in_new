@@ -15,21 +15,13 @@ function checkImageUrl() {
     var oldSrc = $(this).attr("src");
     oldSrc = oldSrc.replace(/^(\.\.\/)+/, "");
     if (oldSrc.indexOf("https://drive.google.com") !== -1) {
-      var newSrc = oldSrc.replace(/admin\/img\//, "");
-      newSrc = newSrc.replace(/img\//, "");
-      newSrc = newSrc.replace(/admin\//, "");
+      // Remove everything before https
+      newSrc = oldSrc.replace(/.*https/, "https");
+
       newSrc = newSrc.replace(
         /https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/,
         "https://drive.google.com/uc?id=$1"
       );
-
-      // // Replace the second link format
-      // newSrc = newSrc.replace(
-      //   /https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|embed|direct_url|open_url)/,
-      //   "https://drive.google.com/uc?id=$1"
-      // );
-
-      // $(this).attr("src", `${preImageUrl}/placeholder-product.png`);
       $(this).attr("src", newSrc);
     } else if (oldSrc.indexOf("https") !== -1) {
       if (oldSrc.indexOf("https://drive.google.com") !== -1) {

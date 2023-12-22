@@ -207,6 +207,14 @@ class SubCategoryManager
         $urlComponents = parse_url($brandImage);
         $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme']) ? "external" : "internal";
 
+        if ($imageUrlStatus === "external") {
+            $pattern =
+                "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+            // Replacement pattern
+            $replacement = "https://drive.google.com/uc?id=$1";
+            // Perform the replacement for the first URL
+            $brandImage = preg_replace($pattern, $replacement, $brandImage);
+        }
         $callvalue = $getdata["Call Not Recieve"];
         $threemonths = $getdata["Below 3 Months"];
         $threeto6months = $getdata["3-6 Months"];
@@ -462,7 +470,14 @@ class SubCategoryManager
         $brandImage = isset($getdata["Brand Image"]) ? $getdata["Brand Image"] : "";
         $urlComponents = parse_url($brandImage);
         $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme']) ? "external" : "internal";
-
+        if ($imageUrlStatus === "external") {
+            $pattern =
+                "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+            // Replacement pattern
+            $replacement = "https://drive.google.com/uc?id=$1";
+            // Perform the replacement for the first URL
+            $brandImage = preg_replace($pattern, $replacement, $brandImage);
+        }
         $callvalue = $getdata["Call Not Recieve"];
         $threemonths = $getdata["Below 3 Months"];
         $threeto6months = $getdata["3-6 Months"];
@@ -763,6 +778,14 @@ class SubCategoryManager
         $urlComponents = parse_url($brandImage);
         $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme']) ? "external" : "internal";
 
+        if ($imageUrlStatus === "external") {
+            $pattern =
+                "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+            // Replacement pattern
+            $replacement = "https://drive.google.com/uc?id=$1";
+            // Perform the replacement for the first URL
+            $brandImage = preg_replace($pattern, $replacement, $brandImage);
+        }
 
         $checkQuery = $id !== "" && $id !== null && $id > 0 ? "SELECT * FROM `subcategory` WHERE  `id` = ? " : "SELECT * FROM `subcategory` WHERE `subcategory_name` = ?  AND `category_id` = ?";
         // $checkQuery ="SELECT * FROM `subcategory` WHERE (`subcategory_name` = ? OR `id` = ?) AND `category_id` = ?";
@@ -882,6 +905,14 @@ class SubCategoryManager
         $urlComponents = parse_url($brandImage);
         $imageUrlStatus = $urlComponents !== false && isset($urlComponents['scheme']) ? "external" : "internal";
 
+        if ($imageUrlStatus === "external") {
+            $pattern =
+                "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+            // Replacement pattern
+            $replacement = "https://drive.google.com/uc?id=$1";
+            // Perform the replacement for the first URL
+            $brandImage = preg_replace($pattern, $replacement, $brandImage);
+        }
         $checkQuery = $id !== "" && $id !== null && $id > 0 ? "SELECT * FROM `subcategory` WHERE  `id` = ? " : "SELECT * FROM `subcategory` WHERE `subcategory_name` = ?  AND `category_id` = ?";
         // $checkQuery ="SELECT * FROM `subcategory` WHERE (`subcategory_name` = ? OR `id` = ?) AND `category_id` = ?";
         $checkStmt = $this->conn->prepare($checkQuery);
