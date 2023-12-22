@@ -596,6 +596,7 @@ if(isset($_POST['productss']))
                                         }
                                     ?>
                              <th>Modify Date</th>
+                             <th>Action</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -773,6 +774,13 @@ if(isset($_POST['productss']))
                              <td>
                                  <?php echo $modifyDate; ?>
                              </td>
+
+                             <td>
+                                 <a
+                                     href="delete_product_varient.php?id=<?php echo $selproduct['id']?>&vid= <?php echo $arproduct["vid"] ?>"><strong><i
+                                             class="fas fa-trash-alt mr-3" style="font-size:20px;"></i></strong></a>
+                             </td>
+
                          </tr>
                          <?php
                                 }
