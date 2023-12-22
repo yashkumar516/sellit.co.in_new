@@ -71,14 +71,14 @@ $headerCount=count($desiredHeaders);
                             : null;
                     } 
                     $counter = $i;
-                    $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId, $counter);
-                    $productId= $productInfo["id"];
-                    $productImageURL= $productInfo["image_url"];
-                    // if( $productImageURL === "external"){
-                    //     $imageManagerProduct= $imageManager->syncProductImageByRow($productInfo);
-                    // }
-                    $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
-                    $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
+                    $modelName = trim($rowData["Model Name"]);
+                    if($modelName !==""){
+                        $productInfo = $productManager->upsertProductId($rowData, $categoryId, $brandId, $seriesId, $counter);
+                        $productId= $productInfo["id"];
+                        
+                        $variantInfo = $variantManager->upsertVariantId($rowData, $categoryId, $productId, $brandId, $seriesId);
+                        $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
+                    }
                     $i++;
                 }
             }
