@@ -14,7 +14,10 @@ function checkImageUrl() {
   $("img").each(function () {
     var oldSrc = $(this).attr("src");
     oldSrc = oldSrc.replace(/^(\.\.\/)+/, "");
-    if (oldSrc.indexOf("https://drive.google.com") !== -1) {
+    if (
+      oldSrc.indexOf("https://drive.google.com") !== -1 &&
+      oldSrc.indexOf("https://drive.google.com2/uc?id=") === -1
+    ) {
       // Remove everything before https
       newSrc = oldSrc.replace(/.*https/, "https");
 
@@ -23,22 +26,23 @@ function checkImageUrl() {
         "https://drive.google.com/uc?id=$1"
       );
       $(this).attr("src", newSrc);
-    } else if (oldSrc.indexOf("https") !== -1) {
-      if (oldSrc.indexOf("https://drive.google.com") !== -1) {
-        // var newSrc = oldSrc.replace(/admin\/img\//, "");
-        newSrc = newSrc.replace(
-          /https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=sharing/,
-          "https://drive.google.com/uc?id=$1"
-        );
-        $(this).attr("src", newSrc);
-      } else {
-        oldSrc = oldSrc.split("https");
-        if (oldSrc.length > 0) {
-          oldSrc = "https" + oldSrc[1];
-          $(this).attr("src", oldSrc);
-        }
-      }
     }
+    // else if (oldSrc.indexOf("https") !== -1) {
+    //   if (oldSrc.indexOf("https://drive.google.com") !== -1) {
+    //     // var newSrc = oldSrc.replace(/admin\/img\//, "");
+    //     newSrc = newSrc.replace(
+    //       /https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=sharing/,
+    //       "https://drive.google.com/uc?id=$1"
+    //     );
+    //     $(this).attr("src", newSrc);
+    //   } else {
+    //     oldSrc = oldSrc.split("https");
+    //     if (oldSrc.length > 0) {
+    //       oldSrc = "https" + oldSrc[1];
+    //       $(this).attr("src", oldSrc);
+    //     }
+    //   }
+    // }
   });
 }
 
