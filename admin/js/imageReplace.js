@@ -26,6 +26,9 @@ function checkImageUrl() {
         "https://drive.google.com/uc?id=$1"
       );
       $(this).attr("src", newSrc);
+    } else if (oldSrc.indexOf("https") !== -1) {
+      newSrc = oldSrc.replace(/.*https/, "https");
+      $(this).attr("src", newSrc);
     }
     // else if (oldSrc.indexOf("https") !== -1) {
     //   if (oldSrc.indexOf("https://drive.google.com") !== -1) {
