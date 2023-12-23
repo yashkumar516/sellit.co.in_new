@@ -78,7 +78,7 @@ class SyncImageManager
 
             // Check if the image was successfully saved
             if ($imageContent !== false) {
-                echo 'Image downloaded successfully and saved to ' . $localFilePath;
+                // echo 'Image downloaded successfully and saved to ' . $localFilePath;
 
 
                 $subcategory_image = "drive/" . strtolower(str_replace(' ', '_', $row['subcategory_name'])) . '_' . $subcategoryId . '.png'; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
@@ -96,7 +96,7 @@ class SyncImageManager
                 $count = $count + 1;
             } else {
                 // Handle error, e.g., the image couldn't be saved
-                echo 'Failed to save the image.';
+                // echo 'Failed to save the image.';
                 $error = true;
             }
         }
@@ -365,7 +365,7 @@ class SyncImageManager
 
             // Check if the image was successfully saved
             if ($imageContent !== false) {
-                echo 'Image downloaded successfully and saved to ' . $localFilePath;
+                // echo 'Image downloaded successfully and saved to ' . $localFilePath;
 
 
                 $product_image = "drive/" . strtolower(str_replace(' ', '-', $row['product_name'])) . '_' . $productId . '.png'; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
@@ -383,7 +383,7 @@ class SyncImageManager
                 $count = $count + 1;
             } else {
                 // Handle error, e.g., the image couldn't be saved
-                echo 'Failed to save the image.';
+                // echo 'Failed to save the image.';
                 $error = true;
             }
         }

@@ -1,6 +1,9 @@
 {
   /* Add here all your JS customizations */
-
+  $("#do-spinner-call").click(function () {
+    //The load button
+    $("#spinner-div").show(); //Load button clicked
+  });
   var baseUrl =
     window.location.protocol +
     "//" +
@@ -82,4 +85,87 @@
     actualImage.style.display = "block";
     placeholder.style.display = "none";
   }
+}
+
+function syncImageAjax(syncOn) {
+  var id = 1;
+  console.log("syncOn---", { syncOn });
+  if (syncOn && syncOn !== "") {
+    $("#spinner-div").show();
+    $.ajax({
+      method: "post",
+      url: "ajaxSyncImage.php",
+      data: {
+        syncOn: syncOn,
+      },
+      dataType: "html",
+      success: function (result) {
+        console.log({ result });
+        alert(result);
+        let callbackUrl = syncOn === "Model" ? "ecommerce-products-form.php" : "brandquestions.php";
+        window.location.href = callbackUrl;
+        $("#spinner-div").hide();
+      },
+    });
+  }
+}
+
+function uploadAjaxCSV(uploadOn) {
+  var id = 1;
+  console.log("syncOn---", { syncOn });
+  if (syncOn && syncOn !== "") {
+    $("#spinner-div").show();
+    $.ajax({
+      method: "post",
+      url: "ajaxSyncImage.php",
+      data: {
+        uploadOn: uploadOn,
+      },
+      dataType: "html",
+      success: function (result) {
+        console.log({ result });
+        alert(result);
+        let callbackUrl = syncOn === "Model" ? "ecommerce-products-form.php" : "brandquestions.php";
+        window.location.href = callbackUrl;
+        $("#spinner-div").hide();
+      },
+    });
+  }
+}
+
+function submitCSVForm(uploadCSVForm, uploadType) {
+  $("#spinner-div").show();
+  var formData = new FormData($(`#${uploadCSVForm}`)[0]);
+  // var formData = new FormData($("#fileUploadForm")[0]);
+
+  formData.append("uploadType", uploadType);
+  // child-category.php?category=1
+  let callbackUrl =
+    uploadType === "Model"
+      ? "ecommerce-products-form.php"
+      : uploadType === "Brand"
+      ? "brandquestions.php"
+      : `child-category.php?category=${formData.get("categoryId")}`;
+  console.log({ formData });
+  $.ajax({
+    type: "POST",
+    url: "ajaxUploadCSV.php",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      console.log("File uploaded successfully", { response });
+
+      alert(response);
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+    },
+    error: function (error) {
+      alert("Upload failed");
+
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+      console.error("Error uploading file", error);
+    },
+  });
 }

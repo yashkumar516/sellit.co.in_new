@@ -61,10 +61,12 @@
             }
             if ($subCategoryInfo) {
                 echo "<script> alert('Brand upload successfully');
+                    $('#spinner-div').hide();
                     window.location.href = 'brandquestions.php';
                     </script>";
             } else {
                 echo "<script> alert('Brand upload failed');
+                    $('#spinner-div').hide();
                     window.location.href = 'brandquestions.php';
                     </script>";
             }
@@ -82,12 +84,14 @@
             // echo " Sync brand image $totalValue out of $dataValue ";
             echo "<script> 
             alert('Brand image $dataValue out of $totalValue have been synced successfully');
+            $('#spinner-div').hide();
                 window.location.href = 'ecommerce-products-form.php';
                 </script>";
         } else {
             // echo "Sync brand image failed";
             echo "<script> 
             alert('Brand image sync failed');
+             $('#spinner-div').hide();
                 window.location.href = 'ecommerce-products-form.php';
                 </script>";
         }
@@ -108,6 +112,12 @@
      </header>
 
      <script src="js/selectImage.js"></script>
+     <!-- <div class="text-center">
+         <div class="spinner-border" role="status">
+             <span class="sr-only">Loading...</span>
+         </div>
+     </div> -->
+
      <!-- start question table -->
      <div class="row mt-5">
 
@@ -118,7 +128,7 @@
                  <div class="datatable-header">
                      <div class="row  px-3 pt-3">
                          <div class="col-5">
-                             <form action="#" enctype="multipart/form-data" method="POST">
+                             <form action="#" enctype="multipart/form-data" method="POST" id="uploadCSVBrandForm">
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
@@ -135,8 +145,9 @@
                                              style="display: none;" />
                                      </span>
                                  </div>
-                                 <button type="submit" class="btn btn-primary w-100" onChange="uploadFile()"
-                                     value="upload" name="uploadWithBrandCSV"> <i
+                                 <button type="button" class="btn btn-primary w-100" value="upload"
+                                     name="uploadWithBrandCSV" id="do-spinner-call"
+                                     onclick="submitCSVForm('uploadCSVBrandForm','Brand')"> <i
                                          class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
                              </form>
                          </div>
@@ -169,11 +180,13 @@
                                         $rowCount = $row['id'];
                                         if ($rowCount > 0) {
                                             ?>
-                                 <form action="#" enctype="multipart/form-data" method="POST" class="w-100">
-                                     <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"><i
-                                             class="bx bx-sync text-4 mr-1"></i>Sync <?php echo $rowCount?> Image
-                                     </button>
-                                 </form>
+                                 <!-- <form action="#" enctype="multipart/form-data" method="POST" class="w-100"> -->
+                                 <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageBrand"
+                                     onclick="syncImageAjax('Brand')"><i class="bx bx-sync text-4 mr-1"></i>Sync
+                                     <?php echo $rowCount>1?$rowCount." Images":$rowCount." Image"?>
+
+                                 </button>
+                                 <!-- </form> -->
                                  <?php
                                                 } else {
                                                 ?>
@@ -435,13 +448,7 @@ $(document).ready(function() {
         ]
     });
 });
- </script>
- <script>
-$(document).ready(function() {
-    var table = $('#datatable-ecommerce-list').DataTable();
-});
- </script> -->
-
+ </script>-->
 
  <script>
 var demoWithBrandCSV = [{

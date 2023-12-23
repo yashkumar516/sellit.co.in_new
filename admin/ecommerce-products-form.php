@@ -21,7 +21,7 @@ $syncImageManager = new SyncImageManager($con);
 
 $desiredHeaders = [ "Model ID","Model Name","Model Image","Variant ID","Variant Name","Variant Price","Display Value","Copy Display","Front Camera","Back Camera","Volume Button","Finger Touch","Speaker","Power Button","Face Sensor","Charging Port","Audio Reciever","Camera Glass","Wifi","Silent Button","Battery","Bluetooth","Vibrator","Microphone"];
 $headerCount=count($desiredHeaders);  
-    if (isset($_POST["uploadWithBrandCSV"]) && isset($_POST["subCategory"]) ) {
+    if (isset($_POST["uploadWithModelCSV"]) && isset($_POST["subCategory"]) ) {
         
      
         $brandId= $_POST["subCategory"];
@@ -86,38 +86,47 @@ $headerCount=count($desiredHeaders);
             if ($questionsInfo && $productInfo && $variantInfo) {
                 echo "<script> 
                 alert('Model upload successfully');
+              
                     window.location.href = 'ecommerce-products-form.php';
+                    $('#spinner-div').hide();
                     </script>";
             } else {
                 echo "<script> 
                 alert('Model upload failed');
+           
                     window.location.href = 'ecommerce-products-form.php';
+                    $('#spinner-div').hide();
                     </script>";
             } 
         }
     } 
      
-    if(isset($_POST["syncImageModel"])){
+    // if(isset($_POST["syncImageModel"])){
         
-        $result =  $syncImageManager->syncProductImage();
-        $errorValue = $result['error'];
-        $dataValue = $result['data'];
-        $totalValue = $result['totalData'];
-
-        if (!$errorValue) {
-            // echo " Sync brand image $totalValue out of $dataValue ";
-            echo "<script> 
-            alert('Model image $dataValue out of $totalValue have been synced successfully');
-                window.location.href = 'ecommerce-products-form.php';
-                </script>";
-        } else {
-            // echo "Sync brand image failed";
-            echo "<script> 
-            alert('Model image sync failed');
-                window.location.href = 'ecommerce-products-form.php';
-                </script>";
-        }
-    }
+    //     // echo "<script> $('#spinner-div').show(); </script>";
+    //     $result =  $syncImageManager->syncProductImage();
+    //     $errorValue = $result['error'];
+    //     $dataValue = $result['data'];
+    //     $totalValue = $result['totalData'];
+ 
+    //     if (!$errorValue) {
+    //         // echo " Sync brand image $totalValue out of $dataValue ";
+    //         echo "<script> 
+    //         alert('Model image $dataValue out of $totalValue have been synced successfully');
+         
+    //             window.location.href = 'ecommerce-products-form.php';   
+    //             $('#spinner-div').hide();
+    //             </script>";
+    //     } else {
+    //         // echo "Sync brand image failed";
+    //         echo "<script> 
+    //         alert('Model image sync failed');
+         
+    //             window.location.href = 'ecommerce-products-form.php';
+    //             $('#spinner-div').hide();
+    //             </script>";
+    //     }
+    // }
 ?>
 
  <?php
@@ -457,7 +466,7 @@ if(isset($_POST['productss']))
                  <div class="datatable-header">
                      <div class="row  px-3 pt-3">
                          <div class="col-5">
-                             <form id="uploadCSVForm" action="#" enctype="multipart/form-data" method="POST">
+                             <form id="uploadCSVModelForm" action="#" enctype="multipart/form-data" method="POST">
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
@@ -521,8 +530,9 @@ if(isset($_POST['productss']))
 
                                      </div>
                                  </div>
-                                 <button type="submit" class="btn btn-primary w-100" value="upload"
-                                     name="uploadWithBrandCSV"> <i class="bx bx-upload text-4 mr-2"></i>Upload CSV
+                                 <button type="button" class="btn btn-primary w-100" value="upload"
+                                     name="uploadWithModelCSV" onclick="submitCSVForm('uploadCSVModelForm','Model')"> <i
+                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV
                                  </button>
                              </form>
                          </div>
@@ -556,11 +566,17 @@ if(isset($_POST['productss']))
                                         $rowCount = $row['id']; 
                                         if ($rowCount > 0) {
                                     ?>
-                                 <form action="#" enctype="multipart/form-data" method="POST" class="w-100">
-                                     <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"><i
-                                             class="bx bx-sync text-4 mr-1"></i>Sync <?php echo $rowCount?> Image
-                                     </button>
-                                 </form>
+                                 <!-- <form action="#" enctype="multipart/form-data" method="POST" class="w-100"> -->
+                                 <!-- <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"
+                                         id="do-spinner-call"><i class="bx bx-sync text-4 mr-1"></i>Sync
+                                         <?php echo $rowCount?> Image
+                                     </button> -->
+                                 <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"
+                                     onclick="syncImageAjax('Model')"><i class="bx bx-sync text-4 mr-1"></i>Sync
+                                     <?php echo $rowCount>1?$rowCount." Images":$rowCount." Image"?>
+
+                                 </button>
+                                 <!-- </form> -->
                                  <?php
                                         } else {
                                         ?>
@@ -776,9 +792,9 @@ if(isset($_POST['productss']))
                              </td>
 
                              <td>
-                                 <a
-                                     href="delete_product_varient.php?id=<?php echo $selproduct['id']?>&vid= <?php echo $arproduct["vid"] ?>"><strong><i
-                                             class="fas fa-trash-alt mr-3" style="font-size:20px;"></i></strong></a>
+                                 <a href="delete_product_varient.php?id=<?php echo $selproduct['id']?>&vid= <?php echo $arproduct["vid"] ?>"
+                                     id="do-spinner-call"><strong><i class="fas fa-trash-alt mr-3"
+                                             style="font-size:20px;"></i></strong></a>
                              </td>
 
                          </tr>

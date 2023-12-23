@@ -3,26 +3,24 @@
     include_once "./classes/syncImage.php";
     $syncImageManager = new SyncImageManager($con);
     if (isset($_POST["syncOn"])) {
-        $syncOn=$_POST["syncOn"];
-        echo "<br/>-------------------------";
-        echo "<br/>-------------------------";
-        echo "<br/>-------------------------";
-        echo "<br/>-------------------------";
-        echo "<br/>-------------------------";
-        echo "<br/>------------------------syncOn-".$syncOn;
-        if($syncOn ==="brand"){
+        $syncOn=$_POST["syncOn"]; 
+        if($syncOn ==="Brand"){
 
             $result =  $syncImageManager->syncBrandImage();
             $errorValue = $result['error'];
             $dataValue = $result['data'];
             $totalValue = $result['totalData'];
     
+            
+            // return $result;
             if (!$errorValue) {
-                echo " Sync brand image $totalValue out of $dataValue ";
+                $msg = $dataValue>1?"Brand images $dataValue out of $totalValue have been synced successfully.":"Brand image $dataValue out of $totalValue have been synced successfully.";
+                echo $msg;
             } else {
-                echo "Sync brand image failed";
+                $msg = $totalValue>1?"Brand images sync failed":"Brand image sync failed";
+                echo $msg;
             }
-        } else if($syncOn ==="model"){
+        } else if($syncOn ==="Model"){
             
             $result =  $syncImageManager->syncProductImage();
             $errorValue = $result['error'];
@@ -30,10 +28,15 @@
             $totalValue = $result['totalData'];
     
             if (!$errorValue) {
-                echo " Sync brand image $totalValue out of $dataValue ";
+                $msg = $dataValue>1?"Model images $dataValue out of $totalValue have been synced successfully.":"Model image $dataValue out of $totalValue have been synced successfully.";
+                echo $msg;
             } else {
-                echo "Sync brand image failed";
+                $msg = $totalValue>1?"Model images sync failed":"Model image sync failed";
+                echo $msg;
             }
+        } else{
+            
+        echo "Error uploading the 'syncType' is not set.";
         }
     }
 ?>
