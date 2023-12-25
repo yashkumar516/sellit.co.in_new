@@ -15,8 +15,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
                 $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
                 $replacement = "https://drive.google.com/uc?id=$1";
                 $productImage = $array['image_url'] !=="external" ? 'https://sellit.co.in/admin/img/'.$array['product_image']: preg_replace($pattern, $replacement, $array['product_image']);
-                $productImage= strpos($productImage, "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $productImage):$productImage;
-               
+                $productImage= strpos($array['product_image'], "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $array['product_image']):$productImage;
+                
                 $bannerlist[] = [
                              'url' => 'https://sellit.co.in/sellapp/variant.php?id='.$array['id'].'&&bid='.$array['subcategoryid'],
                              'name'=>$array['product_name'],
