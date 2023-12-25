@@ -22,7 +22,7 @@
         }
     } 
     $output = new mobbrand();
-    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = `$cid` ORDER BY `subcategory_name` ASC"));
+    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '$cid' ORDER BY `subcategory_name` ASC"));
  }else{
          $list = [
                 'status' => '0',
