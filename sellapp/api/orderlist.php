@@ -7,10 +7,14 @@
     class getaddress{
         public function get($getquery){
             foreach($getquery as $array){
+                $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+                $replacement = "https://drive.google.com/uc?id=$1";
+                $image= strpos($array['mimg'], "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $array['mimg']):$array['mimg'];
+                
                 $list[] = [
                              'devicename' => $array['model_name'],
                              'varienname' => $array['varient'],
-			     'image' => "https://sellit.co.in/admin/img/".$array['mimg'],
+			     'image' => "https://sellit.co.in/admin/img/".$image,
 			      'orderno' => $array['genorderid'],
                              'date' => $array['modify_date'],
                     ];

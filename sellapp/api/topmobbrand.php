@@ -7,9 +7,14 @@
         public function getbrand($getquery){
             foreach($getquery as $array){
                   $catid = $array['category_id'];
+                  $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
+                $replacement = "https://drive.google.com/uc?id=$1";
+                $brandImage = $array['image_url'] !=="external" ? 'https://sellit.co.in/admin/img/'.$array['subcategory_image']: preg_replace($pattern, $replacement, $array['subcategory_image']);
+                $brandImage= strpos($brandImage, "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $brandImage):$brandImage;
+                
                 $list[] = [
                               'id' => $array['id'],
-                             'file' => 'https://sellit.co.in/admin/img/'.$array['subcategory_image'],
+                             'file' => $brandImage,
                     ];
                     $array = $list;
             }
