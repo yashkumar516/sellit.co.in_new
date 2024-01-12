@@ -61,7 +61,7 @@
         }
     } 
     $output = new topmobile();
-    echo $output->getmobile(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = `$cid` ORDER BY  `counter` DESC, `modify_date` DESC"));
+    echo $output->getmobile(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '$cid' ORDER BY  `counter` DESC, `modify_date` DESC"));
  }else{
          $list = [
                 'status' => '0',

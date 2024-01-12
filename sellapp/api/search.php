@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
             foreach($getquery as $array){
                 $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
                 $replacement = "https://drive.google.com/uc?id=$1";
-                $image= strpos($array['product_image'], "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $array['product_image']):$array['mimg'];
+                $image= strpos($array['product_image'], "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $array['product_image']):$array['product_image'];
                 
                 $bannerlist[] = [
                              'url' => 'https://sellit.co.in/sellapp/variant.php?id='.$array['id'].'&&bid='.$array['subcategoryid'],
