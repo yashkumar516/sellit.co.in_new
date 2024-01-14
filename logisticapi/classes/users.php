@@ -583,7 +583,7 @@ class Users
         );
         $usermobileno = $userrecord["mobile"];
         $name = $userrecord["name"];
-        echo "<<<--->>>" . $accountno;
+        // echo "<<<--->>>" . $accountno;
         // $upiid = $accountdetail['upi'];
         // new code start
         date_default_timezone_set("Asia/Calcutta");
