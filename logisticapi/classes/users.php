@@ -565,7 +565,7 @@ class Users
         $customerid = $uid["userid"];
         $amount = $this->extraamount;
         
-        $extraAmount = $this->extraamount-$uid['offerprice'];
+        $extraAmount = $this->extraamount - $uid['offerprice'];
          
         $accountdetail = mysqli_fetch_assoc(
             mysqli_query(
