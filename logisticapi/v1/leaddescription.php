@@ -300,7 +300,7 @@ $user_obj = new  Users($connection);
             }else{
                 $cable = "working";
             }
-            if($arr['offerprice'] >= 100){
+            if($arr['offerprice'] >= 1){
                 $offerprice = $arr['offerprice'];
             }else{
                  $offerprice = "sorry we can't purchase";

@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
              
     if($leads->num_rows>0){
         while($arr = $leads->fetch_assoc()){
-                if($arr['offerprice'] >= 100){
+                if($arr['offerprice'] >= 1){
                  $offerprice = $arr['offerprice'];
              }else{
                 $offerprice = "sorry we can't purchase"; 

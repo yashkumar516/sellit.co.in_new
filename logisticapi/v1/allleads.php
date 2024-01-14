@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $month = $arr['day1'];
                     $year = $arr['year'];
                 }
-                if ($arr['offerprice'] >= 100) {
+                if ($arr['offerprice'] >= 1) {
                     $offerprice = $arr['offerprice'];
                 } else {
                     $offerprice = "sorry we can't purchase";
