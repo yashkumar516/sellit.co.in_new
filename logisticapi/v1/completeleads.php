@@ -60,7 +60,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         $user_obj->aadharfronttemp = $_FILES['aadharfront']['tmp_name'];
         $user_obj->aadharbacktemp = $_FILES['aadharback']['tmp_name'];
         $user_obj->extraamount = $extraamount;
-        $leadup = $user_obj->leadcomplete();
+        $leadup = $user_obj->leadcompleteTest();
         if(!empty($leadup) && $leadup == "update successfully"){
             
           move_uploaded_file($user_obj->pic1temp,"../../admin/img/mobileimages/".$user_obj->pic1);
