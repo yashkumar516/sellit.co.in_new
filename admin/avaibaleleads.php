@@ -121,7 +121,7 @@
                                      <?php
 													}elseif($day != null){
 													?>
-                                     <td><?php echo `$day-$month-$year` ?></td>
+                                     <td><?php echo $day."-".$month."-".$year ?></td>
                                      <?php
 													}else{
 													?>
