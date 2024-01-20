@@ -85,13 +85,17 @@
 												   $choseday = $pickupdate['choseday'];
 												   $day = $pickupdate['day'];
                                                    $month = $pickupdate['day1'];
-                                                   $year= $pickupdate['year'];
+                                                //    $year= $pickupdate['year'];
 												   $time = $pickupdate['time'];
-                                                   $year = $year !==""?$year:2023;
-                                                   $date = "$day $month $year";
-
+                                                   $year= isset($pickupdate['year'])?$pickupdate['year']:2023;
+                                                 
+                                                   $dateString = "$day-$month-$year";
+                                                   if (empty($year)||$year=="") {
+                                                      
+                                                       $dateString = "$day-May-2023";
+                                                   }
                                                     // Assuming you want to format the date, you can use the date function like this:
-                                                    $formattedDate = date("Y-m-d", strtotime($date));
+                                                    // $formattedDate = date("Y-m-d", strtotime($date));
 												}else{
 													$soon = null;
 													$choseday = null;
@@ -126,7 +130,7 @@
                                      <?php
 													}elseif($day != null){
 													?>
-                                     <td><?php echo $formattedDate ?></td>
+                                     <td><?php echo $dateString ?></td>
                                      <?php
 													}else{
 													?>

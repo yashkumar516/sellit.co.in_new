@@ -245,14 +245,14 @@ $(document).ready(function() {
                         $('#sibm').removeAttr("disabled", "disabled");
                         $('#error').html(
                             '<p class="text-success">we are available at this location</p>'
-                            );
+                        );
                         $('#statedy').val(data['state']);
                         $('#citdy').val(data['city']);
                     } else {
                         $('#sibm').attr("disabled", "disabled");
                         $('#error').html(
                             '<p class="text-danger">We are currently available in Delhi NCR only</p>'
-                            )
+                        )
                     }
                 }
             });
