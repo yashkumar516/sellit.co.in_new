@@ -87,6 +87,10 @@
                                                    $month = $pickupdate['day1'];
                                                    $year= $pickupdate['year'];
 												   $time = $pickupdate['time'];
+                                                   $date = "$day $month $year";
+
+                                                    // Assuming you want to format the date, you can use the date function like this:
+                                                    $formattedDate = date("Y-m-d", strtotime($date));
 												}else{
 													$soon = null;
 													$choseday = null;
@@ -121,7 +125,7 @@
                                      <?php
 													}elseif($day != null){
 													?>
-                                     <td><?php echo $day. $month!==null?"/".$month."/".$year:"" ?></td>
+                                     <td><?php echo $formattedDate ?></td>
                                      <?php
 													}else{
 													?>
