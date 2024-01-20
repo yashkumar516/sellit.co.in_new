@@ -84,11 +84,15 @@
 												   $soon = $pickupdate['soon'];
 												   $choseday = $pickupdate['choseday'];
 												   $day = $pickupdate['day'];
+                                                   $month = $pickupdate['day1'];
+                                                   $year= $pickupdate['year'];
 												   $time = $pickupdate['time'];
 												}else{
 													$soon = null;
 													$choseday = null;
 													$day = null;
+                                                    $month = null;
+                                                    $year = null;
 													$time = null;
 												}
 												?>
@@ -117,7 +121,7 @@
                                      <?php
 													}elseif($day != null){
 													?>
-                                     <td><?php echo $day ?></td>
+                                     <td><?php echo `$day-$month-$year` ?></td>
                                      <?php
 													}else{
 													?>

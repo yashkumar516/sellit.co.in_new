@@ -99,13 +99,7 @@
 
 
     $yourString = "https://drive.google.com/file/d/1gOsmir8ZMn6m9DyGHnBtbLcJm-ah0wLG/view?usp=drive_link";
-
-    echo "</br>";
-    echo "</br>";
-    echo "</br>";
-    echo "</br>";
-    echo "</br>";
-    echo "</br>";
+ 
     // Check if the string contains "https://drive.google.com"
     if (strpos($yourString, "https://drive.google.com") !== false) {
         // If the substring is found, perform the desired action (e.g., exit)
@@ -113,12 +107,9 @@
         $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
         // Replacement pattern
         $replacement = "https://drive.google.com/uc?id=$1";
-        echo "--------------------------convert->". preg_replace($pattern, $replacement, $yourString);
-        // $productImage = $array['image_url'] !=="external" ? 'https://sellit.co.in/admin/img/'.$yourString: preg_replace($pattern, $replacement, $yourString);
-      
+       
     } else {
-        // If the substring is not found, perform another action
-        echo "----------------------String does not contain ". $yourString;
+        // If the substring is not found, perform another action 
     }
 
     ?>
