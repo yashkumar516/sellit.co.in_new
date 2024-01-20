@@ -86,7 +86,7 @@
 											$month = $pickupdate['day1'];
                                             $year= $pickupdate['year'];
 											$time = $pickupdate['time'];
-                                            
+                                            $year = $year !==""?$year:2023;
                                             $date = "$day $month $year";
 
                                             // Assuming you want to format the date, you can use the date function like this:
