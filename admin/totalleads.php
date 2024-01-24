@@ -107,8 +107,15 @@
                                              href="ecommerce-orders-detail.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
                                      </td>
                                      <td>
-                                         <a title="delete"><strong><i class="fas fa-trash-alt mr-3"
-                                                     style="font-size:20px;"></i></strong></a>
+
+                                         <?php
+                                            if ($arorder['status'] !== "Complete") {
+                                                echo '<a title="delete" href="#" onclick="deleteLead(' . $arorder['id'] . ', `Total`)" style="cursor: pointer;"><strong style="cursor: pointer;"><i class="fas fa-trash-alt mr-3" style="font-size:20px;"></i></strong></a>';
+                                            } else {
+                                                echo '<a title="delete"  style="pointer-events: none; cursor: not-allowed;"><strong><i class="fas fa-trash-alt mr-3" style="font-size:20px;"></i></strong></a>';
+                                            }
+                                        ?>
+
                                          <a href="moreinfo.php?id=<?php echo $arorder['id'] ?>" title="more info"><i
                                                  class="fas fa-edit ml-1" style="font-size:20px;"></i></strong></a>
                                      </td>
@@ -282,6 +289,23 @@
 
  <!-- Theme Initialization Files -->
  <script src="js/theme.init.js"></script>
+ <script>
+function deleteLead(id, status) {
+    console.log({
+        id,
+        status
+    })
+    // Display a confirmation dialog
+    var isConfirmed = window.confirm('Are you sure you want to delete this lead?');
+
+    // Check the user's response
+    if (isConfirmed) {
+        // If confirmed, redirect to the delete_lead.php page with the specified parameters
+        window.location.href = 'delete_lead.php?id=' + id + '&status=' + status;
+    }
+}
+ </script>
+
  <!-- Analytics to Track Preview Website -->
  <script>
 (function(i, s, o, g, r, a, m) {

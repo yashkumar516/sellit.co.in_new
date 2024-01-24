@@ -61,7 +61,7 @@
                                  <tr>
                                      <!-- <th width="3%"><input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="" /></th> -->
                                      <th width="5%">ID</th>
-                                     <th width="9%">Action</th>
+                                     <!-- <th width="9%">Action</th> -->
                                      <th width="13%">Model Name</th>
                                      <th width="13%">Contact</th>
                                      <th width="13%">Offerprice</th>
@@ -96,10 +96,10 @@
                                      <td><a
                                              href="ecommerce-orders-detail.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
                                      </td>
-                                     <td>
+                                     <!-- <td>
                                          <a title="delete"><strong><i class="fas fa-trash-alt mr-3"
                                                      style="font-size:20px;"></i></strong></a>
-                                     </td>
+                                     </td> -->
                                      <td><?php echo $arorder['model_name'] ?></td>
                                      <td><?php echo $conact['mobile']  ?></td>
                                      <td>₹<?php echo $arorder['offerprice'] ?></td>
