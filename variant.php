@@ -23,11 +23,11 @@ if (isset($_SESSION['user'])) {
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>Sell Old iPhone Online in India | Sell Old Apple Phones Online</title>
+    <title>Best Place to Sell Old Phones | Best Website to Sell Old Phone | Cash phone</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="q-24As6IUgQYlnT2-RVsVVYP07YI6kxtdMd_gNndDVg" />
     <meta name="description"
-        content="Sell Old iPhone Online in India at Best Price- Sell your old Apple iPhone phone online with ease at Sellit.co.in. To Check or Sell old apple iphone online device's value, visit our website now and get started! ">
+        content="Sellit.co.in is the best place sell old phones online in Delhi NCR, Delhi, Faridabad, Ghaziabad, Noida & Gurgaon. With its easy-to-use platform and top prices, it's the ideal choice for anyone who's looking the best website to Sell old Phone online quickly and easily.">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
