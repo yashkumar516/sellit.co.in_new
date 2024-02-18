@@ -569,7 +569,7 @@ if(isset($_POST['productss']))
                                  <!-- <form action="#" enctype="multipart/form-data" method="POST" class="w-100"> -->
                                  <!-- <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"
                                          id="do-spinner-call"><i class="bx bx-sync text-4 mr-1"></i>Sync
-                                         <?php echo $rowCount?> Image
+                                         <?php echo $rowCount?> Imagec
                                      </button> -->
                                  <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"
                                      onclick="syncImageAjax('Model')"><i class="bx bx-sync text-4 mr-1"></i>Sync

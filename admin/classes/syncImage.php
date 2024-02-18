@@ -69,9 +69,42 @@ class SyncImageManager
             if (!is_dir($localDirectory)) {
                 mkdir($localDirectory, 0777, true);
             }
+            
+            $special_symbols = array(
+                '@' => '',
+                '#' => '',
+                '$' => '',
+                '%' => '',
+                '^' => '',
+                '&' => '',
+                '*' => '',
+                '(' => '',
+                ')' => '',
+                '_' => '',
+                '+' => '',
+                '{' => '',
+                '}' => '',
+                '[' => '',
+                ']' => '',
+                '|' => '',
+                '\\' => '',
+                '/' => '',
+                '?' => '',
+                '<' => '',
+                '>' => '',
+                ',' => '',
+                ',' => '',
+                ' ' => '-'
+                // Add more special symbols and their replacements as needed
+            );
+
+            // Use str_replace to replace special symbols
+            $new_string = str_replace(array_keys($special_symbols), '', $row['subcategory_name']);
+
+            $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $subcategoryId . '.png';
 
             // Specify the local file path, combining the directory and file name
-            $localFilePath = $localDirectory . strtolower(str_replace(' ', '_', $row['subcategory_name'])) . '_' . $subcategoryId . '.png';
+            $localFilePath = $localDirectory . $imageName;
 
             // Save the image content to a local file
             file_put_contents($localFilePath, $imageContent);
@@ -81,7 +114,7 @@ class SyncImageManager
                 // echo 'Image downloaded successfully and saved to ' . $localFilePath;
 
 
-                $subcategory_image = "drive/" . strtolower(str_replace(' ', '_', $row['subcategory_name'])) . '_' . $subcategoryId . '.png'; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
+                $subcategory_image = "drive/" . $imageName; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
 
                 $updateQuery = " UPDATE `subcategory`
             SET
@@ -188,9 +221,40 @@ class SyncImageManager
             mkdir($localDirectory, 0777, true);
         }
 
-        // Specify the local file path, combining the directory and file name
-        $localFilePath = $localDirectory . strtolower(str_replace(' ', '_', $row['subcategory_name'])) . '_' . $subcategoryId . '.png';
+        $special_symbols = array(
+            '@' => '',
+            '#' => '',
+            '$' => '',
+            '%' => '',
+            '^' => '',
+            '&' => '',
+            '*' => '',
+            '(' => '',
+            ')' => '',
+            '_' => '',
+            '+' => '',
+            '{' => '',
+            '}' => '',
+            '[' => '',
+            ']' => '',
+            '|' => '',
+            '\\' => '',
+            '/' => '',
+            '?' => '',
+            '<' => '',
+            '>' => '',
+            ',' => '',
+            ',' => '', 
+            // Add more special symbols and their replacements as needed
+        );
+            // Use str_replace to replace special symbols
+            $new_string = str_replace(array_keys($special_symbols), '', $row['subcategoryId']);
 
+            $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $subcategoryId . '.png';
+
+            // Specify the local file path, combining the directory and file name
+            $localFilePath = $localDirectory . $imageName;
+ 
         // Save the image content to a local file
         file_put_contents($localFilePath, $imageContent);
 
@@ -199,7 +263,7 @@ class SyncImageManager
             // echo 'Image downloaded successfully and saved to ' . $localFilePath;
 
 
-            $subcategory_image = "drive/" . strtolower(str_replace(' ', '_', $row['subcategory_name'])) . '_' . $subcategoryId . '.png'; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
+            $subcategory_image = "drive/" . $imageName; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
 
             $updateQuery = " UPDATE `subcategory`
         SET
@@ -266,16 +330,48 @@ class SyncImageManager
             mkdir($localDirectory, 0777, true);
         }
 
-        // Specify the local file path, combining the directory and file name
-        $localFilePath = $localDirectory . strtolower(str_replace(' ', '-', $row['product_name'])) . '_' . $productId . '.png';
+        $special_symbols = array(
+            '@' => '',
+            '#' => '',
+            '$' => '',
+            '%' => '',
+            '^' => '',
+            '&' => '',
+            '*' => '',
+            '(' => '',
+            ')' => '',
+            '_' => '',
+            '+' => '',
+            '{' => '',
+            '}' => '',
+            '[' => '',
+            ']' => '',
+            '|' => '',
+            '\\' => '',
+            '/' => '',
+            '?' => '',
+            '<' => '',
+            '>' => '',
+            ',' => '',
+            ',' => '', 
+            // Add more special symbols and their replacements as needed
+        );
+            // Use str_replace to replace special symbols
+            $new_string = str_replace(array_keys($special_symbols), '', $row['product_name']);
 
+            $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $productId . '.png';
+
+            // Specify the local file path, combining the directory and file name
+            $localFilePath = $localDirectory . $imageName;
+
+ 
         // Save the image content to a local file
         file_put_contents($localFilePath, $imageContent);
 
         // Check if the image was successfully saved
         if ($imageContent !== false) {
             // echo 'Image downloaded successfully and saved to ' . $localFilePath;
-            $product_image = "drive/" . strtolower(str_replace(' ', '-', $row['product_name'])) . '_' . $productId . '.png'; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
+            $product_image = "drive/" . $imageName; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
 
             $updateQuery = " UPDATE `product`
         SET
@@ -355,10 +451,41 @@ class SyncImageManager
             // Create the directory if it doesn't exist
             if (!is_dir($localDirectory)) {
                 mkdir($localDirectory, 0777, true);
-            }
+            } 
+            $special_symbols = array(
+                '@' => '',
+                '#' => '',
+                '$' => '',
+                '%' => '',
+                '^' => '',
+                '&' => '',
+                '*' => '',
+                '(' => '',
+                ')' => '',
+                '_' => '',
+                '+' => '',
+                '{' => '',
+                '}' => '',
+                '[' => '',
+                ']' => '',
+                '|' => '',
+                '\\' => '',
+                '/' => '',
+                '?' => '',
+                '<' => '',
+                '>' => '',
+                ',' => '',
+                ',' => '',
+                ' ' => '-'
+                // Add more special symbols and their replacements as needed
+            );
 
+            // Use str_replace to replace special symbols
+            $new_string = str_replace(array_keys($special_symbols), '', $row['product_name']);
+
+            $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $productId . '.png';
             // Specify the local file path, combining the directory and file name
-            $localFilePath = $localDirectory . strtolower(str_replace(' ', '-', $row['product_name'])) . '_' . $productId . '.png';
+            $localFilePath = $localDirectory . $imageName;
 
             // Save the image content to a local file
             file_put_contents($localFilePath, $imageContent);
@@ -368,7 +495,7 @@ class SyncImageManager
                 // echo 'Image downloaded successfully and saved to ' . $localFilePath;
 
 
-                $product_image = "drive/" . strtolower(str_replace(' ', '-', $row['product_name'])) . '_' . $productId . '.png'; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
+                $product_image = "drive/" . $imageName; // $modelImage !=="" ? $modelImage : $existingProduct['product_image']; // Get the existing product ID
 
                 $updateQuery = " UPDATE `product`
             SET
