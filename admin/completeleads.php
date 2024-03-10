@@ -94,7 +94,7 @@
                                  <tr>
                                      <!-- <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td> -->
                                      <td><a
-                                             href="ecommerce-orders-detail.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
+                                             href="ecommerce-orders-receipt.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
                                      </td>
                                      <!-- <td>
                                          <a title="delete"><strong><i class="fas fa-trash-alt mr-3"
