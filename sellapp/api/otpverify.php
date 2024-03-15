@@ -7,8 +7,20 @@
       if($row >= 1){
       $data = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `userrecord` WHERE `mobile` = '$mobile' ")); 
       $uid = $data['id'];
-      $name = $data['name'];
-      $email = $data['email'];
+      $status = $data['status'];
+
+      // Check if status is inactive
+      if ($status === 'inactive') {
+        $name = $_POST['name'];
+        $email =$_POST['email'];
+          // Update status to 'active', and update name and email
+          $update_query = "UPDATE `userrecord` SET `status` = 'active', `name` = '$name', `email` = '$email' WHERE `id` =  $uid";
+          mysqli_query($con, $update_query);
+      }  else{
+
+        $name = $data['name'];
+        $email = $data['email'];
+      }
       }else{
       $name = mysqli_real_escape_string($con,$_POST['name']);
       $email = mysqli_real_escape_string($con,$_POST['email']);
@@ -20,7 +32,7 @@
 	       'userid' => "$uid",
 	       'name' => "$name",
               'email' => "$email",
-              'mobile' => "$mobile",
+              'mobile' => "$mobile", 
 
            ];
            echo json_encode($list);
@@ -32,9 +44,3 @@
            echo json_encode($list);
     }
    ?>
-   
-   
-   
-   
-   
-   
