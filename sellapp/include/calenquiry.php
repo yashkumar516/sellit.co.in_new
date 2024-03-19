@@ -1,4 +1,3 @@
-
 <?php
 if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])){
     $vid = $_REQUEST['vid'];
@@ -23,7 +22,11 @@ if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])
     $mobilename = $selectnodel['product_name'];
     $catid = $selectnodel['categoryid'];
     // brand questions start
-    $selectbrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `id` = '$bid' "));
+    
+    include_once "./classes/checkModelValue.php";
+    $modelManager = new CheckModelValue($con);
+    $selectbrand = $modelManager->getProductBrandValue($bid, $mid);
+    // $selectbrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `id` = '$bid' "));
     $callvalue = $selectbrand['callvalue'];
     $threemonths = $selectbrand['3months'];
     $threeto6months = $selectbrand['3to6months'];

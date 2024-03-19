@@ -8,7 +8,11 @@ $selectmodel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHE
 ?>
 
 <?php
-$selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+include_once "./classes/checkModelValue.php";
+$modelManager = new CheckModelValue($con);
+$selectBrand = $modelManager->getProductBrandValue($bid, $mid);
+            
+// $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
     <div class="container">
@@ -252,24 +256,24 @@ $(document).ready(function() {
             $('#screencondition').html("Screen Condition");
             $('#touch').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Working"
-                );
+            );
             $('#war').html('<?php echo $war ?>');
             $('#touchin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Working"
-                );
+            );
             $('.physical, .lines, .spot').attr("required", "true");
             $('.card').show();
         } else if (call == "no") {
             $('#screencondition').html("Screen Condition");
             $('#touch').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Faulty"
-                );
+            );
             $('#war').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-                );
+            );
             $('#touchin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Faulty"
-                );
+            );
             $('#spot,#lines,#physical').html("");
             $('#spotin,#linesin,#physicalin').val("");
             $('.card').hide();
@@ -283,40 +287,40 @@ $(document).ready(function() {
         if (call == "largespot") {
             $('#spot').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Large/ heavy visible spots on screen"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#spotin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Large/ heavy visible spots on screen"
-                );
+            );
         } else if (call == "multiplespot") {
             $('#spot').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple visible spots on screen"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#spotin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple visible spots on screen"
-                );
+            );
         } else if (call == "minorspot") {
             $('#spot').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Minor discoloration or small spots on screen"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#spotin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Minor discoloration or small spots on screen"
-                );
+            );
         } else if (call == "nospot") {
             $('#spot').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No spots on screen"
-                );
+            );
             $('#spotin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No spots on screen"
-                );
+            );
         }
     });
     // lines start
@@ -326,30 +330,30 @@ $(document).ready(function() {
 
             $('#lines').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Display faded along corners"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#linesin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Display faded along corners"
-                );
+            );
         } else if (lines == "multiplelines") {
             $('#lines').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple lines on Display"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#linesin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple lines on Display"
-                );
+            );
         } else if (lines == "noline") {
             $('#lines').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No line(s) on Display"
-                );
+            );
             $('#linesin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No line(s) on Display"
-                );
+            );
         }
     });
 
@@ -359,44 +363,44 @@ $(document).ready(function() {
         if (physical == "cracked") {
             $('#physical').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Screen cracked/ glass broken"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#physicalin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Screen cracked/ glass broken"
-                );
+            );
         } else if (physical == "damaged") {
             $('#physical').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Damaged/ Torn screen on edges"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#physicalin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Damaged/ Torn screen on edges"
-                );
+            );
         } else if (physical == "heavyscratches") {
             $('#physical').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Heavy scratches on screen"
-                );
+            );
             $('#physicalin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Heavy scratches on screen"
-                );
+            );
         } else if (physical == "1-2scratches") {
             $('#physical').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>1-2 scratches on screen"
-                );
+            );
             $('#physicalin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>1-2 scratches on screen"
-                );
+            );
         } else if (physical == "noscratches") {
             $('#physical').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No scratches on screen"
-                );
+            );
             $('#physicalin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No scratches on screen"
-                );
+            );
         }
     });
 });
@@ -421,10 +425,10 @@ $(document).ready(function() {
         if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
-                );
+            );
         }
 
     })

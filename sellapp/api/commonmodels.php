@@ -52,8 +52,17 @@
         }
     } 
     $output = new mobbrand();
-    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid' ORDER BY `counter` DESC, `modify_date` DESC"),$bid);
- }else{
+    
+    if(isset($_POST['sid']) && !empty($_POST['sid'])){
+        $sid = mysqli_real_escape_string($con,$_POST['sid']);
+        echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid'  AND `childcategoryid` = '$sid' ORDER BY  `counter` DESC, `modify_date` DESC"),$bid);
+ 
+    } else{
+        echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid' ORDER BY `counter` DESC, `modify_date` DESC"),$bid);
+   
+    }
+   
+}else{
          $list = [
                 'status' => '0',
                 'message' => 'please pass the value'

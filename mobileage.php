@@ -7,7 +7,12 @@ $mid = $_REQUEST['mid'];
 $selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 <?php
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+
+include_once "./classes/checkModelValue.php";
+$modelManager = new CheckModelValue($con);
+$selectquery = $modelManager->getProductBrandValue($bid, $mid);
+            
+// $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
     <div class="container">
@@ -135,40 +140,40 @@ $(document).ready(function() {
             $('#mobage').html("Mobile Age");
             $('#age').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
-                );
+            );
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
-                );
+            );
             $('#war').html('<?php echo $war ?>');
         } else if (war == "under6") {
             $('#mobage').html("Mobile Age");
             $('#age').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
-                );
+            );
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
-                );
+            );
             $('#war').html('<?php echo $war ?>');
         } else if (war == "under11") {
             $('#mobage').html("Mobile Age");
             $('#age').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
-                );
+            );
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
-                );
+            );
             $('#war').html('<?php echo $war ?>');
         } else if (war == "above11") {
             $('#mobage').html("Mobile Age");
             $('#war').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-                );
+            );
             $('#age').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
-                );
+            );
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
-                );
+            );
         }
     });
 });

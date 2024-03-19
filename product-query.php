@@ -1,4 +1,5 @@
 <?php include 'hideheader.php' ?>
+
 <?php
 $vid = $_REQUEST['upto'];
 $mid = $_REQUEST['mid'];
@@ -7,7 +8,12 @@ $selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WH
 ?>
 
 <?php
-$selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+
+include_once "./classes/checkModelValue.php";
+$modelManager = new CheckModelValue($con);
+$selectBrand = $modelManager->getProductBrandValue($bid, $mid);
+                    
+// $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
     <div class="container">
@@ -152,10 +158,10 @@ $(document).ready(function() {
             $('#devicedetail').html("Device Details");
             $('#call').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To Take Calls"
-                );
+            );
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To Take Calls"
-                );
+            );
             $("#toggl-war").attr('checked', false);
             $('#war').html("");
         } else if (call == "no") {
@@ -164,16 +170,16 @@ $(document).ready(function() {
             $('#devicedetail').html("Device Details");
             $('#call').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To Take Calls"
-                );
+            );
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To Take Calls"
-                );
+            );
             $('#war').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-                );
+            );
             $('#warin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-                );
+            );
         }
     })
     // screen start
@@ -182,17 +188,17 @@ $(document).ready(function() {
         if (screenvalue == "yes") {
             $('#screen').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Screen Defective"
-                );
+            );
             $('#screenin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Screen Defective"
-                );
+            );
         } else if (screenvalue == "no") {
             $('#screen').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Screen Flawless"
-                );
+            );
             $('#screenin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Screen Flawless"
-                );
+            );
         }
     })
     // body start
@@ -201,17 +207,17 @@ $(document).ready(function() {
         if (body == "yes") {
             $('#body').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Phone Body Defective"
-                );
+            );
             $('#bodyin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Phone Body Defective"
-                );
+            );
         } else if (body == "no") {
             $('#body').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Phone Body Flawless"
-                );
+            );
             $('#bodyin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Phone Body Flawless"
-                );
+            );
         }
     })
     // warrenty start
@@ -220,17 +226,17 @@ $(document).ready(function() {
         if (war == "yes") {
             $('#war').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Under Warranty"
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
-                );
+            );
         } else if (war == "no") {
             $('#war').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         }
     })
 });

@@ -169,3 +169,35 @@ function submitCSVForm(uploadCSVForm, uploadType) {
     },
   });
 }
+
+function submitProductCSVForm(uploadCSVForm, uploadType) {
+  $("#spinner-div").show();
+  var formData = new FormData($(`#${uploadCSVForm}`)[0]);
+  // var formData = new FormData($("#fileUploadForm")[0]);
+
+  formData.append("uploadType", uploadType);
+  // child-category.php?category=1
+  let callbackUrl = "modelquestions.php";
+  console.log({ formData });
+  $.ajax({
+    type: "POST",
+    url: "ajaxUploadProductCSV.php",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      console.log("File uploaded successfully", { response });
+
+      alert(response);
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+    },
+    error: function (error) {
+      alert("Upload failed");
+
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+      console.error("Error uploading file", error);
+    },
+  });
+}

@@ -8,7 +8,12 @@ $selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WH
 ?>
 
 <?php
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+
+include_once "./classes/checkModelValue.php";
+$modelManager = new CheckModelValue($con);
+$selectquery = $modelManager->getProductBrandValue($bid, $mid);
+            
+// $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
     <div class="container">
@@ -333,16 +338,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#frontcam').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Front Camera not working"
-                );
+            );
             $('#frontcamin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Front Camera not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#frontcam').html("");
@@ -354,16 +359,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#backcam').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Back Camera not working"
-                );
+            );
             $('#backcamin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Back Camera not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#backcam').html("");
@@ -375,16 +380,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#volume').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Volume Button not working"
-                );
+            );
             $('#volumein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Volume Button not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#volume').html("");
@@ -396,16 +401,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#fingertouch').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Finger Touch not working"
-                );
+            );
             $('#fingertouchin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Finger Touch not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#fingertouch').html("");
@@ -417,16 +422,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#speaker').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Speaker not working"
-                );
+            );
             $('#speakerin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Speaker not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#speaker').html("");
@@ -438,16 +443,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#power').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Power Button not working"
-                );
+            );
             $('#powerin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Power Button not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#power').html("");
@@ -459,16 +464,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#charging').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Charging Port not working"
-                );
+            );
             $('#chargingin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Charging Port not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#charging').html("");
@@ -480,16 +485,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#face').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Face Sensor not working"
-                );
+            );
             $('#facein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Face Sensor not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#face').html("");
@@ -501,16 +506,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#audio').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Audio Receiver not working"
-                );
+            );
             $('#audioin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Audio Receiver not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#audio').html("");
@@ -522,16 +527,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#camglass').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Camera Glass Broken"
-                );
+            );
             $('#camglassin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Camera Glass Broken"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#camglass').html("");
@@ -543,16 +548,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#wifi').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>WiFi not working"
-                );
+            );
             $('#wifiin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>WiFi not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#wifi').html("");
@@ -564,16 +569,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#silent').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Silent Button not working"
-                );
+            );
             $('#silentin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Silent Button not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#silent').html("");
@@ -584,16 +589,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#battry').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Battery not working"
-                );
+            );
             $('#battryin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Battery not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#battry').html("");
@@ -604,16 +609,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#bluetooth').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bluetooth not working"
-                );
+            );
             $('#bluetoothin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bluetooth not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#bluetooth').html("");
@@ -625,16 +630,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#vibrate').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Vibrator is not working"
-                );
+            );
             $('#vibratein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Vibrator is not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#vibrate').html("");
@@ -646,16 +651,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#micro').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Microphone is not working"
-                );
+            );
             $('#microin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Microphone is not working"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#micro').html("");
@@ -667,16 +672,16 @@ $(document).ready(function() {
             $('#functional').html("Functional Condition");
             $('#copydisplay').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Copy Display"
-                );
+            );
             $('#copydisplayin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Copy Display"
-                );
+            );
             $('#war').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
             $('#warin').val(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-                );
+            );
         } else {
             $('#functional').html("Functional Condition");
             $('#copydisplay').html("");
