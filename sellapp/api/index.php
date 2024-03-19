@@ -6,10 +6,10 @@ header("Content-type:application/json; charset=UTF-8");
 include 'config.php';
 
     class homebanner{
-        public function getbanner($getquery){
+        public function getbanner($getquery,$publicUrl){
             foreach($getquery as $array){
                 $bannerlist[] = [
-                             'file' => 'https://sellit.co.in/admin/img/'.$array['image'],
+                             'file' => $publicUrl.'admin/img/'.$array['image'],
                     ];
                     $array = $bannerlist;
             }
@@ -17,6 +17,6 @@ include 'config.php';
         }
     } 
     $output = new homebanner();
-    echo $output->getbanner(mysqli_query($con,"SELECT * FROM `homebanner` WHERE `status` = 'active' "));
+    echo $output->getbanner(mysqli_query($con,"SELECT * FROM `homebanner` WHERE `status` = 'active' "),$publicUrl);
 
 ?>

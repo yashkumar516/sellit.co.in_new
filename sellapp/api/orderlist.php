@@ -5,7 +5,7 @@
         $flag = mysqli_real_escape_string($con,$_GET['flag']);
     if(!empty($uid)){ 
     class getaddress{
-        public function get($getquery){
+        public function get($getquery,$publicUrl){
             foreach($getquery as $array){
                 $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
                 $replacement = "https://drive.google.com/uc?id=$1";
@@ -14,7 +14,7 @@
                 $list[] = [
                              'devicename' => $array['model_name'],
                              'varienname' => $array['varient'],
-			     'image' => "https://sellit.co.in/admin/img/".$image,
+			     'image' => $publicUrl."admin/img/".$image,
 			      'orderno' => $array['genorderid'],
                              'date' => $array['modify_date'],
                     ];
@@ -24,7 +24,7 @@
         }
     } 
     $output = new getaddress();
-    echo $output->get(mysqli_query($con,"SELECT * FROM `enquiry` INNER JOIN varient ON enquiry.varientid = varient.id WHERE enquiry.status = '$flag' AND enquiry.userid = '$uid'"));
+    echo $output->get(mysqli_query($con,"SELECT * FROM `enquiry` INNER JOIN varient ON enquiry.varientid = varient.id WHERE enquiry.status = '$flag' AND enquiry.userid = '$uid'"),$publicUrl);
  }else{
          $list = [
                 'status' => '0',
