@@ -63,6 +63,7 @@
                                      <th width="5%">ID</th>
                                      <!-- <th width="9%">Action</th> -->
                                      <th width="13%">Model Name</th>
+                                     <th width="13%">Variant</th>
                                      <th width="13%">Contact</th>
                                      <th width="13%">Offerprice</th>
                                      <th width="13%">Status</th>
@@ -71,7 +72,10 @@
                              </thead>
                              <tbody>
                                  <?php
-												$orderquery = mysqli_query($con,"SELECT * FROM `enquiry` WHERE `status` = 'Complete' ");
+												$orderquery = mysqli_query($con,"SELECT enquiry.*, varient.varient as varient
+                                                FROM `enquiry` 
+                                                JOIN varient ON varient.id = enquiry.varientid
+                                                 WHERE enquiry.status = 'Complete' ");
 												while($arorder = mysqli_fetch_assoc($orderquery))
 												{
 												   $uid = $arorder['userid'];
@@ -101,6 +105,7 @@
                                                      style="font-size:20px;"></i></strong></a>
                                      </td> -->
                                      <td><?php echo $arorder['model_name'] ?></td>
+                                     <td><?php echo $arorder['varient']  ?></td>
                                      <td><?php echo $conact['mobile']  ?></td>
                                      <td>₹<?php echo $arorder['offerprice'] ?></td>
                                      <td>
