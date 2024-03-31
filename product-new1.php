@@ -8,7 +8,11 @@ $selectmodel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHE
 ?>
 
 <?php
-$selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+include_once "./classes/checkModelValue.php";
+$modelManager = new CheckModelValue($con);
+$selectBrand = $modelManager->getProductBrandValue($bid, $mid);
+            
+// $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
     <div class="container">

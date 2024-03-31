@@ -5,13 +5,41 @@
       public function  __construct($db){
           $this->conn = $db;
       }
-         public function checkquestions(){
-          $leadobj = $this->conn->prepare("SELECT *  FROM `subcategory` INNER JOIN `questions` ON subcategory.id = questions.subcategoryid INNER JOIN `varient` ON varient.product_name = questions.product_name where subcategory.id = ?
-          AND questions.product_name = ? AND varient.id = ?");
-          $leadobj->bind_param("sss",$this->brandid,$this->deviceid,$this->varientid);
+      public function checkquestions(){
+        
+        $checkQuery = $this->conn->prepare("SELECT *  FROM `product_value`  where `product_id` = ? ");
+        $checkQuery->bind_param("sss", $this->deviceid );
+        $checkQuery->execute(); 
+          $checkResult = $checkQuery->get_result();
+
+        if ($checkResult->num_rows > 0) {
+       
+          $leadobj = $this->conn->prepare("SELECT product_value.*, product_value.id as product_value_id, product_value.brand_id as brand_id, 
+          subcategory.subcategory_name, subcategory.subcategory_image ,questions.*,varient.*
+            FROM product_value
+            JOIN subcategory ON subcategory.id = product_value.brand_id
+            INNER JOIN `questions` ON subcategory.id = questions.subcategoryid 
+            INNER JOIN `varient` ON varient.product_name = questions.product_name
+            WHERE    questions.product_name = ? AND varient.id = ?");
+          $leadobj->bind_param("ss",$this->deviceid,$this->varientid);
           $leadobj->execute();
           return $leadobj->get_result();
-        }
+      } else {
+        $leadobj = $this->conn->prepare("SELECT *  FROM `subcategory` INNER JOIN `questions` ON subcategory.id = questions.subcategoryid INNER JOIN `varient` ON varient.product_name = questions.product_name where subcategory.id = ?
+        AND questions.product_name = ? AND varient.id = ?");
+        $leadobj->bind_param("sss",$this->brandid,$this->deviceid,$this->varientid);
+        $leadobj->execute();
+        return $leadobj->get_result();
+      }
+        
+      }
+    //  public function checkquestions(){
+    //   $leadobj = $this->conn->prepare("SELECT *  FROM `subcategory` INNER JOIN `questions` ON subcategory.id = questions.subcategoryid INNER JOIN `varient` ON varient.product_name = questions.product_name where subcategory.id = ?
+    //   AND questions.product_name = ? AND varient.id = ?");
+    //   $leadobj->bind_param("sss",$this->brandid,$this->deviceid,$this->varientid);
+    //   $leadobj->execute();
+    //   return $leadobj->get_result();
+    // }
         
         public function leadquestionsupdate(){
            //new code started

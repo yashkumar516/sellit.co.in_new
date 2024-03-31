@@ -89,8 +89,8 @@
                                          <a href="delete_vendor.php?id=<?php echo $arsub['id'] ?>"><strong><i
                                                      class="fas fa-trash-alt mr-3"
                                                      style="font-size:20px;"></i></strong></a>
-                                         <a href="update_vendor.php?id=<?php echo $arsub['id'] ?>"><i
-                                                 class="fas fa-edit ml-1" style="font-size:20px;"></i></strong></a>
+                                         <!-- <a href="update_vendor.php?id=<php echo $arsub['id'] ?>"><i
+                                                 class="fas fa-edit ml-1" style="font-size:20px;"></i></strong></a> -->
                                      </td>
                                      <td><?php echo $arsub['pincode'] ?></td>
                                      <td><?php echo $arsub['name'] ?></td>

@@ -1,9 +1,9 @@
 <?php include 'header.php' ?>
 
 <head>
-    <title>Sell Old Mobile Phones Online in India | Mobile Phone Selling Online</title>
+    <title>Sell Old Mobile Phones Online in Delhi NCR | Mobile Phone Selling Online</title>
     <meta name="description"
-        content="Sell old mobile phones online in India - Sellit.co.in is the best and used old mobile phone selling online website, where you can sell your used and old phone easily against better cash.">
+        content="Sell old mobile phones online in Delhi NCR, Delhi, Faridabad, Ghaziabad, Noida & Gurgaon - Sellit.co.in is the best and used old mobile phone selling online website, where you can sell your used and old phone easily against better cash.">
 </head>
 <br>
 <section class="slider">
@@ -323,7 +323,7 @@
 </section>
 <section class="py-4">
     <div class="container">
-        <h1 class="tablet-heading">Sell Old Mobile Phones Online in India</h1>
+        <h1 class="tablet-heading">Sell Old Mobile Phones Online in Delhi NCR</h1>
         <p>If you're looking to sell your old mobile phone, then Sellit.co.in is the website you need. With its
             user-friendly platform and competitive prices, it offers a hassle-free selling experience. Here's everything
             you need to know about selling your old mobile phone on Sellit.co.in.</p>

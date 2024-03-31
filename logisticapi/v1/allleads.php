@@ -1,6 +1,6 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
+// ini_set('display_errors', 1);
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods: POST');
 header('Content-type:application/json; charset=UTF-8');
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $month = $arr['day1'];
                     $year = $arr['year'];
                 }
-                if ($arr['offerprice'] >= 100) {
+                if ($arr['offerprice'] >= 1) {
                     $offerprice = $arr['offerprice'];
                 } else {
                     $offerprice = "sorry we can't purchase";

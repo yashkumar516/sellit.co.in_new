@@ -1,8 +1,6 @@
-
 <?php include 'includes/confile.php' ?>
 <?php
- if(isset($_POST['vendor'])){
-  
+ if(isset($_POST['vendor'])){ 
     $name = $_POST['name'];
     $mobileno = $_POST['mobileno'];
     $alternateno = $_POST['alternateno'];
@@ -11,7 +9,8 @@
     $presentadd = $_POST['presentadd'];
     $permanentadd = $_POST['permanentadd'];
     $city = $_POST['city'];
-    $pincode = $_POST['pincode'];
+    $pincode = explode(",",$_POST['pincode']);
+    $pincode = json_encode($pincode);
     $marital = $_POST['marital'];
     $shopname = $_POST['shopname'];
     $shopadd = $_POST['shopadd'];
@@ -33,7 +32,6 @@
     $visitingcard = rand(10, 20).uniqid().$visitingcard;
     $adharcard = rand(10, 20).uniqid().$adharcard;
     $bankcopy = rand(10, 20).uniqid().$bankcopy;
-    
     $rowscount = mysqli_num_rows(mysqli_query($con,"SELECT * FROM `vendors` WHERE `email` = '$email' "));
     if($rowscount >= 1){
         echo '<script>
@@ -41,9 +39,11 @@
                 window.location.href = "addvendor.php";
          </script>';
     }else{
+
     $insertquery = mysqli_query($con,"INSERT INTO `vendors`(`name`,`mobileno`,`alternateno`,`email`,`password`,`presentadd`,`permanentadd`,`city`,`pincode`,`maritalstatus`,`shopname`,
     `shopadd`,`accountholder`,`accountno`,`ifccode`,`bankname`,`ownerphoto`,`visitingphoto`,`aadharphoto`,`bankphoto`) values('$name','$mobileno','$alternateno','$email','$password[0]','$presentadd','$permanentadd',
     '$city','$pincode','$marital','$shopname','$shopadd','$accountholder','$accountno','$ifsc','$bankname','$ownerimg','$visitingcard','$adharcard','$bankcopy')");
+
     if($insertquery)
     {
     move_uploaded_file($ownerimgtmp, "img/vendors/".$ownerimg);
@@ -107,5 +107,7 @@
     }
 
  }
+ }else{
+   echo "not submit";
  }
 ?>

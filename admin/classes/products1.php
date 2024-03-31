@@ -263,7 +263,7 @@ class ProductManager
                 ? $modelImage
                 : $existingProduct["product_image"]; // Get the existing product ID
 
-            echo "-<br/>---------------------------update------------------------------------------------counter" . $counter;
+            // echo "-<br/>---------------------------update------------------------------------------------counter" . $counter;
             $updateQuery = " UPDATE `product`
             SET
                 `categoryid` = ?,
@@ -300,7 +300,7 @@ class ProductManager
             $updatedProduct["product_name"] = $modelName = $product_name;
             $updatedProduct["product_image"] = $modelImage = $product_image;
             $updatedProduct["image_url"] = $imageUrlStatus;
-            echo "-----------------modelName-----------------" . $modelName;
+            // echo "-----------------modelName-----------------" . $modelName;
             if ($imageUrlStatus === "external") {
                 $modelName = strtolower(str_replace(" ", "_", $modelName));
                 $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
@@ -309,12 +309,12 @@ class ProductManager
                 exec($command, $output, $returnVar);
 
                 // Output any error messages
-                if ($returnVar !== 0) {
-                    echo "-------Error----: " . implode("\n", $output);
-                } else {
-                    echo "Command executed successfully";
-                    echo "--<br/>-----successfully----: " . implode("\n", $output);
-                }
+                // if ($returnVar !== 0) {
+                //     echo "-------Error----: " . implode("\n", $output);
+                // } else {
+                //     echo "Command executed successfully";
+                //     echo "--<br/>-----successfully----: " . implode("\n", $output);
+                // }
 
 
                 exec(
@@ -323,11 +323,11 @@ class ProductManager
             }
             return $updatedProduct;
         } else {
-            error_reporting(E_ALL);
-            ini_set('display_errors', 'on');
-            echo "<br/>---------------------------insert------------------------------------------------categoryId--" . $categoryId;
-            echo "<br/>------------------------------insert------------------------------------------------brandId--" . $brandId;
-            echo "<br/>------------------------------insert------------------------------------------------modelName--" .  $modelName;
+            // error_reporting(E_ALL);
+            // ini_set('display_errors', 'on');
+            // echo "<br/>---------------------------insert------------------------------------------------categoryId--" . $categoryId;
+            // echo "<br/>------------------------------insert------------------------------------------------brandId--" . $brandId;
+            // echo "<br/>------------------------------insert------------------------------------------------modelName--" .  $modelName;
 
             // Define the fields and their types
             $fields = [

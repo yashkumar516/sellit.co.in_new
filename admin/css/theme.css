@@ -17470,6 +17470,9 @@ p .alternative-font {
 
 /* Links */
 a, a:hover, a:focus {
+	color: #5f5d5d;/* #CCC;*/
+}
+a:not([href]){
 	color: #CCC;
 }
 

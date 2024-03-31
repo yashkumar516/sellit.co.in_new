@@ -89,7 +89,12 @@
                                 </li>
                                 <li>
                                     <a class="nav-link" href="product-list.php">
-                                        model List
+                                        Model List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="modelquestions.php">
+                                        Model Questions
                                     </a>
                                 </li>
 

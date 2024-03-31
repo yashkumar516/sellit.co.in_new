@@ -61,8 +61,9 @@
                                  <tr>
                                      <!-- <th width="3%"><input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="" /></th> -->
                                      <th width="5%">ID</th>
-                                     <th width="9%">Action</th>
+                                     <!-- <th width="9%">Action</th> -->
                                      <th width="13%">Model Name</th>
+                                     <th width="13%">Variant</th>
                                      <th width="13%">Contact</th>
                                      <th width="13%">Offerprice</th>
                                      <th width="13%">Status</th>
@@ -71,7 +72,10 @@
                              </thead>
                              <tbody>
                                  <?php
-												$orderquery = mysqli_query($con,"SELECT * FROM `enquiry` WHERE `status` = 'Complete' ");
+												$orderquery = mysqli_query($con,"SELECT enquiry.*, varient.varient as varient
+                                                FROM `enquiry` 
+                                                JOIN varient ON varient.id = enquiry.varientid
+                                                 WHERE enquiry.status = 'Complete' ");
 												while($arorder = mysqli_fetch_assoc($orderquery))
 												{
 												   $uid = $arorder['userid'];
@@ -94,13 +98,14 @@
                                  <tr>
                                      <!-- <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td> -->
                                      <td><a
-                                             href="ecommerce-orders-detail.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
+                                             href="ecommerce-orders-receipt.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
                                      </td>
-                                     <td>
+                                     <!-- <td>
                                          <a title="delete"><strong><i class="fas fa-trash-alt mr-3"
                                                      style="font-size:20px;"></i></strong></a>
-                                     </td>
+                                     </td> -->
                                      <td><?php echo $arorder['model_name'] ?></td>
+                                     <td><?php echo $arorder['varient']  ?></td>
                                      <td><?php echo $conact['mobile']  ?></td>
                                      <td>₹<?php echo $arorder['offerprice'] ?></td>
                                      <td>

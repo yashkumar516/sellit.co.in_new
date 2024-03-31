@@ -63,16 +63,20 @@
                                      <th width="5%">ID</th>
                                      <th width="9%">Action</th>
                                      <th width="13%">Model Name</th>
+                                     <th width="9%">Variant</th>
                                      <th width="13%">Contact</th>
                                      <th width="13%">Offerprice</th>
-                                     <th width="13%">Pickup Date</th>
-                                     <th width="13%">Pickup Time</th>
+                                     <th width="12%">Pickup Date</th>
+                                     <th width="12%">Pickup Time</th>
                                      <th width="13%">Status</th>
                                  </tr>
                              </thead>
                              <tbody>
                                  <?php
-												$orderquery = mysqli_query($con,"SELECT * FROM `enquiry` WHERE `status` = 'Available' ");
+												$orderquery = mysqli_query($con,"SELECT enquiry.*, varient.varient as varient
+                                                FROM `enquiry` 
+                                                JOIN varient ON varient.id = enquiry.varientid
+                                                 WHERE enquiry.status = 'Available' ");
 												while($arorder = mysqli_fetch_assoc($orderquery))
 												{
 												   $uid = $arorder['userid'];
@@ -84,11 +88,24 @@
 												   $soon = $pickupdate['soon'];
 												   $choseday = $pickupdate['choseday'];
 												   $day = $pickupdate['day'];
+                                                   $month = $pickupdate['day1'];
+                                                //    $year= $pickupdate['year'];
 												   $time = $pickupdate['time'];
+                                                   $year= isset($pickupdate['year'])?$pickupdate['year']:2023;
+                                                 
+                                                   $dateString = "$day-$month-$year";
+                                                   if (empty($year)||$year=="") {
+                                                      
+                                                       $dateString = "$day-May-2023";
+                                                   }
+                                                    // Assuming you want to format the date, you can use the date function like this:
+                                                    // $formattedDate = date("Y-m-d", strtotime($date));
 												}else{
 													$soon = null;
 													$choseday = null;
 													$day = null;
+                                                    $month = null;
+                                                    $year = null;
 													$time = null;
 												}
 												?>
@@ -98,12 +115,23 @@
                                              href="ecommerce-orders-detail.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
                                      </td>
                                      <td>
-                                         <a title="delete"><strong><i class="fas fa-trash-alt mr-3"
-                                                     style="font-size:20px;"></i></strong></a>
+                                         <?php
+                                            if ($arorder['status'] !== "Complete") {
+                                                echo '<a title="delete" href="#" onclick="deleteLead(' . $arorder['id'] . ', `Available`)" style="cursor: pointer;"><strong style="cursor: pointer;"><i class="fas fa-trash-alt mr-3" style="font-size:20px;"></i></strong></a>';
+                                            } else {
+                                                echo '<a title="delete"  style="pointer-events: none; cursor: not-allowed;"><strong><i class="fas fa-trash-alt mr-3" style="font-size:20px;"></i></strong></a>';
+                                            }
+                                        ?>
+
+                                         <!-- <a title="delete"
+                                             href="delete_lead.php?id=<?php echo $arorder['id'] ?>&status=Available"><strong><i
+                                                     class="fas fa-trash-alt mr-3"
+                                                     style="font-size:20px;"></i></strong></a> -->
                                          <a href="moreinfo.php?id=<?php echo $arorder['id'] ?>" title="more info"><i
                                                  class="fas fa-edit ml-1" style="font-size:20px;"></i></strong></a>
                                      </td>
                                      <td><?php echo $arorder['model_name'] ?></td>
+                                     <td><?php echo $arorder['varient']  ?></td>
                                      <td><?php echo isset($conact['mobile'])?$conact['mobile']:""  ?></td>
                                      <td>₹<?php echo $arorder['offerprice'] ?></td>
                                      <?php
@@ -117,7 +145,7 @@
                                      <?php
 													}elseif($day != null){
 													?>
-                                     <td><?php echo $day ?></td>
+                                     <td><?php echo $dateString ?></td>
                                      <?php
 													}else{
 													?>
@@ -276,6 +304,20 @@
 
  <!-- Theme Initialization Files -->
  <script src="js/theme.init.js"></script>
+
+ <script>
+function deleteLead(id, status) {
+    // Display a confirmation dialog
+    var isConfirmed = window.confirm('Are you sure you want to delete this lead?');
+
+    // Check the user's response
+    if (isConfirmed) {
+        // If confirmed, redirect to the delete_lead.php page with the specified parameters
+        window.location.href = 'delete_lead.php?id=' + id + '&status=' + status;
+    }
+}
+ </script>
+
  <!-- Analytics to Track Preview Website -->
  <script>
 (function(i, s, o, g, r, a, m) {
