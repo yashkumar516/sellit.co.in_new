@@ -98,7 +98,7 @@
 												  <div class="form-group row align-items-center">
 													<label class="col-4  control-label text-center mb-0">Pincode <span class="text-danger" style="font-size:1.3rem" >*</span></label>
 													<div class="col-8 ">
-														<input type="text" class="form-control form-control-modern" name="pincode" value="" required />
+														<input type="number" class="form-control form-control-modern" name="pincode" value="" required />
 													</div>
 												   </div>
                                                   </div>
