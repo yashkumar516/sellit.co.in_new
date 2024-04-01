@@ -18,23 +18,28 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
 // $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 
 
-    if (session_status() == PHP_SESSION_NONE) {
-        // Start the session
-        session_start();
-    } 
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+}
+
+// // Retrieve session variables
+    $call = "";
+    $screen = "";
+    $body = "";
+    $war ="";
     if (isset($_SESSION['call']) && isset($_SESSION['screen']) && isset($_SESSION['body']) && isset($_SESSION['war'])) {
         // Session variables are set, so retrieve them
         $call = $_SESSION['call'];
         $screen = $_SESSION['screen'];
         $body = $_SESSION['body'];
         $war = $_SESSION['war'];
-    } else { 
-        $call = "";
-        $screen = "";
-        $body = "";
-        $war ="";
+    } else {
+        // Session variables are not set, handle this case accordingly
+        // For example, you might want to set default values or redirect the user
+        // to a page where these variables are set.
     }
-   
+  
 ?>
 <section class="sell-section">
     <div class="container">
@@ -107,12 +112,12 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                         <h1 class="ques">4. Is your Mobile under warranty?</h1>
                         <p class="check"> if it's under warranty. Note: Please provide valid bill of your device.</p>
                         <div class="row pl-4 warrrrr" id="ynrow">
-                            <div class="col-lg-5 col-6"><input id="toggl-war-on" class="war" name="war" type="radio"
+                            <div class="col-lg-5 col-6"><input id="toggle4-on" class="war" name="war" type="radio"
                                     value="yes" <?php echo $war === "yes" ? 'checked="checked"' : ''; ?> required><label
-                                    for="toggl-war-on">Yes</label></div>
-                            <div class="col-lg-5 col-6"><input id="toggl-war-off" class="war" name="war" type="radio"
+                                    for="toggle4-on">Yes</label></div>
+                            <div class="col-lg-5 col-6"><input id="toggl-war" class="war" name="war" type="radio"
                                     value="no" <?php echo $war === "no" ? 'checked="checked"' : ''; ?> required><label
-                                    for="toggl-war-off">No</label></div>
+                                    for="toggl-war">No</label></div>
                         </div>
                         <div class="text-center mt-3">
                             <input type="hidden" id="callin" name="callin" value="">
@@ -120,7 +125,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                             <input type="hidden" id="bodyin" name="bodyin" value="">
                             <input type="hidden" id="warin" name="warin">
                             <input type="hidden" name="devicedetail" value="Device Details">
-                            <button class="btn contin-btn submit" type="submit" name="query" disabled="disabled"
+                            <button class="btn contin-btn submit" type="button" name="query" disabled="disabled"
                                 id="postGender">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -162,18 +167,17 @@ $(document).ready(function() {
             screen: screen,
             body: body,
             war: war,
-            call: calldeduction
+            calldeduction: calldeduction
         };
+
         // Send an AJAX request to the PHP script to set session variables
         $.ajax({
             type: "POST",
-            url: "product_query_set_session.php", // Replace with the path to your PHP script
+            url: "set_session.php", // Replace with the path to your PHP script
             data: data,
             success: function(response) {
                 // Handle success response if needed
-                console.log({
-                    response
-                });
+                console.log(response);
                 // header("Location: another_page.php");
                 if (screen == "yes" && body == "yes" && war == "yes") {
                     window.location.href = "product-new.php?vid=" + vid + "&mid=" + mid +
@@ -204,40 +208,13 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 // Handle error response if needed
-                console.error({
-                    error
-                });
+                console.error(error);
             }
         });
     })
 })
 </script>
 <script>
-// $(document).ready(function() {
-//     // Function to handle radio button clicks
-//     function handleRadioClick(groupName, targetId, trueText, falseText) {
-//         $('.' + groupName).click(function() {
-//             var value = $("input[type=radio][name=" + groupName + "]:checked").val();
-
-//             var text = (value == "yes") ? trueText : falseText;
-//             console.log({
-//                 value,
-//                 text
-//             })
-//             $('#' + targetId).html(text);
-//             $('#' + targetId + 'in').val(text);
-//         });
-//         // Trigger the click event for the first time when page loads
-//         $('.' + groupName).first().trigger('click');
-//     }
-
-//     // Call the function for each group of radio buttons
-//     handleRadioClick('call', 'call', 'Able To Take Calls', 'Not Able To Take Calls');
-//     // handleRadioClick('screen', 'screen', 'Mobile Screen Defective', 'Mobile Screen Flawless');
-//     // handleRadioClick('body', 'body', 'Phone Body Defective', 'Phone Body Flawless');
-//     // handleRadioClick('war', 'war', 'Mobile Under Warranty', 'Mobile Out of Warranty');
-// });
-
 $(document).ready(function() {
     //    call start
     $('.call').click(function() {
@@ -251,12 +228,10 @@ $(document).ready(function() {
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To Take Calls"
             );
-            $("#toggl-war-off").attr('checked', false);
-            $("#toggl-war-on").prop('checked', false);
+            $("#toggl-war").attr('checked', false);
             $('#war').html("");
         } else if (call == "no") {
-            $("#toggl-war-off").attr('checked', true);
-            // war
+            $("#toggl-war").attr('checked', 'checked');
             $(".warrrrr").hide();
             $('#devicedetail').html("Device Details");
             $('#call').html(
@@ -285,12 +260,10 @@ $(document).ready(function() {
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To Take Calls"
             );
-            $("#toggl-war-off").attr('checked', false);
-            $("#toggl-war-on").attr('checked', false);
+            $("#toggl-war").attr('checked', false);
             $('#war').html("");
         } else if (call == "no") {
-            // $("#toggl-war-off").attr('checked', 'checked');
-            $("#toggl-war-off").attr('checked', true);
+            $("#toggl-war").attr('checked', 'checked');
             $(".warrrrr").hide();
             $('#devicedetail').html("Device Details");
             $('#call').html(
