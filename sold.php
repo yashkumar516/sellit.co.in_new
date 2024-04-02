@@ -1,5 +1,22 @@
 <?php include 'hideheader.php' ?>
 <?php
+// Start the session
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+} 
+// Unset session variables by key
+unset($_SESSION['vid']);
+unset($_SESSION['mid']);
+unset($_SESSION['bid']);
+unset($_SESSION['screen']);
+unset($_SESSION['body']);
+unset($_SESSION['war']);
+?>
+
+<?php
+
+
 $vid = $_REQUEST['vid'];
 $mid = $_REQUEST['mid'];
 $bid = $_REQUEST['bid'];
