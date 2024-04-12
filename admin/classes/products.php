@@ -170,7 +170,7 @@ class ProductManager
                     // Add more special symbols and their replacements as needed
                 );
                     // Use str_replace to replace special symbols
-                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+                    $new_string = str_replace(array_keys($special_symbols), '_', $modelName);
         
 
                 $modelName = strtolower(str_replace(" ", "_", $new_string));
@@ -233,7 +233,7 @@ class ProductManager
                     // Add more special symbols and their replacements as needed
                 );
                     // Use str_replace to replace special symbols
-                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+                    $new_string = str_replace(array_keys($special_symbols), '_', $modelName);
         
 
                 $modelName = strtolower(str_replace(" ", "_", $new_string));
@@ -395,7 +395,7 @@ class ProductManager
                     // Add more special symbols and their replacements as needed
                 );
                     // Use str_replace to replace special symbols
-                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+                    $new_string = str_replace(array_keys($special_symbols), '_', $modelName);
         
 
                 $modelName = strtolower(str_replace(" ", "_", $new_string));
@@ -487,7 +487,7 @@ class ProductManager
                     // Add more special symbols and their replacements as needed
                 );
                     // Use str_replace to replace special symbols
-                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+                    $new_string = str_replace(array_keys($special_symbols), '_', $modelName);
         
 
                 $modelName = strtolower(str_replace(" ", "_", $new_string));
