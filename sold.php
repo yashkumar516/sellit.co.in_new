@@ -6,12 +6,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 } 
 // Unset session variables by key
-unset($_SESSION['vid']);
-unset($_SESSION['mid']);
-unset($_SESSION['bid']);
-unset($_SESSION['screen']);
-unset($_SESSION['body']);
-unset($_SESSION['war']);
+ 
+
+foreach ($_SESSION as $key => $value) {
+    if($key!=="user"){
+        unset($_SESSION[$key]);
+    } 
+} 
+ 
 ?>
 
 <?php

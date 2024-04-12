@@ -51,6 +51,7 @@ if (isset($_POST['otp'])) {
             if ($seluser) {
                 $_SESSION['user'] = $seluser['id'];
                 $status = $seluser['status'];
+                $uid = $seluser['id'];
                 unset($_SESSION['otp']);
                 if ($status === 'inactive') {
                     $email = $_POST['email'];

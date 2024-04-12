@@ -40,25 +40,25 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                 <hr>
                 <div class="device px-3" id="deviceEvaluation">
                     <h1 class="sum-heading ">Device Evaluation</h1>
-                    <p id="devicedetailHtml" class="mt-2 title"><?php echo  $devicedetail ?></p>
+                    <p id="devicedetailHtml"><?php echo  $devicedetail ?></p>
                     <p id="callHtml"><?php echo $callin ?></p>
                     <p id="screenHtml"><?php echo $screenin ?></p>
                     <p id="bodyHtml"><?php echo $bodyin ?></p>
                     <p id="warHtml"><?php echo $warin ?></p>
                     <!-- screen start -->
-                    <p id="screenconditionHtml" class="mt-2 title"><?php echo $screencondition ?></p>
+                    <p id="screenconditionHtml"><?php echo $screencondition ?></p>
                     <p id="touchHtml"><?php echo $touchin ?></p>
                     <p id="spotHtml"><?php echo $spotin ?></p>
                     <p id="linesHtml"><?php echo $linesin ?></p>
                     <p id="physicalHtml"><?php echo $physicalin ?></p>
                     <!-- bodystart -->
-                    <p id="overallHtml" class="mt-2 title"><?php echo $overallcondition ?></p>
+                    <p id="overallHtml"><?php echo $overallcondition ?></p>
                     <p id="ScratchesHtml"><?php echo $Scratchesin ?></p>
                     <p id="dentsHtml"><?php echo $dentsin ?></p>
                     <p id="sideHtml"><?php echo $sidein ?></p>
                     <p id="bentHtml"><?php echo $bentin ?></p>
                     <!-- warrent strt -->
-                    <p id="mobageHtml" class="mt-2 title"></p>
+                    <p id="mobageHtml"></p>
                     <p id="ageHtml"></p>
                 </div>
             </div>
@@ -106,13 +106,26 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                         </div>
                     </div>
                     <div class="text-center mt-4">
+                        <!-- <input type="hidden" id="callin" name="callin" value="<?php echo $callin ?>">
+                        <input type="hidden" id="screenin" name="screenin" value="<?php echo $screenin ?>">
+                        <input type="hidden" id="bodyin" name="bodyin" value="<?php echo $bodyin ?>"> -->
                         <input type="hidden" id="war" name="war">
                         <input type="hidden" id="warin" name="warin">
                         <input type="hidden" name="devicedetail" value="Device Details">
-
+                        <input type="hidden" id="touchin" name="touch" value="<?php echo $touch ?>">
+                        <input type="hidden" id="spotin" name="spot" value="<?php echo $spot ?>">
+                        <input type="hidden" id="linesin" name="lines" value="<?php echo $lines ?>">
+                        <input type="hidden" id="physicalin" name="physical" value="<?php echo $physical ?>">
+                        <input type="hidden" id="screencondition" name="screencondition"
+                            value="<?php echo $screencondition ?>">
+                        <input type="hidden" id="Scratchesin" name="Scratches" value="<?php echo $Scratches ?>">
+                        <input type="hidden" id="dentsin" name="dents" value="<?php echo $dents ?>">
+                        <input type="hidden" id="sidein" name="side" value="<?php echo $side ?>">
+                        <input type="hidden" id="bentin" name="bent" value="<?php echo $bent ?>">
+                        <input type="hidden" id="overallcondition" name="overallcondition"
+                            value="<?php echo $overallcondition ?>">
                         <!-- mobileage start -->
                         <input type="hidden" id="mobagein" name="mobage" value="Mobile Age">
-                        <input type="hidden" id="age" name="age" value="">
                         <input type="hidden" id="agein" name="agein" value="">
                         <button class="btn contin-btn submit2" type="submit" name="questions">Continue <i
                                 class="fas fa-arrow-right"></i></button>
@@ -144,8 +157,8 @@ $(document).ready(function() {
             }
         }
 
-        // var age = $("input[type=radio][name=age]:checked").val();
-        // formData["age"] = age;
+        var age = $("input[type=radio][name=age]:checked").val();
+        formData["age"] = age;
         // Display the form data
         // console.log(formData);
         $.ajax({
@@ -157,11 +170,9 @@ $(document).ready(function() {
                 console.log({
                     response
                 });
+                // window.location.href = "functional.php?vid=" + vid + "&mid=" + mid + "&bid=" + bid;
                 window.location.href =
                     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
-                // window.location.replace(
-                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
-                // );
 
             },
             error: function(xhr, status, error) {
@@ -194,7 +205,6 @@ $(document).ready(function() {
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
             );
-            $('#age').val('under3');
             $('#warHtml').html('<?php echo $warin ?>');
             $('#warin').val('<?php echo $warin ?>');
             $('#war').val('<?php echo $war ?>');
@@ -206,7 +216,6 @@ $(document).ready(function() {
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
             );
-            $('#age').val('under6');
             $('#warHtml').html('<?php echo $warin ?>');
             $('#warin').val('<?php echo $warin ?>');
             $('#war').val('<?php echo $war ?>');
@@ -218,7 +227,6 @@ $(document).ready(function() {
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
             );
-            $('#age').val('under11');
             $('#warHtml').html('<?php echo $warin ?>');
             $('#warin').val('<?php echo $warin ?>');
             $('#war').val('<?php echo $war ?>');
@@ -237,7 +245,6 @@ $(document).ready(function() {
             $('#agein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
             );
-            $('#age').val('above11');
         }
     }
     $(".age").click(function() {

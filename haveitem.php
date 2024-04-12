@@ -38,54 +38,56 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                     </div>
                 </div>
                 <hr>
-                <div class="device px-3">
+
+                <div class="device px-3" id="deviceEvaluation">
                     <h1 class="sum-heading ">Device Evaluation</h1>
-                    <p id="devicedetail"><?php echo  $devicedetail ?></p>
-                    <p id="call"><?php echo $call ?></p>
-                    <p id="screen"><?php echo $screen ?></p>
-                    <p id="body"><?php echo $body ?></p>
-                    <p id="war"><?php echo $war ?></p>
-                    <p id="warr" style="display:none"><?php echo $war ?></p>
+                    <p id="devicedetail" class="mt-2 title"><?php echo $devicedetail ?></p>
+                    <p id="call"><?php echo $callin ?></p>
+                    <p id="screen"><?php echo $screenin ?></p>
+                    <p id="body"><?php echo $bodyin ?></p>
+                    <p id="warHtml"><?php echo $warin ?></p>
                     <!-- screen start -->
-                    <p id="screencondition"><?php echo $screencondition ?></p>
-                    <p id="touch"><?php echo $touchwork ?></p>
-                    <p id="spot"><?php echo $spot ?></p>
-                    <p id="lines"><?php echo $lines ?></p>
-                    <p id="physical"><?php echo $physical ?></p>
+                    <p id="screenconditionHtml" class="mt-2 title"><?php echo $screencondition ?></p>
+                    <p id="touchHtml"><?php echo $touchin ?></p>
+                    <p id="spotHtml"><?php echo $spotin ?></p>
+                    <p id="linesHtml"><?php echo $linesin ?></p>
+                    <p id="physicalHtml"><?php echo $physicalin ?></p>
                     <!-- bodystart -->
-                    <p id="overall"><?php echo $overallcondition ?></p>
-                    <p id="Scratches"><?php echo $Scratches ?></p>
-                    <p id="dents"><?php echo $dents ?></p>
-                    <p id="side"><?php echo $side ?></p>
-                    <p id="bent"><?php echo $bents?></p>
+                    <p id="overallHtml" class="mt-2 title"><?php echo $overallcondition ?></p>
+                    <p id="ScratchesHtml"><?php echo $Scratchesin ?></p>
+                    <p id="dentsHtml"><?php echo $dentsin ?></p>
+                    <p id="sideHtml"><?php echo $sidein ?></p>
+                    <p id="bentHtml"><?php echo $bentin ?></p>
                     <!-- warrent strt -->
-                    <p id="mobage"><?php echo $mobage ?></p>
-                    <p id="age"><?php echo $age ?></p>
+                    <p id="mobage" class="mt-2 title"><?php echo $mobage ?></p>
+                    <p id="ageHtml"><?php echo $agein ?></p>
                     <!-- functional start -->
-                    <p id="functional"><?php echo $functional ?></p>
-                    <p id="copydisplay"><?php echo $copydisplay ?></p>
-                    <p id="frontcam"><?php echo $frontcamin ?></p>
-                    <p id="backcam"><?php echo $backcamin ?></p>
-                    <p id="volume"><?php echo $volumein ?></p>
-                    <p id="fingertouch"><?php echo $fingertouchin ?></p>
-                    <p id="speaker"><?php echo $speakerin ?></p>
-                    <p id="power"><?php echo $powerin ?></p>
-                    <p id="charging"><?php echo $chargingin ?></p>
-                    <p id="face"><?php echo $facein ?></p>
-                    <p id="audio"><?php echo $audioin ?></p>
+                    <p id="functional" class="mt-2 title"><?php echo $functional ?></p>
+                    <p id="copydisplayHtml"><?php echo $copydisplay ?></p>
+                    <p id="frontcamHtml"><?php echo $frontcamin ?></p>
+                    <p id="backcamHtml"><?php echo $backcamin ?></p>
+                    <p id="volumeHtml"><?php echo $volumein ?></p>
+                    <p id="fingertouchHtml"><?php echo $fingertouchin ?></p>
+                    <p id="speakerHtml"><?php echo $speakerin ?></p>
+                    <p id="powerHtml"><?php echo $powerin ?></p>
+                    <p id="chargingHtml"><?php echo $chargingin ?></p>
+                    <p id="faceHtml"><?php echo $facein ?></p>
+                    <p id="audioHtml"><?php echo $audioin ?></p>
                     <p id="camglass"><?php echo $camglassin ?></p>
-                    <p id="wifi"><?php echo $wifiin  ?></p>
-                    <p id="silent"><?php echo $silentin ?></p>
-                    <p id="battry"><?php echo $battryin ?></p>
-                    <p id="bluetooth"><?php echo $bluetoothin ?></p>
-                    <p id="vibrate"><?php echo $vibratein ?></p>
-                    <p id="micro"><?php echo $microin ?></p>
+                    <p id="wifiHtml"><?php echo $wifiin  ?></p>
+                    <p id="silentHtml"><?php echo $silentin ?></p>
+                    <p id="batteryHtml"><?php echo $battryin ?></p>
+                    <p id="bluetoothHtml"><?php echo $bluetoothin ?></p>
+                    <p id="vibrateHtml"><?php echo $vibratein ?></p>
+                    <p id="microHtml"><?php echo $microin ?></p>
+
                     <!-- accesiers start -->
-                    <p id="dohave"></p>
-                    <p id="charger"></p>
-                    <p id="earphone"></p>
-                    <p id="boximei"></p>
-                    <p id="billimei"></p>
+                    <!-- <p id="dohaveHtml" class="mt-2 title"></p> -->
+                    <p id="dohave" class="mt-2 title"></p>
+                    <p id="chargerHtml"></p>
+                    <p id="earphoneHtml"></p>
+                    <p id="boximeiHtml"></p>
+                    <p id="billimeiHtml"></p>
                 </div>
             </div>
             <div class="col-lg-6 haveitem mx-uto">
@@ -137,60 +139,17 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             ?>
                         <form method="POST">
                             <div class="form-group">
-                                <input type="hidden" id="callin" name="callin" value="<?php echo $call ?>">
-                                <input type="hidden" id="screenin" name="screenin" value="<?php echo $screen ?>">
-                                <input type="hidden" id="bodyin" name="bodyin" value="<?php echo $body ?>">
                                 <input type="hidden" id="warin" name="warin">
-                                <!-- screen start -->
-                                <input type="hidden" id="touchin" name="touch" value="<?php echo $touchwork ?>">
-                                <input type="hidden" id="spotin" name="spot" value="<?php echo $spot ?>">
-                                <input type="hidden" id="linesin" name="lines" value="<?php echo $lines ?>">
-                                <input type="hidden" id="physicalin" name="physical" value="<?php echo $physical ?>">
-                                <input type="hidden" id="screencondition" name="screencondition"
-                                    value="<?php echo $screencondition ?>">
-                                <!-- body start -->
-                                <input type="hidden" id="devicedetail" name="devicedetail" value="Device Details">
-                                <input type="hidden" id="Scratchesin" name="Scratches" value="<?php echo $Scratches ?>">
-                                <input type="hidden" id="dentsin" name="dents" value="<?php echo $dents ?>">
-                                <input type="hidden" id="sidein" name="side" value="<?php echo $side ?>">
-                                <input type="hidden" id="bentin" name="bent" value="<?php echo $bents ?>">
-                                <input type="hidden" id="overallcondition" name="overallcondition"
-                                    value="<?php echo  $overallcondition ?>">
-                                <input type="hidden" id="functional" name="functional" value="Functional Condition">
-                                <input type="hidden" id="functional" name="assesires"
-                                    value="Do you have the following?">
-                                <!-- mobile age  -->
-                                <input type="hidden" id="mobagein" name="mobage" value="<?php echo $mobage ?>">
-                                <input type="hidden" id="agein" name="age" value="<?php echo $age ?>">
-                                <!-- functional start -->
-                                <input type="hidden" id="copydisplay" name="copydisplay"
-                                    value="<?php echo $copydisplay ?>">
-                                <input type="hidden" id="frontcamin" name="frontcamin"
-                                    value="<?php echo $frontcamin ?>">
-                                <input type="hidden" id="backcamin" name="backcamin" value="<?php echo $backcamin ?>">
-                                <input type="hidden" id="volumein" name="volumein" value="<?php echo $volumein ?>">
-                                <input type="hidden" id="fingertouchin" name="fingertouchin"
-                                    value="<?php echo $fingertouchin ?>">
-                                <input type="hidden" id="speakerin" name="speakerin" value="<?php echo $speakerin ?>">
-                                <input type="hidden" id="powerin" name="powerin" value="<?php echo $powerin ?>">
-                                <input type="hidden" id="chargingin" name="chargingin"
-                                    value="<?php echo $chargingin ?>">
-                                <input type="hidden" id="facein" name="facein" value="<?php echo $facein ?>">
-                                <input type="hidden" id="audioin" name="audioin" value="<?php echo $audioin ?>">
-                                <input type="hidden" id="camglassin" name="camglassin"
-                                    value="<?php echo $camglassin ?>">
-                                <input type="hidden" id="wifiin" name="wifiin" value="<?php echo $wifiin ?>">
-                                <input type="hidden" id="#silentin" name="silentin" value="<?php echo $silentin ?>">
-                                <input type="hidden" id="battryin" name="battryin" value="<?php echo $battryin ?>">
-                                <input type="hidden" id="bluetoothin" name="bluetoothin"
-                                    value="<?php echo $bluetoothin ?>">
-                                <input type="hidden" id="vibratein" name="vibratein" value="<?php echo $vibratein ?>">
-                                <input type="hidden" id="microin" name="microin" value="<?php echo $microin ?>">
+                                <input type="hidden" id="war" name="war">
                                 <!-- accesries start -->
-                                <input type="hidden" id="chargerin" name="charger" value="">
-                                <input type="hidden" id="earphonein" name="earphone" value="">
-                                <input type="hidden" id="boximeiin" name="boximei" value="">
-                                <input type="hidden" id="billimeiin" name="billimei" value="">
+                                <input type="hidden" id="charger" name="charger" value="">
+                                <input type="hidden" id="chargerin" name="chargerin" value="">
+                                <input type="hidden" id="earphone" name="earphone" value="">
+                                <input type="hidden" id="earphonein" name="earphonein" value="">
+                                <input type="hidden" id="boximei" name="boximei" value="">
+                                <input type="hidden" id="boximeiin" name="boximeiin" value="">
+                                <input type="hidden" id="billimei" name="billimei" value="">
+                                <input type="hidden" id="billimeiin" name="billimeiin" value="">
                                 <input type="hidden" id="mobilevalue" name="mobile" value="">
                                 <input type="hidden" id="userid" name="uid" value="" required>
                                 <input type="hidden" class="form-control py-2 px-2 my-3" name="name" id="name"
@@ -268,76 +227,22 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
 
                     <div class="col-12 col-lg-12 mx-auto my-auto text-center p-5 img-responsive">
                         <img src="assets/images/Group 494.png" alt="img" width="50%">
-                        <h1 class="text-white mt-2">Enter OTP</h1>
+                        <h1 class="text-white mt-2 title">Enter OTP</h1>
                         <div class="row">
                             <div class="col-11 col-lg-12 mx-auto">
                                 <form method="POST">
                                     <div class="form-group">
-                                        <input type="hidden" id="callin" name="callin" value="<?php echo $call ?>">
-                                        <input type="hidden" id="screenin" name="screenin"
-                                            value="<?php echo $screen ?>">
-                                        <input type="hidden" id="bodyin" name="bodyin" value="<?php echo $body ?>">
+                                        <input type="hidden" id="war" name="war" value="<?php echo $war ?>">
                                         <input type="hidden" id="warin" name="warin">
-                                        <!-- screen start -->
-                                        <input type="hidden" id="touchin" name="touch" value="<?php echo $touchwork ?>">
-                                        <input type="hidden" id="spotin" name="spot" value="<?php echo $spot ?>">
-                                        <input type="hidden" id="linesin" name="lines" value="<?php echo $lines ?>">
-                                        <input type="hidden" id="physicalin" name="physical"
-                                            value="<?php echo $physical ?>">
-                                        <input type="hidden" id="screencondition" name="screencondition"
-                                            value="<?php echo $screencondition ?>">
-                                        <!-- body start -->
-                                        <input type="hidden" id="devicedetail" name="devicedetail"
-                                            value="Device Details">
-                                        <input type="hidden" id="Scratchesin" name="Scratches"
-                                            value="<?php echo $Scratches ?>">
-                                        <input type="hidden" id="dentsin" name="dents" value="<?php echo $dents ?>">
-                                        <input type="hidden" id="sidein" name="side" value="<?php echo $side ?>">
-                                        <input type="hidden" id="bentin" name="bent" value="<?php echo $bents ?>">
-                                        <input type="hidden" id="overallcondition" name="overallcondition"
-                                            value="<?php echo  $overallcondition ?>">
-                                        <input type="hidden" id="functional" name="functional"
-                                            value="Functional Condition">
-                                        <input type="hidden" id="functional" name="assesires"
-                                            value="Do you have the following?">
-                                        <!-- mobile age  -->
-                                        <input type="hidden" id="mobagein" name="mobage" value="<?php echo $mobage ?>">
-                                        <input type="hidden" id="agein" name="age" value="<?php echo $age ?>">
-                                        <!-- functional start -->
-                                        <input type="hidden" id="copydisplay" name="copydisplay"
-                                            value="<?php echo $copydisplay ?>">
-                                        <input type="hidden" id="frontcamin" name="frontcamin"
-                                            value="<?php echo $frontcamin ?>">
-                                        <input type="hidden" id="backcamin" name="backcamin"
-                                            value="<?php echo $backcamin ?>">
-                                        <input type="hidden" id="volumein" name="volumein"
-                                            value="<?php echo $volumein ?>">
-                                        <input type="hidden" id="fingertouchin" name="fingertouchin"
-                                            value="<?php echo $fingertouchin ?>">
-                                        <input type="hidden" id="speakerin" name="speakerin"
-                                            value="<?php echo $speakerin ?>">
-                                        <input type="hidden" id="powerin" name="powerin" value="<?php echo $powerin ?>">
-                                        <input type="hidden" id="chargingin" name="chargingin"
-                                            value="<?php echo $chargingin ?>">
-                                        <input type="hidden" id="facein" name="facein" value="<?php echo $facein ?>">
-                                        <input type="hidden" id="audioin" name="audioin" value="<?php echo $audioin ?>">
-                                        <input type="hidden" id="camglassin" name="camglassin"
-                                            value="<?php echo $camglassin ?>">
-                                        <input type="hidden" id="wifiin" name="wifiin" value="<?php echo $wifiin ?>">
-                                        <input type="hidden" id="#silentin" name="silentin"
-                                            value="<?php echo $silentin ?>">
-                                        <input type="hidden" id="battryin" name="battryin"
-                                            value="<?php echo $battryin ?>">
-                                        <input type="hidden" id="bluetoothin" name="bluetoothin"
-                                            value="<?php echo $bluetoothin ?>">
-                                        <input type="hidden" id="vibratein" name="vibratein"
-                                            value="<?php echo $vibratein ?>">
-                                        <input type="hidden" id="microin" name="microin" value="<?php echo $microin ?>">
                                         <!-- accesries start -->
-                                        <input type="hidden" id="chargerin" name="charger" value="">
-                                        <input type="hidden" id="earphonein" name="earphone" value="">
-                                        <input type="hidden" id="boximeiin" name="boximei" value="">
-                                        <input type="hidden" id="billimeiin" name="billimei" value="">
+                                        <input type="hidden" id="charger" name="charger" value="">
+                                        <input type="hidden" id="chargerin" name="chargerin" value="">
+                                        <input type="hidden" id="earphone" name="earphone" value="">
+                                        <input type="hidden" id="earphonein" name="earphonein" value="">
+                                        <input type="hidden" id="boximei" name="boximei" value="">
+                                        <input type="hidden" id="boximeiin" name="boximeiin" value="">
+                                        <input type="hidden" id="billimei" name="billimei" value="">
+                                        <input type="hidden" id="billimeiin" name="billimeiin" value="">
                                         <input type="hidden" id="mobilevalue" name="mobile" value="">
                                         <input type="hidden" id="userid" name="uid" value="" required>
 
@@ -403,8 +308,6 @@ $(document).ready(function() {
 });
 </script>
 <!-- open another model script end -->
-
-
 <script>
 $(document).ready(function() {
     // Scratches start
@@ -412,99 +315,109 @@ $(document).ready(function() {
         var charger = $("input[type=checkbox][name=charger]:checked").val();
         if (charger == "yes") {
             $('#dohave').html("Do you have the following?");
-            $('#charger').html(
+            $('#chargerHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Charger of Device"
             );
             $('#chargerin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Charger of Device"
             );
+            $('#charger').val("yes");
         } else {
             $('#dohave').html("Do you have the following?");
-            $('#charger').html("");
+            $('#chargerHtml').html("");
             $('#chargerin').val("");
+            $('#charger').val("");
         }
 
         var earphone = $("input[type=checkbox][name=earphone]:checked").val();
         if (earphone == "yes") {
             $('#dohave').html("Do you have the following?");
-            $('#earphone').html(
+            $('#earphoneHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Earphones of Device"
             );
             $('#earphonein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Earphones of Device"
             );
+            $('#earphone').val("yes");
         } else {
             $('#dohave').html("Do you have the following?");
-            $('#earphone').html("");
+            $('#earphoneHtml').html("");
             $('#earphonein').val("");
+            $('#earphone').val("");
         }
 
         var boximei = $("input[type=checkbox][name=boximei]:checked").val();
         if (boximei == "yes") {
             $('#dohave').html("Do you have the following?");
-            $('#boximei').html(
+            $('#boximeiHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Box with same IMEI"
             );
             $('#boximeiin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Box with same IMEI"
             );
+            $('#boximei').val("yes");
         } else {
             $('#dohave').html("Do you have the following?");
-            $('#boximei').html("");
+            $('#boximeiHtml').html("");
             $('#boximeiin').val("");
+            $('#boximei').val("");
         }
 
         var billimei = $("input[type=checkbox][name=billimei]:checked").val();
         if (billimei != null) {
             if (billimei == "yes") {
-                var waren = $("#warr").html();
+                var waren = $("#warHtml").html();
+                var war = "<?php echo $war ?>";
                 console.log({
-                    waren
+                    waren,
+                    war
                 }, "--1--");
                 $('#dohave').html("Do you have the following?");
-                $('#billimei').html(
+                $('#billimeiHtml').html(
                     "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bill with same IMEI"
                 );
                 $('#billimeiin').val(
                     "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bill with same IMEI"
                 );
-                if (waren ==
-                    '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" aria-hidden="true"></i>Mobile Under Warranty'
-                ) {
+                $('#billimei').val("yes");
+                if (war === "yes") {
                     console.log({
                         waren
                     }, "--2--");
-                    $("#war").html(
+                    $("#warHtml").html(
                         "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Under Warranty"
                     );
                     $("#warin").val(
                         "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Under Warranty"
                     );
-                } else if (waren ==
-                    '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" aria-hidden="true"></i>Mobile Out of Warranty'
-                ) {
+                    $("#war").val(war);
+                } else if (war === "no") {
                     console.log({
                         waren
                     }, "--3--");
-                    $("#war").html(
+                    $("#warHtml").html(
                         "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Out of Warranty"
                     );
                     $("#warin").val(
                         "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Out of Warranty"
                     );
+                    $("#war").val(war);
                 }
 
             }
         } else {
             $('#dohave').html("Do you have the following?");
-            $('#billimei').html("");
+            $('#billimeiHtml').html("");
             $('#billimeiin').val("");
-            $("#war").html(
+            $('#billimei').val("");
+            $("#warHtml").html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
             );
             $("#warin").val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
             );
+
+            $("#war").val("no");
         }
     });
 });
@@ -518,12 +431,13 @@ $(document).ready(function() {
         // $("#war").html("<php echo $war ?>");
         //     $("#warin").val("<php echo $war ?>");
     } else {
-        $('#war').html(
+        $('#warHtml').html(
             "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
         );
         $('#warin').val(
             "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
         );
+        $('#war').val("no");
     }
 });
 </script>

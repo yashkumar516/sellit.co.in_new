@@ -8,7 +8,7 @@
       public function checkquestions(){
         
         $checkQuery = $this->conn->prepare("SELECT *  FROM `product_value`  where `product_id` = ? ");
-        $checkQuery->bind_param("sss", $this->deviceid );
+        $checkQuery->bind_param("s", $this->deviceid );
         $checkQuery->execute(); 
           $checkResult = $checkQuery->get_result();
 

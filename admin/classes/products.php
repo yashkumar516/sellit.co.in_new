@@ -303,7 +303,38 @@ class ProductManager
             $updatedProduct["image_url"] = $imageUrlStatus;
             // echo "-----------------modelName-----------------".$modelName;
             if ($imageUrlStatus === "external") {
-                $modelName = strtolower(str_replace(" ", "_", $modelName));
+
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+        
+
+                $modelName = strtolower(str_replace(" ", "_", $new_string));
                 $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // // Execute the command

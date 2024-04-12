@@ -39,39 +39,43 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                     </div>
                 </div>
                 <hr>
-                <div class="device px-3">
+                <div class="device px-3" id="deviceEvaluation">
                     <h1 class="sum-heading ">Device Evaluation</h1>
-                    <p id="devicedetail"><?php echo  $devicedetail ?></p>
-                    <p id="call"><?php echo $call ?></p>
-                    <p id="screen"><?php echo $screen ?></p>
-                    <p id="body"><?php echo $body ?></p>
-                    <p id="war"><?php echo $war ?></p>
-                    <p id="screencondition"></p>
-                    <p id="touch"></p>
-                    <p id="spot"></p>
-                    <p id="lines"></p>
-                    <p id="physical"></p>
+                    <p id="devicedetail" class="mt-2 title"><?php echo  $devicedetail ?></p>
+                    <p id="call"><?php echo $callin ?></p>
+                    <p id="screen"><?php echo $screenin ?></p>
+                    <p id="body"><?php echo $bodyin ?></p>
+                    <p id="warHtml"><?php echo $warin ?></p>
+                    <p id="screencondition" class="mt-2 title"></p>
+                    <p id="touchHtml"></p>
+                    <p id="spotHtml"></p>
+                    <p id="linesHtml"></p>
+                    <p id="physicalHtml"></p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 product-new">
                 <div class="modscren">
-                    <form action="defect1.php?vid=<?php echo $vid ?>&&bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>"
-                        method="post">
+                    <!-- <form action="defect.php?vid=<?php echo $vid ?>&&bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>"
+                        method="post">  -->
+                    <form action="" method="post" name="form" id="myForm">
                         <h1 class="pro-det text-left">Tell us a few things about your device!</h1>
                         <p class="ques text-left">Is your device's touch screen working properly?</p>
                         <div class="row mb-3" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggle-on" class="touch" name="touch" type="radio"
-                                    value="yes"><label for="toggle-on" required>Yes</label></div>
+                                    value="yes" <?php echo $touch === "yes" ? 'checked="checked"' : ''; ?>><label
+                                    for="toggle-on" required>Yes</label></div>
                             <div class="col-lg-5 col-6"><input id="toggle-off" class="touch" name="touch" type="radio"
-                                    value="no"><label for="toggle-off" required>No</label></div>
+                                    value="no" <?php echo $touch === "no" ? 'checked="checked"' : ''; ?>><label
+                                    for="toggle-off" required>No</label></div>
                         </div>
                         <hr>
+
                         <div class="card" style="box-shadow: 0 0px 0px 0 rgb(0 0 0 / 20%);border:0px;padding:0px;">
                             <p class="ques text-left">Dead Pixels/Spots on Screen</p>
                             <div class="row radio-select pt-3">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle1" class="spot" name="spot" type="radio" value="largespot"
-                                        required>
+                                        <?php echo $spot === "largespot" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle1">
                                         <img src="assets/images/Large heavy visible spots on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -83,7 +87,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle2" class="spot" name="spot" type="radio" value="multiplespot"
-                                        required>
+                                        <?php echo $spot === "multiplespot" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle2">
                                         <img src="assets/images/3 or more minor spots on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -95,7 +99,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle3" class="spot" name="spot" type="radio" value="minorspot"
-                                        required>
+                                        <?php echo $spot === "minorspot" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle3">
                                         <img src="assets/images/1-2 minor spots on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -106,7 +110,8 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle4" class="spot" name="spot" type="radio" value="nospot" required>
+                                    <input id="toggle4" class="spot" name="spot" type="radio" value="nospot"
+                                        <?php echo $spot === "nospot" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle4">
                                         <img src="assets/images/No line(s) on Display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -123,7 +128,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                             <div class="row radio-select pt-3">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle5" class="lines" name="lines" type="radio" value="displayfaded"
-                                        required>
+                                        <?php echo $lines === "displayfaded" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle5">
                                         <img src="assets/images/Display faded along edges.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -135,7 +140,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle6" class="lines" name="lines" type="radio" value="multiplelines"
-                                        required>
+                                        <?php echo $lines === "multiplelines" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle6">
                                         <img src="assets/images/Visible line(s) on display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -146,7 +151,8 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle7" class="lines" name="lines" type="radio" value="noline" required>
+                                    <input id="toggle7" class="lines" name="lines" type="radio" value="noline"
+                                        <?php echo $lines === "noline" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle7">
                                         <img src="assets/images/No line(s) on Display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -158,12 +164,13 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                             </div>
                         </div>
+
                         <div class="card" style="box-shadow: 0 0px 0px 0 rgb(0 0 0 / 20%);border:0px;padding:0px;">
                             <p class="ques text-left">Screen Physical Condition</p>
                             <div class="row radio-select pt-3">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle8" class="physical" name="physical" type="radio" value="cracked"
-                                        required>
+                                        <?php echo $physical === "cracked" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle8">
                                         <img src="assets/images/Screen cracked glass broken.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -175,7 +182,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle9" class="physical" name="physical" type="radio" value="damaged"
-                                        required>
+                                        <?php echo $physical === "damaged" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle9">
                                         <img src="assets/images/Screen cracked glass broken.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -187,7 +194,9 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle10" class="physical" name="physical" type="radio"
-                                        value="heavyscratches" required>
+                                        value="heavyscratches"
+                                        <?php echo $physical === "heavyscratches" ? 'checked="checked"' : ''; ?>
+                                        required>
                                     <label for="toggle10">
                                         <img src="assets/images/More than 2 scratches on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -199,7 +208,8 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle11" class="physical" name="physical" type="radio"
-                                        value="1-2scratches" required>
+                                        value="1-2scratches"
+                                        <?php echo $physical === "1-2scratches" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle11">
                                         <img src="assets/images/1-2 scratches on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -211,7 +221,8 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle12" class="physical" name="physical" type="radio"
-                                        value="noscratches" required>
+                                        value="noscratches"
+                                        <?php echo $physical === "noscratches" ? 'checked="checked"' : ''; ?> required>
                                     <label for="toggle12">
                                         <img src="assets/images/No line(s) on Display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -223,16 +234,19 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                                 </div>
                             </div>
                         </div>
+
                         <div class="text-center mt-4">
-                            <input type="hidden" id="callin" name="callin" value="<?php echo $call ?>">
-                            <input type="hidden" id="screenin" name="screenin" value="<?php echo $screen ?>">
-                            <input type="hidden" id="bodyin" name="bodyin" value="<?php echo $body ?>">
+                            <input type="hidden" id="war" name="war">
                             <input type="hidden" id="warin" name="warin">
                             <input type="hidden" name="devicedetail" value="Device Details">
-                            <input type="hidden" id="touchin" name="touch" value="">
-                            <input type="hidden" id="spotin" name="spot" value="">
-                            <input type="hidden" id="linesin" name="lines" value="">
-                            <input type="hidden" id="physicalin" name="physical" value="">
+                            <input type="hidden" id="touchin" name="touchin" value="">
+                            <input type="hidden" id="touch" name="touch" value="">
+                            <input type="hidden" id="spot" name="spot" value="">
+                            <input type="hidden" id="spotin" name="spotin" value="">
+                            <input type="hidden" id="lines" name="lines" value="">
+                            <input type="hidden" id="linesin" name="linesin" value="">
+                            <input type="hidden" id="physical" name="physical" value="">
+                            <input type="hidden" id="physicalin" name="physicalin" value="">
                             <input type="hidden" id="screencondition" name="screencondition" value="Screen Condition">
                             <button class="btn contin-btn" name="screen">Continue <i
                                     class="fas fa-arrow-right"></i></button>
@@ -246,171 +260,333 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
 
 <?php include 'footer1.php' ?>
 
+
+
+
 <script>
 $(document).ready(function() {
-    $('.touch').click(function() {
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form element by ID
+        var form = document.getElementById("myForm");
+
+        // Create empty object to store form data
+        var formData = {};
+
+        // Loop through each form element and add its name and value to the formData object
+        for (var i = 0; i < form.elements.length; i++) {
+            var element = form.elements[i];
+            if (element.type !== "submit") { // Exclude submit button
+                formData[element.name] = element.value;
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "session/set_session_all_question.php", // Replace with the path to your PHP script
+            data: formData,
+            success: function(response) {
+                // Handle success response if needed
+                console.log({
+                    response
+                });
+                // window.location.replace(
+                //     "defect1.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                // ); 
+                window.location.href =
+                    "defect1.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+
+            },
+            error: function(xhr, status, error) {
+                // Handle error response if needed
+                console.error({
+                    error
+                });
+            }
+        });
+        // You can now send this formData to a server using AJAX or perform any other operation with it.
+    }
+
+    // Attach form submission event listener
+    var form = document.getElementById("myForm");
+    form.addEventListener("submit", handleSubmit);
+})
+</script>
+<script>
+$(document).ready(function() {
+    const iconString =
+        '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
+    // touhscreen start
+    function touchCondition() {
         var touch = $("input[type=radio][name=touch]:checked").val();
         if (touch == "yes") {
             $('#screencondition').html("Screen Condition");
-            $('#touch').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Working"
+            $('#touchHtml').html(
+                `${iconString} Touch Working`
             );
-            $('#war').html(<?php $war ?>);
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $warin ?>');
+            $('#war').val('<?php echo $war ?>');
             $('#touchin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Working"
+                `${iconString} Touch Working`
             );
+            $('#touch').val("yes");
             $('.physical, .lines, .spot').attr("required", "true");
             $('.card').show();
         } else if (touch == "no") {
             $('#screencondition').html("Screen Condition");
-            $('#touch').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Faulty"
+            $('#touchHtml').html(
+                `${iconString} Touch Faulty`
             );
-            $('#war').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
             );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
             $('#touchin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Touch Faulty"
+                `${iconString} Touch Faulty`
             );
+            $('#touch').val("no");
             $('#spot,#lines,#physical').html("");
             $('#spotin,#linesin,#physicalin').val("");
             $('.card').hide();
             $('.physical, .lines, .spot').removeAttr("required");
 
         }
-    });
-
+    }
     // spot start
-    $('.spot').click(function() {
+    function spotCondition() {
         var spot = $("input[type=radio][name=spot]:checked").val();
         if (spot == "largespot") {
 
-            $('#spot').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Large/ heavy visible spots on screen"
+            $('#spotHtml').html(
+                `${iconString} Large/ heavy visible spots on screen`
             );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
+
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
             );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
             $('#spotin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Large/ heavy visible spots on screen"
+                `${iconString} Large/ heavy visible spots on screen`
             );
+            $('#spot').val("largespot");
         } else if (spot == "multiplespot") {
-            $('#spot').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple visible spots on screen"
+            $('#spotHtml').html(
+                `${iconString} Multiple visible spots on screen`
             );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
             );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
             $('#spotin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple visible spots on screen"
+                `${iconString} Multiple visible spots on screen`
             );
+            $('#spot').val("multiplespot");
         } else if (spot == "minorspot") {
-            $('#spot').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Minor discoloration or small spots on screen"
+            $('#spotHtml').html(
+                `${iconString} Minor discoloration or small spots on screen`
             );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
+
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
             );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
             $('#spotin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Minor discoloration or small spots on screen"
+                `${iconString} Minor discoloration or small spots on screen`
             );
+            $('#spot').val("minorspot");
         } else if (spot == "nospot") {
-            $('#spot').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No spots on screen"
+            $('#spotHtml').html(
+                `${iconString} No spots on screen`
             );
             $('#spotin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No spots on screen"
+                `${iconString} No spots on screen`
             );
+            $('#spot').val("nospot");
         }
-    });
+    }
 
     // lines start
-    $('.lines').click(function() {
+    function linesCondition() {
         var lines = $("input[type=radio][name=lines]:checked").val();
         if (lines == "displayfaded") {
 
-            $('#lines').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Display faded along corners"
+            $('#linesHtml').html(
+                `${iconString} Display faded along corners`
             );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
             );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
             $('#linesin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Display faded along corners"
+                `${iconString} Display faded along corners`
             );
+            $('#lines').val("displayfaded");
         } else if (lines == "multiplelines") {
-            $('#lines').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple lines on Display"
+            $('#linesHtml').html(
+                `${iconString} Multiple lines on Display`
             );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
             );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
             $('#linesin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple lines on Display"
+                `${iconString} Multiple lines on Display`
             );
+            $('#lines').val("multiplelines");
         } else if (lines == "noline") {
-            $('#lines').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No line(s) on Display"
+            $('#linesHtml').html(
+                `${iconString} No line(s) on Display`
             );
             $('#linesin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No line(s) on Display"
+                `${iconString} No line(s) on Display`
             );
+            $('#lines').val("noline");
         }
+    }
+
+    // physical start
+    function physicalCondition() {
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        if (physical == "cracked") {
+            $('#physicalHtml').html(
+                `${iconString} Screen cracked/ glass broken`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#physicalin').val(
+                `${iconString} Screen cracked/ glass broken`
+            );
+            $('#physical').val("cracked");
+        } else if (physical == "damaged") {
+            $('#physicalHtml').html(
+                `${iconString} Damaged/ Torn screen on edges`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#physicalin').val(
+                `${iconString} Damaged/ Torn screen on edges`
+            );
+            $('#physical').val("damaged");
+        } else if (physical == "heavyscratches") {
+            $('#physicalHtml').html(
+                `${iconString} Heavy scratches on screen`
+            );
+            $('#physicalin').val(
+                `${iconString} Heavy scratches on screen`
+            );
+            $('#physical').val("heavyscratches");
+        } else if (physical == "1-2scratches") {
+            $('#physicalHtml').html(
+                `${iconString} 1-2 scratches on screen`
+            );
+            $('#physicalin').val(
+                `${iconString} 1-2 scratches on screen`
+            );
+            $('#physical').val("1-2scratches");
+        } else if (physical == "noscratches") {
+            $('#physicalHtml').html(
+                `${iconString} No scratches on screen`
+            );
+            $('#physicalin').val(
+                `${iconString} No scratches on screen`
+            );
+            $('#physical').val("noscratches");
+        }
+    }
+    $('.touch').click(function() {
+        touchCondition()
+    });
+    $('.touch').ready(function() {
+        touchCondition()
+    });
+
+    $('.spot').click(function() {
+        spotCondition()
+    });
+    $('.spot').ready(function() {
+        spotCondition()
+    });
+
+    $('.lines').click(function() {
+        linesCondition()
+    });
+    $('.lines').ready(function() {
+        linesCondition()
     });
 
     // physical start
     $('.physical').click(function() {
-        var physical = $("input[type=radio][name=physical]:checked").val();
-        if (physical == "cracked") {
-            $('#physical').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Screen cracked/ glass broken"
-            );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-            );
-            $('#physicalin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Screen cracked/ glass broken"
-            );
-        } else if (physical == "damaged") {
-            $('#physical').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Damaged/ Torn screen on edges"
-            );
-            $('#war').html(
-                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
-            );
-            $('#physicalin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Damaged/ Torn screen on edges"
-            );
-        } else if (physical == "heavyscratches") {
-            $('#physical').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Heavy scratches on screen"
-            );
-            $('#physicalin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Heavy scratches on screen"
-            );
-        } else if (physical == "1-2scratches") {
-            $('#physical').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>1-2 scratches on screen"
-            );
-            $('#physicalin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>1-2 scratches on screen"
-            );
-        } else if (physical == "noscratches") {
-            $('#physical').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No scratches on screen"
-            );
-            $('#physicalin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No scratches on screen"
-            );
-        }
+        physicalCondition()
+    });
+    $('.physical').ready(function() {
+        physicalCondition()
     });
 });
 </script>
 
 <script>
 $(document).ready(function() {
-    var $warrenty = $('#war').html();
-    $("#warin").val($warrenty);
+
+    const iconString =
+        '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
+
+    function allCondition() {
+        var touch = $("input[type=radio][name=touch]:checked").val();
+        var spot = $("input[type=radio][name=spot]:checked").val();
+        var lines = $("input[type=radio][name=lines]:checked").val();
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        if (touch == "yes" && spot == "nospot" && lines == "noline" && (physical == "noscratches" || physical ==
+                "heavyscratches" || physical == "1-2scratches")) {
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $warin ?>');
+            $('#war').val('<?php echo $war ?>');
+        } else {
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+        }
+        var $warrenty = $('#warHtml').html();
+        $("#warin").val($warrenty);
+    }
+    $('.touch, .physical, .lines, .spot').click(function() {
+        allCondition()
+    })
+    $('.touch, .physical, .lines, .spot').ready(function() {
+        allCondition()
+    })
 });
 </script>
 
@@ -422,8 +598,28 @@ $(document).ready(function() {
         var physical = $("input[type=radio][name=physical]:checked").val();
         var lines = $("input[type=radio][name=lines]:checked").val();
         if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
-            $('#war').html("<?php echo $war ?>");
-            $('#warin').val("<?php echo $war ?>");
+            $('#warHtml').html(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
+            );
+            $('#warin').val(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
+            );
+            $('#war').val("yes");
+        }
+
+    })
+    $('.spot, .physical, .lines').ready(function() {
+        var spot = $("input[type=radio][name=spot]:checked").val();
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        var lines = $("input[type=radio][name=lines]:checked").val();
+        if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
+            $('#warHtml').html(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
+            );
+            $('#warin').val(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
+            );
+            $('#war').val("yes");
         }
 
     })

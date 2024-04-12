@@ -1,6 +1,6 @@
 <?php
 session_start();
-ini_set("display_errors",1);
+ini_set("display_errors",0);
 header("Access-Control-Allow-Origin:*");
 header("Access-Control-Allow-Methods: POST");
 header("Content-type:application/json; charset=UTF-8");
@@ -27,10 +27,12 @@ function GENERATELOGS_API($DATA,$BLOCK,$flag=0) {
           fclose($fp);
   }
 }
- 
-if($_SERVER['REQUEST_METHOD'] === "POST"){
+
+if($_SERVER['REQUEST_METHOD'] === "GET"){
   
-GENERATELOGS_API($_POST,"[request packet]",1); 
+GENERATELOGS_API($_GET,"[request packet]",1); 
+}
+if($_SERVER['REQUEST_METHOD'] === "POST"){
     if(!empty($_POST['vendorid']) && !empty($_POST['lead_id']) && !empty($_POST['cat_id']) && !empty($_POST['deviceid']) && isset($_POST['ajentid']) && !empty($_POST['varientid']) && !empty($_POST['brandid'])){
         
         $callrecieve = $_POST['callrecieve'];
@@ -73,13 +75,13 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         
         // questions end calculation part start
         
-        $checkleadquestions->vendorid = (int)$_POST['vendorid'];
-        $checkleadquestions->lead_id = (int)$_POST['lead_id'];
-        $checkleadquestions->cat_id = (int)$_POST['cat_id'];
-        $checkleadquestions->deviceid = (int)$_POST['deviceid'];
-        $checkleadquestions->varientid = (int)$_POST['varientid'];
-        $checkleadquestions->brandid = (int)$_POST['brandid'];
-        $checkleadquestions->ajentid = (int)$_POST['ajentid'];
+        $checkleadquestions->vendorid = $_POST['vendorid'];
+        $checkleadquestions->lead_id = $_POST['lead_id'];
+        $checkleadquestions->cat_id = $_POST['cat_id'];
+        $checkleadquestions->deviceid = $_POST['deviceid'];
+        $checkleadquestions->varientid = $_POST['varientid'];
+        $checkleadquestions->brandid = $_POST['brandid'];
+        $checkleadquestions->ajentid = $_POST['ajentid'];
         $leads = $checkleadquestions->checkquestions();
         if($leads->num_rows>0){
          $selectbrand = $leads->fetch_assoc();
@@ -580,9 +582,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         }
     
     }else{
-      
           http_response_code(200);
- 
     echo json_encode(array(
         "status" => 0,
         "message" => "pLEASE pass the vendorid,lead_id,cat_id,deviceid,varientid,brandid "

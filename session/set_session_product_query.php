@@ -5,24 +5,32 @@ session_start();
 // Check if data is received from the client
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve data sent from the client
+   
     $vid = $_POST['vid'];
     $mid = $_POST['mid'];
     $bid = $_POST['bid'];
     $call = $_POST['call'];
-    $screen = $_POST['screen'];
-    $body = $_POST['body'];
+    // $callin = $_POST['callin'];
+    // $screen = $_POST['screen'];
+    // $body = $_POST['body'];
     $war = $_POST['war'];
 
     // Set session variables
     $_SESSION['vid'] = $vid;
     $_SESSION['mid'] = $mid;
     $_SESSION['bid'] = $bid;
-    $_SESSION['call'] = $call;
-    $_SESSION['screen'] = $screen;
-    $_SESSION['body'] = $body;
+    $_SESSION['callin'] = $call==="no"?"<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To Take Calls":"<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To Take Calls";
+    // $_SESSION['screen'] = $screen;
+    // $_SESSION['body'] = $body;
+
+    foreach ($_POST as $key => $value) {
+        $_SESSION[$key] = $value;
+    }
     $_SESSION['war'] = $call === "no" ? "no" : $war;
 
-
+    // print_r($_POST);
+    // echo $_POST;
+    // exit();
     echo "Session variables set successfully.";
     // Construct the redirection URL based on the conditions
     // if ($screen == "yes" && $body == "yes" && $war == "yes") {
