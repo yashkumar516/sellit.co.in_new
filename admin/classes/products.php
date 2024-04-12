@@ -141,7 +141,39 @@ class ProductManager
             $updatedProduct["product_name"] = $product_name;
             $updatedProduct["product_image"] = $product_image;
             if ($imageUrlStatus === "external") {
-                $modelName = strtolower(str_replace(" ", "_", $modelName));
+                // $modelName = strtolower(str_replace(" ", "_", $modelName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+        
+
+                $modelName = strtolower(str_replace(" ", "_", $new_string));
                 exec("/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $updatedProduct;
@@ -172,7 +204,39 @@ class ProductManager
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $modelName = strtolower(str_replace(" ", "_", $modelName));
+                // $modelName = strtolower(str_replace(" ", "_", $modelName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+        
+
+                $modelName = strtolower(str_replace(" ", "_", $new_string));
                 exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $insertedProduct;
@@ -394,7 +458,39 @@ class ProductManager
             $insertedProductResult = $insertedProductStmt->get_result();
             $insertedProduct = $insertedProductResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $modelName = strtolower(str_replace(" ", "_", $modelName));
+                // $modelName = strtolower(str_replace(" ", "_", $modelName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $modelName);
+        
+
+                $modelName = strtolower(str_replace(" ", "_", $new_string));
                 // echo "-------------------backgroundProcessFile------insert--------".$backgroundProcessFile;
                 // Start background process to download the image and update the table
                 // exec("/usr/bin/php $backgroundProcessFile $insertedProductId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject", $output, $returnVar);
