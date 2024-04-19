@@ -1,0 +1,71 @@
+#signmob
+{
+    background-color: #1B6C9E;
+    height: 100vh;
+}
+.form-control {
+    border-radius: 1.25rem !important;
+}
+.form-group button
+{
+    color: #23699D;
+}
+
+/* signup css start */
+#signup
+{
+    background: #D7EBEC 0% 0% no-repeat padding-box;
+border-radius: 57px;
+opacity: 1;
+}
+#signup h1
+{
+    color: #1B6C9E;
+    margin-bottom: 50px;
+}
+#signup form button
+{
+    background-color: #1B6C9E;
+}
+#signup p
+{
+    color: #1B6C9E;
+}
+#signup h5{
+    color: #1B6C9E;
+}
+
+
+
+
+
+
+
+/* mobresponsive */
+@media (max-width: 576px) { 
+    #signup
+    {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+    #signup h1
+     {
+    margin-bottom: 20px;
+     }
+
+     #signup form button
+      {
+        margin-bottom: 20px !important;
+        margin-top: 20px !important;
+      }
+
+      #signup form input
+      {
+        margin-bottom: 30px !important;
+        margin-top: 30px !important;
+      }
+     .img-responsive{
+         padding: 0px !important;
+     }
+
+}
