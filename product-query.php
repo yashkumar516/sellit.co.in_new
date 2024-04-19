@@ -3,7 +3,7 @@
 
 <?php 
 
-$vid = $_REQUEST['upto'];
+$vid = $_REQUEST['vid'];
 $mid = $_REQUEST['mid'];
 $bid = $_REQUEST['bid'];
 $selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
@@ -16,18 +16,28 @@ $modelManager = new CheckModelValue($con);
 $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                     
 // $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-
-
+ 
     if (session_status() == PHP_SESSION_NONE) {
         // Start the session
         session_start();
     } 
-    if (isset($_SESSION['call']) && isset($_SESSION['screen']) && isset($_SESSION['body']) && isset($_SESSION['warStatus'])) {
+    // unset($_SESSION["functionalPage"]);
+    // unset($_SESSION["mobileAgePage"]);
+    // unset($_SESSION["productNewPage"]);
+    // unset($_SESSION["defectPage"]);
+    
+    $_SESSION["productQueryPage"]= array();
+    $_SESSION["functionalPage"]= array();
+    $_SESSION["mobileAgePage"]= array();
+    $_SESSION["productNewPage"]= array();
+    $_SESSION["defectPage"]= array();
+    $_PAGE_DATA = isset($_SESSION['productQueryPage'])  && count($_SESSION['productQueryPage']) >0? $_SESSION['productQueryPage']:$_SESSION;
+    if (isset($_PAGE_DATA['call']) && isset($_PAGE_DATA['screen']) && isset($_PAGE_DATA['body']) && isset($_PAGE_DATA['warStatus'])) {
         // Session variables are set, so retrieve them
-        $call = $_SESSION['call'];
-        $screen = $_SESSION['screen'];
-        $body = $_SESSION['body'];
-        $war = $_SESSION['warStatus'];
+        $call = $_PAGE_DATA['call'];
+        $screen = $_PAGE_DATA['screen'];
+        $body = $_PAGE_DATA['body'];
+        $war = $_PAGE_DATA['warStatus'];
     } else { 
         $call = "";
         $screen = "";
@@ -183,6 +193,7 @@ $(document).ready(function() {
         } = formData;
         // formData["params"] = `vid=${vid}&mid=${mid}&bid=${bid}&screen=${screen}&body=${body}&war=${war}`;
         formData["params"] = `vid=${vid}&mid=${mid}&bid=${bid}`;
+        formData["page"] = "productQueryPage"
         $.ajax({
             type: "POST",
             url: "session/set_session_all_question.php", // Replace with the path to your PHP script
@@ -193,8 +204,11 @@ $(document).ready(function() {
                     response
                 });
                 const {
-                    params
+                    currentData
                 } = response;
+                const {
+                    params
+                } = currentData
                 if (screen == "yes" && body == "yes" && war == "yes") {
                     window.location.href = `product-new.php?${params}`;
                 } else if (screen == "no" && body == "no" && war == "no") {

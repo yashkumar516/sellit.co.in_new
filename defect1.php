@@ -289,6 +289,7 @@ $(document).ready(function() {
 
         var age = $("input[type=radio][name=age]:checked").val();
         formData["age"] = age;
+        formData["page"] = "defactPage";
         // Display the form data
         // console.log(formData);
         $.ajax({
@@ -300,11 +301,11 @@ $(document).ready(function() {
                 console.log({
                     response
                 });
-                // window.location.replace(
-                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
-                // );
-                window.location.href =
-                    "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+                window.location.replace(
+                    "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
+                // window.location.href =
+                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
 
             },
             error: function(xhr, status, error) {

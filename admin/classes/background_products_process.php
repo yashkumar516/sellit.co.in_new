@@ -4,8 +4,8 @@ if (count($argv) < 9) {
     echo "Connected Error";
     die("Usage: php background_products_process.php <productId> <modelImage> <modelName> <dbHost> <dbUsername> <dbPassword> <dbDatabase> <dirNameProject>\n");
 }
-set_time_limit(60);
-ini_set("max_execution_time", 3000);
+set_time_limit(100);
+ini_set("max_execution_time", 5000);
 
 $productId = $argv[1];
 
@@ -46,20 +46,20 @@ if ($conn->connect_error) {
 
     // Construct the local file path
     $localFilePath =
-        $localDirectory . "/" . $modelName . "_" . $productId . ".png";
+        $localDirectory . "/" . $modelName . "_" . $productId . ".jpg";
 
     try {
-        echo "<br/>--------------------------------------        max_execution_time   -------------" . ini_get("max_execution_time");
+        // echo "<br/>--------------------------------------        max_execution_time   -------------" . ini_get("max_execution_time");
         if (ini_get("allow_url_fopen")) {
             // allow_url_fopen is enabled
-            // echo "<br/>--------------------------------------enabled-------------";
+            echo "<br/>--------------------------------------enabled-------------";
         } else {
             // allow_url_fopen is disabled
             echo "<br/>--------------------------------------disabled-------------";
         }
         $context = stream_context_create([
             'http' => [
-                'timeout' => 50,
+                'timeout' => 100,
             ],
         ]);
 
@@ -74,13 +74,13 @@ if ($conn->connect_error) {
             // Save the image to the local directory
             file_put_contents($localFilePath, $imageContent);
 
-            $product_image = "drive/" . $modelName . "_" . $productId . ".png";
+            $product_image = "drive/" . $modelName . "_" . $productId . ".jpg";
 
             $updateQuery = "UPDATE product SET product_image = '$product_image', image_url = '$imageUrlStatus' WHERE id = $productId";
             $conn->query($updateQuery);
 
             // echo "<br/>----------";
-            // echo "<br/>--------------------------------------product_image-------------".$product_image;
+            echo "<br/>--------------------------------------localFilePath-------------".$localFilePath;
         } else {
             // Output an error message
             echo "<br/>-Failed to download the image from the URL: $imageUrl\n";

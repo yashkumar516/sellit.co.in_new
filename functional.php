@@ -366,7 +366,7 @@ $(document).ready(function() {
                 formData[element.name] = element.value;
             }
         }
-
+        formData["page"] = "functionalPage";
         // Display the form data
         console.log(formData);
         $.ajax({
@@ -379,8 +379,9 @@ $(document).ready(function() {
                     response
                 });
                 // window.location.href = "functional.php?vid=" + vid + "&mid=" + mid + "&bid=" + bid;
-                window.location.href =
-                    "haveitem.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+                window.location.replace(
+                    "haveitem.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
 
             },
             error: function(xhr, status, error) {
@@ -401,22 +402,23 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
+    console.log("--------------------copydisplay-------------");
     const iconString =
         "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;'></i>"
     // Scratches start
     function outOfWarranty() {
 
         $('#warHtml').html(
-            `${iconString}Mobile Out of Warranty`
+            iconString + "Mobile Out of Warranty"
         );
         $('#warin').val(
-            `${iconString}Mobile Out of Warranty`
+            iconString + "Mobile Out of Warranty"
         );
-        $('#war').html("no");
+        $('#war').val("no");
     }
 
     function setOnClickValue(id, value, htmlValue) {
-        $('#functional').html("Functional Condition");
+        $('#functionalHtml').html("Functional Condition");
         $(`#${id}Html`).html(
             htmlValue !== "" ? `${iconString} ${htmlValue}` : ""
         );
@@ -568,10 +570,17 @@ $(document).ready(function() {
             "yes" && camglass != "yes" &&
             wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
             "yes" && micro != "yes" && copydisplay != "yes") {
-            $('#warHtml').html('<?php echo $warin ?>');
-            $('#war').val('<?php echo $war ?>');
-            $('#warin').val('<?php echo $warin ?>');
-            console.log("all false", "<?php echo $war ?>", '<?php echo $warin ?>')
+
+            var warintyValue = "<?php echo $war ?>";
+
+            var warinValue = iconString + "Mobile Out of Warranty"
+            if (warintyValue === "yes") {
+                var warinValue = iconString + "Mobile Under Warranty"
+            }
+            $('#warHtml').html(warinValue);
+            $('#war').val("<?php echo $war ?>");
+            $('#warin').val(warinValue);
+            console.log("all false", "<?php echo $war ?>", warinValue)
         }
         //new question end
 
@@ -582,6 +591,7 @@ $(document).ready(function() {
         CheckedInput()
     });
     $('.functional').ready(function() {
+        console.log("--------------------functional-------------");
         CheckedInput()
     });
 });
@@ -589,13 +599,18 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
+
     var $warrenty = $('#warHtml').html();
     $("#warin").val($warrenty);
+    $("#war").val("<?php echo $war;?>");
 });
 </script>
 
 <script>
 $(document).ready(function() {
+
+    const iconString =
+        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;'></i>"
     $('.functional').click(function() {
         var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
         var backcam = $("input[type=checkbox][name=backcam]:checked").val();
@@ -619,9 +634,16 @@ $(document).ready(function() {
             "yes" && camglass != "yes" &&
             wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
             "yes" && micro != "yes" && copydisplay != "yes") {
-            $('#warHtml').html('<?php echo $warin ?>');
-            $('#warin').val('<?php echo $warin ?>');
-            $('#war').val('<?php echo $war ?>');
+
+            var warintyValue = "<?php echo $war ?>";
+
+            var warinValue = iconString + "Mobile Out of Warranty"
+            if (warintyValue === "yes") {
+                var warinValue = iconString + "Mobile Under Warranty"
+            }
+            $('#warHtml').html(warinValue);
+            $('#war').val("<?php echo $war ?>");
+            $('#warin').val(warinValue);
         }
 
     })
@@ -648,9 +670,16 @@ $(document).ready(function() {
             "yes" && camglass != "yes" &&
             wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
             "yes" && micro != "yes" && copydisplay != "yes") {
-            $('#warHtml').html('<?php echo $warin ?>');
-            $('#warin').val('<?php echo $warin ?>');
-            $('#war').val('<?php echo $war ?>');
+
+            var warintyValue = "<?php echo $war ?>";
+
+            var warinValue = iconString + "Mobile Out of Warranty"
+            if (warintyValue === "yes") {
+                var warinValue = iconString + "Mobile Under Warranty"
+            }
+            $('#warHtml').html(warinValue);
+            $('#war').val("<?php echo $war ?>");
+            $('#warin').val(warinValue);
         }
 
     })

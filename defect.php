@@ -288,6 +288,7 @@ $(document).ready(function() {
 
         var age = $("input[type=radio][name=age]:checked").val();
         formData["age"] = age;
+        formData["page"] = "defectPage";
         // Display the form data
         // console.log(formData);
         $.ajax({
@@ -302,8 +303,9 @@ $(document).ready(function() {
                 // window.location.replace(
                 //     "mobileage.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
                 // );
-                window.location.href =
-                    "mobileage.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+                window.location.replace(
+                    "mobileage.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
 
             },
             error: function(xhr, status, error) {

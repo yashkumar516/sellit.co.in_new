@@ -63,7 +63,7 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                     <p id="ageHtml"><?php echo $agein ?></p>
                     <!-- functional start -->
                     <p id="functional" class="mt-2 title"><?php echo $functional ?></p>
-                    <p id="copydisplayHtml"><?php echo $copydisplay ?></p>
+                    <p id="copydisplayHtml"><?php echo $copydisplayin ?></p>
                     <p id="frontcamHtml"><?php echo $frontcamin ?></p>
                     <p id="backcamHtml"><?php echo $backcamin ?></p>
                     <p id="volumeHtml"><?php echo $volumein ?></p>
@@ -76,7 +76,7 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                     <p id="camglass"><?php echo $camglassin ?></p>
                     <p id="wifiHtml"><?php echo $wifiin  ?></p>
                     <p id="silentHtml"><?php echo $silentin ?></p>
-                    <p id="batteryHtml"><?php echo $battryin ?></p>
+                    <p id="batteryHtml"><?php echo $batteryin ?></p>
                     <p id="bluetoothHtml"><?php echo $bluetoothin ?></p>
                     <p id="vibrateHtml"><?php echo $vibratein ?></p>
                     <p id="microHtml"><?php echo $microin ?></p>

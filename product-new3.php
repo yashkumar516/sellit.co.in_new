@@ -281,6 +281,7 @@ $(document).ready(function() {
                 formData[element.name] = element.value;
             }
         }
+        formData["page"] = "productNewPage";
         $.ajax({
             type: "POST",
             url: "session/set_session_all_question.php", // Replace with the path to your PHP script
@@ -290,11 +291,11 @@ $(document).ready(function() {
                 console.log({
                     response
                 });
-                // window.location.replace(
-                //     "defect1.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
-                // ); 
-                window.location.href =
-                    "defect1.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+                window.location.replace(
+                    "defect1.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
+                // window.location.href =
+                //     "defect1.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
 
             },
             error: function(xhr, status, error) {

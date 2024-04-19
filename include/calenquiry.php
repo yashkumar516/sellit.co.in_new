@@ -125,80 +125,164 @@ if (isset($_POST['otpverify'])) {
   GENERATELOGS_API($selectbrand, "brand questions value", 1);
   GENERATELOGS_API($_REQUEST, "REQUEST PACKET", 1);
 
-  $formcall = $_SESSION['call'];
-  $formcallin = $_SESSION['callin'];
-  $formscreen = $_SESSION['screen'];
-  $formscreenin = $_SESSION['screenin'];
-  $formsbody = $_SESSION['body'];
-  $formsbodyin = $_SESSION['bodyin'];
-  $formwar = $_SESSION['war'];
-  $formwarin = $_SESSION['warin'];
-  $formtouch = $_SESSION['touch'];
-  $formspot = $_SESSION['spot'];
-  $formlines = $_SESSION['lines'];
-  $formphysical = $_SESSION['physical'];
-  $formdents = $_SESSION['dents'];
-  $formside = $_SESSION['side'];
-  $formbent = $_SESSION['bent'];
-  $formage = $_SESSION['age'];
-  $Scratches = $_SESSION['Scratches'];
-  //  functional question start
-  $copydisplay = $_SESSION['copydisplay'];
-  $formfrontcam = $_SESSION['frontcam'];
-  $formbackcam = $_SESSION['backcam'];
-  $formvolume = $_SESSION['volume'];
-  $formfingertouch = $_SESSION['fingertouch'];
-  $formspeaker = $_SESSION['speaker'];
-  $formcharging = $_SESSION['charging'];
-  $formface = $_SESSION['face'];
-  $formaudio = $_SESSION['audio'];
-  $formcamglass = $_SESSION['camglass'];
-  $formwifi = $_SESSION['wifi'];
-  $formsilent = $_SESSION['silent'];
-  $formbattry = $_SESSION['battery'];
-  $formbluetooth = $_SESSION['bluetooth'];
-  $formvibrate = $_SESSION['vibrate'];
-  $formmicro = $_SESSION['micro'];
-  $power = $_SESSION['power'];
-  $formcharger = $_POST['charger'];
-  $formearphone = $_POST['earphone'];
-  $formboximei = $_POST['boximei'];
-  $formbillimei = $_POST['billimei'];
+  // $formcall = $_SESSION['call'];
+  // $formcallin = $_SESSION['callin'];
+  // $formscreen = $_SESSION['screen'];
+  // $formscreenin = $_SESSION['screenin'];
+  // $formsbody = $_SESSION['body'];
+  // $formsbodyin = $_SESSION['bodyin'];
+  // $formwar = $_SESSION['war'];
+  // $formwarin = $_SESSION['warin'];
+  // $formtouch = $_SESSION['touch'];
+  // $formspot = $_SESSION['spot'];
+  // $formlines = $_SESSION['lines'];
+  // $formphysical = $_SESSION['physical'];
+  // $formdents = $_SESSION['dents'];
+  // $formside = $_SESSION['side'];
+  // $formbent = $_SESSION['bent'];
+  // $formage = $_SESSION['age'];
+  // $Scratches = $_SESSION['Scratches'];
+  // //  functional question start
+  // $copydisplay = $_SESSION['copydisplay'];
+  // $formfrontcam = $_SESSION['frontcam'];
+  // $formbackcam = $_SESSION['backcam'];
+  // $formvolume = $_SESSION['volume'];
+  // $formfingertouch = $_SESSION['fingertouch'];
+  // $formspeaker = $_SESSION['speaker'];
+  // $formcharging = $_SESSION['charging'];
+  // $formface = $_SESSION['face'];
+  // $formaudio = $_SESSION['audio'];
+  // $formcamglass = $_SESSION['camglass'];
+  // $formwifi = $_SESSION['wifi'];
+  // $formsilent = $_SESSION['silent'];
+  // $formbattry = $_SESSION['battery'];
+  // $formbluetooth = $_SESSION['bluetooth'];
+  // $formvibrate = $_SESSION['vibrate'];
+  // $formmicro = $_SESSION['micro'];
+  // $power = $_SESSION['power'];
+  // $formcharger = $_POST['charger'];
+  // $formearphone = $_POST['earphone'];
+  // $formboximei = $_POST['boximei'];
+  // $formbillimei = $_POST['billimei'];
+  $_PAGE_DATA =  $_SESSION["currentData"];
+
+  // Initialize variables to default values
+$formcall = isset($_PAGE_DATA['call']) ? $_PAGE_DATA['call'] : '';
+$formcallin = isset($_PAGE_DATA['callin']) ? $_PAGE_DATA['callin'] : '';
+$formscreen = isset($_PAGE_DATA['screen']) ? $_PAGE_DATA['screen'] : '';
+$formscreenin = isset($_PAGE_DATA['screenin']) ? $_PAGE_DATA['screenin'] : '';
+$formsbody = isset($_PAGE_DATA['body']) ? $_PAGE_DATA['body'] : '';
+$formsbodyin = isset($_PAGE_DATA['bodyin']) ? $_PAGE_DATA['bodyin'] : '';
+$formwar = isset($_PAGE_DATA['war']) ? $_PAGE_DATA['war'] : '';
+$formwarin = isset($_PAGE_DATA['warin']) ? $_PAGE_DATA['warin'] : '';
+
+$formtouch = isset($_PAGE_DATA['touch']) ? $_PAGE_DATA['touch'] : '';
+$formspot = isset($_PAGE_DATA['spot']) ? $_PAGE_DATA['spot'] : '';
+$formlines = isset($_PAGE_DATA['lines']) ? $_PAGE_DATA['lines'] : '';
+$formphysical = isset($_PAGE_DATA['physical']) ? $_PAGE_DATA['physical'] : '';
+$formdents = isset($_PAGE_DATA['dents']) ? $_PAGE_DATA['dents'] : '';
+$formside = isset($_PAGE_DATA['side']) ? $_PAGE_DATA['side'] : '';
+$formbent = isset($_PAGE_DATA['bent']) ? $_PAGE_DATA['bent'] : '';
+$formage = isset($_PAGE_DATA['age']) ? $_PAGE_DATA['age'] : '';
+$Scratches = isset($_PAGE_DATA['Scratches']) ? $_PAGE_DATA['Scratches'] : '';
+
+// Functional question start
+$copydisplay = isset($_PAGE_DATA['copydisplay']) ? $_PAGE_DATA['copydisplay'] : '';
+$formfrontcam = isset($_PAGE_DATA['frontcam']) ? $_PAGE_DATA['frontcam'] : '';
+$formbackcam = isset($_PAGE_DATA['backcam']) ? $_PAGE_DATA['backcam'] : '';
+$formvolume = isset($_PAGE_DATA['volume']) ? $_PAGE_DATA['volume'] : '';
+$formfingertouch = isset($_PAGE_DATA['fingertouch']) ? $_PAGE_DATA['fingertouch'] : '';
+$formspeaker = isset($_PAGE_DATA['speaker']) ? $_PAGE_DATA['speaker'] : '';
+$formcharging = isset($_PAGE_DATA['charging']) ? $_PAGE_DATA['charging'] : '';
+$formface = isset($_PAGE_DATA['face']) ? $_PAGE_DATA['face'] : '';
+$formaudio = isset($_PAGE_DATA['audio']) ? $_PAGE_DATA['audio'] : '';
+$formcamglass = isset($_PAGE_DATA['camglass']) ? $_PAGE_DATA['camglass'] : '';
+$formwifi = isset($_PAGE_DATA['wifi']) ? $_PAGE_DATA['wifi'] : '';
+$formsilent = isset($_PAGE_DATA['silent']) ? $_PAGE_DATA['silent'] : '';
+$formbattry = isset($_PAGE_DATA['battery']) ? $_PAGE_DATA['battery'] : '';
+$formbluetooth = isset($_PAGE_DATA['bluetooth']) ? $_PAGE_DATA['bluetooth'] : '';
+$formvibrate = isset($_PAGE_DATA['vibrate']) ? $_PAGE_DATA['vibrate'] : '';
+$formmicro = isset($_PAGE_DATA['micro']) ? $_PAGE_DATA['micro'] : '';
+$power = isset($_PAGE_DATA['power']) ? $_PAGE_DATA['power'] : '';
+
+// For POST data
+$formcharger = isset($_POST['charger']) ? $_POST['charger'] : '';
+$formearphone = isset($_POST['earphone']) ? $_POST['earphone'] : '';
+$formboximei = isset($_POST['boximei']) ? $_POST['boximei'] : '';
+$formbillimei = isset($_POST['billimei']) ? $_POST['billimei'] : '';
 
 
   
-  $formtouchin = $_SESSION['touchin'];
-  $formspotin = $_SESSION['spotin'];
-  $formlinesin = $_SESSION['linesin'];
-  $formphysicalin = $_SESSION['physicalin'];
-  $formdentsin = $_SESSION['dentsin'];
-  $formsidein = $_SESSION['sidein'];
-  $formbentin = $_SESSION['bentin'];
-  $formagein = $_SESSION['agein'];
-  $Scratchesin = $_SESSION['Scratchesin'];
-  //  functional question start
-  $copydisplayin = $_SESSION['copydisplayin'];
-  $formfrontcamin = $_SESSION['frontcamin'];
-  $formbackcamin = $_SESSION['backcamin'];
-  $formvolumein = $_SESSION['volumein'];
-  $formfingertouchin = $_SESSION['fingertouchin'];
-  $formspeakerin = $_SESSION['speakerin'];
-  $formchargingin = $_SESSION['chargingin'];
-  $formfacein = $_SESSION['facein'];
-  $formaudioin = $_SESSION['audioin'];
-  $formcamglassin = $_SESSION['camglassin'];
-  $formwifiin = $_SESSION['wifiin'];
-  $formsilentin = $_SESSION['silentin'];
-  $formbattryin = $_SESSION['batteryin'];
-  $formbluetoothin = $_SESSION['bluetoothin'];
-  $formvibratein = $_SESSION['vibratein'];
-  $formmicroin = $_SESSION['microin'];
-  $powerin = $_SESSION['powerin'];
-  $formchargerin = $_POST['chargerin'];
-  $formearphonein = $_POST['earphonein'];
-  $formboximeiin = $_POST['boximeiin'];
-  $formbillimeiin = $_POST['billimeiin'];
+  // $formtouchin = $_SESSION['touchin'];
+  // $formspotin = $_SESSION['spotin'];
+  // $formlinesin = $_SESSION['linesin'];
+  // $formphysicalin = $_SESSION['physicalin'];
+  // $formdentsin = $_SESSION['dentsin'];
+  // $formsidein = $_SESSION['sidein'];
+  // $formbentin = $_SESSION['bentin'];
+  // $formagein = $_SESSION['agein'];
+  // $Scratchesin = $_SESSION['Scratchesin'];
+  // //  functional question start
+  // $copydisplayin = $_SESSION['copydisplayin'];
+  // $formfrontcamin = $_SESSION['frontcamin'];
+  // $formbackcamin = $_SESSION['backcamin'];
+  // $formvolumein = $_SESSION['volumein'];
+  // $formfingertouchin = $_SESSION['fingertouchin'];
+  // $formspeakerin = $_SESSION['speakerin'];
+  // $formchargingin = $_SESSION['chargingin'];
+  // $formfacein = $_SESSION['facein'];
+  // $formaudioin = $_SESSION['audioin'];
+  // $formcamglassin = $_SESSION['camglassin'];
+  // $formwifiin = $_SESSION['wifiin'];
+  // $formsilentin = $_SESSION['silentin'];
+  // $formbattryin = $_SESSION['batteryin'];
+  // $formbluetoothin = $_SESSION['bluetoothin'];
+  // $formvibratein = $_SESSION['vibratein'];
+  // $formmicroin = $_SESSION['microin'];
+  // $powerin = $_SESSION['powerin'];
+  
+  // $formchargerin = $_POST['chargerin'];
+  // $formearphonein = $_POST['earphonein'];
+  // $formboximeiin = $_POST['boximeiin'];
+  // $formbillimeiin = $_POST['billimeiin'];
+  // Session variables with isset validation and default values
+$formtouchin = isset($_PAGE_DATA['touchin']) ? $_PAGE_DATA['touchin'] : '';
+$formspotin = isset($_PAGE_DATA['spotin']) ? $_PAGE_DATA['spotin'] : '';
+$formlinesin = isset($_PAGE_DATA['linesin']) ? $_PAGE_DATA['linesin'] : '';
+$formphysicalin = isset($_PAGE_DATA['physicalin']) ? $_PAGE_DATA['physicalin'] : '';
+$formdentsin = isset($_PAGE_DATA['dentsin']) ? $_PAGE_DATA['dentsin'] : '';
+$formsidein = isset($_PAGE_DATA['sidein']) ? $_PAGE_DATA['sidein'] : '';
+$formbentin = isset($_PAGE_DATA['bentin']) ? $_PAGE_DATA['bentin'] : '';
+$formagein = isset($_PAGE_DATA['agein']) ? $_PAGE_DATA['agein'] : '';
+$Scratchesin = isset($_PAGE_DATA['Scratchesin']) ? $_PAGE_DATA['Scratchesin'] : '';
+
+// Functional questions for Session variables
+$copydisplayin = isset($_PAGE_DATA['copydisplayin']) ? $_PAGE_DATA['copydisplayin'] : '';
+$formfrontcamin = isset($_PAGE_DATA['frontcamin']) ? $_PAGE_DATA['frontcamin'] : '';
+$formbackcamin = isset($_PAGE_DATA['backcamin']) ? $_PAGE_DATA['backcamin'] : '';
+$formvolumein = isset($_PAGE_DATA['volumein']) ? $_PAGE_DATA['volumein'] : '';
+$formfingertouchin = isset($_PAGE_DATA['fingertouchin']) ? $_PAGE_DATA['fingertouchin'] : '';
+$formspeakerin = isset($_PAGE_DATA['speakerin']) ? $_PAGE_DATA['speakerin'] : '';
+$formchargingin = isset($_PAGE_DATA['chargingin']) ? $_PAGE_DATA['chargingin'] : '';
+$formfacein = isset($_PAGE_DATA['facein']) ? $_PAGE_DATA['facein'] : '';
+$formaudioin = isset($_PAGE_DATA['audioin']) ? $_PAGE_DATA['audioin'] : '';
+$formcamglassin = isset($_PAGE_DATA['camglassin']) ? $_PAGE_DATA['camglassin'] : '';
+$formwifiin = isset($_PAGE_DATA['wifiin']) ? $_PAGE_DATA['wifiin'] : '';
+$formsilentin = isset($_PAGE_DATA['silentin']) ? $_PAGE_DATA['silentin'] : '';
+$formbattryin = isset($_PAGE_DATA['batteryin']) ? $_PAGE_DATA['batteryin'] : '';
+$formbluetoothin = isset($_PAGE_DATA['bluetoothin']) ? $_PAGE_DATA['bluetoothin'] : '';
+$formvibratein = isset($_PAGE_DATA['vibratein']) ? $_PAGE_DATA['vibratein'] : '';
+$formmicroin = isset($_PAGE_DATA['microin']) ? $_PAGE_DATA['microin'] : '';
+$powerin = isset($_PAGE_DATA['powerin']) ? $_PAGE_DATA['powerin'] : '';
+
+// POST data variables with isset validation and default values
+$formchargerin = isset($_POST['chargerin']) ? $_POST['chargerin'] : '';
+$formearphonein = isset($_POST['earphonein']) ? $_POST['earphonein'] : '';
+$formboximeiin = isset($_POST['boximeiin']) ? $_POST['boximeiin'] : '';
+$formbillimeiin = isset($_POST['billimeiin']) ? $_POST['billimeiin'] : '';
+
   // warrenty and age calculation start
+  // echo "formwar".$formwar;
   if (!empty($formwar)) {
     if ($formwar==="no" ) {
       $warrenty = $above11;
@@ -475,9 +559,19 @@ if (isset($_POST['otpverify'])) {
   // functions questions calculation start
   $sumflatvalue = $fcam + $cdisplay + $bcam + $vol + $finger + $speak +  $charginpot +  $face + $audio + $camglass + $mobwifi + $silbtn + $batt +  $baluetooth + $vibration +  $micro +  $powder;
   $offerprice = $updatedupto - ($netdeductpercenet + $sumflatvalue + $screendeduction);
+  // echo "<br/>";
+  // echo  "----------updatedupto-----".$updatedupto;
+  // echo  "----------netdeductpercenet-----".$netdeductpercenet;
+  // echo  "----------sumflatvalue-----".$sumflatvalue;
+  // echo  "----------screendeduction-----".$screendeduction;
+  // echo  "----------row1-----".$offerprice;
   $offerprice = round($offerprice);
+  // echo "<br/>";
+  // echo "----------row2-----".$offerprice;
   $offerprice = round($offerprice / 10) * 10;
-  
+  // echo "<br/>";
+  // echo "----------row3-----".$offerprice;
+  // exit();
   // enquiry start
   if (isset($_POST['otpverify'])) {
    

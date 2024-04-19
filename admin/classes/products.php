@@ -399,6 +399,7 @@ class ProductManager
         
 
                 $modelName = strtolower(str_replace(" ", "_", $new_string));
+                
                 $command = "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // // Execute the command
@@ -413,7 +414,7 @@ class ProductManager
                 //     echo "--<br/>-----successfully----: " . implode("\n", $output);
                 // }
 
-
+// exit();
                 exec(
                     "/usr/bin/php $backgroundProcessFile $productId $modelImage $modelName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &"
                 );

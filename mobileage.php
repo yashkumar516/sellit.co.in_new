@@ -1,9 +1,10 @@
 <?php include 'hideheader.php' ?>
 <?php
-include 'include/mobileage1.php';
 $vid = $_REQUEST['vid'];
 $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
+include 'include/mobileage1.php';
+
 $selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 <?php
@@ -145,7 +146,7 @@ $(document).ready(function() {
         }
 
         // var age = $("input[type=radio][name=age]:checked").val();
-        // formData["age"] = age;
+        formData["page"] = "mobileAgePage";
         // Display the form data
         // console.log(formData);
         $.ajax({
@@ -157,11 +158,11 @@ $(document).ready(function() {
                 console.log({
                     response
                 });
-                window.location.href =
-                    "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
-                // window.location.replace(
-                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
-                // );
+                // window.location.href =
+                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+                window.location.replace(
+                    "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
 
             },
             error: function(xhr, status, error) {
@@ -181,6 +182,10 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
+
+    // window.history.go(-1);
+    // window.history.replaceState("Set Product ", "",
+    //     "product-query.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>")
 
     function ageCondition() {
 
