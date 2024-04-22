@@ -40,25 +40,25 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                     </div>
                 </div>
                 <hr>
-                <div class="device px-3">
+                <div class="device px-3" id="deviceEvaluation">
                     <h1 class="sum-heading ">Device Evaluation</h1>
-                    <p id="devicedetail"><?php echo  $devicedetail ?></p>
-                    <p id="call"><?php echo $call ?></p>
-                    <p id="screen"><?php echo $screen ?></p>
-                    <p id="body"><?php echo $body ?></p>
-                    <p id="war"><?php echo $war ?></p>
+                    <p id="devicedetailHtml" class="mt-2 title"><?php echo  $devicedetail ?></p>
+                    <p id="callHtml"><?php echo $callin ?></p>
+                    <p id="screenHtml"><?php echo $screenin ?></p>
+                    <p id="bodyHtml"><?php echo $bodyin ?></p>
+                    <p id="warHtml"><?php echo $warin ?></p>
                     <!-- screenconditions start -->
-                    <p id="screencondition"><?php echo $screencondition ?></p>
-                    <p id="touch"><?php echo $touch ?></p>
-                    <p id="spot"><?php echo $spot ?></p>
-                    <p id="lines"><?php echo $lines ?></p>
-                    <p id="physical"><?php echo $physical ?></p>
+                    <p id="screenconditionHtml" class="mt-2 title"><?php echo $screencondition ?></p>
+                    <p id="touchHtml"><?php echo $touchin ?></p>
+                    <p id="spotHtml"><?php echo $spotin ?></p>
+                    <p id="linesHtml"><?php echo $linesin ?></p>
+                    <p id="physicalHtml"><?php echo $physicalin ?></p>
                     <!-- body conditions start -->
-                    <p id="overall"></p>
-                    <p id="Scratches"></p>
-                    <p id="dents"></p>
-                    <p id="side"></p>
-                    <p id="bent"></p>
+                    <p id="overallHtml" class="mt-2 title"></p>
+                    <p id="ScratchesHtml"></p>
+                    <p id="dentsHtml"></p>
+                    <p id="sideHtml"></p>
+                    <p id="bentHtml"></p>
                 </div>
             </div>
             <div class="col-lg-7 defect">
@@ -67,12 +67,14 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
 
                     <p class="ques">Scratches on Phone Body</p>
                     <!-- <p class="sub-heading">Check your device for cellular network connectivity issues.</p> -->
-                    <form action="functional.php?vid=<?php echo $vid ?>&&bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>"
-                        method="post">
+                    <!-- <form action="mobileage.php?vid=<?php echo $vid ?>&&bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>" method="post"> -->
+                    <form action="" method="post" name="form" id="myForm">
+
                         <div class="row pt-3">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle1" class="Scratches" name="Scratches" type="radio"
-                                    value="Major scratches" required>
+                                    value="Major scratches"
+                                    <?php echo $Scratches === "Major scratches" ? 'checked="checked"' : ''; ?> required>
                                 <label for="toggle1">
                                     <img src="assets/images/defect/7.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -83,7 +85,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle2" class="Scratches" name="Scratches" type="radio"
-                                    value="Less than 2 scratches" required>
+                                    value="Less than 2 scratches"
+                                    <?php echo $Scratches === "Less than 2 scratches" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle2">
                                     <img src="assets/images/defect/10.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -94,7 +98,7 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle3" class="Scratches" name="Scratches" type="radio" value="No scratches"
-                                    required>
+                                    <?php echo $Scratches === "No scratches" ? 'checked="checked"' : ''; ?> required>
                                 <label for="toggle3">
                                     <img src="assets/images/defect/3.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -110,7 +114,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                         <div class="row pt-3">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle4" class="dents" name="dents" type="radio"
-                                    value="Multiple/heavy visible body dents" required>
+                                    value="Multiple/heavy visible body dents"
+                                    <?php echo $dents === "Multiple/heavy visible body dents" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle4">
                                     <img src="assets/images/defect/6.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -121,7 +127,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle5" class="dents" name="dents" type="radio"
-                                    value="2 or less minor body dents" required>
+                                    value="2 or less minor body dents"
+                                    <?php echo $dents === "2 or less minor body dents" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle5">
                                     <img src="assets/images/defect/4.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -131,7 +139,8 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                                 </label>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-                                <input id="toggle6" class="dents" name="dents" type="radio" value="No dents" required>
+                                <input id="toggle6" class="dents" name="dents" type="radio" value="No dents"
+                                    <?php echo $dents === "No dents" ? 'checked="checked"' : ''; ?> required>
                                 <label for="toggle6">
                                     <img src="assets/images/defect/3.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -146,7 +155,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                         <div class="row pt-3">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle7" class="side" name="side" type="radio"
-                                    value="Cracked/ broken side or back panel" required>
+                                    value="Cracked/ broken side or back panel"
+                                    <?php echo $side === "Cracked/ broken side or back panel" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle7">
                                     <img src="assets/images/defect/1.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -157,7 +168,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle8" class="side" name="side" type="radio"
-                                    value="Missing side or back panel" required>
+                                    value="Missing side or back panel"
+                                    <?php echo $side === "Missing side or back panel" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle8">
                                     <img src="assets/images/defect/5.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -168,7 +181,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle9" class="side" name="side" type="radio"
-                                    value="No defect on side or back panel" required>
+                                    value="No defect on side or back panel"
+                                    <?php echo $side === "No defect on side or back panel" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle9">
                                     <img src="assets/images/defect/2.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -184,7 +199,7 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                         <div class="row pt-3">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle10" name="bent" class="bent" type="radio" value="Bent/ curved panel"
-                                    required>
+                                    <?php echo $bent === "Bent/ curved panel" ? 'checked="checked"' : ''; ?> required>
                                 <label for="toggle10">
                                     <img src="assets/images/defect/9.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -195,7 +210,9 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle11" name="bent" class="bent" type="radio"
-                                    value="Loose screen (Gap in screen and body)" required>
+                                    value="Loose screen (Gap in screen and body)"
+                                    <?php echo $bent === "Loose screen (Gap in screen and body)" ? 'checked="checked"' : ''; ?>
+                                    required>
                                 <label for="toggle11">
                                     <img src="assets/images/defect/8.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -206,7 +223,7 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                                 <input id="toggle12" name="bent" class="bent" type="radio" value="Phone not bent"
-                                    required>
+                                    <?php echo $bent === "Phone not bent" ? 'checked="checked"' : ''; ?> required>
                                 <label for="toggle12">
                                     <img src="assets/images/defect/2.jpg" class="img-fluid" alt="">
                                     <div class="radi-text">
@@ -217,7 +234,7 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <input type="hidden" id="callin" name="callin" value="<?php echo $call ?>">
+                            <!-- <input type="hidden" id="callin" name="callin" value="<?php echo $call ?>">
                             <input type="hidden" id="screenin" name="screenin" value="<?php echo $screen ?>">
                             <input type="hidden" id="bodyin" name="bodyin" value="<?php echo $body ?>">
                             <input type="hidden" id="warin" name="warin">
@@ -227,14 +244,18 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             <input type="hidden" id="linesin" name="lines" value="<?php echo $lines ?>">
                             <input type="hidden" id="physicalin" name="physical" value="<?php echo $physical ?>">
                             <input type="hidden" id="screencondition" name="screencondition"
-                                value="<?php echo $screencondition ?>">
-                            <input type="hidden" id="Scratchesin" name="Scratches" value="">
-                            <input type="hidden" id="dentsin" name="dents" value="">
-                            <input type="hidden" id="sidein" name="side" value="">
-                            <input type="hidden" id="bentin" name="bent" value="">
+                                value="<?php echo $screencondition ?>"> -->
+                            <input type="hidden" id="Scratches" name="Scratches" value="">
+                            <input type="hidden" id="Scratchesin" name="Scratchesin" value="">
+                            <input type="hidden" id="dents" name="dents" value="">
+                            <input type="hidden" id="dentsin" name="dentsin" value="">
+                            <input type="hidden" id="side" name="side" value="">
+                            <input type="hidden" id="sidein" name="sidein" value="">
+                            <input type="hidden" id="bent" name="bent" value="">
+                            <input type="hidden" id="bentin" name="bentin" value="">
                             <input type="hidden" id="overallcondition" name="overallcondition"
                                 value="Phone's Overall Condition">
-                            <button class="btn contin-btn" name="questions2">Continue <i
+                            <button class="btn contin-btn" name="questions">Continue <i
                                     class="fas fa-arrow-right"></i></button>
                         </div>
                     </form>
@@ -249,139 +270,230 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
 
 <script>
 $(document).ready(function() {
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form element by ID
+        var form = document.getElementById("myForm");
+
+        // Create empty object to store form data
+        var formData = {};
+
+        // Loop through each form element and add its name and value to the formData object
+        for (var i = 0; i < form.elements.length; i++) {
+            var element = form.elements[i];
+            if (element.type !== "submit") { // Exclude submit button
+                formData[element.name] = element.value;
+            }
+        }
+
+        var age = $("input[type=radio][name=age]:checked").val();
+        formData["age"] = age;
+        formData["page"] = "defactPage";
+        // Display the form data
+        // console.log(formData);
+        $.ajax({
+            type: "POST",
+            url: "session/set_session_all_question.php", // Replace with the path to your PHP script
+            data: formData,
+            success: function(response) {
+                // Handle success response if needed
+                console.log({
+                    response
+                });
+                window.location.replace(
+                    "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
+                // window.location.href =
+                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+
+            },
+            error: function(xhr, status, error) {
+                // Handle error response if needed
+                console.error({
+                    error
+                });
+            }
+        });
+        // You can now send this formData to a server using AJAX or perform any other operation with it.
+    }
+
+    // Attach form submission event listener
+    var form = document.getElementById("myForm");
+    form.addEventListener("submit", handleSubmit);
+})
+</script>
+<script>
+$(document).ready(function() {
     // Scratches start
-    $('.Scratches').click(function() {
+    function scratchesCondition() {
         var Scratches = $("input[type=radio][name=Scratches]:checked").val();
         if (Scratches == "Major scratches") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#Scratches').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#ScratchesHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Major scratches"
             );
-            $('#war').html(<?php $war ?>);
+            $('#warHtml').html('<?php echo $warin ?>');
             $('#Scratchesin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Major scratches"
             );
+            $('#Scratches').val("Major scratches");
         } else if (Scratches == "Less than 2 scratches") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#Scratches').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#ScratchesHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Less than 2 scratches"
             );
-            $('#war').html(<?php $war ?>);
+            $('#warHtml').html('<?php echo $warin ?>');
             $('#Scratchesin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Less than 2 scratches"
             );
+            $('#Scratches').val("Less than 2 scratches");
         } else if (Scratches == "No scratches") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#Scratches').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#ScratchesHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No scratches"
             );
-            $('#war').html(<?php $war ?>);
+            $('#warHtml').html('<?php echo $warin ?>');
             $('#Scratchesin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No scratches"
             );
+            $('#Scratches').val("No scratches");
         }
-    });
+    }
     // dents start
-    $('.dents').click(function() {
+    function dentsCondition() {
         var dents = $("input[type=radio][name=dents]:checked").val();
         if (dents == "Multiple/heavy visible body dents") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#dents').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#dentsHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple/heavy visible body dents"
             );
-            $('#war').html(<?php $war ?>);
             $('#dentsin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Multiple/heavy visible body dents"
             );
+            $('#dents').val("Multiple/heavy visible body dents");
         } else if (dents == "2 or less minor body dents") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#dents').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#dentsHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>2 or less minor body dents"
             );
-            $('#war').html(<?php $war ?>);
             $('#dentsin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>2 or less minor body dents"
             );
+            $('#dents').val("2 or less minor body dents");
         } else if (dents == "No dents") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#dents').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#dentsHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No dents"
             );
-            $('#war').html(<?php $war ?>);
             $('#dentsin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No dents"
             );
+            $('#dents').val("No dents");
         }
-    })
+    }
+
     // side start
-    $('.side').click(function() {
+    function sideCondition() {
         var side = $("input[type=radio][name=side]:checked").val();
         if (side == "Cracked/ broken side or back panel") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#side').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#sideHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Cracked/ broken side or back panel"
             );
-            $('#war').html(
+            $('#warHtml').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
             );
             $('#sidein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Cracked/ broken side or back panel"
             );
+            $('#side').val("Cracked/ broken side or back panel");
         } else if (side == "Missing side or back panel") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#side').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#sideHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Missing side or back panel"
             );
-            $('#war').html(
+            $('#warHtml').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
             );
             $('#sidein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Missing side or back panel"
             );
+            $('#side').val("Missing side or back panel");
         } else if (side == "No defect on side or back panel") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#side').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#sideHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No defect on side or back panel"
             );
             $('#sidein').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>No defect on side or back panel"
             );
+            $('#side').val("No defect on side or back panel");
         }
-    })
+    }
+
     // bent start
-    $('.bent').click(function() {
+    function bentCondition() {
         var bent = $("input[type=radio][name=bent]:checked").val();
         if (bent == "Bent/ curved panel") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#bent').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#bentHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bent/ curved panel"
             );
-            $('#war').html(
+            $('#warHtml').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
             );
             $('#bentin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bent/ curved panel"
             );
+            $('#bent').val("Bent/ curved panel");
         } else if (bent == "Loose screen (Gap in screen and body)") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#bent').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#bentHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Loose screen (Gap in screen and body)"
             );
-            $('#war').html(
+            $('#warHtml').html(
                 '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Out of Warranty'
             );
             $('#bentin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Loose screen (Gap in screen and body)"
             );
+            $('#bent').val("Loose screen (Gap in screen and body)");
         } else if (bent == "Phone not bent") {
-            $('#overall').html("Phone's Overall Condition");
-            $('#bent').html(
+            $('#overallHtml').html("Phone's Overall Condition");
+            $('#bentHtml').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Phone not bent"
             );
             $('#bentin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Phone not bent"
             );
+            $('#bent').val("Phone not bent");
         }
+    }
+
+    $('.Scratches').click(function() {
+        scratchesCondition()
+    });
+    $('.Scratches').ready(function() {
+        scratchesCondition()
+    });
+    $('.dents').click(function() {
+        dentsCondition()
+    })
+    $('.dents').ready(function() {
+        dentsCondition()
+    })
+    $('.side').click(function() {
+        sideCondition()
+    })
+    $('.side').ready(function() {
+        sideCondition()
+    })
+    $('.bent').click(function() {
+        bentCondition()
+    })
+    $('.bent').ready(function() {
+        bentCondition()
     })
 });
 </script>
@@ -390,9 +502,34 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
-    $('.bent, .side, .dents, .Scratches').click(function() {
-        var $warrenty = $('#war').html();
+
+    const iconString =
+        '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
+
+    function allCondition() {
+        var side = $("input[type=radio][name=side]:checked").val();
+        var bent = $("input[type=radio][name=bent]:checked").val();
+        if (side == "No defect on side or back panel" && bent == "Phone not bent") {
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $warin ?>');
+            $('#war').val('<?php echo $war ?>');
+        } else {
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+        }
+        var $warrenty = $('#warHtml').html();
         $("#warin").val($warrenty);
+    }
+    $('.bent, .side, .dents, .Scratches').click(function() {
+        allCondition();
+    })
+    $('.bent, .side, .dents, .Scratches').ready(function() {
+        allCondition();
     })
 });
 </script>
@@ -403,8 +540,17 @@ $(document).ready(function() {
         var bent = $("input[type=radio][name=bent]:checked").val();
         var side = $("input[type=radio][name=side]:checked").val();
         if (bent == "Phone not bent" && side == "No defect on side or back panel") {
-            $('#war').html(<?php $war ?>);
-            $('#warin').val(<?php $war ?>);
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $war ?>');
+        }
+
+    });
+    $('.bent, .side, .dents, .Scratches').ready(function() {
+        var bent = $("input[type=radio][name=bent]:checked").val();
+        var side = $("input[type=radio][name=side]:checked").val();
+        if (bent == "Phone not bent" && side == "No defect on side or back panel") {
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $war ?>');
         }
 
     })

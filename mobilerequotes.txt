@@ -1,0 +1,374 @@
+2024-04-05 10:49:59	([request packet])
+Array
+(
+    [bid] => 101
+    [sid] => 167
+)
+
+
+2024-04-05 10:51:11	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => 3 To 6 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warranty
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:00:38	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warranty
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:11:03	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warrant
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:11:51	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warrant
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:13:48	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 5
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warrant
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:18:18	([request packet])
+Array
+(
+)
+
+
+2024-04-05 11:18:38	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 5
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warrant
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:22:23	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 5
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warrant
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+
+2024-04-05 11:22:26	([request packet])
+Array
+(
+    [fingertouch] => 
+    [powerbutton] => 
+    [frontcamera] => 
+    [screenspot] => No spots on screen
+    [bodydents] => No dents
+    [vibrate] => 
+    [boximei] => Box with same IMEI
+    [silentbutton] => 
+    [battery] => 
+    [facesensor] => 
+    [brandid] => 101
+    [backcamera] => 
+    [cat_id] => 1
+    [callrecieve] => Able To Take Calls
+    [microphone] => 
+    [ajentid] => 5
+    [cameraglass] => 
+    [lead_id] => 2367
+    [billimei] => Bill with same IMEI
+    [copydisplay] => no copy display
+    [wifi] => 
+    [volumebutton] => 
+    [bodybent] => Phone not bent
+    [vendorid] => 15
+    [touchscreen] => Touch Working
+    [mobileage] => Under 3 Months
+    [bodyscratches] => No scratches
+    [deviceid] => 1104
+    [earphone] => 
+    [bodysidebackpanel] => No defect on side or back panel
+    [warrin] => Mobile Under Warrant
+    [charger] => Original Charger of Device
+    [screenlines] => No line(s) on Display
+    [bluetooth] => 
+    [audioreciever] => 
+    [speaker] => 
+    [chargingport] => 
+    [varientid] => 213
+    [screenphysicalcondition] => No scratches on screen
+)
+
+

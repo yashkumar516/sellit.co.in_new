@@ -11,7 +11,26 @@ $db = new  Database();
 $connection = $db->connect();
 $checkleadquestions = new  Calculation($connection);
 
- if($_SERVER['REQUEST_METHOD'] === "POST"){    
+function GENERATELOGS_API($DATA,$BLOCK,$flag=0) {
+  $file_name = "/var/log/aakarist/mobilerequotes.txt";
+  if(file_exists($file_name)) {
+          $fp     =       fopen($file_name,"a+");
+          fwrite($fp, date("Y-m-d H:i:s")."\t");
+          if($flag==1){
+                  fwrite($fp,"(".$BLOCK.")\n");
+                  fwrite($fp,print_r($DATA,true));
+                  fwrite($fp,"\n\n");
+          }
+          else{
+                  fwrite($fp,"(".$BLOCK.")=====".$DATA."\n");
+          }
+          fclose($fp);
+  }
+}
+ 
+if($_SERVER['REQUEST_METHOD'] === "POST"){
+  
+GENERATELOGS_API($_POST,"[request packet]",1); 
     if(!empty($_POST['vendorid']) && !empty($_POST['lead_id']) && !empty($_POST['cat_id']) && !empty($_POST['deviceid']) && isset($_POST['ajentid']) && !empty($_POST['varientid']) && !empty($_POST['brandid'])){
         
         $callrecieve = $_POST['callrecieve'];
@@ -54,13 +73,13 @@ $checkleadquestions = new  Calculation($connection);
         
         // questions end calculation part start
         
-        $checkleadquestions->vendorid = $_POST['vendorid'];
-        $checkleadquestions->lead_id = $_POST['lead_id'];
-        $checkleadquestions->cat_id = $_POST['cat_id'];
-        $checkleadquestions->deviceid = $_POST['deviceid'];
-        $checkleadquestions->varientid = $_POST['varientid'];
-        $checkleadquestions->brandid = $_POST['brandid'];
-        $checkleadquestions->ajentid = $_POST['ajentid'];
+        $checkleadquestions->vendorid = (int)$_POST['vendorid'];
+        $checkleadquestions->lead_id = (int)$_POST['lead_id'];
+        $checkleadquestions->cat_id = (int)$_POST['cat_id'];
+        $checkleadquestions->deviceid = (int)$_POST['deviceid'];
+        $checkleadquestions->varientid = (int)$_POST['varientid'];
+        $checkleadquestions->brandid = (int)$_POST['brandid'];
+        $checkleadquestions->ajentid = (int)$_POST['ajentid'];
         $leads = $checkleadquestions->checkquestions();
         if($leads->num_rows>0){
          $selectbrand = $leads->fetch_assoc();
@@ -561,7 +580,9 @@ $checkleadquestions = new  Calculation($connection);
         }
     
     }else{
+      
           http_response_code(200);
+ 
     echo json_encode(array(
         "status" => 0,
         "message" => "pLEASE pass the vendorid,lead_id,cat_id,deviceid,varientid,brandid "

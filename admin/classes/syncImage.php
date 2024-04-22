@@ -99,7 +99,7 @@ class SyncImageManager
             );
 
             // Use str_replace to replace special symbols
-            $new_string = str_replace(array_keys($special_symbols), '', $row['subcategory_name']);
+            $new_string = str_replace(array_keys($special_symbols), '_', $row['subcategory_name']);
 
             $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $subcategoryId . '.png';
 
@@ -248,7 +248,7 @@ class SyncImageManager
             // Add more special symbols and their replacements as needed
         );
             // Use str_replace to replace special symbols
-            $new_string = str_replace(array_keys($special_symbols), '', $row['subcategoryId']);
+            $new_string = str_replace(array_keys($special_symbols), '_', $row['subcategoryId']);
 
             $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $subcategoryId . '.png';
 
@@ -357,7 +357,7 @@ class SyncImageManager
             // Add more special symbols and their replacements as needed
         );
             // Use str_replace to replace special symbols
-            $new_string = str_replace(array_keys($special_symbols), '', $row['product_name']);
+            $new_string = str_replace(array_keys($special_symbols), '_', $row['product_name']);
 
             $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $productId . '.png';
 
@@ -481,7 +481,7 @@ class SyncImageManager
             );
 
             // Use str_replace to replace special symbols
-            $new_string = str_replace(array_keys($special_symbols), '', $row['product_name']);
+            $new_string = str_replace(array_keys($special_symbols), '_', $row['product_name']);
 
             $imageName=strtolower(str_replace(' ', '-', $new_string)) . '_' . $productId . '.png';
             // Specify the local file path, combining the directory and file name
