@@ -21,13 +21,13 @@ if (isset($_SESSION['user'])) {
 
 <head>
     <!-- Required meta tags -->
-    <title>Sell Old Mobile Phones Online in Delhi NCR | Sellit</title>
+    <title>Best Place to Sell Old Phones | Best Website to Sell Old Phone | Cash phone</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="q-24As6IUgQYlnT2-RVsVVYP07YI6kxtdMd_gNndDVg" />
     <meta name="description"
-        content="Sell old mobile phones online in Delhi NCR- Sellit.co.in is the best for old mobile phone selling online website, where you can sell your used old phone easily against better cash.">
+        content="Sellit.co.in is the best place sell old phones online. With its easy-to-use platform and top prices, it's the ideal choice for anyone who's looking the best website to Sell old Phone online quickly and easily.">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -201,162 +201,29 @@ if (isset($_SESSION['user'])) {
         </section>
         <section class="py-4">
             <div class="container">
-                <h1 class="tablet-heading">Sell Old Mobile Phones Online in Delhi NCR - Old Mobile Phone Selling Website
-                </h1>
-                <p>Have an old phone lying dormant in a drawer? Looking for a convenient and secure way to turn an old
-                    phone into cash? Look no further than Sellit.co.in! This user-friendly platform caters specifically
-                    to residents of Delhi NCR (Delhi, Faridabad, Ghaziabad, Noida, and Gurgaon) who want to sell their
-                    pre-owned mobile phones online.</p>
-                <h4 style="font-weight: 600;">Why Choose Sellit.co.in?</h4>
-
-                <ol class="pl-5" style="list-style-type: inherit">
-                    <li>
-                        <strong>Effortless Selling Process:</strong> Sellit.co.in streamlines the
-                        process of selling your old phone. Simply visit their website, select your device's brand and
-                        model, and answer a few questions about its condition. This takes just minutes and can be done
-                        from the comfort of your home.
-
-                    </li>
-                    <li>
-                        <strong>Instant Quotes:</strong> Based on the information you provide, Sellit.co.in generates an
-                        instant
-                        quote for your phone. This transparent approach ensures you know exactly what your device is
-                        worth upfront.
-
-                    </li>
-                    <li>
-                        <strong>Competitive Prices:</strong> Sellit.co.in prides itself on offering competitive prices
-                        for all
-                        phone models, regardless of brand or condition. They understand the value of your pre-owned
-                        device and strive to provide you with a fair market price.
-
-                    </li>
-                    <li>
-                        <strong>Free and Convenient Pickup:</strong> Once you accept the quoted price, Sellit.co.in
-                        schedules a
-                        free pickup for your phone at your preferred location. No need to worry about packaging or
-                        delivery – they handle everything!
-
-                    </li>
-                    <li>
-                        <strong>Safe and Secure Transactions:</strong> Sellit.co.in prioritizes your security. They
-                        offer secure
-                        payment options, ensuring you receive your money promptly after your phone is verified.
-
-                    </li>
-                    <li>
-                        <strong>Eco-Friendly Choice:</strong> Selling your old phone responsibly is good for the
-                        environment. Sellit.co.in ensures proper recycling or refurbishment of your device, preventing
-                        it from ending up in landfills.
-
-                    </li>
-                </ol>
-
-
-                <h4 style="font-weight: 600;">Getting Started with Sellit.co.in</h4>
-                <p>Selling your old phone online. Here's a quick guide:</p>
-                <ol class="pl-5">
-
-                    <li>
-                        Visit Sellit.co.in and click on the "Sell Now" button.
-                    </li>
-                    <li>
-                        Select your phone's brand and model from the list provided.
-                    </li>
-                    <li>
-                        Answer a few questions about your phone's condition, storage capacity, and any included
-                        accessories (charger, earphones, etc.)
-                    </li>
-                    <li>
-                        Review the instant quote generated by Sellit.co.in
-                    </li>
-                    <li>
-                        If you're happy with the price, schedule a convenient pickup time and date.
-                    </li>
-                    <li>
-                        Once Sellit.co.in receives and verifies your phone, you'll receive your payment directly into
-                        your bank account.
-
-                    </li>
-                </ol>
-
-
-                <!-- <h4>WHY SELL YOUR PHONE TO SELL IT</h4>
-              -->
-                <h4 style="font-weight: 600;"> Sell Your Old Phone Today!</h4>
-                <p>Don't let your old phone gather dust! Sellit.co.in offers a secure, convenient, and eco-friendly way
-                    to turn it into cash. With their user-friendly platform, competitive prices, and free pickup
-                    service, selling your old phone online in Delhi NCR has never been easier. Visit Sellit.co.in today
-                    and breathe new life into your pre-owned mobile device!
+                <h1 class="tablet-heading">Best Place and Website to Sell Old Phones</h1>
+                <p>How long have you been trying to sell your old phone? However, due to your lack of expertise in this
+                    field, it always ends up being an exhausting task. Finding An Ideal Client Who Will Provide The Best
+                    Market Cost Estimate For Your Old Used Phone Won't Without A Doubt Give You An Ever Finishing
+                    Migraine. You're clueless in a situation like this. What Are You Expected To Do?</p>
+                <p>How About If We Tell You To Sit Back And Relax And Let SellIt Take Over The Reins And Come To Your
+                    Aid? Yes, You Heard It Right. Sel+-lIt is the best place to sell old phones in India. It is an
+                    online platform that allows you to sell your used phone quickly and easily. With SellIt, you can get
+                    a fair price for your old phone, and you can do it all from the comfort of your home.</p>
+                <h4 style="font-weight: 600;">Where To Sell My Mobile For The Best Price?</h4>
+                <p>One of the best things about SellIt is that it is a completely hassle-free process. All you need to
+                    do is visit the SellIt website, select your device's brand and model, and provide a few basic
+                    details about the phone's condition. Based on this information, SellIt will give you an instant
+                    quote for your phone. If you are happy with the price, you can then schedule a pickup for your phone
+                    at a time that is convenient for you.</p>
+                <p>SellIt offers competitive prices for all types of phone devices. The platform also accepts phones in
+                    all conditions, whether they are <b> new, used, or damaged. </b></p>
+                <p>Selling your old phone through SellIt is also an eco-friendly choice. By selling your phone instead
+                    of throwing it away, you are helping to reduce electronic waste and make a positive impact on the
+                    environment. So, if you are looking for the best website to sell old phones in India, SellIt is the
+                    way to go. It is an easy, hassle-free, and eco-friendly way to get a fair price for your old phone.
                 </p>
-                <p>
-                    If you're looking to sell your old mobile phone, then Sellit.co.in is the website you need. With its
-                    user-friendly platform and competitive prices, it offers a hassle-free selling experience. Here's
-                    everything you need to know about selling your old mobile phone on Sellit.co.in.
-                </p>
-
-                <h4 style="font-weight: 600;"> Why Sell Your Old Mobile Phone Online on Sellit.co.in?
-                </h4>
-                <p>Sellit.co.in is the ideal destination for selling old mobile phones online because of the following
-                    reasons:
-                </p>
-                <ol class="pl-5">
-                    <li> <strong>User-friendly platform:</strong> The website's user-friendly interface makes it easy to
-                        navigate and
-                        use.
-                    </li>
-                    <li><strong>Competitive prices:</strong> Sellit.co.in offers competitive prices for old mobile
-                        phones, ensuring that
-                        sellers get the best value for their devices.
-                    </li>
-                    <li><strong>Hassle-free selling experience:</strong> Selling your old mobile phone on Sellit.co.in
-                        is a hassle-free
-                        experience. The process is simple, quick, and convenient.
-                    </li>
-                    <li><strong>Wide range of brands and models:</strong> Sellit.co.in accepts a wide range of brands
-                        and models,
-                        ensuring that sellers can sell their devices regardless of the make and model.
-                    </li>
-                    <li><strong>Instant quotes:</strong> The website offers instant quotes for old mobile phones,
-                        ensuring that sellers
-                        can get an estimate of the value of their devices before selling.
-                    </li>
-                </ol>
-
-                <h4 style="font-weight: 600;">
-                    How to Sell Your Old Mobile Phone on Sellit.co.in?</h4>
-                <p>
-                    Selling your old mobile phone on Sellit.co.in is a simple process. Here's how you can do it:</p>
-
-                <ol class="pl-5">
-                    <li><strong>Visit the website:</strong> Visit Sellit.co.in and click on the "Sell Now" button. </li>
-                    <li>
-                        <strong>Select your device:</strong> Select the brand and model of your device, and provide
-                        details about its
-                        condition, age, and accessories.
-                    </li>
-                    <li>
-                        <strong>Get an instant quote:</strong> Get an instant quote for your device based on the
-                        information you've
-                        provided.
-                    </li>
-                    <li>
-                        <strong> Schedule a pickup:</strong> If you're happy with the quote, schedule a pickup for your
-                        device.
-                    </li>
-                    <li>
-                        <strong> Get paid:</strong> After Sellit.co.in receives and verifies your device, you'll get
-                        paid directly to your
-                        bank account.
-                    </li>
-                </ol>
-                <h4 style="font-weight: 600;">Sell Your Old Mobile Phones Now! </h4>
-                <p>
-                    Sellit.co.in is the best website to sell your old mobile phone online in India. With its
-                    user-friendly platform, competitive prices, and hassle-free selling experience, it's the ideal
-                    destination for anyone looking to sell their old mobile phone. Visit Sellit.co.in now to sell your
-                    old mobile phone online and get the best value for your device.
-                </p>
+                <h4>WHY SELL YOUR PHONE TO SELL IT</h4>
             </div>
         </section>
 

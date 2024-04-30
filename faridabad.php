@@ -1,9 +1,9 @@
 <?php include 'header.php' ?>
 
 <head>
-    <title>Best Place & Website to Sell Old Mobile Phones Online | Sellit</title>
+    <title>Sell Your Old Mobile Phone in Faridabad | Sellit</title>
     <meta name="description"
-        content="Sellit.co.in is the best website to sell old phones online in Delhi NCR. With its easy-to-use platform and best prices, it's the ideal choice for anyone who's looking for the best place to sell old phones online quickly and easily.">
+        content="Sell Your old Mobile Phone online in Faridabad via Sellit.co.in. It is the best place to quickly sell old used Mobile Phone in Faridabad and get instant cash online while staying at home.">
 </head>
 <br>
 <section class="slider">
@@ -323,114 +323,129 @@
 </section>
 <section class="py-4">
     <div class="container">
-        <h1 class="tablet-heading">Cash Your Phone: Sellit - Best Website to Sell Old Mobile Phones</h1>
-        <p>Sitting on an old phone that's become obsolete? Don't let it gather dust – turn it into cash and declutter
-            your life with Sellit.co.in! This convenient and secure platform allows you to effortlessly sell your
-            pre-owned phone and get paid what it's worth.</p>
-        <h4 style="font-weight: 600;">Why Sellit is the Best Place to Sell Your Old Mobile Phones</h4>
-        <p>Forget the hassle of online marketplaces or unreliable local buyers. Sellit offers a streamlined experience
-            that prioritizes your comfort and ease:
+        <h1 class="tablet-heading">Sell your Old Used Mobile Phone in Faridabad</h1>
+        <p>It only takes a few minutes to sell your old phone and get you a fair price.</p>
+        <section class="top-selling" style="background-color: #fff;">
+            <div class="container top-selling-div">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-12 col-12 mx-auto">
+                        <div class="row">
+                            <div class="col-lg-3 col-2"></div>
+                            <div class="col-lg-6 col-8" id="choosebrand">
+                                <h3 class="top-sell-heading text-center pb-4"> Top Selling Mobiles </h3>
+                            </div>
+                            <div class="col-lg-3 col-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div>
+  <div class="container mb-5"> -->
+                <div class="owl-carousel owl-carousel-12 owl-theme col-12">
+                    <?php 
+        $selectModel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
+      while ($modelData = mysqli_fetch_assoc($selectModel)) {
+        $topsubcatid = $modelData['subcategoryid'];
+        $topsubcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$topsubcatid' "));
+     ?>
+                    <div class="item my-3">
+                        <a
+                            href="/sell-old-phones/sell-old-<?= strtolower($topsubcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$modelData['product_name']))).'/'.$modelData['id'].'_'.$modelData['subcategoryid'] ?>">
+                            <div class="text-center" id="md">
+                                <img src="admin/img/<?php echo $modelData['product_image'];  ?>" class="img-fluid"
+                                    alt="">
+                                <span class="sum-heading1 text-center"
+                                    style="color:black;"><?php echo $modelData['product_name'] ?></span>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+      }
+      ?>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="tablet-heading">Give Your Old Phone a Faridabad Farewell: Sell It Online with Sellit.co.in</h2>
+        <p>
+            Is an old phone gathering dust in a Faridabad drawer? Maybe it's a trusty device from a few years back, or
+            perhaps a recent upgrade left you with a perfectly functional phone gathering cobwebs. Whatever the reason,
+            there's no need for your pre-loved phone to become e-waste. Sellit.co.in provides a secure and convenient
+            solution to sell your old mobile phone online, regardless of where you are in India, including Faridabad.
+        </p>
+
+        <h4 style="font-weight: 600;">Faridabad Residents: Turn Your Phone into Cash with Sellit</h4>
+        <p>
+            If you're in Faridabad and looking to declutter your space and earn some cash, Sellit.co.in is the perfect
+            option. Here's why:
         </p>
         <ol class="pl-5" style="list-style-type: inherit">
-            <li><strong>Effortless Selling from Home:</strong> No need to travel! Simply visit Sellit's user-friendly
-                website,
-                provide details about your phone's condition, and receive an instant quote.</li>
-            <li><strong>Top Dollar for Your Device:</strong> Sellit guarantees fair market value for your phone. Their
-                transparent
-                pricing ensures you get a competitive price based on your phone's model and condition.</li>
-            <li><strong>Hassle-Free Process:</strong> Selling is a breeze. Schedule a pick-up at your convenience, and a
-                Sellit
-                representative will collect your phone. Once verified, you'll receive the agreed-upon amount directly
-                into your bank account.</li>
-            <li><strong>Eco-Friendly Solution:</strong> By selling your phone instead of throwing it away, you
-                contribute to a greener
-                environment. Sellit ensures responsible e-waste management, minimizing environmental impact.</li>
-            <!-- <li><strong>Instant quotes:</strong> The website offers instant quotes for old mobile phones, ensuring that
-                sellers can get
-                an estimate of the value of their devices before selling.</li> -->
-        </ol>
-        <h4 style="font-weight: 600;">Selling Made Simple with Sellit</h4>
-        <p>Transforming your old phone into cash takes just a few clicks:</p>
-        <ol class="pl-5">
-            <li><strong>
-                    Head to Sellit.co.in:</strong> Visit their website and click the "Sell Now" button. </li>
-            <li><strong>
-                    Describe Your Phone:</strong> Select your phone's brand, model, and accurately describe its
-                condition, including
-                any cosmetic or functionality issues. Honesty is key – the final price reflects the phone's state.
+            <li><strong>Effortless Selling:</strong> Sellit's user-friendly platform makes selling your phone a breeze.
+                A few clicks are
+                all it takes to get an instant quote and schedule a pickup from your Faridabad location.
             </li>
-            <li><strong>Instant Quote:</strong> Based on your description, Sellit generates an instant quote for your
-                phone. </li>
-            <li><strong>
-                    Schedule a Pick-Up:</strong> Happy with the quote? Choose a convenient time and location for
-                pick-up. Sellit
-                handles everything, so you don't have to travel.
+            <li><strong>Competitive Prices:</strong> We offer fair and competitive prices for your device, ensuring you
+                get the best
+                value for your pre-loved phone, right here in Faridabad.
             </li>
-            <li><strong>Get Paid:</strong> Once Sellit receives and verifies your phone, they deposit the agreed amount
-                directly into
-                your bank account.
+            <li><strong>Stress-Free Experience:</strong> From getting a quote to receiving payment, Sellit takes care of
+                everything. No
+                need to deal with the hassle of finding buyers or meeting strangers in Faridabad.
+            </li>
+            <li><strong>Security You Can Trust:</strong> Sellit prioritizes security. Your information and device are
+                handled with utmost
+                care throughout the process.
+            </li>
+            <li><strong>Eco-Friendly Choice:</strong> Selling your old phone is an environmentally friendly decision.
+                You're giving your
+                phone a new life and reducing e-waste in Faridabad and beyond.
             </li>
         </ol>
-        <h4 style="font-weight: 600;">Sellit: Beyond Just Convenience</h4>
-        <p>Sellit goes beyond just offering a hassle-free selling experience. Here's what sets them apart:</p>
-
+        <h4 style="font-weight: 600;">Selling Your Phone with Sellit is Simple</h4>
+        <p>
+            The process of selling your phone with Sellit is straightforward:
+        </p>
         <ol class="pl-5" style="list-style-type: inherit">
-            <li>
-                <strong>Wide Range of Devices:</strong> Sellit accepts a vast array of phones, from popular brands like
-                Apple and Samsung to lesser-known manufacturers.
 
+            <li><strong>Head to Sellit.co.in:</strong> Visit the Sellit website and click the prominent "Sell Now"
+                button.
             </li>
-            <li>
-                <strong>Transparency You Can Trust:</strong> Sellit's process is clear and upfront. You'll always be
-                informed about the expected price and what to expect throughout the process.
+            <li><strong>Identify Your Device:</strong> From the list of manufacturers, choose your phone's brand. Then,
+                select the exact
+                model.
+            </li>
+            <li><strong>Describe Your Phone's Condition:</strong> Be honest and accurate about your phone's condition.
+                This includes
+                aspects like screen cracks, dents, battery life, and whether you have the original charger and box. The
+                more details you provide, the more accurate your quote will be.
+            </li>
+            <li><strong>Instant Quote:</strong> Based on the information you entered, Sellit will generate an instant
+                quote for your
+                phone.
+            </li>
+            <li><strong>Schedule a Pickup (if happy with quote):</strong> If you're satisfied with the offered price,
+                you can schedule a
+                convenient pickup time for your phone directly in Faridabad. Sellit offers pickup services across India.
+            </li>
+            <li><strong>Get Paid:</strong> Once Sellit receives and verifies your device, you'll receive the payment
+                directly into your
+                bank account.
+            </li>
 
-            </li>
-            <li>
-                <strong>Secure Transactions:</strong> Sellit prioritizes customer safety. They utilize secure payment
-                methods to ensure your financial information is protected.
-
-            </li>
         </ol>
-
-        <h4 style="font-weight: 600;"> Declutter and Get Rewarded</h4>
-        <p>
-            Sellit.co.in is the perfect platform to declutter your life and turn your unused phone into cash quickly and
-            easily. Their user-friendly website, competitive offers, convenient pick-up service, and commitment to
-            responsible e-waste management make them the ideal choice. Choose Sellit the Best Website to Sell Old Mobile
-            Phones, declutter your space, breathe new life into your old phone, and get rewarded in the process! Visit
-            Sellit.co.in today and unlock the cash potential of your pre-owned device.
+        <h4 style="font-weight: 600;">What Happens After Pickup?</h4>
+        <p>Once Sellit picks up your phone from your Faridabad location, their team will thoroughly inspect it to ensure
+            it matches the description you provided. If everything is in order, you'll receive the agreed-upon amount
+            within a short timeframe. In the unlikely event of any discrepancies, Sellit will contact you to discuss the
+            revised offer before proceeding.
         </p>
 
-        <h4 style="font-weight: 600;"> Best Place to Sell Old Phones</h4>
+        <h4 style="font-weight: 600;">Give Your Old Phone a New Life and Get Cash</h4>
         <p>
-            How long have you been trying to sell your old phone? However, due to your lack of expertise in this field,
-            it always ends up being an exhausting task. Finding An Ideal Client Who Will Provide The Best Market Cost
-            Estimate For Your Old Used Phone Won't Without A Doubt Give You An Ever Finishing Migraine. You're clueless
-            in a situation like this. What Are You Expected To Do?
+            Don't let your old phone become obsolete. Sell it online with Sellit.co.in and unlock its potential value.
+            Whether you're in Faridabad or any other city in India, Sellit offers a convenient, secure, and rewarding
+            way to declutter your space and earn some cash. Visit Sellit.co.in today and give your pre-loved phone a new
+            life, all from the comfort of your home in Faridabad!
         </p>
-        <p>
-            How About If We Tell You To Sit Back And Relax And Let SellIt Take Over The Reins And Come To Your Aid? Yes,
-            You Heard It Right. Sel+-lIt is the best place to sell old phones in India. It is an online platform that
-            allows you to sell your used phone quickly and easily. With SellIt, you can get a fair price for your old
-            phone, and you can do it all from the comfort of your home.
-        </p>
-
-
-        <h4 style="font-weight: 600;">Where To Sell My Mobile For The Best Price?</h4>
-        <p>One of the best things about SellIt is that it is a completely hassle-free process. All you need to do is
-            visit the SellIt website, select your device's brand and model, and provide a few basic details about the
-            phone's condition. Based on this information, SellIt will give you an instant quote for your phone. If you
-            are happy with the price, you can then schedule a pickup for your phone at a time that is convenient for
-            you.</p>
-        <p>
-            SellIt offers competitive prices for all types of phone devices. The platform also accepts phones in all
-            conditions, whether they are<strong> new, used, or damaged</strong>.
-
-        </p>
-        <p>Selling your old phone through SellIt is also an eco-friendly choice. By selling your phone instead of
-            throwing it away, you are helping to reduce electronic waste and make a positive impact on the environment.
-            So, if you are looking for the best website to sell old phones in India, SellIt is the way to go. It is an
-            easy, hassle-free, and eco-friendly way to get a fair price for your old phone.</p>
     </div>
 </section>
-<?php include 'footer.php' ?>
+<?php include 'footerCity.php' ?>
