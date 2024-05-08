@@ -51,7 +51,7 @@ if (isset($_SESSION['user'])) {
     <link rel="stylesheet" href="../../assets/css/mob.css">
     <link rel="stylesheet" href="../../assets/css/about.css">
     <script src="https://kit.fontawesome.com/695826c815.js" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E422DMN5YS"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-E422DMN5YS"></script>
 
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -62,7 +62,20 @@ if (isset($_SESSION['user'])) {
     gtag('js', new Date());
 
     gtag('config', 'G-E422DMN5YS');
+    </script> -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYH2D4QESB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-DYH2D4QESB');
     </script>
+    <meta name="google-site-verification" content="XcbXug-z0EtzkdTsIB7RGWJ5SIBGOILe_5kUiuwdp_0"   />
 </head>
 
 <body>
