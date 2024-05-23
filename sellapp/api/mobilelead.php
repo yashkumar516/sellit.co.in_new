@@ -148,7 +148,7 @@ if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])
     $formbillimei = mysqli_real_escape_string($con,$_POST['billimei']);
     $platform_type = mysqli_real_escape_string($con,$_POST['platform_type']);
     if(empty($platform_type) || $platform_type==null){
-        $platform_type= "mobile";
+        $platform_type= "unspecified";
     }
     // warrenty and age calculation start
    if(!empty($formwar))
