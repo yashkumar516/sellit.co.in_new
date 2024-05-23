@@ -838,7 +838,7 @@ $formbillimeiin = isset($_POST['billimeiin']) ? $_POST['billimeiin'] : '';
       `charging_port`,`audio_receiver`,`camera_glass`,`wifi`,`silent_btn`,`battery`,`bluetooth`,`vibrator`,`microphone`,`platform_type`) VALUES('$gennorderr','$uid','$catid','$mid','$bid','$vid','$mobilename','$modelimg','$offerprice','$callcell[1]','$warcell[1]',
       '$agecell[1]','$touchcell[1]','$spotcell[1]','$linescell[1]','$physicalcell[1]','$scratchcell[1]','$dentscell[1]','$sidecell[1]','$bentcell[1]','$chargercell[1]','$earphonecell[1]','$boxcell[1]','$billcell[1]','$copdisplaycell[1]','$frontcamcell[1]',
       '$backcamcell[1]','$volumecell[1]','$fingercell[1]','$speakercell[1]','$powercell[1]','$facecell[1]','$chargingcell[1]','$audiocell[1]','$camglasscell[1]','$wificell[1]','$silentbtncell[1]','$battrycell[1]','$bluetoothcell[1]',
-      '$vibratecell[1]','$microcell[1]', 'web') ");
+      '$vibratecell[1]','$microcell[1]', 'website') ");
         if ($insertenquiry) {
           $lastidquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT `id` FROM `enquiry` ORDER BY `id` DESC LIMIT 1 "));
           $lastid = $lastidquery['id'];
