@@ -146,9 +146,9 @@ if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])
     $formearphone = mysqli_real_escape_string($con,$_POST['earphone']);
     $formboximei = mysqli_real_escape_string($con,$_POST['boximei']);
     $formbillimei = mysqli_real_escape_string($con,$_POST['billimei']);
-    $platformType = mysqli_real_escape_string($con,$_POST['platformType']);
-    if(empty($platformType) || $platformType==null){
-        $platformType= "mobile";
+    $platform_type = mysqli_real_escape_string($con,$_POST['platform_type']);
+    if(empty($platform_type) || $platform_type==null){
+        $platform_type= "mobile";
     }
     // warrenty and age calculation start
    if(!empty($formwar))
@@ -438,7 +438,7 @@ if ($powerin != null) {
   `charging_port`,`audio_receiver`,`camera_glass`,`wifi`,`silent_btn`,`battery`,`bluetooth`,`vibrator`,`microphone`, `platform_type`) VALUES('$gennorderr','$user','$catid','$mid','$bid','$vid','$mobilename','$modelimg','$offerprice','$formcall','$formwar',
   '$formage','$formtouch','$formspot','$formlines','$formphysical','$Scratches','$formdents','$formside','$formbent','$formcharger','$formearphone','$formboximei','$formbillimei','$copydisplay','$formfrontcamin',
   '$formbackcamin','$formvolumein','$formfingertouchin','$formspeaker','$powerin','$formfacein','$formchargingin','$formaudioin','$formcamglassin','$formwifiin','$formsilentin','$formbattryin','$formbluetoothin',
-  '$formvibratein','$formmicroin', '$platformType') ");
+  '$formvibratein','$formmicroin', '$platform_type') ");
 
   if($insertenquiry)
   {

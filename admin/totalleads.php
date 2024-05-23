@@ -69,6 +69,8 @@
                                      <th width="12%">Pickup Date</th>
                                      <th width="12%">Pickup Time</th>
                                      <th width="13%">Status</th>
+                                     <th width="13%">GeneratedAt</th>
+
                                  </tr>
                              </thead>
                              <tbody>
@@ -79,6 +81,7 @@
 									while ($arorder = mysqli_fetch_assoc($orderquery)) {
 										$uid = $arorder['userid'];
 										$enquid = $arorder['id'];
+										$platform_type = $arorder['platform_type'];
 										$conact = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$uid' "));
 										$rowadd = mysqli_num_rows(mysqli_query($con, "SELECT * FROM `address` WHERE `enquid` = '$enquid' "));
 										if ($rowadd == 1) {
@@ -161,6 +164,7 @@
                                      <td>
                                          <?php echo $arorder['status'] ?>
                                      </td>
+                                     <td class="text-capitalize text-center"><?php echo $platform_type?></td>
                                  </tr>
                                  <?php
 									}
