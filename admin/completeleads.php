@@ -68,7 +68,7 @@
                                      <th width="13%">Offerprice</th>
                                      <th width="13%">Status</th>
                                      <th width="13%">Lead Detail</th>
-                                     <!-- <th width="13%">GeneratedAt</th> -->
+                                     <th width="13%">GeneratedAt</th>
                                  </tr>
                              </thead>
                              <tbody>
@@ -120,7 +120,7 @@
                                      </td>
                                      <td> <a href="moreinfo.php?id=<?php echo $arorder['id'] ?>"><button
                                                  class="btn btn-success">Get Detail</button></a></td>
-                                     <!-- <td class="text-capitalize text-center"><?php echo $platform_type?></td> -->
+                                     <td class="text-capitalize text-center"><?php echo $platform_type?></td>
                                  </tr>
                                  <?php
 												}
