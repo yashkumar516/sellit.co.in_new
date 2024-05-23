@@ -146,6 +146,10 @@ if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])
     $formearphone = mysqli_real_escape_string($con,$_POST['earphone']);
     $formboximei = mysqli_real_escape_string($con,$_POST['boximei']);
     $formbillimei = mysqli_real_escape_string($con,$_POST['billimei']);
+    $platform_type = mysqli_real_escape_string($con,$_POST['platform_type']);
+    if(empty($platform_type) || $platform_type==null){
+        $platform_type= "mobile";
+    }
     // warrenty and age calculation start
    if(!empty($formwar))
     {
@@ -431,10 +435,10 @@ if ($powerin != null) {
   $gennorderr = "MOB".time();
   $insertenquiry = mysqli_query($con,"INSERT INTO `enquiry` (`genorderid`,`userid`,`catid`,`modelid`,`brandid`,`varientid`,`model_name`,`mimg`,`offerprice`,`callvalue`,`warenty`,`age`,`touchscreen`,`screenspot`,`screenlines`,`screenphysicalcondition`,`bodyscratches`,
   `bodydents`,`sidebackpanel`,`bodybents`,`charger`,`earphone`,`boximei`,`billimei`,`copydisplay`,`front_camera`,`back_camera`,`volume`,`finger_touch`,`speaker`,`power_btn`,`face_sensor`,
-  `charging_port`,`audio_receiver`,`camera_glass`,`wifi`,`silent_btn`,`battery`,`bluetooth`,`vibrator`,`microphone`) VALUES('$gennorderr','$user','$catid','$mid','$bid','$vid','$mobilename','$modelimg','$offerprice','$formcall','$formwar',
+  `charging_port`,`audio_receiver`,`camera_glass`,`wifi`,`silent_btn`,`battery`,`bluetooth`,`vibrator`,`microphone`, `platform_type`) VALUES('$gennorderr','$user','$catid','$mid','$bid','$vid','$mobilename','$modelimg','$offerprice','$formcall','$formwar',
   '$formage','$formtouch','$formspot','$formlines','$formphysical','$Scratches','$formdents','$formside','$formbent','$formcharger','$formearphone','$formboximei','$formbillimei','$copydisplay','$formfrontcamin',
   '$formbackcamin','$formvolumein','$formfingertouchin','$formspeaker','$powerin','$formfacein','$formchargingin','$formaudioin','$formcamglassin','$formwifiin','$formsilentin','$formbattryin','$formbluetoothin',
-  '$formvibratein','$formmicroin') ");
+  '$formvibratein','$formmicroin', '$platform_type') ");
 
   if($insertenquiry)
   {

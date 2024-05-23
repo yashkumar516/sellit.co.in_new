@@ -68,6 +68,7 @@
                                      <th width="13%">Offerprice</th>
                                      <th width="13%">Status</th>
                                      <th width="13%">Lead Detail</th>
+                                     <th width="13%">GeneratedAt</th>
                                  </tr>
                              </thead>
                              <tbody>
@@ -80,6 +81,7 @@
 												{
 												   $uid = $arorder['userid'];
 												   $enquid = $arorder['id'];
+                                                   $platform_type = $arorder['platform_type'];
 												   $conact = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `userrecord` WHERE `id` = '$uid' "));
 												   $rowadd = mysqli_num_rows(mysqli_query($con,"SELECT * FROM `address` WHERE `enquid` = '$enquid' "));
 												   if($rowadd == 1){
@@ -118,6 +120,7 @@
                                      </td>
                                      <td> <a href="moreinfo.php?id=<?php echo $arorder['id'] ?>"><button
                                                  class="btn btn-success">Get Detail</button></a></td>
+                                     <td class="text-capitalize text-center"><?php echo $platform_type?></td>
                                  </tr>
                                  <?php
 												}
