@@ -69,7 +69,7 @@
                                      <th width="12%">Pickup Date</th>
                                      <th width="12%">Pickup Time</th>
                                      <th width="13%">Status</th>
-                                     <th width="13%">GeneratedAt</th>
+                                     <!-- <th width="13%">GeneratedAt</th> -->
                                  </tr>
                              </thead>
                              <tbody>
@@ -175,7 +175,7 @@
                                              <option value="Available">Available</option>
                                          </select>
                                      </td>
-                                     <td class="text-capitalize text-center"><?php echo $platform_type?></td>
+                                     <!-- <td class="text-capitalize text-center"><?php echo $platform_type?></td> -->
                                  </tr>
                                  <?php
 												}
