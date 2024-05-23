@@ -10,17 +10,17 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     if(!empty($_POST['search'])){
         $search  = mysqli_real_escape_string($con,$_POST['search']);
     class search{
-        public function getresult($getquery){
+        public function getresult($getquery,$publicUrl){
             foreach($getquery as $array){
                 $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
                 $replacement = "https://drive.google.com/uc?id=$1";
                 $image= strpos($array['product_image'], "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $array['product_image']):$array['product_image'];
                 
                 $bannerlist[] = [
-                             'url' => 'https://sellit.co.in/sellapp/variant.php?id='.$array['id'].'&&bid='.$array['subcategoryid'],
+                             'url' => $publicUrl.'sellapp/variant.php?id='.$array['id'].'&&bid='.$array['subcategoryid'],
                              'name'=>$array['product_name'],
                              'id'=>$array['id'],
-                             'imageurl'=>'https://sellit.co.in/admin/img/'.$image,
+                             'imageurl'=>$publicUrl.'admin/img/'.$image,
                     ];
                     $response = $bannerlist;
             }
@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         }
     } 
     $output = new search();
-    echo $output->getresult(mysqli_query($con,"SELECT * FROM `product` WHERE `product_name` LIKE '%$search%' "));
+    echo $output->getresult(mysqli_query($con,"SELECT * FROM `product` WHERE `product_name` LIKE '%$search%' "),$publicUrl);
 }else{
      http_response_code(200);
     echo json_encode(array(

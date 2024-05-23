@@ -1,4 +1,6 @@
 <?php
+$publicUrl=$publicUrl."";
+
 if (isset($_SERVER['DB_PASSWORD']) && !empty($_SERVER['DB_PASSWORD'])) {
     $dbHost = $_SERVER['DB_HOST'];
     $dbUsername = $_SERVER['DB_USERNAME'];

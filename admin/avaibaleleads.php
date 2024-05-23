@@ -63,20 +63,26 @@
                                      <th width="5%">ID</th>
                                      <th width="9%">Action</th>
                                      <th width="13%">Model Name</th>
+                                     <th width="9%">Variant</th>
                                      <th width="13%">Contact</th>
                                      <th width="13%">Offerprice</th>
-                                     <th width="13%">Pickup Date</th>
-                                     <th width="13%">Pickup Time</th>
+                                     <th width="12%">Pickup Date</th>
+                                     <th width="12%">Pickup Time</th>
                                      <th width="13%">Status</th>
+                                     <th width="13%">GeneratedAt</th>
                                  </tr>
                              </thead>
                              <tbody>
                                  <?php
-												$orderquery = mysqli_query($con,"SELECT * FROM `enquiry` WHERE `status` = 'Available' ");
+												$orderquery = mysqli_query($con,"SELECT enquiry.*, varient.varient as varient
+                                                FROM `enquiry` 
+                                                JOIN varient ON varient.id = enquiry.varientid
+                                                 WHERE enquiry.status = 'Available' ");
 												while($arorder = mysqli_fetch_assoc($orderquery))
 												{
 												   $uid = $arorder['userid'];
 												   $enquid = $arorder['id'];
+                                                   $platform_type = $arorder['platform_type'];
 												   $conact = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `userrecord` WHERE `id` = '$uid' "));
 												   $rowadd = mysqli_num_rows(mysqli_query($con,"SELECT * FROM `address` WHERE `enquid` = '$enquid' "));
 												   if($rowadd == 1){
@@ -127,6 +133,7 @@
                                                  class="fas fa-edit ml-1" style="font-size:20px;"></i></strong></a>
                                      </td>
                                      <td><?php echo $arorder['model_name'] ?></td>
+                                     <td><?php echo $arorder['varient']  ?></td>
                                      <td><?php echo isset($conact['mobile'])?$conact['mobile']:""  ?></td>
                                      <td>₹<?php echo $arorder['offerprice'] ?></td>
                                      <?php
@@ -168,6 +175,7 @@
                                              <option value="Available">Available</option>
                                          </select>
                                      </td>
+                                     <td class="text-capitalize text-center"><?php echo $platform_type?></td>
                                  </tr>
                                  <?php
 												}

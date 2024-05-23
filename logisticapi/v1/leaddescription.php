@@ -315,6 +315,12 @@ $user_obj = new  Users($connection);
             }else{
               $customerasking = "";  
             }
+            
+            if(!empty($arr['platform_type'])){
+                $platform_type = $arr['platform_type'];
+            }else{
+                $platform_type = "web";
+            }
             // picup date time end
             
             $catid = $arr['catid'];
@@ -394,6 +400,7 @@ $user_obj = new  Users($connection);
                "audio_receiver" => $audio_receiver,
                "camera_glass" => $camera_glass,
                "silent_btn" => $silent_btn,
+               "platform_type" => $platform_type,
                "bluetooth" => $bluetooth,
                "vibrator" => $vibrator,
                "microphone" => $microphone,

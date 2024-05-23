@@ -4,7 +4,7 @@ function downloadImage($url, $localPath)
     $contents = file_get_contents($url);
     file_put_contents($localPath, $contents);
 }
-class ProductManager
+class ProductManager2
 {
     private $conn;
     private $dbHost;
@@ -17,10 +17,10 @@ class ProductManager
     public function __construct($db)
     {
         $this->conn = $db;
-        $this->loadConfig();
+        $this->loadConfig2();
     }
-
-    private function loadConfig()
+// -------------
+    private function loadConfig2()
     {
         if (isset($_SERVER['DB_PASSWORD']) && !empty($_SERVER['DB_PASSWORD'])) {
             $this->dbHost = $_SERVER['DB_HOST'];
@@ -41,7 +41,7 @@ class ProductManager
     }
 
 
-    public function upsertProduct($getdata, $categoryId, $brandId, $seriesId)
+    public function upsertProduct2($getdata, $categoryId, $brandId, $seriesId)
     {
         $dbHost = $this->dbHost;
         $dbUsername = $this->dbUsername;
@@ -178,7 +178,7 @@ class ProductManager
         }
     }
 
-    public function upsertProductId($getdata, $categoryId, $brandId, $seriesId, $counter)
+    public function upsertProductId2($getdata, $categoryId, $brandId, $seriesId, $counter)
     {
         $dbHost = $this->dbHost;
         $dbUsername = $this->dbUsername;

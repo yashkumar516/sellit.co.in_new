@@ -43,7 +43,12 @@ if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])
     $mobilename = $selectnodel['product_name'];
     $catid = $selectnodel['categoryid'];
     // brand questions start
-    $selectbrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `id` = '$bid' "));
+    
+    include_once "./classes/checkModelValue.php";
+    $modelManager = new CheckModelValue($con);
+    $selectbrand = $modelManager->getProductBrandValue($bid, $mid);
+            
+    // $selectbrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `id` = '$bid' "));
     $callvalue = $selectbrand['callvalue'];
     $threemonths = $selectbrand['3months'];
     $threeto6months = $selectbrand['3to6months'];
@@ -141,6 +146,10 @@ if(isset($_REQUEST['vid']) && isset($_REQUEST['bid']) && isset($_REQUEST['mid'])
     $formearphone = mysqli_real_escape_string($con,$_POST['earphone']);
     $formboximei = mysqli_real_escape_string($con,$_POST['boximei']);
     $formbillimei = mysqli_real_escape_string($con,$_POST['billimei']);
+    $platform_type = mysqli_real_escape_string($con,$_POST['platform_type']);
+    if(empty($platform_type) || $platform_type==null){
+        $platform_type= "mobile";
+    }
     // warrenty and age calculation start
    if(!empty($formwar))
     {
@@ -426,10 +435,10 @@ if ($powerin != null) {
   $gennorderr = "MOB".time();
   $insertenquiry = mysqli_query($con,"INSERT INTO `enquiry` (`genorderid`,`userid`,`catid`,`modelid`,`brandid`,`varientid`,`model_name`,`mimg`,`offerprice`,`callvalue`,`warenty`,`age`,`touchscreen`,`screenspot`,`screenlines`,`screenphysicalcondition`,`bodyscratches`,
   `bodydents`,`sidebackpanel`,`bodybents`,`charger`,`earphone`,`boximei`,`billimei`,`copydisplay`,`front_camera`,`back_camera`,`volume`,`finger_touch`,`speaker`,`power_btn`,`face_sensor`,
-  `charging_port`,`audio_receiver`,`camera_glass`,`wifi`,`silent_btn`,`battery`,`bluetooth`,`vibrator`,`microphone`) VALUES('$gennorderr','$user','$catid','$mid','$bid','$vid','$mobilename','$modelimg','$offerprice','$formcall','$formwar',
+  `charging_port`,`audio_receiver`,`camera_glass`,`wifi`,`silent_btn`,`battery`,`bluetooth`,`vibrator`,`microphone`, `platform_type`) VALUES('$gennorderr','$user','$catid','$mid','$bid','$vid','$mobilename','$modelimg','$offerprice','$formcall','$formwar',
   '$formage','$formtouch','$formspot','$formlines','$formphysical','$Scratches','$formdents','$formside','$formbent','$formcharger','$formearphone','$formboximei','$formbillimei','$copydisplay','$formfrontcamin',
   '$formbackcamin','$formvolumein','$formfingertouchin','$formspeaker','$powerin','$formfacein','$formchargingin','$formaudioin','$formcamglassin','$formwifiin','$formsilentin','$formbattryin','$formbluetoothin',
-  '$formvibratein','$formmicroin') ");
+  '$formvibratein','$formmicroin', '$platform_type') ");
 
   if($insertenquiry)
   {
@@ -457,4 +466,3 @@ if ($powerin != null) {
     echo json_encode($list);
 }
 ?>
-

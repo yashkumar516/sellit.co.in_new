@@ -366,7 +366,38 @@ class SubCategoryManager
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
                 exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $updateSubcategory;
@@ -432,7 +463,39 @@ class SubCategoryManager
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $insertedSubcategory;
@@ -638,7 +701,39 @@ class SubCategoryManager
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 // $command = "/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject";
 
                 // // Execute the command
@@ -740,7 +835,39 @@ class SubCategoryManager
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $insertedSubcategory;
@@ -838,7 +965,39 @@ class SubCategoryManager
             $updatedSubcategoryResult = $updatedSubcategoryStmt->get_result();
             $updateSubcategory = $updatedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $updateSubcategory;
@@ -868,7 +1027,39 @@ class SubCategoryManager
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $insertedSubcategory;
@@ -967,7 +1158,39 @@ class SubCategoryManager
                 // $variantInfo=  syncExternalImage($brandId, $brandImage);
             }
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 exec("/usr/bin/php $backgroundProcessFile $brandId $subcategory_image $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $updateSubcategory;
@@ -997,7 +1220,39 @@ class SubCategoryManager
             $insertedSubcategoryResult = $insertedSubcategoryStmt->get_result();
             $insertedSubcategory = $insertedSubcategoryResult->fetch_assoc();
             if ($imageUrlStatus === "external") {
-                $brandName = strtolower(str_replace(" ", "_", $brandName));
+                
+                $special_symbols = array(
+                    '@' => '',
+                    '#' => '',
+                    '$' => '',
+                    '%' => '',
+                    '^' => '',
+                    '&' => '',
+                    '*' => '',
+                    '(' => '',
+                    ')' => '',
+                    '_' => '',
+                    '+' => '',
+                    '{' => '',
+                    '}' => '',
+                    '[' => '',
+                    ']' => '',
+                    '|' => '',
+                    '\\' => '',
+                    '/' => '',
+                    '?' => '',
+                    '<' => '',
+                    '>' => '',
+                    ',' => '',
+                    ',' => '', 
+                    // Add more special symbols and their replacements as needed
+                );
+                    // Use str_replace to replace special symbols
+                    $new_string = str_replace(array_keys($special_symbols), '', $brandName);
+        
+
+                $brandName = strtolower(str_replace(" ", "_", $new_string)); 
+                // $brandName = strtolower(str_replace(" ", "_", $brandName));
                 exec("/usr/bin/php $backgroundProcessFile $insertedSubcategoryId $brandImage $brandName $dbHost $dbUsername $dbPassword $dbDatabase $dirNameProject > /dev/null 2>&1 &");
             }
             return $insertedSubcategory;

@@ -1,5 +1,24 @@
 <?php include 'hideheader.php' ?>
 <?php
+// Start the session
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+} 
+// Unset session variables by key
+ 
+
+foreach ($_SESSION as $key => $value) {
+    if($key!=="user"){
+        unset($_SESSION[$key]);
+    } 
+} 
+ 
+?>
+
+<?php
+
+
 $vid = $_REQUEST['vid'];
 $mid = $_REQUEST['mid'];
 $bid = $_REQUEST['bid'];
@@ -33,7 +52,7 @@ $selectBrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
                     <h1 class="sp">Rs. <?php echo $selectvarient['uptovalue'] ?>/-</h1>
                     <div class="mt-4">
                         <a
-                            href="product-query.php?upto=<?php echo $selectvarient['id'] ?>&&mid=<?php echo $mid ?>&&bid=<?php echo $bid ?>">
+                            href="product-query.php?vid=<?php echo $selectvarient['id'] ?>&mid=<?php echo $mid ?>&bid=<?php echo $bid ?>">
                             <button class="btn contin-btn">Get Exact Value <i class="fas fa-arrow-right"
                                     aria-hidden="true"></i></button>
                         </a>

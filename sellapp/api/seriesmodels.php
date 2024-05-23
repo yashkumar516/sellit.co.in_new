@@ -6,42 +6,42 @@
         $cid = mysqli_real_escape_string($con,$_POST['cid']);
     if(!empty($bid)){ 
     class mobbrand{
-        public function getbrand($getquery,$bid){
+        public function getbrand($getquery,$bid,$publicUrl){
             foreach($getquery as $array){
                 $catid = $array['categoryid'];
                
                 $pattern = "/https:\/\/drive.google.com\/file\/d\/([^\/]+)\/view\?usp=(drive_link|share|sharing|embed|direct_url|open_url)/";
                 $replacement = "https://drive.google.com/uc?id=$1";
-                $productImage = $array['image_url'] !=="external" ? 'https://sellit.co.in/admin/img/'.$array['product_image']: preg_replace($pattern, $replacement, $array['product_image']);
+                $productImage = $array['image_url'] !=="external" ? $publicUrl.'admin/img/'.$array['product_image']: preg_replace($pattern, $replacement, $array['product_image']);
                 $productImage= strpos($array['product_image'], "https://drive.google.com") !== false? preg_replace($pattern, $replacement, $array['product_image']):$productImage;
                 
                 if($catid == 1){
                 $list[] = [   
-                             'url' => "https://sellit.co.in/sellapp/variant.php?id=".$array["id"]."&&bid=".$bid,
+                             'url' => $publicUrl."sellapp/variant.php?id=".$array["id"]."&&bid=".$bid,
                              'file' => $productImage,
                              'name' => $array['product_name'],
                     ];
                 }else if($catid == 3){
                      $list[] = [   
-                             'url' => "https://sellit.co.in/sellapp/tabletsold.php?id=".$array["id"]."&&bid=".$bid,
+                             'url' => $publicUrl."sellapp/tabletsold.php?id=".$array["id"]."&&bid=".$bid,
                              'file' => $productImage,
                              'name' => $array['product_name'],
                     ];
                 }else if($catid == 2){
                      $list[] = [   
-                             'url' => "https://sellit.co.in/sellapp/watchsold.php?id=".$array["id"]."&&bid=".$bid,
+                             'url' => $publicUrl."sellapp/watchsold.php?id=".$array["id"]."&&bid=".$bid,
                              'file' => $productImage,
                              'name' => $array['product_name'],
                     ];
                 }else if($catid == 4){
                      $list[] = [   
-                             'url' => "https://sellit.co.in/sellapp/earpodsold.php?id=".$array["id"]."&&bid=".$bid,
+                             'url' => $publicUrl."sellapp/earpodsold.php?id=".$array["id"]."&&bid=".$bid,
                              'file' => $productImage,
                              'name' => $array['product_name'],
                     ];
                 }else{
                      $list[] = [   
-                             'url' => "https://sellit.co.in/sellapp/404.php",
+                             'url' => $publicUrl."sellapp/404.php",
                              'file' => $productImage,
                              'name' => $array['product_name'],
                     ];
@@ -52,7 +52,7 @@
         }
     } 
     $output = new mobbrand();
-    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid' AND `categoryid` = '$cid' AND `childcategoryid` = '$sid' ORDER BY  `counter` DESC, `modify_date` DESC"),$bid);
+    echo $output->getbrand(mysqli_query($con,"SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$bid' AND `categoryid` = '$cid' AND `childcategoryid` = '$sid' ORDER BY  `counter` DESC, `modify_date` DESC"),$bid,$publicUrl);
  }else{
          $list = [
                 'status' => '0',
