@@ -167,9 +167,11 @@ if (isset($_SESSION['user'])) {
     </div>
     <?php
 $id = mysqli_real_escape_string($con,$_REQUEST['id']);
+$bid = mysqli_real_escape_string($con,$_REQUEST['bid']);
 $idarr = explode('_',$id);
-$bid = $idarr[1];
+// $bid = $idarr[1];
 $id = $idarr[0];
+ 
 ?>
 
     <?php
