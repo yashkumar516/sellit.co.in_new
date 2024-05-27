@@ -1,4 +1,3 @@
-
 <?php include 'admin/includes/confile.php' ?>
 <?php
   if(isset($_POST['search'])){
@@ -8,8 +7,11 @@
       if($row > 0){
           while($armodal = mysqli_fetch_assoc($query)){
             ?>
-              <a href="<?php if($armodal['categoryid'] == '1'){ echo 'variant.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }elseif($armodal['categoryid'] == '3'){ echo 'tabletsold.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }elseif($armodal['categoryid'] == '2'){ echo 'watchsold.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }elseif($armodal['categoryid'] == '4'){ echo 'earpodsold.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }  ?>"><li class="py-2"><?php echo $armodal['product_name'] ?></li></a> 
-            <?php
+<a
+    href="<?php if($armodal['categoryid'] == '1'){ echo '/variant.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }elseif($armodal['categoryid'] == '3'){ echo '/tabletsold.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }elseif($armodal['categoryid'] == '2'){ echo '/watchsold.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }elseif($armodal['categoryid'] == '4'){ echo '/earpodsold.php?id='.$armodal['id'].'&&bid='.$armodal['subcategoryid']; }  ?>">
+    <li class="py-2"><?php echo $armodal['product_name'] ?></li>
+</a>
+<?php
           }
       }else{
         echo "<li>No modal found</li>";
