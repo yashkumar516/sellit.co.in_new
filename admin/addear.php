@@ -3,6 +3,47 @@
  <?php include 'includes/sidebar.php' ?>
  <!-- end sidebar  header -->
  <?php
+    //  <th>Brand Name</th>
+    //  <th>Switch of</th>
+    //  <th>speaker/mic</th>
+    //  <th>connectivity</th>
+    //  <th>flawless</th>
+    //  <th>good</th>
+    //  <th>averege</th>
+    //  <th>below averege</th>
+    //  <th>charger</th>
+    //  <th>cable</th>
+    //  <th>invoice</th>
+    //  <th>Out warrenty</th>
+    //  <th>Below 3</th>
+    //  <th>3 to 6 months</th>
+    //  <th>6 to 11 months</th>
+    //  <th>Above 11 months</th>
+    //  <th>Upto value</th>
+ $desiredHeaders = [
+    "Model ID",
+    "Model Name",
+    "Model Image", 
+    "Brand Name",
+    "Switch Off", 
+    "Speaker/Mic",
+    "Connectivity", 
+    "Flawless",
+    "Good",
+    "Averege",
+    "Below Averege", 
+    "Charger",
+    "Cable",
+    "Invoice", 
+    "Out Of Warrenty",
+    "Below 3",
+    "3 to 6 Months",
+    "6 to 11 Months",
+    "Above 11 Months",
+    "Upto Value"
+];
+
+$headerCount=count($desiredHeaders);  
 if(isset($_POST['product']))
 {
 	$category = $_POST['categoryname'];
@@ -250,7 +291,7 @@ if(isset($_POST['product']))
                      <div class="row  mb-3">
                          <div class="col-5 col-lg-5 mb-3 mb-lg-0">
 
-                             <form action="earpodecsv.php" enctype="multipart/form-data" method="POST">
+                             <form id="uploadCSVModelForm" action="#" enctype="multipart/form-data" method="POST">
                                  <div class="pb-2">
                                      <span class="dragBox w-100">
                                          <!-- Darg and Drop .csv here -->
@@ -267,8 +308,39 @@ if(isset($_POST['product']))
                                              style="display: none;" />
                                      </span>
                                  </div>
-                                 <button type="submit" class="btn btn-primary w-100" value="upload" name="uploadcsv"> <i
-                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV </button>
+
+                                 <div class="row p-0 m-0 pb-2">
+                                     <div class="col-lg-12 col-xl-12 px-0">
+                                         <select name="subCategory" id="subcategory1"
+                                             class="form-control form-control-modern" onchange="callChildcategory()"
+                                             required>
+                                             <!-- pre selected code start -->
+                                             <?php
+                                                           if(isset($_POST['product'])){
+															  $b = $_POST['subcategory'];
+															  $bf = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `subcategory` WHERE `id` = '$b'"));
+															  ?>
+                                             <option value="<?php echo $bf['id'] ?>"
+                                                 class="form-control form-control-modern" selected>
+                                                 <?php echo $bf['subcategory_name'] ?></option>
+                                             <?php
+														   }
+														  ?>
+
+                                             <!-- pre selected code end -->
+                                             <option value="" class="form-control form-control-modern"> Select Brand
+                                             </option>
+                                         </select>
+
+                                     </div>
+                                 </div>
+                                 <button type="button" class="btn btn-primary w-100" value="upload"
+                                     name="uploadWithModelCSV"
+                                     onclick="submitEarbudsCSVForm('uploadCSVModelForm','Model')"> <i
+                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV
+                                 </button>
+                                 <!-- <button type="submit" class="btn btn-primary w-100" value="upload" name="uploadcsv"> <i
+                                         class="bx bx-upload text-4 mr-2"></i>Upload CSV </button> -->
                              </form>
                          </div>
                          <div class="col-2"></div>
@@ -278,18 +350,45 @@ if(isset($_POST['product']))
                                      class="form-control" placeholder="Search"></div>
                              <!-- <button id="csvButton">Download CSV</button> -->
                              <div class="d-inline-flex w-100  ">
-                                 <button type="button" class="btn btn-primary w-100 px-1" id="csvButton"><i
+                                 <button type="button" class="btn btn-primary w-100 mr-2 px-1"
+                                     onclick="downloadCSV('<?php echo implode(',', $desiredHeaders); ?>', 'template-model.csv')">
+                                     <i class="bx bx-download text-4 mr-1"></i>
+                                     Template
+                                 </button>
+                                 <button type="button" class="btn btn-primary w-100  mr-2  px-1" id="csvButton"><i
                                          class="bx bx-download text-4 mr-2"></i>
                                      CSV
                                  </button>
-                                 <!-- <button type="button" class="btn btn-primary w-100 px-1" id="excelButton"><i
-                                         class="bx bx-download text-4 mr-2"></i>
-                                     Excel
-                                 </button> -->
-                                 <button type="button" class="btn btn-primary w-100 px-1" id="pdfButton"><i
-                                         class="bx bx-download text-4 mr-2"></i>
-                                     PDF
+                                 <?php
+                                    // SELECT COUNT(*)  FROM `product` WHERE `image_url`="external";
+                                    $query = "SELECT COUNT(*) AS `id`  FROM `product` WHERE `image_url`='external' AND `categoryid`= 4 ";
+
+                                    $result = $con->query($query);
+
+                                    if ($result) {
+                                        $row = $result->fetch_assoc();
+                                        $rowCount = $row['id']; 
+                                        if ($rowCount > 0) {
+                                    ?>
+                                 <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"
+                                     onclick="syncImageAjax('Model')"><i class="bx bx-sync text-4 mr-1"></i>Sync
+                                     <?php echo $rowCount>1?$rowCount." Images":$rowCount." Image"?>
+
                                  </button>
+                                 <!-- </form> -->
+                                 <?php
+                                        } else {
+                                        ?>
+                                 <button type="button" class="btn btn-primary w-100 px-1" disabled><i
+                                         class="bx bx-sync text-4 mr-2"></i> Sync Image
+                                 </button>
+
+                                 <?php
+                                        }
+                                    } else { 
+                                    }
+                                    ?>
+
                              </div>
                          </div>
                      </div>
@@ -301,7 +400,7 @@ if(isset($_POST['product']))
                      style="min-width: 550px;">
                      <thead>
                          <tr>
-                             <th>ID</th>
+                             <!-- <th>ID</th>
                              <th>Model Name</th>
                              <th>Brand Name</th>
                              <th>Switch of</th>
@@ -319,7 +418,15 @@ if(isset($_POST['product']))
                              <th>3 to 6 months</th>
                              <th>6 to 11 months</th>
                              <th>Above 11 months</th>
-                             <th>Upto value</th>
+                             <th>Upto value</th> -->
+
+                             <?php
+                                        foreach ($desiredHeaders as $header) {
+                                            echo "<th>$header</th>";
+                                        }
+                                    ?>
+
+                             <th>Modify Date</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -334,6 +441,7 @@ if(isset($_POST['product']))
 													if($row >= 1){
 													$selproduct = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$productid' "));
 													$brndid = $selproduct['subcategoryid']; 
+                                                    $modifyDate = date('y/m/d',strtotime($selproduct['modify_date'])); 
 													$fetchbb = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `subcategory` WHERE `id` = '$brndid'")); 
 												}                                
 											  ?>
@@ -341,6 +449,24 @@ if(isset($_POST['product']))
                          <tr>
                              <td><strong><?php echo $productid ?></strong></td>
                              <td><?php echo $selproduct['product_name'] ?></td>
+                             <td><a href="#">
+
+
+                                     <?php
+$imageUrl = $selproduct["product_image"]; 
+$urlComponents = parse_url($imageUrl); 
+if ($urlComponents !== false && isset($urlComponents['scheme'])) {  
+echo "<img   src=\"$imageUrl\" alt=\"img\" width=\"100px\" >";
+} else { 
+echo "<img   src=\"img/{$selproduct['product_image']}\" alt=\"img\" width=\"100px\" >";
+}
+?>
+
+                                 </a>
+                                 <p style="display:none;"><?php echo $selproduct[
+"product_image"
+]; ?></p>
+                             </td>
                              <td class="text-capitalize"><?php echo $fetchbb['subcategory_name'] ?></td>
                              <td><?php echo $arproduct['switchof'] ?></td>
                              <td><?php echo $arproduct['speaker/mic'] ?></td>
@@ -358,6 +484,9 @@ if(isset($_POST['product']))
                              <td><?php echo $arproduct['6to11'] ?></td>
                              <td><?php echo $arproduct['above11'] ?></td>
                              <td><?php echo $arproduct['uptovalue'] ?></td>
+                             <td>
+                                 <?php echo $modifyDate; ?>
+                             </td>
                          </tr>
                          <?php
 												}
@@ -544,6 +673,72 @@ $(document).ready(function(e) {
  </script>
 
  <script>
+function createCSV(array) {
+    var keys = Object.keys(array[0]); //Collects Table Headers
+
+    var result = ''; //CSV Contents
+    result += keys.join(','); //Comma Seperates Headers
+    result += '\n'; //New Row
+
+    array.forEach(function(item) { //Goes Through Each Array Object
+        keys.forEach(function(key) { //Goes Through Each Object value
+            result += item[key] + ','; //Comma Seperates Each Key Value in a Row
+        })
+        result += '\n'; //Creates New Row
+    })
+
+    return result;
+}
+
+
+async function downloadCSV(arrayStrings, fileName) {
+    var array = arrayStrings.split(',');
+    var arrayObjects = [];
+    var obj = {};
+    for (var i = 0; i < array.length; i++) {
+
+        if (i === 0) {
+            obj["Model ID (Optional)"] = "";
+        } else {
+            obj[array[i]] = "";
+        }
+        // obj[array[i]] = "";
+
+    }
+    arrayObjects.push(obj);
+    csv = 'data:text/csv;charset=utf-8,' + createCSV(arrayObjects); //Creates CSV File Format
+    excel = encodeURI(csv); //Links to CSV 
+
+    link = document.createElement('a');
+    link.setAttribute('href', excel); //Links to CSV File 
+    link.setAttribute('download', fileName ? fileName : 'sample-model.csv'); //Filename that CSV is saved as
+    link.click();
+}
+ </script>
+ <script>
+window.onload = function() {
+    // Call your function here
+    callSubcategory();
+};
+
+function callSubcategory() {
+    var id = 4;
+    // console.log()
+    if (id != null) {
+        $.ajax({
+            method: "post",
+            url: "subdajax.php",
+            data: {
+                cid: id
+            },
+            dataType: "html",
+            success: function(result) {
+                $('#subcategory1').html(result);
+            }
+        });
+    }
+}
+
 function callsubcat() {
     var id = $('#category').val();
     if (id != null) {

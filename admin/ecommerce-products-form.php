@@ -557,7 +557,7 @@ if(isset($_POST['productss']))
                                  </button>
                                  <?php
                                     // SELECT COUNT(*)  FROM `product` WHERE `image_url`="external";
-                                    $query = "SELECT COUNT(*) AS `id`  FROM `product` WHERE `image_url`='external'";
+                                    $query = "SELECT COUNT(*) AS `id`  FROM `product` WHERE `image_url`='external' AND `categoryid`= 1 ";
 
                                     $result = $con->query($query);
 

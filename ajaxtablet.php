@@ -8,7 +8,7 @@
    ?>
 
 <div class="col-lg-2 col-4 mt-4">
-    <a href="tabletsold.php?id=<?php echo $modelData['id'] ?>&&bid=<?php echo $modelData['subcategoryid'] ?>">
+    <a href="tabletvarient.php?id=<?php echo $modelData['id'] ?>&&bid=<?php echo $modelData['subcategoryid'] ?>">
         <div class="text-center" id="md">
             <img style="margin-top: 15px;" src="admin/img/<?php echo $modelData['product_image'] ?>" width="100%"
                 class="img-fluid" alt="">

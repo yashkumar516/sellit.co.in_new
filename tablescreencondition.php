@@ -1,6 +1,6 @@
 <?php include 'hideheader.php' ?>
 <?php
-include 'include/mobileage1.php';
+include 'include/age1.php';
 $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
 $vid = $_REQUEST['vid'];
@@ -171,40 +171,40 @@ $(document).ready(function() {
             $('#watchcondion').html("Tablet Screen Condition");
             $('#condition').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
-                );
+            );
             $('#conditionin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
-                );
+            );
             // $('#war').html('<php echo $war ?>');
         } else if (war == "good") {
             $('#watchcondion').html("Tablet Screen Condition");
             $('#condition').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
-                );
+            );
             $('#conditionin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
-                );
+            );
             // $('#war').html('<php echo $war ?>');
         } else if (war == "averege") {
             $('#watchcondion').html("Tablet Screen Condition");
             $('#condition').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
-                );
+            );
             $('#conditionin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
-                );
+            );
             // $('#war').html('<php echo $war ?>');
         } else if (war == "below averege") {
             $('#watchcondion').html("Tablet Screen Condition");
             $('#warin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
-                );
+            );
             $('#condition').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
-                );
+            );
             $('#conditionin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
-                );
+            );
         }
     });
 });
