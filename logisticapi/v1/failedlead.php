@@ -13,7 +13,25 @@ $connection = $db->connect();
 
 $user_obj = new  Users($connection);
 
+function GENERATELOGS_API($DATA,$BLOCK,$flag=0) {
+    $file_name = "/var/log/aakarist/failedlead.txt";
+    if(file_exists($file_name)) {
+            $fp     =       fopen($file_name,"a+");
+            fwrite($fp, date("Y-m-d H:i:s")."\t");
+            if($flag==1){
+                    fwrite($fp,"(".$BLOCK.")\n");
+                    fwrite($fp,print_r($DATA,true));
+                    fwrite($fp,"\n\n");
+            }
+            else{
+                    fwrite($fp,"(".$BLOCK.")=====".$DATA."\n");
+            }
+            fclose($fp);
+    }
+}
+
 if($_SERVER['REQUEST_METHOD'] === "POST"){
+    GENERATELOGS_API($_POST,"[request packet]",1);
 
     if(!empty($_POST['vendorid']) && !empty($_POST['lead_id']) && !empty($_POST['flag']) && !empty($_POST['reason']) && !empty($_POST['offerprice']) && !empty($_FILES['pic1']) && !empty($_FILES['pic2']) && !empty($_FILES['pic3']) && !empty($_FILES['pic4'])){
         if(!empty($_POST['customerprice'])){
