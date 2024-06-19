@@ -47,7 +47,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         if(isset($_POST['ajent_id'])){
         $leads_obj->ajentid = $_POST['ajent_id'];
         }
-        $leads_obj->status = $_POST['flag'];
+        $leads_obj->status ="Complete" ;//$_POST['flag'];
         $leads_obj->IMEI = $_POST['IMEI'];
         $leads_obj->pic1 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic1']['name']);
         $leads_obj->pic2 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic2']['name']);
