@@ -5,14 +5,14 @@ header("Access-Control-Allow-Origin:*");
 header("Access-Control-Allow-Methods: POST");
 header("Content-type:application/json; charset=UTF-8");
 include_once("../config/database.php");
-include_once("../classes/users.php");
+// include_once("../classes/users.php");
 include_once("../classes/leads.php");
 
 $db = new  Database();
 
 $connection = $db->connect();
 
-$user_obj = new  Users($connection);
+// $user_obj = new  Users($connection);
 $leads_obj = new  Leads($connection);
 
 function GENERATELOGS_API($DATA,$BLOCK,$flag=0) {
@@ -47,7 +47,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         if(isset($_POST['ajent_id'])){
         $leads_obj->ajentid = $_POST['ajent_id'];
         }
-        $leads_obj->status ="Complete" ;//$_POST['flag'];
+        $leads_obj->status = $_POST['flag'];
         $leads_obj->IMEI = $_POST['IMEI'];
         $leads_obj->pic1 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic1']['name']);
         $leads_obj->pic2 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic2']['name']);
