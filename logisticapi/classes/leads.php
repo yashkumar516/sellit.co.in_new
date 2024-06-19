@@ -234,8 +234,13 @@ class Leads
                 $this->lead_id,
                 $this->vendorid
             );
-            $this->sendSmsNotification($usermobileno, $genorderid);
-            return "update successfully";
+            if ($ajant_obj->execute()) {
+            
+                $this->sendSmsNotification($usermobileno, $genorderid);
+                return "update successfully";
+            } else {
+                return "not update";
+            }
             // return "transaction failed";
         }
     } 
