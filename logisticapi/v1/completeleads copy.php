@@ -40,37 +40,37 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         }else{
         $extraamount = 0;  
         }
-        $leads_obj->vendorid = $_POST['vendorid'];
-        $leads_obj->lead_id = $_POST['lead_id'];
+        $user_obj->vendorid = $_POST['vendorid'];
+        $user_obj->lead_id = $_POST['lead_id'];
         $leid = $_POST['lead_id'];
         $venid = $_POST['vendorid'];
         if(isset($_POST['ajent_id'])){
-        $leads_obj->ajentid = $_POST['ajent_id'];
+        $user_obj->ajentid = $_POST['ajent_id'];
         }
-        $leads_obj->status = $_POST['flag'];
-        $leads_obj->IMEI = $_POST['IMEI'];
-        $leads_obj->pic1 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic1']['name']);
-        $leads_obj->pic2 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic2']['name']);
-        $leads_obj->pic3 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic3']['name']);
-        $leads_obj->pic4 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic4']['name']);
-        $leads_obj->aadharfront = rand(10,20).uniqid().str_replace(' ','_',$_FILES['aadharfront']['name']);
-        $leads_obj->aadharback = rand(10,20).uniqid().str_replace(' ','_',$_FILES['aadharback']['name']);
-        $leads_obj->pic1temp = $_FILES['pic1']['tmp_name'];
-        $leads_obj->pic2temp = $_FILES['pic2']['tmp_name'];
-        $leads_obj->pic3temp = $_FILES['pic3']['tmp_name'];
-        $leads_obj->pic4temp = $_FILES['pic4']['tmp_name'];
-        $leads_obj->aadharfronttemp = $_FILES['aadharfront']['tmp_name'];
-        $leads_obj->aadharbacktemp = $_FILES['aadharback']['tmp_name'];
-        $leads_obj->extraamount = $extraamount;
-        $leadup = $leads_obj->completeLead();
+        $user_obj->status = $_POST['flag'];
+        $user_obj->IMEI = $_POST['IMEI'];
+        $user_obj->pic1 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic1']['name']);
+        $user_obj->pic2 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic2']['name']);
+        $user_obj->pic3 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic3']['name']);
+        $user_obj->pic4 = rand(10,20).uniqid().str_replace(' ','_',$_FILES['pic4']['name']);
+        $user_obj->aadharfront = rand(10,20).uniqid().str_replace(' ','_',$_FILES['aadharfront']['name']);
+        $user_obj->aadharback = rand(10,20).uniqid().str_replace(' ','_',$_FILES['aadharback']['name']);
+        $user_obj->pic1temp = $_FILES['pic1']['tmp_name'];
+        $user_obj->pic2temp = $_FILES['pic2']['tmp_name'];
+        $user_obj->pic3temp = $_FILES['pic3']['tmp_name'];
+        $user_obj->pic4temp = $_FILES['pic4']['tmp_name'];
+        $user_obj->aadharfronttemp = $_FILES['aadharfront']['tmp_name'];
+        $user_obj->aadharbacktemp = $_FILES['aadharback']['tmp_name'];
+        $user_obj->extraamount = $extraamount;
+        $leadup = $user_obj->leadcomplete();
         if(!empty($leadup) && $leadup == "update successfully"){
             
-          move_uploaded_file($leads_obj->pic1temp,"../../admin/img/mobileimages/".$leads_obj->pic1);
-          move_uploaded_file($leads_obj->pic2temp,"../../admin/img/mobileimages/".$leads_obj->pic2);
-          move_uploaded_file($leads_obj->pic3temp,"../../admin/img/mobileimages/".$leads_obj->pic3);
-          move_uploaded_file($leads_obj->pic4temp,"../../admin/img/mobileimages/".$leads_obj->pic4);
-          move_uploaded_file($leads_obj->aadharfronttemp,"../../admin/img/mobileimages/".$leads_obj->aadharfront);
-          move_uploaded_file($leads_obj->aadharbacktemp,"../../admin/img/mobileimages/".$leads_obj->aadharback);
+          move_uploaded_file($user_obj->pic1temp,"../../admin/img/mobileimages/".$user_obj->pic1);
+          move_uploaded_file($user_obj->pic2temp,"../../admin/img/mobileimages/".$user_obj->pic2);
+          move_uploaded_file($user_obj->pic3temp,"../../admin/img/mobileimages/".$user_obj->pic3);
+          move_uploaded_file($user_obj->pic4temp,"../../admin/img/mobileimages/".$user_obj->pic4);
+          move_uploaded_file($user_obj->aadharfronttemp,"../../admin/img/mobileimages/".$user_obj->aadharfront);
+          move_uploaded_file($user_obj->aadharbacktemp,"../../admin/img/mobileimages/".$user_obj->aadharback);
           
           $addid = mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM `address` WHERE `enquid` = '$leid' "));
           $addressid = $addid['addressid'];
@@ -81,7 +81,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
           http_response_code(200);
           $result = json_encode(array(
             "status" => "1",
-            "lead_status"=>$leads_obj->status,
+            "lead_status"=>$user_obj->status,
             "message" => $leadup,
             "customeraddress" =>"$custadd",
             "vendoraddress" => "$vendadd"

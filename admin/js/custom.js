@@ -201,3 +201,113 @@ function submitProductCSVForm(uploadCSVForm, uploadType) {
     },
   });
 }
+
+function submitWatchCSVForm(uploadCSVForm, uploadType) {
+  $("#spinner-div").show();
+  var formData = new FormData($(`#${uploadCSVForm}`)[0]);
+  // var formData = new FormData($("#fileUploadForm")[0]);
+
+  formData.append("uploadType", uploadType);
+  // child-category.php?category=1
+  let callbackUrl =
+    uploadType === "Model"
+      ? "addwatch.php"
+      : uploadType === "Brand"
+      ? "brandquestions.php"
+      : `child-category.php?category=${formData.get("categoryId")}`;
+  console.log({ formData });
+  $.ajax({
+    type: "POST",
+    url: "ajaxUploadWatchCSV.php",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      console.log("File uploaded successfully", { response });
+
+      alert(response);
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+    },
+    error: function (error) {
+      alert("Upload failed");
+
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+      console.error("Error uploading file", error);
+    },
+  });
+}
+
+function submitTabletCSVForm(uploadCSVForm, uploadType) {
+  $("#spinner-div").show();
+  var formData = new FormData($(`#${uploadCSVForm}`)[0]);
+  // var formData = new FormData($("#fileUploadForm")[0]);
+
+  formData.append("uploadType", uploadType);
+  // child-category.php?category=1
+  let callbackUrl =
+    uploadType === "Model"
+      ? "addtablet.php"
+      : uploadType === "Brand"
+      ? "brandquestions.php"
+      : `child-category.php?category=${formData.get("categoryId")}`;
+  console.log({ formData });
+  $.ajax({
+    type: "POST",
+    url: "ajaxUploadTabletCSV.php",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      console.log("File uploaded successfully", { response });
+
+      alert(response);
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+    },
+    error: function (error) {
+      alert("Upload failed");
+
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+      console.error("Error uploading file", error);
+    },
+  });
+}
+function submitEarbudsCSVForm(uploadCSVForm, uploadType) {
+  $("#spinner-div").show();
+  var formData = new FormData($(`#${uploadCSVForm}`)[0]);
+  // var formData = new FormData($("#fileUploadForm")[0]);
+  console.log({ uploadType });
+  formData.append("uploadType", uploadType);
+  // child-category.php?category=1
+  let callbackUrl =
+    uploadType === "Model"
+      ? "addear.php"
+      : uploadType === "Brand"
+      ? "brandquestions.php"
+      : `child-category.php?category=${formData.get("categoryId")}`;
+  console.log({ formData });
+  $.ajax({
+    type: "POST",
+    url: "ajaxUploadEarbudsCSV.php",
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      console.log("File uploaded successfully", { response });
+
+      alert(response);
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+    },
+    error: function (error) {
+      alert("Upload failed");
+
+      window.location.href = callbackUrl;
+      $("#spinner-div").hide();
+      console.error("Error uploading file", error);
+    },
+  });
+}

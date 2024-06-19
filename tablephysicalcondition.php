@@ -1,6 +1,6 @@
 <?php include 'hideheader.php' ?>
 <?php
-include 'include/mobileage1.php';
+include 'include/age1.php';
 $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
 $vid = $_REQUEST['vid'];
