@@ -65,7 +65,7 @@ class QuestionsTabletManager {
                             `childcategoryid` = ?, 
                             `product_name` = ?, 
                             `switchof` = ?, 
-                            `Frontcam` = ?, 
+                            `Frontcam` = ?,
                             `backcam` = ?, 
                             `wifi` = ?, 
                             `speaker` = ?, 
@@ -77,7 +77,7 @@ class QuestionsTabletManager {
                             `fingerprint` = ?, 
                             `gps` = ?, 
                             `bluetooth` = ?, 
-                            `charger` = ?, 
+                            `charger` = ?,
                             `box` = ?, 
                             `pencil` = ?, 
                             `bill` = ?, 
@@ -100,7 +100,7 @@ class QuestionsTabletManager {
 
             $updateStmt = $this->conn->prepare($updateQuery);
             $updateStmt->bind_param(
-                "sssssssssssssssssssssssssssssssi", 
+                "sssssssssssssssssssssssssssssssssssi", 
                 $categoryId, 
                 $brandId, 
                 $seriesId, 
