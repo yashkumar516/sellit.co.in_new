@@ -700,9 +700,12 @@ async function downloadCSV(arrayStrings, fileName) {
 
         if (i === 0) {
             obj["Model ID (Optional)"] = "";
+        } else if (i === 3) {
+            // obj[array[i]] = "";
         } else {
             obj[array[i]] = "";
         }
+        // Brand Name
         // obj[array[i]] = "";
 
     }
