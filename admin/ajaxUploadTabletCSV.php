@@ -1,5 +1,7 @@
 <?php include 'includes/confile.php' ?>
 <?php 
+
+ini_set("display_errors",1);
     include_once "./classes/products.php";
     include_once "./classes/childcategory.php";  
     include_once "./classes/subcategory.php";  
