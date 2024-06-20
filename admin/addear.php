@@ -371,7 +371,8 @@ if(isset($_POST['product']))
                                         if ($rowCount > 0) {
                                     ?>
                                  <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageModel"
-                                     onclick="syncImageAjax('Model')"><i class="bx bx-sync text-4 mr-1"></i>Sync
+                                     onclick="syncImageAjax('Model',4,'addear.php')"><i
+                                         class="bx bx-sync text-4 mr-1"></i>Sync
                                      <?php echo $rowCount>1?$rowCount." Images":$rowCount." Image"?>
 
                                  </button>

@@ -22,7 +22,8 @@
             }
         } else if($syncOn ==="Model"){
             
-            $result =  $syncImageManager->syncProductImage();
+        $categoryid=$_POST["categoryid"]; 
+            $result =  $syncImageManager->syncProductImage($categoryid);
             $errorValue = $result['error'];
             $dataValue = $result['data'];
             $totalValue = $result['totalData'];

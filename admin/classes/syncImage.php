@@ -391,16 +391,16 @@ class SyncImageManager
     }
 
 
-    public function syncProductImage()
+    public function syncProductImage($categoryid)
     {
         $imageUrlStatus =  "internal"; //"external";
 
-        $query = "SELECT * FROM `product` WHERE `image_url` = ? ORDER BY `id` ASC";
+        $query = "SELECT * FROM `product` WHERE `image_url` = ? AND `categoryid`= ? ORDER BY `id` ASC";
         $stmt = $this->conn->prepare($query);
         $imageUrlValue = "external";
 
 
-        $stmt->bind_param("s", $imageUrlValue);
+        $stmt->bind_param("sd", $imageUrlValue, $categoryid);
         $stmt->execute();
 
         $result = $stmt->get_result();

@@ -87,7 +87,7 @@
   }
 }
 
-function syncImageAjax(syncOn) {
+function syncImageAjax(syncOn, categoryid, page) {
   var id = 1;
   console.log("syncOn---", { syncOn });
   if (syncOn && syncOn !== "") {
@@ -97,12 +97,13 @@ function syncImageAjax(syncOn) {
       url: "ajaxSyncImage.php",
       data: {
         syncOn: syncOn,
+        categoryid: categoryid,
       },
       dataType: "html",
       success: function (result) {
         console.log({ result });
         alert(result);
-        let callbackUrl = syncOn === "Model" ? "ecommerce-products-form.php" : "brandquestions.php";
+        let callbackUrl = syncOn === "Model" ? page : "brandquestions.php";
         window.location.href = callbackUrl;
         $("#spinner-div").hide();
       },
