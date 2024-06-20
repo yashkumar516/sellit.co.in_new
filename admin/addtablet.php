@@ -573,7 +573,7 @@ if(isset($_POST['product']))
 
                              <td><?php echo $arproduct['varient'] ?></td>
                              <td><?php echo $arproduct['uptovalue'] ?></td>
-                             <td class="text-capitalize"><?php echo $fetchbb['subcategory_name'] ?></td>
+                             <!-- <td class="text-capitalize"><?php echo $fetchbb['subcategory_name'] ?></td> -->
                              <td><?php echo $arproduct['switchof'] ?></td>
                              <td><?php echo $arproduct['Frontcam'] ?></td>
                              <td><?php echo $arproduct['backcam'] ?></td>
