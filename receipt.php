@@ -328,7 +328,7 @@ function convertPriceToWords2($num){
 
     <script src="https://kit.fontawesome.com/695826c815.js" crossorigin="anonymous"></script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYH2D4QESB"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G7WHMV7DE"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -337,7 +337,7 @@ function convertPriceToWords2($num){
     }
     gtag('js', new Date());
 
-    gtag('config', 'G-DYH2D4QESB');
+    gtag('config', 'G-6G7WHMV7DE');
     </script>
     <meta name="google-site-verification" content="XcbXug-z0EtzkdTsIB7RGWJ5SIBGOILe_5kUiuwdp_0"   />
 </head>

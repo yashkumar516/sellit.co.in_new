@@ -187,7 +187,7 @@
                                  </button>
                                  <?php
                                     // SELECT COUNT(*)  FROM `product` WHERE `image_url`="external";
-                                    $query = "SELECT COUNT(*) AS `id`  FROM `subcategory` WHERE `image_url`='external'";
+                                    $query = "SELECT COUNT(*) AS `id`  FROM `subcategory` WHERE `image_url`='external' ";
 
                                     $result = $con->query($query);
 
@@ -198,7 +198,8 @@
                                             ?>
                                  <!-- <form action="#" enctype="multipart/form-data" method="POST" class="w-100"> -->
                                  <button type="submit" class="btn btn-primary w-100 px-1" name="syncImageBrand"
-                                     onclick="syncImageAjax('Brand')"><i class="bx bx-sync text-4 mr-1"></i>Sync
+                                     onclick="syncImageAjax('Brand',0,'brandquestions.php')"><i
+                                         class="bx bx-sync text-4 mr-1"></i>Sync
                                      <?php echo $rowCount>1?$rowCount." Images":$rowCount." Image"?>
 
                                  </button>

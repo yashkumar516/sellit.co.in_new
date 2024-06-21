@@ -88,15 +88,15 @@ if ($_FILES['csvfile']['error'] === UPLOAD_ERR_OK && isset($_POST["uploadType"])
                     $productId = $productInfo["id"];
                     $questionsInfo = $questionsManager->upsertQuestions($rowData, $categoryId, $productId, $brandId, $seriesId);
 
-                    // Check if both product and questions were successfully processed
-                    if ($questionsInfo &&  $productInfo) {
-                        echo "Model uploaded successfully" ;
-                    } else {
-                        echo "Model upload failed";
-                    }
                 }
                 $i++;
             }
+        }
+        // Check if both product and questions were successfully processed
+        if ($questionsInfo &&  $productInfo) {
+            echo "Model uploaded successfully" ;
+        } else {
+            echo "Model upload failed";
         }
         fclose($file);
     } else {
