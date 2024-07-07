@@ -554,6 +554,9 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         $checkleadquestions->vendorid = $_POST['vendorid'];
         $leadsupdate = $checkleadquestions->leadquestionsupdate();
         if(!empty($leadsupdate)){
+          
+// GENERATELOGS_API($leadsupdate,"[request packet]",1); 
+GENERATELOGS_API($leadsupdate,"[response packet]",1); 
              http_response_code(200);
         echo json_encode(array(
         "status" => "1",
