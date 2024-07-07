@@ -2,3 +2,6 @@
 env.php
 admin/includes/confile.php
 admin/img/drive
+admin/img/drive/*
+admin/img/mobileimages
+admin/img/mobileimages/*
