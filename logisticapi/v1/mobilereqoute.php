@@ -556,7 +556,12 @@ GENERATELOGS_API($_POST,"[request packet]",1);
         if(!empty($leadsupdate)){
           
 // GENERATELOGS_API($leadsupdate,"[request packet]",1); 
-GENERATELOGS_API($leadsupdate,"[response packet]",1); 
+ GENERATELOGS_API($updateuptovalue,"[updateuptovalue]",1); 
+ GENERATELOGS_API($netdeductpercenet,"[netdeductpercenet]",1); 
+ GENERATELOGS_API($sumflatvalue,"[sumflatvalue]",1); 
+ GENERATELOGS_API($screendeduction,"[screendeduction]",1); 
+ GENERATELOGS_API($offerprice,"[offerprice]",1); 
+ GENERATELOGS_API($leadsupdate,"[response packet]",1); 
              http_response_code(200);
         echo json_encode(array(
         "status" => "1",
