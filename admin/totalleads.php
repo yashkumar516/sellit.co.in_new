@@ -64,12 +64,14 @@
                                      <th width="9%">Action</th>
                                      <th width="13%">Model Name</th>
                                      <th width="9%">Variant</th>
+                                     <th width="13%">Name</th>
                                      <th width="13%">Contact</th>
                                      <th width="13%">Offerprice</th>
                                      <th width="12%">Pickup Date</th>
                                      <th width="12%">Pickup Time</th>
                                      <th width="13%">Status</th>
                                      <th width="13%">GeneratedAt</th>
+                                     <th width="13%">CreatedAt</th>
 
                                  </tr>
                              </thead>
@@ -82,6 +84,8 @@
 										$uid = $arorder['userid'];
 										$enquid = $arorder['id'];
 										$platform_type = $arorder['platform_type'];
+										$modify_date = $arorder['modify_date'];
+                                        
 										$conact = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$uid' "));
 										$rowadd = mysqli_num_rows(mysqli_query($con, "SELECT * FROM `address` WHERE `enquid` = '$enquid' "));
 										if ($rowadd == 1) {
@@ -109,8 +113,13 @@
 									?>
                                  <tr>
                                      <!-- <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td> -->
-                                     <td><a
+                                     <td>
+                                         <!-- <a
                                              href="ecommerce-orders-detail.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
+                                     -->
+                                         <a
+                                             href="moreinfo.php?id=<?php echo $arorder['id'] ?>"><strong><?php echo $arorder['id'] ?></strong></a>
+
                                      </td>
                                      <td>
 
@@ -127,6 +136,7 @@
                                      </td>
                                      <td><?php echo $arorder['model_name'] ?></td>
                                      <td><?php echo $arorder['varient'] ?></td>
+                                     <td><?php echo isset($conact['name'])?$conact['name']:""  ?></td>
                                      <td><?php echo isset($conact['mobile'])?$conact['mobile']:""  ?></td>
                                      <!-- <td><?php echo $conact['mobile']  ?></td> -->
                                      <td>₹<?php echo $arorder['offerprice'] ?></td>
@@ -165,6 +175,8 @@
                                          <?php echo $arorder['status'] ?>
                                      </td>
                                      <td class="text-capitalize text-center"><?php echo $platform_type?></td>
+                                     <td class="text-capitalize text-center">
+                                         <?php echo date('d/m/Y', strtotime($modify_date))?></td>
                                  </tr>
                                  <?php
 									}

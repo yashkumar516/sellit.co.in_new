@@ -41,7 +41,11 @@
          <div class="row">
              <div class="col-xl-4 mb-4 mb-xl-0">
                  <?php 
-                                 $orderquery = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `order` WHERE `id` = '$oid'"));
+                                 $orderquery = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `enquiry` WHERE `id` = '$oid'"));
+                                 $userid = $orderquery['userid'];
+                                 $usernumber  = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `userrecord` WHERE `id` = '$userid' "));
+                                 $customerName = $usernumber['name'];
+                                 $customerMobile = $usernumber['mobile'];
 								?>
                  <div class="card card-modern">
                      <div class="card-header">
@@ -88,11 +92,13 @@
                          <div class="form-row">
                              <div class="form-group col mb-3">
                                  <label>Customer</label>
-                                 <select class="form-control form-control-modern" name="orderCustomer" required
+                                 <input type="text" class="form-control form-control-modern text-center" name="name"
+                                     value="<?php echo $customerName?>" required />
+                                 <!-- <select class="form-control form-control-modern" name="orderCustomer" required
                                      data-plugin-selectTwo>
                                      <option value="<?php echo $orderquery['id'] ?>" selected>
                                          <?php echo $orderquery['username'] ?></option>
-                                 </select>
+                                 </select> -->
                              </div>
                          </div>
                      </div>
@@ -111,6 +117,7 @@
                                  <h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3">BILLING
                                  </h3>
                                  <?php
+                                 
 												  $billingquery = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `user_billing` WHERE `orderid` = '$oid' "));
 												  if($billingquery != null)
 												  {
