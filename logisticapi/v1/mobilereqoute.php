@@ -144,7 +144,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
           $microphonesel = $selectbrand['microphone'];
          //  functional questions end 
          // offer price start
-          $offerprice = $selectbrand['uptovalue'];
+          $uptovalue = $selectbrand['uptovalue'];
          // offer price end 
          
         //  main calculation startf
@@ -165,8 +165,8 @@ GENERATELOGS_API($_POST,"[request packet]",1);
              $warrenty = 0;
          }
               
-          $wrrded = ($warrenty/100)*$offerprice;
-          $updateuptovalue = $offerprice-$wrrded;
+          $wrrded = ($warrenty/100)*$uptovalue;
+          $updateuptovalue = $uptovalue-$wrrded;
           // $updateuptovalue =$offerprice - ($warrenty/100)*$offerprice;
           
         //   screen calculation
@@ -560,7 +560,7 @@ GENERATELOGS_API($_POST,"[request packet]",1);
           
 // GENERATELOGS_API($leadsupdate,"[request packet]",1); 
 // ($warrenty/100)*$offerprice;
- GENERATELOGS_API($offerprice,"[offerprice]",1); 
+ GENERATELOGS_API($uptovalue,"[uptovalue]",1); 
  GENERATELOGS_API($warrenty,"[warrenty]",1); 
  GENERATELOGS_API($updateuptovalue,"[updateuptovalue]",1); 
  GENERATELOGS_API($netdeductpercenet,"[netdeductpercenet]",1); 
