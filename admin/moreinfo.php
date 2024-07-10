@@ -379,9 +379,9 @@
                          </div>
                      </div>
                  </div>
-                 <?php 
-								       if($enqdetail['status'] == 'Complete'){ 
-								     ?>
+
+
+                 <?php if ($enqdetail['status'] == 'Complete') { ?>
                  <div class="col-12 mb-3">
                      <div class="card card-modern card-modern-table-over-header">
                          <div class="card-header">
@@ -391,85 +391,54 @@
                              <h2 class="card-title">Device Photos</h2>
                          </div>
                          <div class="card-body">
-
                              <div class="row">
-
-                                 <div class="col-3">
-
-                                     <?php   if(!empty($enqdetail['pic1'])){
-										        ?>
-                                     <div
-                                         style="width:100% ;box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.4); min-height:300px; border-radius:8px;">
-
-                                         <img src="img/mobileimages/<?= $enqdetail['pic1'] ?>" class="img-fluid"
-                                             style="width:100% ;border-radius:8px;" />
-                                     </div>
-                                     <?php } ?>
-
-                                 </div>
-                                 <div class="col-3">
-
-                                     <?php   if(!empty($enqdetail['pic2'])){
-										        ?>
-                                     <div
-                                         style="width:100% ;box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.4); min-height:300px; border-radius:8px;">
-
-                                         <img src="img/mobileimages/<?= $enqdetail['pic2'] ?>" class="img-fluid"
-                                             style="width:100% ;border-radius:8px;" />
-                                     </div>
-                                     <?php } ?>
-                                 </div>
-                                 <div class="col-3">
-
-                                     <?php   if(!empty($enqdetail['pic3'])){
-										        ?>
-                                     <div
-                                         style="width:100% ;box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.4); min-height:300px; border-radius:8px;">
-
-                                         <img src="img/mobileimages/<?= $enqdetail['pic3'] ?>" class="img-fluid"
-                                             style="width:100% ;border-radius:8px;" />
-                                     </div>
-                                     <?php } ?>
-                                 </div>
-                                 <div class="col-3">
-
-                                     <?php   if(!empty($enqdetail['pic4'])){
-										        ?>
-                                     <div
-                                         style="width:100% ;box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.4); min-height:300px; border-radius:8px;">
-
-                                         <img src="img/mobileimages/<?= $enqdetail['pic4'] ?>" class="img-fluid"
-                                             style="width:100% ;border-radius:8px;" />
-                                     </div>
-                                     <?php } ?>
-                                 </div>
-
-
+                                 <?php displayImage($enqdetail['pic1']); ?>
+                                 <?php displayImage($enqdetail['pic2']); ?>
+                                 <?php displayImage($enqdetail['pic3']); ?>
+                                 <?php displayImage($enqdetail['pic4']); ?>
                              </div>
                          </div>
                      </div>
                  </div>
-
                  <?php } ?>
-                 <div class="row mt-3">
+
+                 <?php
+                        function displayImage($image)
+                        {
+                            if (!empty($image)) {
+                        ?>
+                 <div class="col-3">
+                     <div
+                         style="width:100%; box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.4); min-height:300px; border-radius:8px;">
+                         <img src="img/mobileimages/<?= $image ?>" class="img-fluid"
+                             style="width:100%; border-radius:8px;" />
+                     </div>
+                 </div>
+                 <?php
+                            }
+                        }
+                        ?>
+
+                 <div class="col-12 mb-3">
+                     <div class="row mt-3">
 
 
-                     <div class="col-4 mb-3">
+                         <div class="col-4 mb-3">
 
-                         <div class="card card-modern card-modern-table-over-header">
-                             <div class="card-header">
+                             <div class="card card-modern card-modern-table-over-header">
+                                 <div class="card-header">
 
-                                 <h2 class="card-title">IF YOUR MOBILE UNDER WARRANTY?</h2>
-                             </div>
+                                     <h2 class="card-title">IF YOUR MOBILE UNDER WARRANTY?</h2>
+                                 </div>
 
-                             <div class="card-body">
-                                 <div class="row">
+                                 <div class="card-body">
+                                     <div class="row">
 
-                                     <div class="col-12">
+                                         <div class="col-12">
 
-                                         <?php  
+                                             <?php  
                
-               echo "<table style='width:100%; border-collapse: collapse;'>"; // start table
+                              echo "<table style='width:100%; border-collapse: collapse;'>"; // start table
                            if (!empty($enqdetail['warenty']) && trim($enqdetail['warenty']) != "out of Warranty" &&  trim($enqdetail['warenty']) !="Mobile Out of Warranty")  {
                             // if( "Out Of Warranty")
                             // echo $enqdetail['warenty'];
@@ -478,27 +447,27 @@
                             } else{
                                 echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>Mobile Warranty</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-danger'><b>Out Of Warranty</b></td></tr>";
                             }
-           echo "</table>"; // end table
+                          echo "</table>"; // end table
                        
                        ?>
 
+                                         </div>
                                      </div>
                                  </div>
                              </div>
-                         </div>
 
-                         <div class="card card-modern card-modern-table-over-header">
-                             <div class="card-header">
+                             <div class="card card-modern card-modern-table-over-header">
+                                 <div class="card-header">
 
-                                 <h2 class="card-title">MOBILE AGE</h2>
-                             </div>
+                                     <h2 class="card-title">MOBILE AGE</h2>
+                                 </div>
 
-                             <div class="card-body">
-                                 <div class="row">
+                                 <div class="card-body">
+                                     <div class="row">
 
-                                     <div class="col-12">
+                                         <div class="col-12">
 
-                                         <?php  
+                                             <?php  
                             //            echo $enqdetail['age'];
                             // echo   "<br/>";
                                     echo "<table style='width:100%; border-collapse: collapse;'>"; // start table
@@ -511,23 +480,23 @@
                                             
                                             ?>
 
+                                         </div>
                                      </div>
                                  </div>
                              </div>
-                         </div>
 
-                         <div class="card card-modern card-modern-table-over-header">
-                             <div class="card-header">
+                             <div class="card card-modern card-modern-table-over-header">
+                                 <div class="card-header">
 
-                                 <h2 class="card-title">SCREEN CONDITIONS</h2>
-                             </div>
+                                     <h2 class="card-title">SCREEN CONDITIONS</h2>
+                                 </div>
 
-                             <div class="card-body">
-                                 <div class="row">
+                                 <div class="card-body">
+                                     <div class="row">
 
-                                     <div class="col-12">
+                                         <div class="col-12">
 
-                                         <?php
+                                             <?php
                                                 //  'offerprice', 'extraamount', 'customerprice','failreason', 'modify_date', 'status', 'emino'
                                                 // 'callvalue', 'warenty', 'age', 'touchscreen', 'screenspot', 'screenlines', 
                                                 // 'screenphysicalcondition', 'bodyscratches', 'bodydents', 'sidebackpanel', 
@@ -582,24 +551,24 @@
                                                 ?>
 
 
+                                         </div>
                                      </div>
                                  </div>
                              </div>
                          </div>
-                     </div>
-                     <div class="col-4 mb-3">
-                         <div class="card card-modern card-modern-table-over-header">
-                             <div class="card-header">
+                         <div class="col-4 mb-3">
+                             <div class="card card-modern card-modern-table-over-header">
+                                 <div class="card-header">
 
-                                 <h2 class="card-title">DO YOU HAVE THE FOLLOWING</h2>
-                             </div>
+                                     <h2 class="card-title">DO YOU HAVE THE FOLLOWING</h2>
+                                 </div>
 
-                             <div class="card-body">
-                                 <div class="row">
+                                 <div class="card-body">
+                                     <div class="row">
 
-                                     <div class="col-12">
+                                         <div class="col-12">
 
-                                         <?php 
+                                             <?php 
                                                 $fields = [  'charger', 'earphone', 'boximei', 'billimei'];
                                                 
                                                 $fieldObjects = [
@@ -632,23 +601,23 @@
 
                                                 ?>
 
+                                         </div>
                                      </div>
                                  </div>
                              </div>
-                         </div>
 
-                         <div class="card card-modern card-modern-table-over-header">
-                             <div class="card-header">
+                             <div class="card card-modern card-modern-table-over-header">
+                                 <div class="card-header">
 
-                                 <h2 class="card-title">PHONE'S OVERALL CONDITIONS</h2>
-                             </div>
+                                     <h2 class="card-title">PHONE'S OVERALL CONDITIONS</h2>
+                                 </div>
 
-                             <div class="card-body">
-                                 <div class="row">
+                                 <div class="card-body">
+                                     <div class="row">
 
-                                     <div class="col-12">
+                                         <div class="col-12">
 
-                                         <?php  
+                                             <?php  
                                                 $fieldObjects = [
                                                     (object) ['code' => 'bodyscratches', 'name' => 'Body Scratches'],
                                                     (object)  ['code' => 'bodydents', 'name' => 'Body Dents'],
@@ -686,25 +655,25 @@
 
                                                 ?>
 
+                                         </div>
                                      </div>
                                  </div>
                              </div>
                          </div>
-                     </div>
 
-                     <div class="col-4">
-                         <div class="card card-modern card-modern-table-over-header">
-                             <div class="card-header">
+                         <div class="col-4">
+                             <div class="card card-modern card-modern-table-over-header">
+                                 <div class="card-header">
 
-                                 <h2 class="card-title">FUNCTIONAL PROBLEM'S</h2>
-                             </div>
+                                     <h2 class="card-title">FUNCTIONAL PROBLEM'S</h2>
+                                 </div>
 
-                             <div class="card-body">
-                                 <div class="row">
+                                 <div class="card-body">
+                                     <div class="row">
 
-                                     <div class="col-12">
+                                         <div class="col-12">
 
-                                         <?php 
+                                             <?php 
                                                 $fields = [ 
                                                     'copydisplay', 'front_camera', 'back_camera', 'volume', 'finger_touch', 'speaker', 'power_btn', 
                                                     'charging_port', 'face_sensor',   'audio_receiver', 'camera_glass', 'wifi', 'silent_btn', 'battery', 
@@ -737,43 +706,13 @@
 
                                                 ?>
 
+                                         </div>
                                      </div>
                                  </div>
                              </div>
                          </div>
+
                      </div>
-                     <!-- <div class="col-4">
-                     <h2>Lead Specification</h2>
-                     <ul>
-                         <?php
-								//  'offerprice', 'extraamount', 'customerprice','failreason', 'modify_date', 'status', 'emino'
-								// 'callvalue', 'warenty', 'age', 'touchscreen', 'screenspot', 'screenlines', 
-								// 'screenphysicalcondition', 'bodyscratches', 'bodydents', 'sidebackpanel', 
-								// 'bodybents', 'charger', 'earphone', 'boximei', 'billimei', 'front_camera', 
-								// 'back_camera', 'volume', 'speaker', 'power_btn', 'face_sensor', 
-								// 'charging_port', 'audio_receiver', 'camera_glass', 'wifi', 'silent_btn', 
-								// 'battery', 'bluetooth', 'vibrator', 'microphone', 'conditions', 
-								// 'connectivity', 'physicalissue', 'cable', 'switchof',		
-								$fields = [
-									'callvalue', 'warenty', 'age', 
-									'touchscreen', 'screenspot', 'screenlines', 'screenphysicalcondition', 'bodyscratches', 
-									'bodydents', 'sidebackpanel', 'bodybents', 'charger', 'earphone', 'boximei', 'billimei', 
-									'copydisplay', 'front_camera', 'back_camera', 'volume', 'finger_touch', 'speaker', 'power_btn', 
-									'face_sensor', 'charging_port', 'audio_receiver', 'camera_glass', 'wifi', 'silent_btn', 'battery', 
-									'bluetooth', 'vibrator', 'microphone', 'switchof', 'magnetic', 'digitalcrown', 'opticalheart', 'stap', 
-									'pencil', 'conditions', 'pcondition', 'sidebutton', 'gps', 'connectivity', 'physicalissue', 'cable', 
-								
-								];
-
-								foreach ($fields as $field) {
-									if (!empty($enqdetail[$field])) {
-										echo "<li>{$enqdetail[$field]}</li>";
-									}
-								}
-								?>
-                     </ul> 
-
-             </div> -->
                  </div>
              </div>
              <!-- end: page -->
