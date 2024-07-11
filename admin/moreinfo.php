@@ -515,10 +515,10 @@
                                                 //     'pencil', 'conditions', 'pcondition', 'sidebutton', 'gps', 'connectivity', 'physicalissue', 'cable', 
                                                  
                                                 $fieldObjects = [
-                                                    (object) ['code' => 'touchscreen', 'name' => 'Touch Screen'],
-                                                    (object)  ['code' => 'screenspot', 'name' => 'Screen Spot'],
-                                                    (object)  ['code' => 'screenlines', 'name' => 'Screen Lines'],
-                                                    (object)  ['code' => 'screenphysicalcondition', 'name' => 'Screen Physical Condition']
+                                                    (object) ['code' => 'touchscreen', 'name' => 'Touch Screen', 'value'=>'Touch Working'],
+                                                    (object)  ['code' => 'screenspot', 'name' => 'Screen Spot', 'value'=>'No spots on screen'],
+                                                    (object)  ['code' => 'screenlines', 'name' => 'Screen Lines', 'value'=>'No line(s) on Display'],
+                                                    (object)  ['code' => 'screenphysicalcondition', 'name' => 'Screen Physical Condition', 'value'=>'No scratches on screen']
                                                 ];
                                                 
                                                 echo "<table style='width:100%; border-collapse: collapse;'>"; // start table
@@ -543,7 +543,7 @@
                                                     } else {
                                                         echo "<tr>
                                                                 <td style='padding: 8px; text-transform:capitalize;'><b>{$field->name}</b></td>
-                                                                <td style='padding: 8px; text-transform:capitalize;' class='text-danger'><b>Not Available</b></td>
+                                                                <td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>{$field->value}</b></td>
                                                               </tr>";
                                                     }
                                                 }
@@ -619,10 +619,10 @@
 
                                              <?php  
                                                 $fieldObjects = [
-                                                    (object) ['code' => 'bodyscratches', 'name' => 'Body Scratches'],
-                                                    (object)  ['code' => 'bodydents', 'name' => 'Body Dents'],
-                                                    (object)  ['code' => 'sidebackpanel', 'name' => 'Side Back Panel'],
-                                                    (object)  ['code' => 'bodybents', 'name' => 'Body Bents']
+                                                    (object) ['code' => 'bodyscratches', 'name' => 'Body Scratches','value'=>'No scratches'],
+                                                    (object)  ['code' => 'bodydents', 'name' => 'Body Dents','value'=>'No dents'],
+                                                    (object)  ['code' => 'sidebackpanel', 'name' => 'Side Back Panel','value'=>'No defect on side or back panel'],
+                                                    (object)  ['code' => 'bodybents', 'name' => 'Body Bents','value'=>'Phone not bent']
                                                 ]; 
                                                 echo "<table style='width:100%; border-collapse: collapse;'>"; // start table
                                                
@@ -646,7 +646,7 @@
                                                     } else {
                                                         echo "<tr>
                                                                 <td style='padding: 8px; text-transform:capitalize;'><b>{$field->name}</b></td>
-                                                                <td style='padding: 8px; text-transform:capitalize;' class='text-danger'><b>Not Available</b></td>
+                                                                <td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>{$field->value}</b></td>
                                                               </tr>";
                                                     }
                                                 }
