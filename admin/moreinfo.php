@@ -689,16 +689,18 @@
                                                 foreach ($fieldObjects as $field) {
                                                     if (!empty($enqdetail[$field->code])) {
                                                
-                            if( trim($enqdetail[$field->code])==="no copy display"){
-                                echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>no copy display</b></td></tr>";
-                                               
-                            } else{
-                                echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-danger'><b>Not Working</b></td></tr>";
-                                               
-                            }
+                                                            if( trim($enqdetail[$field->code])==="no copy display" ){
+                                                                echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>no copy display</b></td></tr>";         
+                                                            } else{
+                                                                echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-danger'><b>Not Working</b></td></tr>";                                                                         
+                                                            }
                                                      } else{
-                                                        echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>Working</b></td></tr>";
-                                                       
+                                                        
+                                                        if( $field->code=== "copydisplay"){
+                                                            echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>no copy display</b></td></tr>";         
+                                                        } else{
+                                                            echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>Working</b></td></tr>";
+                                                        }
                                                     }
                                                 }
 
