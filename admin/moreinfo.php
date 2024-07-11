@@ -310,7 +310,7 @@
                                      </p>
                                      <?php  
 											  }else{
-                                                echo "No Address Found On this Lead Please Contact Him ";
+                                                echo "No Address Found On this Lead Please Contact Customer. ";
                                               }
 										    ?>
 
@@ -338,7 +338,7 @@
                                      <?php
 														  }
 													    }else{
-														 echo "<td>no account detail add please contact custoer</td>";
+														 echo "<td>No Account Detail Add Please Contact Customer.</td>";
 													 }
 											    ?>
 
