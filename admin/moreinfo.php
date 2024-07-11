@@ -673,7 +673,13 @@
 
                                          <div class="col-12">
 
-                                             <?php 
+                                             <?php  
+                                                // $fieldObjects = [
+                                                //     (object) ['code' => 'bodyscratches', 'name' => 'Body Scratches','value'=>'No scratches'],
+                                                //     (object)  ['code' => 'bodydents', 'name' => 'Body Dents','value'=>'No dents'],
+                                                //     (object)  ['code' => 'sidebackpanel', 'name' => 'Side Back Panel','value'=>'No defect on side or back panel'],
+                                                //     (object)  ['code' => 'bodybents', 'name' => 'Body Bents','value'=>'Phone not bent']
+                                                // ]; 
                                                 $fields = [ 
                                                     'copydisplay', 'front_camera', 'back_camera', 'volume', 'finger_touch', 'speaker', 'power_btn', 
                                                     'charging_port', 'face_sensor',   'audio_receiver', 'camera_glass', 'wifi', 'silent_btn', 'battery', 
@@ -690,14 +696,14 @@
                                                     if (!empty($enqdetail[$field->code])) {
                                                
                                                             if( trim($enqdetail[$field->code])==="no copy display" ){
-                                                                echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>no copy display</b></td></tr>";         
+                                                                echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>Orignal display</b></td></tr>";         
                                                             } else{
                                                                 echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-danger'><b>Not Working</b></td></tr>";                                                                         
                                                             }
                                                      } else{
                                                         
                                                         if( $field->code=== "copydisplay"){
-                                                            echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>no copy display</b></td></tr>";         
+                                                            echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>Orignal display</b></td></tr>";         
                                                         } else{
                                                             echo "<tr><td style='padding: 8px;  text-transform:capitalize;'><b>{$field->name}</b></td><td style='padding: 8px; text-transform:capitalize;' class='text-success'><b>Working</b></td></tr>";
                                                         }
