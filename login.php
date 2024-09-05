@@ -75,13 +75,13 @@ function GENERATELOGS_API($DATA, $BLOCK, $flag = 0)
             <div class="row">
                 <div class="col-lg-2 col-5 offset-lg-10 offset-8" id="userprofile">
                     <?php if (!empty($number)) { ?>
-                        <a href="login.php">
-                            <p><i class="fas fa-sign-in-alt"></i> Login</p>
-                        </a>
+                    <a href="login.php">
+                        <p><i class="fas fa-sign-in-alt"></i> Login</p>
+                    </a>
                     <?php } else { ?>
-                        <a href="userdashboard.php">
-                            <p><i class="fas fa-user"></i> Profile</p>
-                        </a>
+                    <a href="userdashboard.php">
+                        <p><i class="fas fa-user"></i> Profile</p>
+                    </a>
                     <?php } ?>
                 </div>
             </div>
@@ -179,40 +179,40 @@ function GENERATELOGS_API($DATA, $BLOCK, $flag = 0)
 </html>
 
 <script>
-    $(document).ready(function() {
-        $("#modalsearch").keyup(function() {
-            var search = $("#modalsearch").val();
-            if (search != '') {
-                $.ajax({
-                    method: "post",
-                    url: "modalfound.php",
-                    data: {
-                        search: search
-                    },
-                    dataType: "html",
-                    success: function(result) {
-                        $('#ajaxresponse').fadeIn();
-                        $("#filter").css("display", "block");
-                        $('#ajaxresponse').html(result);
-                    }
-                });
-            } else {
-                $('#ajaxresponse').fadeOut();
-                $("#filter").css("display", "none");
-                $('#ajaxresponse').html("");
-            }
-        })
-        $("#modalsearch").focusout(function() {
+$(document).ready(function() {
+    $("#modalsearch").keyup(function() {
+        var search = $("#modalsearch").val();
+        if (search != '') {
+            $.ajax({
+                method: "post",
+                url: "modalfound.php",
+                data: {
+                    search: search
+                },
+                dataType: "html",
+                success: function(result) {
+                    $('#ajaxresponse').fadeIn();
+                    $("#filter").css("display", "block");
+                    $('#ajaxresponse').html(result);
+                }
+            });
+        } else {
             $('#ajaxresponse').fadeOut();
-            $('#modalsearch').val("");
-        })
-    });
+            $("#filter").css("display", "none");
+            $('#ajaxresponse').html("");
+        }
+    })
+    $("#modalsearch").focusout(function() {
+        $('#ajaxresponse').fadeOut();
+        $('#modalsearch').val("");
+    })
+});
 </script>
 
 <script>
-    $(document).ready(function() {
-        $("#userpic").on('click', function() {
-            $("#prof").toggle();
-        });
+$(document).ready(function() {
+    $("#userpic").on('click', function() {
+        $("#prof").toggle();
     });
+});
 </script>

@@ -7,8 +7,10 @@
       if($row > 0){
           while($armodal = mysqli_fetch_assoc($query)){
             ?>
-              <a href="variant.php?id=<?php echo $armodal['id'] ?>&&bid=<?php echo $armodal['subcategoryid'] ?>"><li class="py-2"><?php echo $armodal['product_name'] ?></li></a> 
-            <?php
+<a href="variant.php?id=<?php echo $armodal['id'] ?>&&bid=<?php echo $armodal['subcategoryid'] ?>">
+    <li class="py-2"><?php echo $armodal['product_name'] ?></li>
+</a>
+<?php
           }
       }else{
         echo "<li>No modal found</li>";

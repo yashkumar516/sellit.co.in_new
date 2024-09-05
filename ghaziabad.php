@@ -17,13 +17,13 @@
             $active = 0;
             while ($bannerData = mysqli_fetch_assoc($queryBanner)) {
                 if ($active == "0") { ?>
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
-                    </div>
-                <?php } else { ?>
-                    <div class="carousel-item ">
-                        <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
-                    </div>
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
+            </div>
+            <?php } else { ?>
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="admin/img/<?php echo $bannerData["image"]; ?>" alt="First slide">
+            </div>
             <?php }
                 $active++;
             }
@@ -131,17 +131,18 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3">
-                                <a href="sell-old-mobile-phones/sell-old-<?= strtolower(
+                        <div class="col-lg-3 col-3">
+                            <a href="sell-old-mobile-phones/sell-old-<?= strtolower(
                                                                                 str_replace(
                                                                                     " ",
                                                                                     "-",
                                                                                     $brandData["subcategory_name"]
                                                                                 )
                                                                             ) ?>/<?php echo $brandData["id"]; ?>">
-                                    <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid" alt="">
-                                </a>
-                            </div>
+                                <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid"
+                                    alt="">
+                            </a>
+                        </div>
                         <?php }
                         ?>
                     </div>
@@ -203,7 +204,9 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3"><a href="oldtablet.php?id=<?php echo $brandData["id"]; ?>"><img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%" class="img-fluid" alt=""></a></div>
+                        <div class="col-lg-3 col-3"><a href="oldtablet.php?id=<?php echo $brandData["id"]; ?>"><img
+                                    src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%"
+                                    class="img-fluid" alt=""></a></div>
                         <?php }
                         ?>
                     </div>
@@ -261,11 +264,12 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3">
-                                <a href="oldwatch.php?id=<?php echo $brandData["id"]; ?>">
-                                    <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%" class="img-fluid" alt="">
-                                </a>
-                            </div>
+                        <div class="col-lg-3 col-3">
+                            <a href="oldwatch.php?id=<?php echo $brandData["id"]; ?>">
+                                <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%"
+                                    class="img-fluid" alt="">
+                            </a>
+                        </div>
                         <?php }
                         ?>
                     </div>
@@ -329,7 +333,9 @@
                         while (
                             $brandData = mysqli_fetch_assoc($queryBrand)
                         ) { ?>
-                            <div class="col-lg-3 col-3"><a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"><img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%" class="img-fluid" alt=""></a></div>
+                        <div class="col-lg-3 col-3"><a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"><img
+                                    src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" width="100%"
+                                    class="img-fluid" alt=""></a></div>
                         <?php }
                         ?>
                     </div>
@@ -378,8 +384,8 @@
                             )
                         );
                     ?>
-                        <div class="item my-3">
-                            <a href="/sell-old-phones/sell-old-<?= strtolower(
+                    <div class="item my-3">
+                        <a href="/sell-old-phones/sell-old-<?= strtolower(
                                                                     $topsubcatname["subcategory_name"] .
                                                                         "-" .
                                                                         strtolower(
@@ -394,12 +400,14 @@
                                                                     $modelData["id"] .
                                                                     "_" .
                                                                     $modelData["subcategoryid"] ?>">
-                                <div class="text-center" id="md">
-                                    <img src="admin/img/<?php echo $modelData["product_image"]; ?>" class="img-fluid" alt="">
-                                    <span class="sum-heading1 text-center" style="color:black;"><?php echo $modelData["product_name"]; ?></span>
-                                </div>
-                            </a>
-                        </div>
+                            <div class="text-center" id="md">
+                                <img src="admin/img/<?php echo $modelData["product_image"]; ?>" class="img-fluid"
+                                    alt="">
+                                <span class="sum-heading1 text-center"
+                                    style="color:black;"><?php echo $modelData["product_name"]; ?></span>
+                            </div>
+                        </a>
+                    </div>
                     <?php
                     }
                     ?>

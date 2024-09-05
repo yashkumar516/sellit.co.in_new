@@ -24,9 +24,11 @@
                 "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '4' "
             );
             while ($brandData = mysqli_fetch_assoc($selectquery)) { ?>
-                <div class="col-lg-2 col-3 mt-4">
-                    <a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"> <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid box1" alt=""></a>
-                </div>
+            <div class="col-lg-2 col-3 mt-4">
+                <a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"> <img
+                        src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid box1"
+                        alt=""></a>
+            </div>
             <?php }
             ?>
 

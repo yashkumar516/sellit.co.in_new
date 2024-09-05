@@ -261,365 +261,365 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
 <?php include 'footer1.php' ?>
 
 <script>
-    $(document).ready(function() {
-        function handleSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
+$(document).ready(function() {
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
 
-            // Get form element by ID
-            var form = document.getElementById("myForm");
-
-            // Create empty object to store form data
-            var formData = {};
-
-            // Loop through each form element and add its name and value to the formData object
-            for (var i = 0; i < form.elements.length; i++) {
-                var element = form.elements[i];
-                if (element.type !== "submit") { // Exclude submit button
-                    formData[element.name] = element.value;
-                }
-            }
-            formData["page"] = "productNewPage";
-            $.ajax({
-                type: "POST",
-                url: "session/set_session_all_question.php", // Replace with the path to your PHP script
-                data: formData,
-                success: function(response) {
-                    // Handle success response if needed
-                    console.log({
-                        response
-                    });
-                    window.location.replace(
-                        "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
-                    );
-                    // window.location.href =
-                    //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
-
-                },
-                error: function(xhr, status, error) {
-                    // Handle error response if needed
-                    console.error({
-                        error
-                    });
-                }
-            });
-            // You can now send this formData to a server using AJAX or perform any other operation with it.
-        }
-
-        // Attach form submission event listener
+        // Get form element by ID
         var form = document.getElementById("myForm");
-        form.addEventListener("submit", handleSubmit);
+
+        // Create empty object to store form data
+        var formData = {};
+
+        // Loop through each form element and add its name and value to the formData object
+        for (var i = 0; i < form.elements.length; i++) {
+            var element = form.elements[i];
+            if (element.type !== "submit") { // Exclude submit button
+                formData[element.name] = element.value;
+            }
+        }
+        formData["page"] = "productNewPage";
+        $.ajax({
+            type: "POST",
+            url: "session/set_session_all_question.php", // Replace with the path to your PHP script
+            data: formData,
+            success: function(response) {
+                // Handle success response if needed
+                console.log({
+                    response
+                });
+                window.location.replace(
+                    "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                );
+                // window.location.href =
+                //     "functional.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+
+            },
+            error: function(xhr, status, error) {
+                // Handle error response if needed
+                console.error({
+                    error
+                });
+            }
+        });
+        // You can now send this formData to a server using AJAX or perform any other operation with it.
+    }
+
+    // Attach form submission event listener
+    var form = document.getElementById("myForm");
+    form.addEventListener("submit", handleSubmit);
+})
+</script>
+<script>
+$(document).ready(function() {
+    const iconString =
+        '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
+    // touhscreen start
+    function touchCondition() {
+        var touch = $("input[type=radio][name=touch]:checked").val();
+        if (touch == "yes") {
+            $('#screencondition').html("Screen Condition");
+            $('#touchHtml').html(
+                `${iconString} Touch Working`
+            );
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $warin ?>');
+            $('#war').val('<?php echo $war ?>');
+            $('#touchin').val(
+                `${iconString} Touch Working`
+            );
+            $('#touch').val("yes");
+            $('.physical, .lines, .spot').attr("required", "true");
+            $('.card').show();
+        } else if (touch == "no") {
+            $('#screencondition').html("Screen Condition");
+            $('#touchHtml').html(
+                `${iconString} Touch Faulty`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#touchin').val(
+                `${iconString} Touch Faulty`
+            );
+            $('#touch').val("no");
+            $('#spot,#lines,#physical').html("");
+            $('#spotin,#linesin,#physicalin').val("");
+            $('.card').hide();
+            $('.physical, .lines, .spot').removeAttr("required");
+
+        }
+    }
+    // spot start
+    function spotCondition() {
+        var spot = $("input[type=radio][name=spot]:checked").val();
+        if (spot == "largespot") {
+
+            $('#spotHtml').html(
+                `${iconString} Large/ heavy visible spots on screen`
+            );
+
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#spotin').val(
+                `${iconString} Large/ heavy visible spots on screen`
+            );
+            $('#spot').val("largespot");
+        } else if (spot == "multiplespot") {
+            $('#spotHtml').html(
+                `${iconString} Multiple visible spots on screen`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#spotin').val(
+                `${iconString} Multiple visible spots on screen`
+            );
+            $('#spot').val("multiplespot");
+        } else if (spot == "minorspot") {
+            $('#spotHtml').html(
+                `${iconString} Minor discoloration or small spots on screen`
+            );
+
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#spotin').val(
+                `${iconString} Minor discoloration or small spots on screen`
+            );
+            $('#spot').val("minorspot");
+        } else if (spot == "nospot") {
+            $('#spotHtml').html(
+                `${iconString} No spots on screen`
+            );
+            $('#spotin').val(
+                `${iconString} No spots on screen`
+            );
+            $('#spot').val("nospot");
+        }
+    }
+
+    // lines start
+    function linesCondition() {
+        var lines = $("input[type=radio][name=lines]:checked").val();
+        if (lines == "displayfaded") {
+
+            $('#linesHtml').html(
+                `${iconString} Display faded along corners`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#linesin').val(
+                `${iconString} Display faded along corners`
+            );
+            $('#lines').val("displayfaded");
+        } else if (lines == "multiplelines") {
+            $('#linesHtml').html(
+                `${iconString} Multiple lines on Display`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#linesin').val(
+                `${iconString} Multiple lines on Display`
+            );
+            $('#lines').val("multiplelines");
+        } else if (lines == "noline") {
+            $('#linesHtml').html(
+                `${iconString} No line(s) on Display`
+            );
+            $('#linesin').val(
+                `${iconString} No line(s) on Display`
+            );
+            $('#lines').val("noline");
+        }
+    }
+
+    // physical start
+    function physicalCondition() {
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        if (physical == "cracked") {
+            $('#physicalHtml').html(
+                `${iconString} Screen cracked/ glass broken`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#physicalin').val(
+                `${iconString} Screen cracked/ glass broken`
+            );
+            $('#physical').val("cracked");
+        } else if (physical == "damaged") {
+            $('#physicalHtml').html(
+                `${iconString} Damaged/ Torn screen on edges`
+            );
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+            $('#physicalin').val(
+                `${iconString} Damaged/ Torn screen on edges`
+            );
+            $('#physical').val("damaged");
+        } else if (physical == "heavyscratches") {
+            $('#physicalHtml').html(
+                `${iconString} Heavy scratches on screen`
+            );
+            $('#physicalin').val(
+                `${iconString} Heavy scratches on screen`
+            );
+            $('#physical').val("heavyscratches");
+        } else if (physical == "1-2scratches") {
+            $('#physicalHtml').html(
+                `${iconString} 1-2 scratches on screen`
+            );
+            $('#physicalin').val(
+                `${iconString} 1-2 scratches on screen`
+            );
+            $('#physical').val("1-2scratches");
+        } else if (physical == "noscratches") {
+            $('#physicalHtml').html(
+                `${iconString} No scratches on screen`
+            );
+            $('#physicalin').val(
+                `${iconString} No scratches on screen`
+            );
+            $('#physical').val("noscratches");
+        }
+    }
+    $('.touch').click(function() {
+        touchCondition()
+    });
+    $('.touch').ready(function() {
+        touchCondition()
+    });
+
+    $('.spot').click(function() {
+        spotCondition()
+    });
+    $('.spot').ready(function() {
+        spotCondition()
+    });
+
+    $('.lines').click(function() {
+        linesCondition()
+    });
+    $('.lines').ready(function() {
+        linesCondition()
+    });
+
+    // physical start
+    $('.physical').click(function() {
+        physicalCondition()
+    });
+    $('.physical').ready(function() {
+        physicalCondition()
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+
+    const iconString =
+        '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
+
+    function allCondition() {
+        var touch = $("input[type=radio][name=touch]:checked").val();
+        var spot = $("input[type=radio][name=spot]:checked").val();
+        var lines = $("input[type=radio][name=lines]:checked").val();
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        if (touch == "yes" && spot == "nospot" && lines == "noline" && (physical == "noscratches" || physical ==
+                "heavyscratches" || physical == "1-2scratches")) {
+            $('#warHtml').html('<?php echo $warin ?>');
+            $('#warin').val('<?php echo $warin ?>');
+            $('#war').val('<?php echo $war ?>');
+        } else {
+            $('#warHtml').html(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#warin').val(
+                `${iconString} Mobile Out of Warranty`
+            );
+            $('#war').val("no");
+        }
+        var $warrenty = $('#warHtml').html();
+        $("#warin").val($warrenty);
+    }
+    $('.touch, .physical, .lines, .spot').click(function() {
+        allCondition()
     })
-</script>
-<script>
-    $(document).ready(function() {
-        const iconString =
-            '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
-        // touhscreen start
-        function touchCondition() {
-            var touch = $("input[type=radio][name=touch]:checked").val();
-            if (touch == "yes") {
-                $('#screencondition').html("Screen Condition");
-                $('#touchHtml').html(
-                    `${iconString} Touch Working`
-                );
-                $('#warHtml').html('<?php echo $warin ?>');
-                $('#warin').val('<?php echo $warin ?>');
-                $('#war').val('<?php echo $war ?>');
-                $('#touchin').val(
-                    `${iconString} Touch Working`
-                );
-                $('#touch').val("yes");
-                $('.physical, .lines, .spot').attr("required", "true");
-                $('.card').show();
-            } else if (touch == "no") {
-                $('#screencondition').html("Screen Condition");
-                $('#touchHtml').html(
-                    `${iconString} Touch Faulty`
-                );
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#touchin').val(
-                    `${iconString} Touch Faulty`
-                );
-                $('#touch').val("no");
-                $('#spot,#lines,#physical').html("");
-                $('#spotin,#linesin,#physicalin').val("");
-                $('.card').hide();
-                $('.physical, .lines, .spot').removeAttr("required");
-
-            }
-        }
-        // spot start
-        function spotCondition() {
-            var spot = $("input[type=radio][name=spot]:checked").val();
-            if (spot == "largespot") {
-
-                $('#spotHtml').html(
-                    `${iconString} Large/ heavy visible spots on screen`
-                );
-
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#spotin').val(
-                    `${iconString} Large/ heavy visible spots on screen`
-                );
-                $('#spot').val("largespot");
-            } else if (spot == "multiplespot") {
-                $('#spotHtml').html(
-                    `${iconString} Multiple visible spots on screen`
-                );
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#spotin').val(
-                    `${iconString} Multiple visible spots on screen`
-                );
-                $('#spot').val("multiplespot");
-            } else if (spot == "minorspot") {
-                $('#spotHtml').html(
-                    `${iconString} Minor discoloration or small spots on screen`
-                );
-
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#spotin').val(
-                    `${iconString} Minor discoloration or small spots on screen`
-                );
-                $('#spot').val("minorspot");
-            } else if (spot == "nospot") {
-                $('#spotHtml').html(
-                    `${iconString} No spots on screen`
-                );
-                $('#spotin').val(
-                    `${iconString} No spots on screen`
-                );
-                $('#spot').val("nospot");
-            }
-        }
-
-        // lines start
-        function linesCondition() {
-            var lines = $("input[type=radio][name=lines]:checked").val();
-            if (lines == "displayfaded") {
-
-                $('#linesHtml').html(
-                    `${iconString} Display faded along corners`
-                );
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#linesin').val(
-                    `${iconString} Display faded along corners`
-                );
-                $('#lines').val("displayfaded");
-            } else if (lines == "multiplelines") {
-                $('#linesHtml').html(
-                    `${iconString} Multiple lines on Display`
-                );
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#linesin').val(
-                    `${iconString} Multiple lines on Display`
-                );
-                $('#lines').val("multiplelines");
-            } else if (lines == "noline") {
-                $('#linesHtml').html(
-                    `${iconString} No line(s) on Display`
-                );
-                $('#linesin').val(
-                    `${iconString} No line(s) on Display`
-                );
-                $('#lines').val("noline");
-            }
-        }
-
-        // physical start
-        function physicalCondition() {
-            var physical = $("input[type=radio][name=physical]:checked").val();
-            if (physical == "cracked") {
-                $('#physicalHtml').html(
-                    `${iconString} Screen cracked/ glass broken`
-                );
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#physicalin').val(
-                    `${iconString} Screen cracked/ glass broken`
-                );
-                $('#physical').val("cracked");
-            } else if (physical == "damaged") {
-                $('#physicalHtml').html(
-                    `${iconString} Damaged/ Torn screen on edges`
-                );
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-                $('#physicalin').val(
-                    `${iconString} Damaged/ Torn screen on edges`
-                );
-                $('#physical').val("damaged");
-            } else if (physical == "heavyscratches") {
-                $('#physicalHtml').html(
-                    `${iconString} Heavy scratches on screen`
-                );
-                $('#physicalin').val(
-                    `${iconString} Heavy scratches on screen`
-                );
-                $('#physical').val("heavyscratches");
-            } else if (physical == "1-2scratches") {
-                $('#physicalHtml').html(
-                    `${iconString} 1-2 scratches on screen`
-                );
-                $('#physicalin').val(
-                    `${iconString} 1-2 scratches on screen`
-                );
-                $('#physical').val("1-2scratches");
-            } else if (physical == "noscratches") {
-                $('#physicalHtml').html(
-                    `${iconString} No scratches on screen`
-                );
-                $('#physicalin').val(
-                    `${iconString} No scratches on screen`
-                );
-                $('#physical').val("noscratches");
-            }
-        }
-        $('.touch').click(function() {
-            touchCondition()
-        });
-        $('.touch').ready(function() {
-            touchCondition()
-        });
-
-        $('.spot').click(function() {
-            spotCondition()
-        });
-        $('.spot').ready(function() {
-            spotCondition()
-        });
-
-        $('.lines').click(function() {
-            linesCondition()
-        });
-        $('.lines').ready(function() {
-            linesCondition()
-        });
-
-        // physical start
-        $('.physical').click(function() {
-            physicalCondition()
-        });
-        $('.physical').ready(function() {
-            physicalCondition()
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-
-        const iconString =
-            '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>';
-
-        function allCondition() {
-            var touch = $("input[type=radio][name=touch]:checked").val();
-            var spot = $("input[type=radio][name=spot]:checked").val();
-            var lines = $("input[type=radio][name=lines]:checked").val();
-            var physical = $("input[type=radio][name=physical]:checked").val();
-            if (touch == "yes" && spot == "nospot" && lines == "noline" && (physical == "noscratches" || physical ==
-                    "heavyscratches" || physical == "1-2scratches")) {
-                $('#warHtml').html('<?php echo $warin ?>');
-                $('#warin').val('<?php echo $warin ?>');
-                $('#war').val('<?php echo $war ?>');
-            } else {
-                $('#warHtml').html(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#warin').val(
-                    `${iconString} Mobile Out of Warranty`
-                );
-                $('#war').val("no");
-            }
-            var $warrenty = $('#warHtml').html();
-            $("#warin").val($warrenty);
-        }
-        $('.touch, .physical, .lines, .spot').click(function() {
-            allCondition()
-        })
-        $('.touch, .physical, .lines, .spot').ready(function() {
-            allCondition()
-        })
-    });
+    $('.touch, .physical, .lines, .spot').ready(function() {
+        allCondition()
+    })
+});
 </script>
 
 
 <script>
-    $(document).ready(function() {
-        $('.spot, .physical, .lines').click(function() {
-            var spot = $("input[type=radio][name=spot]:checked").val();
-            var physical = $("input[type=radio][name=physical]:checked").val();
-            var lines = $("input[type=radio][name=lines]:checked").val();
-            if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
-                $('#warHtml').html(
-                    '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
-                );
-                $('#warin').val(
-                    '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
-                );
-                $('#war').val("yes");
-            }
+$(document).ready(function() {
+    $('.spot, .physical, .lines').click(function() {
+        var spot = $("input[type=radio][name=spot]:checked").val();
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        var lines = $("input[type=radio][name=lines]:checked").val();
+        if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
+            $('#warHtml').html(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
+            );
+            $('#warin').val(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
+            );
+            $('#war').val("yes");
+        }
 
-        })
-        $('.spot, .physical, .lines').ready(function() {
-            var spot = $("input[type=radio][name=spot]:checked").val();
-            var physical = $("input[type=radio][name=physical]:checked").val();
-            var lines = $("input[type=radio][name=lines]:checked").val();
-            if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
-                $('#warHtml').html(
-                    '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
-                );
-                $('#warin').val(
-                    '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
-                );
-                $('#war').val("yes");
-            }
+    })
+    $('.spot, .physical, .lines').ready(function() {
+        var spot = $("input[type=radio][name=spot]:checked").val();
+        var physical = $("input[type=radio][name=physical]:checked").val();
+        var lines = $("input[type=radio][name=lines]:checked").val();
+        if (spot == "nospot" && physical == "noscratches" && lines == "noline") {
+            $('#warHtml').html(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile under Warranty'
+            );
+            $('#warin').val(
+                '<i class="fas fa-dot-circle" style="font-size:10px;margin-right:12px;color:#1B6C9E;" ></i>Mobile Under Warranty'
+            );
+            $('#war').val("yes");
+        }
 
-        })
-    });
+    })
+});
 </script>
