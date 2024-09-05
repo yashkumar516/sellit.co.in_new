@@ -1,57 +1,67 @@
-<?php include 'hideheader.php' ?>
+<?php include "hideheader.php"; ?>
 
 
-<?php 
-
-$vid = $_REQUEST['vid'];
-$mid = $_REQUEST['mid'];
-$bid = $_REQUEST['bid'];
-$selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
+<?php
+$vid = $_REQUEST["vid"];
+$mid = $_REQUEST["mid"];
+$bid = $_REQUEST["bid"];
+$selectmodel = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' ")
+);
 ?>
 
 <?php
-
 include_once "./classes/checkModelValue.php";
 $modelManager = new CheckModelValue($con);
 $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
-                    
+
 // $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
- 
-    if (session_status() == PHP_SESSION_NONE) {
-        // Start the session
-        session_start();
-    } 
-    // unset($_SESSION["functionalPage"]);
-    // unset($_SESSION["mobileAgePage"]);
-    // unset($_SESSION["productNewPage"]);
-    // unset($_SESSION["defectPage"]);
-    
-    $_SESSION["productQueryPage"]= array();
-    $_SESSION["functionalPage"]= array();
-    $_SESSION["mobileAgePage"]= array();
-    $_SESSION["productNewPage"]= array();
-    $_SESSION["defectPage"]= array();
-    $_PAGE_DATA = isset($_SESSION['productQueryPage'])  && count($_SESSION['productQueryPage']) >0? $_SESSION['productQueryPage']:$_SESSION;
-    if (isset($_PAGE_DATA['call']) && isset($_PAGE_DATA['screen']) && isset($_PAGE_DATA['body']) && isset($_PAGE_DATA['warStatus'])) {
-        // Session variables are set, so retrieve them
-        $call = $_PAGE_DATA['call'];
-        $screen = $_PAGE_DATA['screen'];
-        $body = $_PAGE_DATA['body'];
-        $war = $_PAGE_DATA['warStatus'];
-    } else { 
-        $call = "";
-        $screen = "";
-        $body = "";
-        $war ="";
-    }
-   
+
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+}
+// unset($_SESSION["functionalPage"]);
+// unset($_SESSION["mobileAgePage"]);
+// unset($_SESSION["productNewPage"]);
+// unset($_SESSION["defectPage"]);
+
+$_SESSION["productQueryPage"] = [];
+$_SESSION["functionalPage"] = [];
+$_SESSION["mobileAgePage"] = [];
+$_SESSION["productNewPage"] = [];
+$_SESSION["defectPage"] = [];
+$_PAGE_DATA =
+    isset($_SESSION["productQueryPage"]) &&
+    count($_SESSION["productQueryPage"]) > 0
+        ? $_SESSION["productQueryPage"]
+        : $_SESSION;
+if (
+    isset($_PAGE_DATA["call"]) &&
+    isset($_PAGE_DATA["screen"]) &&
+    isset($_PAGE_DATA["body"]) &&
+    isset($_PAGE_DATA["warStatus"])
+) {
+    // Session variables are set, so retrieve them
+    $call = $_PAGE_DATA["call"];
+    $screen = $_PAGE_DATA["screen"];
+    $body = $_PAGE_DATA["body"];
+    $war = $_PAGE_DATA["warStatus"];
+} else {
+    $call = "";
+    $screen = "";
+    $body = "";
+    $war = "";
+}
 ?>
 <section class="sell-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 mx-auto">
                 <h1 class="sell-header">Sell Old <span class="sell-title-head">
-                        <?php echo $selectBrand['subcategory_name'] ?> </span> Mobile</h1>
+                        <?php echo $selectBrand[
+                            "subcategory_name"
+                        ]; ?> </span> Mobile</h1>
             </div>
         </div>
     </div>
@@ -62,10 +72,13 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
         <div class="row">
             <div class="col-lg-6 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"><img src="admin/img/<?php echo $selectmodel['product_image'] ?>"
-                            class="img-fluid" width="75%" alt=""></div>
+                    <div class="col-4 text-right"><img src="admin/img/<?php echo $selectmodel[
+                        "product_image"
+                    ]; ?>" class="img-fluid" width="75%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectmodel['product_name'] ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectmodel[
+                            "product_name"
+                        ]; ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>
@@ -87,42 +100,51 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                         <p class="check">Check your device for cellular network connectivity issues.</p>
                         <div class="row pl-4" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggle-on" class="call" name="call" type="radio"
-                                    value="yes" <?php echo $call === "yes" ? 'checked="checked"' : ''; ?>
-                                    required><label for="toggle-on">Yes</label></div>
+                                    value="yes" <?php echo $call === "yes"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggle-on">Yes</label></div>
                             <div class="col-lg-5 col-6"><input id="toggle-off" class="call" name="call" type="radio"
-                                    value="no" <?php echo $call === "no" ? 'checked="checked"' : ''; ?> required><label
-                                    for="toggle-off">No</label></div>
+                                    value="no" <?php echo $call === "no"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggle-off">No</label></div>
                         </div>
                         <h1 class="ques">2. Are there any problems with your mobile screen?</h1>
                         <p class="check">Check your mobile screen for scratches, cracks, discoloration spots, lines or
                             touch issues.</p>
                         <div class="row pl-4" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggle2-on" class="screen" name="screen" type="radio"
-                                    value="yes" <?php echo $screen === "yes" ? 'checked="checked"' : ''; ?>
-                                    required><label for="toggle2-on">Yes</label></div>
+                                    value="yes" <?php echo $screen === "yes"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggle2-on">Yes</label></div>
                             <div class="col-lg-5 col-6"><input id="toggle2-off" class="screen" name="screen"
-                                    type="radio" value="no" <?php echo $screen === "no" ? 'checked="checked"' : ''; ?>
-                                    required><label for="toggle2-off">No</label></div>
+                                    type="radio" value="no" <?php echo $screen ===
+                                    "no"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggle2-off">No</label></div>
                         </div>
                         <h1 class="ques">3. Are there any defects on your phone body?</h1>
                         <p class="check">Check you device body (back & edges) for visible scratches and dents.</p>
                         <div class="row pl-4" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggle3-on" class="body" name="body" type="radio"
-                                    value="yes" <?php echo $body === "yes" ? 'checked="checked"' : ''; ?>
-                                    required><label for="toggle3-on">Yes</label></div>
+                                    value="yes" <?php echo $body === "yes"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggle3-on">Yes</label></div>
                             <div class="col-lg-5 col-6"><input id="toggle3-off" class="body" name="body" type="radio"
-                                    value="no" <?php echo $body === "no" ? 'checked="checked"' : ''; ?> required><label
-                                    for="toggle3-off">No</label></div>
+                                    value="no" <?php echo $body === "no"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggle3-off">No</label></div>
                         </div>
                         <h1 class="ques">4. Is your Mobile under warranty?</h1>
                         <p class="check"> if it's under warranty. Note: Please provide valid bill of your device.</p>
                         <div class="row pl-4 warrrrr" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggl-war-on" class="war" name="war" type="radio"
-                                    value="yes" <?php echo $war === "yes" ? 'checked="checked"' : ''; ?> required><label
-                                    for="toggl-war-on">Yes</label></div>
+                                    value="yes" <?php echo $war === "yes"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggl-war-on">Yes</label></div>
                             <div class="col-lg-5 col-6"><input id="toggl-war-off" class="war" name="war" type="radio"
-                                    value="no" <?php echo $war === "no" ? 'checked="checked"' : ''; ?> required><label
-                                    for="toggl-war-off">No</label></div>
+                                    value="no" <?php echo $war === "no"
+                                        ? 'checked="checked"'
+                                        : ""; ?> required><label for="toggl-war-off">No</label></div>
                         </div>
                         <div class="text-center mt-3">
                             <input type="hidden" id="call" name="call" value="">
@@ -142,9 +164,9 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
                         </div>
                     </div>
                     <!-- calculation start -->
-                    <input type="hidden" id="vid" name="vid" value="<?php echo $vid ?>">
-                    <input type="hidden" id="mid" name="mid" value="<?php echo $mid ?>">
-                    <input type="hidden" id="bid" name="bid" value="<?php echo $bid ?>">
+                    <input type="hidden" id="vid" name="vid" value="<?php echo $vid; ?>">
+                    <input type="hidden" id="mid" name="mid" value="<?php echo $mid; ?>">
+                    <input type="hidden" id="bid" name="bid" value="<?php echo $bid; ?>">
                     <!-- calculation end -->
                 </form>
             </div>
@@ -154,7 +176,7 @@ $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
     </div>
 </section>
 
-<?php include 'footer1.php' ?>
+<?php include "footer1.php"; ?>
 <script>
 $("input:radio").change(function() {
     $("#postGender").prop("disabled", false);

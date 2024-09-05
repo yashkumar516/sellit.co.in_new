@@ -1,20 +1,20 @@
 <?php
 session_start();
-include 'admin/includes/confile.php';
+include "admin/includes/confile.php";
 ?>
-<?php
-if (isset($_SESSION['user'])) {
-  $user = $_SESSION['user'];
-  $usermobile = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' "));
-  if ($usermobile) {
-    $number = $usermobile['name'];
-  } else {
-    $number = '';
-  }
+<?php if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+    $usermobile = mysqli_fetch_assoc(
+        mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' ")
+    );
+    if ($usermobile) {
+        $number = $usermobile["name"];
+    } else {
+        $number = "";
+    }
 } else {
-  $number = '';
-}
-?>
+    $number = "";
+} ?>
 
 <!doctype html>
 <html lang="en">
@@ -173,27 +173,24 @@ if (isset($_SESSION['user'])) {
                             <!--<img src="assets/images/log-in.png" alt="" id="userpic" class="img-fluid" width="30px">-->
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="<?php if($number == null){ echo 'login.php'; }else{ echo 'userdashboard.php'; } ?>"
-                                        class="text-primary"><img src="assets/images/My-profile.png"
+                                    <a href="<?php if ($number == null) {
+                                        echo "login.php";
+                                    } else {
+                                        echo "userdashboard.php";
+                                    } ?>" class="text-primary"><img src="assets/images/My-profile.png"
                                             class="img-fluid "></a>
                                 </div>
-                                <?php
-              if ($number == null) {
-              ?>
+                                <?php if ($number == null) { ?>
                                 <div class="col-6">
                                     <a href="login.php" class="text-primary"><img src="assets/images/login-1.png "
                                             class="img-fluid " width="90%"></a>
                                 </div>
-                                <?php
-              } else {
-              ?>
+                                <?php } else { ?>
                                 <div class="col-6">
                                     <a href="logout.php" class="text-primary"><img src="assets/images/log-out.png"
                                             class="img-fluid"></a>
                                 </div>
-                                <?php
-              }
-              ?>
+                                <?php } ?>
                             </div>
                         </div>
 
@@ -210,21 +207,15 @@ if (isset($_SESSION['user'])) {
         <div class="col-10 mx-auto">
             <div class="row">
                 <div class="col-lg-2 col-3 offset-lg-10 offset-8" id="userprofile">
-                    <?php
-          if ($number == null) {
-          ?>
+                    <?php if ($number == null) { ?>
                     <a href="login.php">
                         <p><i class="fas fa-sign-in-alt"></i> Login</p>
                     </a>
-                    <?php
-          } else {
-          ?>
+                    <?php } else { ?>
                     <a href="userdashboard.php">
                         <p><i class="fas fa-user"></i> Profile</p>
                     </a>
-                    <?php
-          }
-          ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>

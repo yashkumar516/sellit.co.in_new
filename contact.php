@@ -1,34 +1,34 @@
-<?php include 'header.php' ?>
+<?php include "header.php"; ?>
 <?php
-   // if(isset($_POST['query'])){
-   //     $name = $_POST['name'];
-   //     $email = $_POST['email'];
-   //     $phone = $_POST['phone'];
-   //     $reason = $_POST['reason'];
-   //     $messege = $_POST['messege'];
-   //     if( preg_match("/^[a-zA-Z-' ]*$/",$name) && !strstr( $name, 'http' ) && preg_match("/^[a-zA-Z-' ]*$/",$messege) 
-   //      && !strstr( $messege, 'http' )){
-   //     $querycontact = mysqli_query($con,"INSERT INTO `query`(`name`,`email`,`phone`,`reason`,`messege`)
-   //     VALUES('$name','$email','$phone','$reason','$messege')");
-   //     if($querycontact){
-   //         echo '<script>
-   //        alert("ssubmitted successfully");
-   //        window.location.href = "'.$_SERVER['HTTP_REFERER'].'";
-   //        </script>';  
-   //     }else{
-   //         echo '<script>
-   //        alert("try again");
-   //        window.location.href = "'.$_SERVER['HTTP_REFERER'].'";
-   //        </script>';  
-   //     }
-   //     }else{
-   //       echo '<script>
-   //        alert("special character and urls not allowed");
-   //        window.location.href = "'.$_SERVER['HTTP_REFERER'].'";
-   //        </script>'; 
-   //     }
-   // }
-   ?>
+// if(isset($_POST['query'])){
+//     $name = $_POST['name'];
+//     $email = $_POST['email'];
+//     $phone = $_POST['phone'];
+//     $reason = $_POST['reason'];
+//     $messege = $_POST['messege'];
+//     if( preg_match("/^[a-zA-Z-' ]*$/",$name) && !strstr( $name, 'http' ) && preg_match("/^[a-zA-Z-' ]*$/",$messege)
+//      && !strstr( $messege, 'http' )){
+//     $querycontact = mysqli_query($con,"INSERT INTO `query`(`name`,`email`,`phone`,`reason`,`messege`)
+//     VALUES('$name','$email','$phone','$reason','$messege')");
+//     if($querycontact){
+//         echo '<script>
+//        alert("ssubmitted successfully");
+//        window.location.href = "'.$_SERVER['HTTP_REFERER'].'";
+//        </script>';
+//     }else{
+//         echo '<script>
+//        alert("try again");
+//        window.location.href = "'.$_SERVER['HTTP_REFERER'].'";
+//        </script>';
+//     }
+//     }else{
+//       echo '<script>
+//        alert("special character and urls not allowed");
+//        window.location.href = "'.$_SERVER['HTTP_REFERER'].'";
+//        </script>';
+//     }
+// }
+?>
 <section class="py-5" style="background-color: #f1f8f8;">
     <div class="container sell">
         <div class="col-lg-12 col-12  mx-auto card">
@@ -77,4 +77,4 @@
         </div>
     </div>
 </section>
-<?php include 'footer1.php' ?>
+<?php include "footer1.php"; ?>

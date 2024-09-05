@@ -1,17 +1,23 @@
-<?php include 'hideheader.php' ?>
+<?php include "hideheader.php"; ?>
 <?php
-include 'include/earpodeage1.php';
-$bid = $_REQUEST['bid'];
-$mid = $_REQUEST['mid'];
-$selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+include "include/earpodeage1.php";
+$bid = $_REQUEST["bid"];
+$mid = $_REQUEST["mid"];
+$selectModel = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' ")
+);
+$selectquery = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' ")
+);
 ?>
 <section class="sell-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <h1 class="sell-header">Sell Old <span class="sell-title-head">
-                        <?php echo $selectquery['subcategory_name'] ?> </span> Earbuds</h1>
+                        <?php echo $selectquery[
+                            "subcategory_name"
+                        ]; ?> </span> Earbuds</h1>
             </div>
 
         </div>
@@ -22,10 +28,13 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
         <div class="row">
             <div class="col-lg-6 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel['product_image'] ?>"
-                            class="img-fluid" width="75%" alt=""></div>
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel[
+                        "product_image"
+                    ]; ?>" class="img-fluid" width="75%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectModel['product_name'] ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectModel[
+                            "product_name"
+                        ]; ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>
@@ -45,7 +54,7 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 mobileage">
                 <p class="ques">What is your Earbuds age?</p>
-                <form action="erabudacceseries.php?bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>" method="post">
+                <form action="erabudacceseries.php?bid=<?php echo $bid; ?>&&mid=<?php echo $mid; ?>" method="post">
 
                     <div class="card">
                         <div class="row mx-auto pt-1">
@@ -98,7 +107,7 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
         </div>
     </div>
 </section>
-<?php include 'footer1.php' ?>
+<?php include "footer1.php"; ?>
 
 
 <script>
