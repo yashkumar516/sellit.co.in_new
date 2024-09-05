@@ -4,7 +4,7 @@ $id = $_REQUEST['id'];
 ?>
 
 <?php
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$id' "));
+$selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$id' "));
 ?>
 
 <section class="sell-section">
@@ -14,11 +14,11 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
 
 
 <!-- galaxy  -->
-<?php 
-         $selectseries = mysqli_query($con, "SELECT * FROM `childcategory` WHERE `status` = 'active' AND `subcatid` = '$id'");
-         $row = mysqli_num_rows($selectseries);
-         if($row >= 1){
-        ?>
+<?php
+$selectseries = mysqli_query($con, "SELECT * FROM `childcategory` WHERE `status` = 'active' AND `subcatid` = '$id'");
+$row = mysqli_num_rows($selectseries);
+if ($row >= 1) {
+?>
 <section class="galaxy">
     <div class="container">
         <div class="col-lg-12 mx-auto">
@@ -26,21 +26,21 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
 
             <div class="row">
                 <?php
-                while ($arseries = mysqli_fetch_assoc($selectseries)) {
-                ?>
+                    while ($arseries = mysqli_fetch_assoc($selectseries)) {
+                    ?>
                 <div class="col-lg-2 col-6"><button class="box2"
                         onclick="return getmodel(<?php echo $arseries['id'] ?>)"> <b>
                             <?php echo $arseries['childcategory'] ?> </b></button></div>
                 <?php
-                }
-                ?>
+                    }
+                    ?>
             </div>
 
         </div>
     </div>
 </section>
 <?php
- }
+}
 ?>
 
 <!-- select product -->

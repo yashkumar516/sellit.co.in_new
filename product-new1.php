@@ -4,14 +4,14 @@ include 'include/productnew2.php';
 $vid = $_REQUEST['vid'];
 $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
-$selectmodel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
+$selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 
 <?php
 include_once "./classes/checkModelValue.php";
 $modelManager = new CheckModelValue($con);
 $selectBrand = $modelManager->getProductBrandValue($bid, $mid);
-            
+
 // $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">

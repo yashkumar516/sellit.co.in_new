@@ -1,8 +1,8 @@
 <?php include 'hideheader.php' ?>
 <?php include 'include/haveitem1.php'; ?>
 <?php include 'include/calenquiry.php' ?>
-<?php 
-$selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
+<?php
+$selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 
 <?php
@@ -10,7 +10,7 @@ $selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHE
 include_once "./classes/checkModelValue.php";
 $modelManager = new CheckModelValue($con);
 $selectquery = $modelManager->getProductBrandValue($bid, $mid);
-        
+
 // $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
@@ -135,8 +135,8 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                     </div>
                     <div class="text-center mt-4">
                         <?php
-                        if(isset($_SESSION['user'])){
-                            ?>
+                        if (isset($_SESSION['user'])) {
+                        ?>
                         <form method="POST">
                             <div class="form-group">
                                 <input type="hidden" id="warin" name="warin">
@@ -162,13 +162,13 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                             </div>
                         </form>
                         <?php
-                        }else{
-                      ?>
+                        } else {
+                        ?>
                         <a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn" type="submit"
                                 name="questions"> Continue <i class="fas fa-arrow-right"></i></button></a>
                         <?php
-                      }
-                      ?>
+                        }
+                        ?>
                     </div>
                 </div>
 

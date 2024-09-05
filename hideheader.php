@@ -4,15 +4,15 @@ include 'admin/includes/confile.php';
 ?>
 <?php
 if (isset($_SESSION['user'])) {
-  $user = $_SESSION['user'];
-  $usermobile = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' "));
-  if ($usermobile) {
-    $number = $usermobile['name'];
-  } else {
-    $number = '';
-  }
+    $user = $_SESSION['user'];
+    $usermobile = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' "));
+    if ($usermobile) {
+        $number = $usermobile['name'];
+    } else {
+        $number = '';
+    }
 } else {
-  $number = '';
+    $number = '';
 }
 ?>
 
@@ -50,14 +50,14 @@ if (isset($_SESSION['user'])) {
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G7WHMV7DE"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-6G7WHMV7DE');
+        gtag('config', 'G-6G7WHMV7DE');
     </script>
     <meta name="google-site-verification" content="XcbXug-z0EtzkdTsIB7RGWJ5SIBGOILe_5kUiuwdp_0"   />
 </head>
@@ -99,27 +99,31 @@ if (isset($_SESSION['user'])) {
                             <!--<img src="assets/images/log-in.png" alt="" id="userpic" class="img-fluid" width="30px">-->
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="<?php if($number == null){ echo 'login.php'; }else{ echo 'userdashboard.php'; } ?>"
+                                    <a href="<?php if ($number == null) {
+                                                    echo 'login.php';
+                                                } else {
+                                                    echo 'userdashboard.php';
+                                                } ?>"
                                         class="text-primary"><img src="assets/images/My-profile.png" width="60%"
                                             class="img-fluid newimg22"></a>
                                 </div>
                                 <?php
-              if ($number == null) {
-              ?>
-                                <div class="col-6">
-                                    <a href="login.php" class="text-primary"><img src="assets/images/login-1.png "
-                                            width="60%" class="img-fluid newimg22"></a>
-                                </div>
+                                if ($number == null) {
+                                ?>
+                                    <div class="col-6">
+                                        <a href="login.php" class="text-primary"><img src="assets/images/login-1.png "
+                                                width="60%" class="img-fluid newimg22"></a>
+                                    </div>
                                 <?php
-              } else {
-              ?>
-                                <div class="col-6">
-                                    <a href="logout.php" class="text-primary"><img src="assets/images/log-out.png"
-                                            width="60%" class="img-fluid"></a>
-                                </div>
+                                } else {
+                                ?>
+                                    <div class="col-6">
+                                        <a href="logout.php" class="text-primary"><img src="assets/images/log-out.png"
+                                                width="60%" class="img-fluid"></a>
+                                    </div>
                                 <?php
-              }
-              ?>
+                                }
+                                ?>
                             </div>
                         </div>
 
@@ -137,20 +141,20 @@ if (isset($_SESSION['user'])) {
             <div class="row">
                 <div class="col-lg-2 col-5 offset-lg-10 offset-8" id="userprofile">
                     <?php
-          if ($number == null) {
-          ?>
-                    <a href="login.php">
-                        <p><i class="fas fa-sign-in-alt"></i> Login</p>
-                    </a>
+                    if ($number == null) {
+                    ?>
+                        <a href="login.php">
+                            <p><i class="fas fa-sign-in-alt"></i> Login</p>
+                        </a>
                     <?php
-          } else {
-          ?>
-                    <a href="userdashboard.php">
-                        <p><i class="fas fa-user"></i> Profile</p>
-                    </a>
+                    } else {
+                    ?>
+                        <a href="userdashboard.php">
+                            <p><i class="fas fa-user"></i> Profile</p>
+                        </a>
                     <?php
-          }
-          ?>
+                    }
+                    ?>
                 </div>
             </div>
         </div>

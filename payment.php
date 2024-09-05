@@ -52,8 +52,11 @@ if (isset($_POST['account'])) {
          <div class="col-xl-9 col-lg-9 col-12 card">
             <div class="row shadow py-5">
                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                  <div class="nav col nav-pills col-lg-12 col-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                     <a href="#tab3" class="nav-link square-pill mb-3 text-uppercase  mr-3 col-lg-12 active" id="Ingredients-tab" data-toggle="pill" role="tab" aria-controls="Ingredients-tab" aria-selected="false">
+                  <div class="nav col nav-pills col-lg-12 col-12" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                     <a href="#tab3" class="nav-link square-pill mb-3 text-uppercase  mr-3 col-lg-12 active"
+                        id="Ingredients-tab" data-toggle="pill" role="tab" aria-controls="Ingredients-tab"
+                        aria-selected="false">
                         bank transfer
                      </a>
                      <!-- <a href="#tab1" class="nav-link square-pill mb-3 mr-3 text-uppercase col-lg-12 " id="vision-tab" data-toggle="pill" role="tab" aria-controls="vision-tab" aria-selected="true">
@@ -71,7 +74,9 @@ if (isset($_POST['account'])) {
                            <div class="col-lg-11 mx-auto add-form">
                               <form method="post">
                                  <div class="form-group">
-                                    <input type="text" class="form-control" name="upiid" value="<?php echo $selectacountdetail['upi'] ?>" placeholder="UPI id*" rerquired>
+                                    <input type="text" class="form-control" name="upiid"
+                                       value="<?php echo $selectacountdetail['upi'] ?>" placeholder="UPI id*"
+                                       rerquired>
                                  </div>
 
                                  <div class="pt-3">
@@ -87,7 +92,9 @@ if (isset($_POST['account'])) {
                            <div class="col-lg-11 mx-auto add-form">
                               <form method="post">
                                  <div class="form-group">
-                                    <input type="text" class="form-control" name="paytmno" value="<?php echo $selectacountdetail['paytm'] ?>" placeholder="Enter your mobile number*" required>
+                                    <input type="text" class="form-control" name="paytmno"
+                                       value="<?php echo $selectacountdetail['paytm'] ?>"
+                                       placeholder="Enter your mobile number*" required>
                                  </div>
                                  <div class="pt-3">
                                     <button type="submit" name="paytm" class="btn conti-btn">Continue</button>
@@ -98,29 +105,45 @@ if (isset($_POST['account'])) {
                            </div>
                         </div>
                      </div>
-                     <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="Ingredients-tab">
+                     <div class="tab-pane fade show active" id="tab3" role="tabpanel"
+                        aria-labelledby="Ingredients-tab">
                         <div class="row">
                            <div class="col-lg-11 mx-auto add-form">
                               <form method="post">
                                  <div class="form-group">
-                                    <input type="text" class="form-control" id="accountno" onkeyup="validateInput(event)" name="accountno" placeholder="Account No*" value="<?php echo $selectacountdetail['accountno'] ?>" maxlength="16" required>
+                                    <input type="text" class="form-control" id="accountno"
+                                       onkeyup="validateInput(event)" name="accountno"
+                                       placeholder="Account No*"
+                                       value="<?php echo $selectacountdetail['accountno'] ?>" maxlength="16"
+                                       required>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" id="conaccountno" onkeyup="validateInput(event)" name="conaccountno" placeholder="Confirm Account no*" value="<?php echo $selectacountdetail['confirmaccountno'] ?>" maxlength="16" required>
+                                    <input type="text" class="form-control" id="conaccountno"
+                                       onkeyup="validateInput(event)" name="conaccountno"
+                                       placeholder="Confirm Account no*"
+                                       value="<?php echo $selectacountdetail['confirmaccountno'] ?>"
+                                       maxlength="16" required>
                                     <p class="conaccountno"></p>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" id="befname" readonly name="benefiname" placeholder="Beneficiary Name*" value="<?php echo $selectacountdetail['beneficiarname'] ?>" required>
+                                    <input type="text" class="form-control" id="befname" readonly
+                                       name="benefiname" placeholder="Beneficiary Name*"
+                                       value="<?php echo $selectacountdetail['beneficiarname'] ?>" required>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" id="ifscode" name="ifsc" placeholder="IFSC Code*" value="<?php echo $selectacountdetail['ifsc'] ?>" required>
+                                    <input type="text" class="form-control" id="ifscode" name="ifsc"
+                                       placeholder="IFSC Code*"
+                                       value="<?php echo $selectacountdetail['ifsc'] ?>" required>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" name="bankname" placeholder="Bank Name*" value="<?php echo $selectacountdetail['bankname'] ?>" required>
+                                    <input type="text" class="form-control" name="bankname"
+                                       placeholder="Bank Name*"
+                                       value="<?php echo $selectacountdetail['bankname'] ?>" required>
                                  </div>
 
                                  <div class="pt-3">
-                                    <button type="submit" name="account" id="banksubmit" class="btn conti-btn ">Continue</button>
+                                    <button type="submit" name="account" id="banksubmit"
+                                       class="btn conti-btn ">Continue</button>
                                     <p class="banksubmit"></p>
                                  </div>
                               </form>
@@ -141,8 +164,11 @@ if (isset($_POST['account'])) {
          <div class="col-xl-9 col-lg-9 col-12 card">
             <div class="row shadow py-5">
                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                  <div class="nav col nav-pills col-lg-12 col-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                     <a href="#tab3" class="nav-link square-pill mb-3 text-uppercase  mr-3 col-lg-12 active" id="Ingredients-tab" data-toggle="pill" role="tab" aria-controls="Ingredients-tab" aria-selected="false">
+                  <div class="nav col nav-pills col-lg-12 col-12" id="v-pills-tab" role="tablist"
+                     aria-orientation="vertical">
+                     <a href="#tab3" class="nav-link square-pill mb-3 text-uppercase  mr-3 col-lg-12 active"
+                        id="Ingredients-tab" data-toggle="pill" role="tab" aria-controls="Ingredients-tab"
+                        aria-selected="false">
                         bank transfer
                      </a>
                      <!--<a href="#tab1" class="nav-link square-pill mb-3 mr-3 text-uppercase col-lg-12 " id="vision-tab" data-toggle="pill" role="tab" aria-controls="vision-tab" aria-selected="true">-->
@@ -160,7 +186,8 @@ if (isset($_POST['account'])) {
                            <div class="col-lg-11 mx-auto add-form">
                               <form method="post">
                                  <div class="form-group">
-                                    <input type="text" class="form-control" name="upiid" placeholder="UPI id*" rerquired>
+                                    <input type="text" class="form-control" name="upiid" placeholder="UPI id*"
+                                       rerquired>
                                  </div>
 
                                  <div class="pt-3">
@@ -177,7 +204,8 @@ if (isset($_POST['account'])) {
                            <div class="col-lg-11 mx-auto add-form">
                               <form method="post">
                                  <div class="form-group">
-                                    <input type="text" class="form-control" name="paytmno" placeholder="Enter your mobile number*" required>
+                                    <input type="text" class="form-control" name="paytmno"
+                                       placeholder="Enter your mobile number*" required>
                                  </div>
                                  <div class="pt-3">
                                     <button type="submit" name="paytm" class="btn conti-btn">Continue</button>
@@ -188,29 +216,38 @@ if (isset($_POST['account'])) {
                            </div>
                         </div>
                      </div>
-                     <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="Ingredients-tab">
+                     <div class="tab-pane fade show active" id="tab3" role="tabpanel"
+                        aria-labelledby="Ingredients-tab">
                         <div class="row">
                            <div class="col-lg-11 mx-auto add-form">
                               <form method="post">
                                  <div class="form-group">
-                                    <input type="text" class="form-control" onkeyup="validateInput(event)" id="accountno" name="accountno" placeholder="Account No*" maxlength="16" required>
+                                    <input type="text" class="form-control" onkeyup="validateInput(event)"
+                                       id="accountno" name="accountno" placeholder="Account No*" maxlength="16"
+                                       required>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" onkeyup="validateInput(event)" id="conaccountno" name="conaccountno" placeholder="Confirm Account no*" maxlength="16" required>
+                                    <input type="text" class="form-control" onkeyup="validateInput(event)"
+                                       id="conaccountno" name="conaccountno" placeholder="Confirm Account no*"
+                                       maxlength="16" required>
                                     <p class="conaccountno"></p>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" id="befname" readonly name="benefiname" placeholder="Beneficiary Name*" required>
+                                    <input type="text" class="form-control" id="befname" readonly
+                                       name="benefiname" placeholder="Beneficiary Name*" required>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" id="ifscode" name="ifsc" placeholder="IFSC Code*" required>
+                                    <input type="text" class="form-control" id="ifscode" name="ifsc"
+                                       placeholder="IFSC Code*" required>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" class="form-control" name="bankname" placeholder="Bank Name*" required>
+                                    <input type="text" class="form-control" name="bankname"
+                                       placeholder="Bank Name*" required>
                                  </div>
 
                                  <div class="pt-3">
-                                    <button type="submit" name="account" id="banksubmit" class="btn conti-btn" disabled>Continue</button>
+                                    <button type="submit" name="account" id="banksubmit" class="btn conti-btn"
+                                       disabled>Continue</button>
                                     <p class="banksubmit"></p>
                                  </div>
                               </form>
@@ -250,10 +287,13 @@ if (isset($_POST['account'])) {
                   if (arr[0] == 200) {
                      $('#befname').val(arr[1]);
                      $('#banksubmit').removeAttr('disabled');
-                     $('.banksubmit').html('<span class="text-success" >Verified Account Successfully</span>');
+                     $('.banksubmit').html(
+                        '<span class="text-success" >Verified Account Successfully</span>'
+                     );
                   } else {
                      $('#banksubmit').attr('disabled');
-                     $('.banksubmit').html('<span class="text-danger" >Account not verified</span>');
+                     $('.banksubmit').html(
+                        '<span class="text-danger" >Account not verified</span>');
                   }
                }
             });
@@ -268,7 +308,8 @@ if (isset($_POST['account'])) {
          var accountno = $("#accountno").val();
          var conaccountno = $("#conaccountno").val();
          if ((accountno != '' && conaccountno != '') && (accountno != conaccountno)) {
-            $('.conaccountno').html('<span class="text-danger">confirm account number not matched</span>');
+            $('.conaccountno').html(
+               '<span class="text-danger">confirm account number not matched</span>');
          } else {
             $('.conaccountno').html('<span class="text-success"></span>');
          }

@@ -25,16 +25,16 @@ $selectupto = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `tabletsvarie
                     <!-- <p>215+ Devices sold with us</p> -->
                     <h1 class="sp1 my-3">Get Upto</h1>
                     <?php
-                     if($selectupto['uptovalue'] != null){
+                    if ($selectupto['uptovalue'] != null) {
                     ?>
-                    <h1 class="sp">Rs. <?php echo $selectupto['uptovalue'] ?>/-</h1>
+                        <h1 class="sp">Rs. <?php echo $selectupto['uptovalue'] ?>/-</h1>
                     <?php
-                     }else{
-                         ?>
-                    <span class="class-danger">price not defined</span>
+                    } else {
+                    ?>
+                        <span class="class-danger">price not defined</span>
                     <?php
-                     }
-                     ?>
+                    }
+                    ?>
                     <div class="mt-4">
                         <a
                             href="tablet-query.php?mid=<?php echo $mid ?>&&bid=<?php echo $bid ?>&&vid=<?php echo $vid ?>">

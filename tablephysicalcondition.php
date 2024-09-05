@@ -5,24 +5,24 @@ $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
 $vid = $_REQUEST['vid'];
 $selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
-$selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-if(isset($_POST['watchage'])){
-  $switch  = $_POST['switch'];
-  $touchscreen = $_POST['touchscreen'];
-  $battery = $_POST['battery'];
-  $wifi = $_POST['wifi'];
-  $speaker = $_POST['speaker'];
-  $charging = $_POST['charging'];
-  $dc = $_POST['dc'];
-  $button = $_POST['button'];
-  $optical = $_POST['optical'];
-  $bluetooth = $_POST['bluetooth'];
-  $watchage = $_POST['age'];
-  $war = $_POST['warin'];
-  $bt = $_POST['bt'];
-  $finger = $_POST['finger'];
-  $gps = $_POST['gps'];
-  $scondition= $_POST['condition'];
+$selectBrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+if (isset($_POST['watchage'])) {
+    $switch  = $_POST['switch'];
+    $touchscreen = $_POST['touchscreen'];
+    $battery = $_POST['battery'];
+    $wifi = $_POST['wifi'];
+    $speaker = $_POST['speaker'];
+    $charging = $_POST['charging'];
+    $dc = $_POST['dc'];
+    $button = $_POST['button'];
+    $optical = $_POST['optical'];
+    $bluetooth = $_POST['bluetooth'];
+    $watchage = $_POST['age'];
+    $war = $_POST['warin'];
+    $bt = $_POST['bt'];
+    $finger = $_POST['finger'];
+    $gps = $_POST['gps'];
+    $scondition = $_POST['condition'];
 }
 ?>
 <section class="sell-section">
@@ -168,51 +168,51 @@ if(isset($_POST['watchage'])){
 
 <?php include 'footer1.php' ?>
 <script>
-$(document).ready(function() {
-    $(".war").click(function() {
+    $(document).ready(function() {
+        $(".war").click(function() {
 
-        var war = $("input[type=radio][name=war]:checked").val();
-        if (war == "flawless") {
-            $('#pwatchcondion').html("Tablet Physical Condition");
-            $('#pcondition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
-            );
-            $('#pconditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "good") {
-            $('#pwatchcondion').html("Tablet Physical Condition");
-            $('#pcondition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
-            );
-            $('#pconditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "averege") {
-            $('#pwatchcondion').html("Tablet Physical Condition");
-            $('#pcondition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
-            );
-            $('#pconditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "below averege") {
-            $('#pwatchcondion').html("Tablet Physical Condition");
-            $('#warin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
-            );
-            $('#pcondition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
-            );
-            $('#pconditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
-            );
-        }
+            var war = $("input[type=radio][name=war]:checked").val();
+            if (war == "flawless") {
+                $('#pwatchcondion').html("Tablet Physical Condition");
+                $('#pcondition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
+                );
+                $('#pconditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "good") {
+                $('#pwatchcondion').html("Tablet Physical Condition");
+                $('#pcondition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
+                );
+                $('#pconditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "averege") {
+                $('#pwatchcondion').html("Tablet Physical Condition");
+                $('#pcondition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
+                );
+                $('#pconditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "below averege") {
+                $('#pwatchcondion').html("Tablet Physical Condition");
+                $('#warin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
+                );
+                $('#pcondition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
+                );
+                $('#pconditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
+                );
+            }
+        });
     });
-});
 </script>
 <!-- <script>
   $(document).ready(function() {

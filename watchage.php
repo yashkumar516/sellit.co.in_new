@@ -3,8 +3,8 @@
 $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
 $selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-if(isset($_POST['functionquestions'])){
+$selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+if (isset($_POST['functionquestions'])) {
   $switch  = $_POST['switch'];
   $touchscreen = $_POST['touchscreen'];
   $battery = $_POST['battery'];
@@ -22,7 +22,8 @@ if(isset($_POST['functionquestions'])){
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
-        <h1 class="sell-header">Sell Old <span class="sell-title-head"> <?php echo $selectquery['subcategory_name'] ?> </span>Watch</h1>
+        <h1 class="sell-header">Sell Old <span class="sell-title-head">
+            <?php echo $selectquery['subcategory_name'] ?> </span>Watch</h1>
       </div>
 
     </div>
@@ -33,7 +34,8 @@ if(isset($_POST['functionquestions'])){
     <div class="row">
       <div class="col-lg-6 px-0" id="selllimg">
         <div class="row pt-2 px-2 ">
-          <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectmodel['product_image'] ?>" class="img-fluid" width="75%" alt=""></div>
+          <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectmodel['product_image'] ?>"
+              class="img-fluid" width="75%" alt=""></div>
           <div class="col-6">
             <h1 class="sum-heading pt-4 "><?php echo $selectmodel['product_name'] ?></h1>
             <p class="qty ">215+ Device Sold with us</p>
@@ -43,18 +45,18 @@ if(isset($_POST['functionquestions'])){
         <div class="device px-3">
           <h1 class="sum-heading ">Device Evaluation</h1>
           <p id="devicedetail">Does the watch Switch On?</p>
-                    <p id="call"><?php echo $switch ?></p>
-                    <!-- functional start -->
-                    <p id="functional">Functional Condition</p>
-                    <p id="copydisplay"><?php echo $optical ?></p>
-                    <p id="frontcam"><?php echo $touchscreen ?></p>
-                    <p id="backcam"><?php echo $battery ?></p>
-                    <p id="volume"><?php echo $wifi ?></p>
-                    <p id="fingertouch"><?php echo $speaker ?></p>
-                    <p id="speaker"><?php echo $charging ?></p>
-                    <p id="power"><?php echo $dc ?></p>
-                    <p id="charging"><?php echo $button ?></p>
-                    <p id="face"><?php echo $bluetooth ?></p>
+          <p id="call"><?php echo $switch ?></p>
+          <!-- functional start -->
+          <p id="functional">Functional Condition</p>
+          <p id="copydisplay"><?php echo $optical ?></p>
+          <p id="frontcam"><?php echo $touchscreen ?></p>
+          <p id="backcam"><?php echo $battery ?></p>
+          <p id="volume"><?php echo $wifi ?></p>
+          <p id="fingertouch"><?php echo $speaker ?></p>
+          <p id="speaker"><?php echo $charging ?></p>
+          <p id="power"><?php echo $dc ?></p>
+          <p id="charging"><?php echo $button ?></p>
+          <p id="face"><?php echo $bluetooth ?></p>
           <!-- warrent strt -->
           <p id="mobage"></p>
           <p id="age"></p>
@@ -93,22 +95,23 @@ if(isset($_POST['functionquestions'])){
             </div>
           </div>
           <div class="text-center mt-4">
-          <input type="hidden" id="callin" name="switch" value="<?php echo $switch ?>">
-                            <!-- functional start -->
-                            <!-- <input type="hidden" id="warin" name="warin"> -->
-                            <input type="hidden" id="copydisplayin" name="touchscreen" value="<?php echo $touchscreen ?>">
-                            <input type="hidden" id="frontcamin" name="battery" value="<?php echo $battery ?>">
-                            <input type="hidden" id="backcamin" name="wifi" value="<?php echo $wifi ?>">
-                            <input type="hidden" id="volumein" name="speaker" value="<?php echo $speaker ?>">
-                            <input type="hidden" id="fingertouchin" name="charging" value="<?php echo $charging ?>">
-                            <input type="hidden" id="speakerin" name="dc" value="<?php echo $dc ?>">
-                            <input type="hidden" id="powerin" name="button" value="<?php echo $button ?>">
-                            <input type="hidden" id="chargingin" name="optical" value="<?php echo $optical ?>">
-                            <input type="hidden" id="facein" name="bluetooth" value="<?php echo $bluetooth ?>">
-                            <input type="hidden" id="warin" name="warin" value="<?php echo $war ?>">
+            <input type="hidden" id="callin" name="switch" value="<?php echo $switch ?>">
+            <!-- functional start -->
+            <!-- <input type="hidden" id="warin" name="warin"> -->
+            <input type="hidden" id="copydisplayin" name="touchscreen" value="<?php echo $touchscreen ?>">
+            <input type="hidden" id="frontcamin" name="battery" value="<?php echo $battery ?>">
+            <input type="hidden" id="backcamin" name="wifi" value="<?php echo $wifi ?>">
+            <input type="hidden" id="volumein" name="speaker" value="<?php echo $speaker ?>">
+            <input type="hidden" id="fingertouchin" name="charging" value="<?php echo $charging ?>">
+            <input type="hidden" id="speakerin" name="dc" value="<?php echo $dc ?>">
+            <input type="hidden" id="powerin" name="button" value="<?php echo $button ?>">
+            <input type="hidden" id="chargingin" name="optical" value="<?php echo $optical ?>">
+            <input type="hidden" id="facein" name="bluetooth" value="<?php echo $bluetooth ?>">
+            <input type="hidden" id="warin" name="warin" value="<?php echo $war ?>">
             <!-- mobileage start -->
             <input type="hidden" id="agein" name="age" value="">
-            <button class="btn contin-btn" name="watchage">Continue <i class="fas fa-arrow-right"></i></button>
+            <button class="btn contin-btn" name="watchage">Continue <i
+                class="fas fa-arrow-right"></i></button>
           </div>
         </form>
       </div>
@@ -124,24 +127,42 @@ if(isset($_POST['functionquestions'])){
       var war = $("input[type=radio][name=war]:checked").val();
       if (war == "under3") {
         $('#mobage').html("Watch Age");
-        $('#age').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months");
-        $('#agein').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months");
+        $('#age').html(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
+        );
+        $('#agein').val(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
+        );
         // $('#war').html('<php echo $war ?>');
       } else if (war == "under6") {
         $('#mobage').html("Watch Age");
-        $('#age').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months");
-        $('#agein').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months");
+        $('#age').html(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
+        );
+        $('#agein').val(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
+        );
         // $('#war').html('<php echo $war ?>');
       } else if (war == "under11") {
         $('#mobage').html("Watch Age");
-        $('#age').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months");
-        $('#agein').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months");
+        $('#age').html(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
+        );
+        $('#agein').val(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
+        );
         // $('#war').html('<php echo $war ?>');
       } else if (war == "above11") {
         $('#mobage').html("Watch Age");
-        $('#warin').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty");
-        $('#age').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months");
-        $('#agein').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months");
+        $('#warin').val(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
+        );
+        $('#age').html(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
+        );
+        $('#agein').val(
+          "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
+        );
       }
     });
   });

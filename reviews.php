@@ -5,12 +5,12 @@ if (isset($_POST['review'])) {
   $rcity = $_POST['rcity'];
   $rating = $_POST['rating'];
   $review = $_POST['msg'];
- $q = mysqli_query($con, "INSERT INTO `product_reviews`(`rname`,`rcity`,`rmsg`,`rating`) VALUES('$rname','$rcity','$review','$rating')");
- if($q){
-     header("Refresh:0; url=index.php");
- }else{
+  $q = mysqli_query($con, "INSERT INTO `product_reviews`(`rname`,`rcity`,`rmsg`,`rating`) VALUES('$rname','$rcity','$review','$rating')");
+  if ($q) {
     header("Refresh:0; url=index.php");
- }
+  } else {
+    header("Refresh:0; url=index.php");
+  }
 }
 ?>
 <?php

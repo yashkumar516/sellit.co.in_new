@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'admin/includes/confile.php';
-if (isset($_SESSION['otp']) && isset($_REQUEST['mob'])) {
-    $otp = $_SESSION['otp'];
-    $number = $_REQUEST['mob'];
+include "admin/includes/confile.php";
+if (isset($_SESSION["otp"]) && isset($_REQUEST["mob"])) {
+    $otp = $_SESSION["otp"];
+    $number = $_REQUEST["mob"];
     $countt = mysqli_num_rows(
         mysqli_query(
             $con,
@@ -17,23 +17,22 @@ if (isset($_SESSION['otp']) && isset($_REQUEST['mob'])) {
                 "SELECT * FROM `userrecord` WHERE `mobile` = '$number'"
             )
         );
-        $status = $fet['status'];
+        $status = $fet["status"];
 
-        $exit = $fet['name'];
+        $exit = $fet["name"];
         // Check if status is inactive
-        if ($status === 'inactive') {
-            $exit = '';
-          }  else{
-            $exit = $fet['name'];
-          }
-       
+        if ($status === "inactive") {
+            $exit = "";
+        } else {
+            $exit = $fet["name"];
+        }
     } else {
-        $exit = '';
+        $exit = "";
     }
 }
-if (isset($_POST['otp'])) {
-    $otp1 = $_POST['otpverify'];
-    $status = 'active';
+if (isset($_POST["otp"])) {
+    $otp1 = $_POST["otpverify"];
+    $status = "active";
     if ($otp == $otp1) {
         $rows = mysqli_num_rows(
             mysqli_query(
@@ -49,24 +48,24 @@ if (isset($_POST['otp'])) {
                 )
             );
             if ($seluser) {
-                $_SESSION['user'] = $seluser['id'];
-                $status = $seluser['status'];
-                $uid = $seluser['id'];
-                unset($_SESSION['otp']);
-                if ($status === 'inactive') {
-                    $email = $_POST['email'];
-                    $name = $_POST['name'];
-                      // Update status to 'active', and update name and email
-                      $update_query = "UPDATE `userrecord` SET `status` = 'active', `name` = '$name', `email` = '$email' WHERE `id` =  $uid";
-                      mysqli_query($con, $update_query);
-                  }  
+                $_SESSION["user"] = $seluser["id"];
+                $status = $seluser["status"];
+                $uid = $seluser["id"];
+                unset($_SESSION["otp"]);
+                if ($status === "inactive") {
+                    $email = $_POST["email"];
+                    $name = $_POST["name"];
+                    // Update status to 'active', and update name and email
+                    $update_query = "UPDATE `userrecord` SET `status` = 'active', `name` = '$name', `email` = '$email' WHERE `id` =  $uid";
+                    mysqli_query($con, $update_query);
+                }
                 echo "<script>
             window.location.href = 'index.php';
           </script>";
             }
         } else {
-            $email = $_POST['email'];
-            $name = $_POST['name'];
+            $email = $_POST["email"];
+            $name = $_POST["name"];
             $inquery = mysqli_query(
                 $con,
                 "INSERT INTO `userrecord` (`mobile`,`name`,`email`) VALUES('$number','$name','$email') "
@@ -75,12 +74,12 @@ if (isset($_POST['otp'])) {
                 $seluser = mysqli_fetch_assoc(
                     mysqli_query(
                         $con,
-                        'SELECT * FROM `userrecord` ORDER BY `id` DESC LIMIT 1'
+                        "SELECT * FROM `userrecord` ORDER BY `id` DESC LIMIT 1"
                     )
                 );
                 if ($seluser) {
-                    $_SESSION['user'] = $seluser['id'];
-                    unset($_SESSION['otp']);
+                    $_SESSION["user"] = $seluser["id"];
+                    unset($_SESSION["otp"]);
                     echo "<script>
           window.location.href = 'index.php';
           </script>";
@@ -96,6 +95,7 @@ if (isset($_POST['otp'])) {
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -125,6 +125,7 @@ if (isset($_POST['otp'])) {
     <script src="https://kit.fontawesome.com/695826c815.js" crossorigin="anonymous"></script>
     <title>Sell it</title>
 </head>
+
 <body>
     <section>
         <div class="container-fluid">
@@ -138,10 +139,10 @@ if (isset($_POST['otp'])) {
                             <form method="POST">
                                 <div class="form-group">
                                     <?php if (empty($exit)) { ?>
-                                    <input type="text" class="form-control py-2 px-2 my-3" name="name" id="name"
-                                        placeholder=" Enter your Name" required>
-                                    <input type="email" class="form-control py-2 px-2 my-3" name="email" id="email"
-                                        placeholder=" Enter your Email" required>
+                                        <input type="text" class="form-control py-2 px-2 my-3" name="name" id="name"
+                                            placeholder=" Enter your Name" required>
+                                        <input type="email" class="form-control py-2 px-2 my-3" name="email" id="email"
+                                            placeholder=" Enter your Email" required>
                                     <?php } ?>
                                     <input type="text" class="form-control py-2 px-2 my-3" name="otpverify" id="mobile"
                                         value="" placeholder=" Enter your otp" required>

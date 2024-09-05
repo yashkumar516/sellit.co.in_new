@@ -13,18 +13,20 @@
         </div>
         <div class="owl-carousel owl-carousel-12 owl-theme col-12">
             <?php
-      $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
-      while ($brandData = mysqli_fetch_assoc($queryBrand)) {
-      ?>
-            <div class="item my-3">
-                <a
-                    href="/sell-old-mobile-phones/sell-old-<?= strtolower($brandData['subcategory_name']) ?>/<?php echo $brandData['id'];  ?>">
-                    <img src="admin/img/<?php echo $brandData['subcategory_image'];  ?>" class="img-fluid box1" alt="">
-                </a>
-            </div>
-            <?php
-      }
-      ?>
+            $queryBrand = mysqli_query(
+                $con,
+                "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' "
+            );
+            while ($brandData = mysqli_fetch_assoc($queryBrand)) { ?>
+                <div class="item my-3">
+                    <a href="/sell-old-mobile-phones/sell-old-<?= strtolower(
+                                                                    $brandData["subcategory_name"]
+                                                                ) ?>/<?php echo $brandData["id"]; ?>">
+                        <img src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid box1" alt="">
+                    </a>
+                </div>
+            <?php }
+            ?>
 
         </div>
     </div>
@@ -104,59 +106,54 @@
     <div class="container">
         <div class="owl-carousel owl-theme ">
             <?php
-        $fetchreview = mysqli_query($con, "SELECT * FROM `product_reviews` WHERE `status` = 'active'  ");
-        while ($arrrev = mysqli_fetch_assoc($fetchreview)) {
-        ?>
-            <div class="col-12 my-3 mx-1">
-                <div class="row p-3 nice" style="margin-top:10px; border-radius: 20px;
+            $fetchreview = mysqli_query(
+                $con,
+                "SELECT * FROM `product_reviews` WHERE `status` = 'active'  "
+            );
+            while ($arrrev = mysqli_fetch_assoc($fetchreview)) { ?>
+                <div class="col-12 my-3 mx-1">
+                    <div class="row p-3 nice" style="margin-top:10px; border-radius: 20px;
          margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
          height:270px;overflow:hidden;">
 
-                    <div class="col-lg-2 col-2 px-0">
-                        <img src="assets/images/face.png" alt="" class="img-fluid" width="59px">
-                    </div>
-                    <div class="col-lg-5 col-8 mb-0  pb-0">
-                        <h6 class="reviwer-name"><?php echo $arrrev['rname'] ?></h6>
-                        <h3 class="reviewer-heading"><?php echo $arrrev['rcity'] ?></h3>
-                    </div>
-                    <div class="col-4 col-lg-5 reviewer-rating d-flex justify-content-end px-0">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <div class="col-12">
-                        <p class="why-sell-detail text-justify">
-                            <?php echo $arrrev['rmsg'] ?>
-                        </p>
+                        <div class="col-lg-2 col-2 px-0">
+                            <img src="assets/images/face.png" alt="" class="img-fluid" width="59px">
+                        </div>
+                        <div class="col-lg-5 col-8 mb-0  pb-0">
+                            <h6 class="reviwer-name"><?php echo $arrrev["rname"]; ?></h6>
+                            <h3 class="reviewer-heading"><?php echo $arrrev["rcity"]; ?></h3>
+                        </div>
+                        <div class="col-4 col-lg-5 reviewer-rating d-flex justify-content-end px-0">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="col-12">
+                            <p class="why-sell-detail text-justify">
+                                <?php echo $arrrev["rmsg"]; ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php
-        }
-        ?>
+            <?php }
+            ?>
         </div>
         <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
         <div class="elfsight-app-bd76e8ba-7f84-42bb-86fb-eaacb15615d1"></div>
     </div>
-    <?php
-if(isset($_SESSION['user'])){
-?>
-    <div class="text-center d-none" style="margin-top: 40px;">
-        <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal"
-            data-target=".bd-example-modal-lg">Write Review</button>
-    </div>
-    <?php
-}else{
-  ?>
-    <div class="text-center d-none" style="margin-top: 40px;">
-        <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal"
-            data-target=".bd-example-modal-lg">Write Review</button>
-    </div>
-    <?php 
-}
-?>
+    <?php if (isset($_SESSION["user"])) { ?>
+        <div class="text-center d-none" style="margin-top: 40px;">
+            <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal"
+                data-target=".bd-example-modal-lg">Write Review</button>
+        </div>
+    <?php } else { ?>
+        <div class="text-center d-none" style="margin-top: 40px;">
+            <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal"
+                data-target=".bd-example-modal-lg">Write Review</button>
+        </div>
+    <?php } ?>
     </div>
 </section>
 
@@ -364,262 +361,262 @@ if(isset($_SESSION['user'])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <!-- rating script -->
 <script>
-$(function() {
-    $("#rating").rateYo({
-        ratedFill: "#23699D"
-    });
+    $(function() {
+        $("#rating").rateYo({
+            ratedFill: "#23699D"
+        });
 
-})
+    })
 </script>
 <script>
-$(function() {
-    $(".rateyo").rateYo().on("rateyo.change", function(e, data) {
-        var rating = data.rating;
-        $(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
-        $(this).parent().find('.result').text('Rating :' + rating);
-        $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
-    });
+    $(function() {
+        $(".rateyo").rateYo().on("rateyo.change", function(e, data) {
+            var rating = data.rating;
+            $(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
+            $(this).parent().find('.result').text('Rating :' + rating);
+            $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
+        });
 
-});
+    });
 </script>
 
 <!-- rating script end -->
 
 <script>
-$('.owl-carousel-12').owlCarousel({
-    loop: true,
-    margin: 12,
-    // nav:true,
-    responsive: {
-        0: {
-            items: 3
-        },
-        600: {
-            items: 4
-        },
-        1000: {
-            items: 6
+    $('.owl-carousel-12').owlCarousel({
+        loop: true,
+        margin: 12,
+        // nav:true,
+        responsive: {
+            0: {
+                items: 3
+            },
+            600: {
+                items: 4
+            },
+            1000: {
+                items: 6
+            }
         }
-    }
-})
+    })
 </script>
 
 <script>
-$('.owl-carousel').owlCarousel({
-    // loop:true,
-    margin: 12,
-    // nav:true,
-    responsive: {
-        0: {
-            items: 1
-        },
-        600: {
-            items: 2
-        },
-        1000: {
-            items: 3
+    $('.owl-carousel').owlCarousel({
+        // loop:true,
+        margin: 12,
+        // nav:true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
         }
-    }
-})
+    })
 </script>
-<?php 
-        $httpHost = $_SERVER['HTTP_HOST'];
-        if($httpHost==="localhost"){
-            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
-        } else{
-            echo '<script src="/admin/js/imageReplace.js"></script>';
-        }
-    ?>
+<?php
+$httpHost = $_SERVER["HTTP_HOST"];
+if ($httpHost === "localhost") {
+    echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+} else {
+    echo '<script src="/admin/js/imageReplace.js"></script>';
+}
+?>
 </body>
 
 </html>
 <!-- ajax data start -->
 <script>
-$(document).ready(function() {
-    $("#modalsearch").keyup(function() {
-        var search = $("#modalsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "modalfound.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('#ajaxresponse').fadeIn();
-                    $("#filter").css("display", "block");
-                    $('#ajaxresponse').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#modalsearch").keyup(function() {
+            var search = $("#modalsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "modalfound.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('#ajaxresponse').fadeIn();
+                        $("#filter").css("display", "block");
+                        $('#ajaxresponse').html(result);
+                    }
+                });
+            } else {
+                $('#ajaxresponse').fadeOut();
+                $("#filter").css("display", "none");
+                $('#ajaxresponse').html("");
+            }
+        });
+        $("#modalsearch").focusout(function() {
             $('#ajaxresponse').fadeOut();
-            $("#filter").css("display", "none");
-            $('#ajaxresponse').html("");
-        }
+            $('#modalsearch').val("");
+        })
     });
-    $("#modalsearch").focusout(function() {
-        $('#ajaxresponse').fadeOut();
-        $('#modalsearch').val("");
-    })
-});
 </script>
 <!-- model start -->
 <script>
-$(document).ready(function() {
-    $("#searchmobile").keyup(function() {
-        var search = $("#searchmobile").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "modalfound1.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter').fadeIn();
-                    $(".filter").css("display", "block");
-                    $('.response').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#searchmobile").keyup(function() {
+            var search = $("#searchmobile").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "modalfound1.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter').fadeIn();
+                        $(".filter").css("display", "block");
+                        $('.response').html(result);
+                    }
+                });
+            } else {
+                $('.filter').fadeOut();
+                $(".filter").css("display", "none");
+                $('.response').html("");
+            }
+        })
+        $("#searchmobile").focusout(function() {
             $('.filter').fadeOut();
-            $(".filter").css("display", "none");
-            $('.response').html("");
-        }
-    })
-    $("#searchmobile").focusout(function() {
-        $('.filter').fadeOut();
-        $('#searchmobile').val("");
-    })
-});
+            $('#searchmobile').val("");
+        })
+    });
 </script>
 <!-- model end -->
 <!--earbud start-->
 <script>
-$(document).ready(function() {
-    $("#earbudsearch").keyup(function() {
-        var search = $("#earbudsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "foundearbud.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filterear').fadeIn();
-                    $(".filterear").css("display", "block");
-                    $('.responseear').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#earbudsearch").keyup(function() {
+            var search = $("#earbudsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "foundearbud.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filterear').fadeIn();
+                        $(".filterear").css("display", "block");
+                        $('.responseear').html(result);
+                    }
+                });
+            } else {
+                $('.filterear').fadeOut();
+                $(".filterear").css("display", "none");
+                $('.responseear').html("");
+            }
+        })
+        $("#tabletsearch").focusout(function() {
             $('.filterear').fadeOut();
-            $(".filterear").css("display", "none");
-            $('.responseear').html("");
-        }
-    })
-    $("#tabletsearch").focusout(function() {
-        $('.filterear').fadeOut();
-        $('#earbudsearch').val("");
-    })
-});
+            $('#earbudsearch').val("");
+        })
+    });
 </script>
 <!--eaerbud end-->
 <!-- tablet started -->
 <script>
-$(document).ready(function() {
-    $("#tabletsearch").keyup(function() {
-        var search = $("#tabletsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "foundtablet.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter1').fadeIn();
-                    $(".filter1").css("display", "block");
-                    $('.response1').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#tabletsearch").keyup(function() {
+            var search = $("#tabletsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "foundtablet.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter1').fadeIn();
+                        $(".filter1").css("display", "block");
+                        $('.response1').html(result);
+                    }
+                });
+            } else {
+                $('.filter1').fadeOut();
+                $(".filter1").css("display", "none");
+                $('.response1').html("");
+            }
+        })
+        $("#tabletsearch").focusout(function() {
             $('.filter1').fadeOut();
-            $(".filter1").css("display", "none");
-            $('.response1').html("");
-        }
-    })
-    $("#tabletsearch").focusout(function() {
-        $('.filter1').fadeOut();
-        $('#tabletsearch').val("");
-    })
-});
+            $('#tabletsearch').val("");
+        })
+    });
 </script>
 <!-- tablet end -->
 <!-- watch started -->
 <script>
-$(document).ready(function() {
-    $("#watchsearch").keyup(function() {
-        var search = $("#watchsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "foundwatch.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter2').fadeIn();
-                    $(".filter2").css("display", "block");
-                    $('.response2').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#watchsearch").keyup(function() {
+            var search = $("#watchsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "foundwatch.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter2').fadeIn();
+                        $(".filter2").css("display", "block");
+                        $('.response2').html(result);
+                    }
+                });
+            } else {
+                $('.filter2').fadeOut();
+                $(".filter2").css("display", "none");
+                $('.response2').html("");
+            }
+        })
+        $("#watchsearch").focusout(function() {
             $('.filter2').fadeOut();
-            $(".filter2").css("display", "none");
-            $('.response2').html("");
-        }
-    })
-    $("#watchsearch").focusout(function() {
-        $('.filter2').fadeOut();
-        $('#watchsearch').val("");
-    })
-});
+            $('#watchsearch').val("");
+        })
+    });
 </script>
 <!-- watch end -->
 <!-- ajax data end -->
 
 <script>
-$(document).ready(function() {
-    $("#userpic").on('click', function() {
-        $("#prof").toggle();
+    $(document).ready(function() {
+        $("#userpic").on('click', function() {
+            $("#prof").toggle();
+        });
     });
-});
 </script>
 <script>
-// Instantiate the Bootstrap carousel
-$('.multi-item-carousel').carousel({
-    interval: false
-});
+    // Instantiate the Bootstrap carousel
+    $('.multi-item-carousel').carousel({
+        interval: false
+    });
 
-// for every slide in carousel, copy the next slide's item in the slide.
-// Do the same for the next, next item.
-$('.multi-item-carousel .item').each(function() {
-    var next = $(this).next();
-    if (!next.length) {
-        next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
+    // for every slide in carousel, copy the next slide's item in the slide.
+    // Do the same for the next, next item.
+    $('.multi-item-carousel .item').each(function() {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
 
-    if (next.next().length > 0) {
-        next.next().children(':first-child').clone().appendTo($(this));
-    } else {
-        $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-    }
-});
+        if (next.next().length > 0) {
+            next.next().children(':first-child').clone().appendTo($(this));
+        } else {
+            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        }
+    });
 </script>

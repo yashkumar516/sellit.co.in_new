@@ -1,4 +1,4 @@
-<?php include 'hideheader.php' ?>
+<?php include "hideheader.php"; ?>
 ​
 <section class="sell-section">
     <div class="container">
@@ -19,21 +19,22 @@
         <h1 class="select-brand-heading pb-3">Select Brand</h1>
         <div class="row">
             <?php
-           $selectquery = mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '4' ");
-           while($brandData = mysqli_fetch_assoc( $selectquery ))
-           {
-          ?>
+            $selectquery = mysqli_query(
+                $con,
+                "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '4' "
+            );
+            while ($brandData = mysqli_fetch_assoc($selectquery)) { ?>
             <div class="col-lg-2 col-3 mt-4">
-                <a href="oldearpod.php?id=<?php echo $brandData['id'] ?>"> <img
-                        src="admin/img/<?php echo $brandData['subcategory_image'] ?>" class="img-fluid box1" alt=""></a>
+                <a href="oldearpod.php?id=<?php echo $brandData["id"]; ?>"> <img
+                        src="admin/img/<?php echo $brandData["subcategory_image"]; ?>" class="img-fluid box1"
+                        alt=""></a>
             </div>
-            <?php
-           }
-           ?>
+            <?php }
+            ?>
 
 
         </div>
     </div>
 
 </section>
-<?php include 'footerear.php' ?>
+<?php include "footerear.php"; ?>
