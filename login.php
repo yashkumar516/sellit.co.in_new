@@ -1,37 +1,40 @@
 <?php
 session_start();
-include 'admin/includes/confile.php';
+include "admin/includes/confile.php";
 function GENERATELOGS_API($DATA, $BLOCK, $flag = 0)
 {
-    $file_name = '/var/log/aakarist/fasttosms.txt';
+    $file_name = "/var/log/aakarist/fasttosms.txt";
     if (file_exists($file_name)) {
-        $fp = fopen($file_name, 'a+');
-        fwrite($fp, date('Y-m-d H:i:s') . "\t");
+        $fp = fopen($file_name, "a+");
+        fwrite($fp, date("Y-m-d H:i:s") . "\t");
         if ($flag == 1) {
-            fwrite($fp, '(' . $BLOCK . ")\n");
+            fwrite($fp, "(" . $BLOCK . ")\n");
             fwrite($fp, print_r($DATA, true));
             fwrite($fp, "\n\n");
         } else {
-            fwrite($fp, '(' . $BLOCK . ')=====' . $DATA . "\n");
+            fwrite($fp, "(" . $BLOCK . ")=====" . $DATA . "\n");
         }
         fclose($fp);
     }
 }
 ?>
-<?php if (isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
+<?php if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
     $usermobile = mysqli_fetch_assoc(
-        mysqli_query($con, "SELECT * FROM `userrecord` WHERE `id` = '$user' AND `status` = 'active' ")
+        mysqli_query(
+            $con,
+            "SELECT * FROM `userrecord` WHERE `id` = '$user' AND `status` = 'active' "
+        )
     );
     if ($usermobile) {
-        $number = $usermobile['name'];
+        $number = $usermobile["name"];
     } else {
         unset($_SESSION);
-        $number = '';
+        $number = "";
     }
 } else {
     unset($_SESSION);
-    $number = '';
+    $number = "";
 } ?>
 <!doctype html>
 <html lang="en">
@@ -82,47 +85,47 @@ function GENERATELOGS_API($DATA, $BLOCK, $flag = 0)
             </div>
         </div>
     </div>
-    <?php if (isset($_POST['mobileverification'])) {
-    session_destroy();
-    session_start(); // header('location: loginverification.php?mob=' . $mobilenumber);
-    $mobilenumber = $_POST['phone'];
-    $phone = '91' . $_POST['phone'];
-    $otp = mt_rand(100000, 999999);
-    $_SESSION['otp'] = $otp; // fasttosmms api start
-    $fields = [
-        'variables_values' => "$otp",
-        'route' => 'otp',
-        'numbers' => "$mobilenumber",
-    ];
-    $curl = curl_init();
-    curl_setopt_array($curl, [
-        CURLOPT_URL => 'https://www.fast2sms.com/dev/bulkV2',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_SSL_VERIFYHOST => 0,
-        CURLOPT_SSL_VERIFYPEER => 0,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => json_encode($fields),
-        CURLOPT_HTTPHEADER => [
-            'authorization: Q6BoCfJIKi05yDOvm8aSgUGbYrLpER7NseA93cuFxWTXZVkq2h3h1n57sJNfZtRGkS8LyqI2VBrKPEYv',
-            'accept: */*',
-            'cache-control: no-cache',
-            'content-type: application/json',
-        ],
-    ]);
-    $response = curl_exec($curl);
-    GENERATELOGS_API($response, '[fast to smms response]', 1);
-    $err = curl_error($curl);
-    curl_close($curl);
-    if ($response) {
-        echo "<script>
+    <?php if (isset($_POST["mobileverification"])) {
+        session_destroy();
+        session_start(); // header('location: loginverification.php?mob=' . $mobilenumber);
+        $mobilenumber = $_POST["phone"];
+        $phone = "91" . $_POST["phone"];
+        $otp = mt_rand(100000, 999999);
+        $_SESSION["otp"] = $otp; // fasttosmms api start
+        $fields = [
+            "variables_values" => "$otp",
+            "route" => "otp",
+            "numbers" => "$mobilenumber",
+        ];
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://www.fast2sms.com/dev/bulkV2",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($fields),
+            CURLOPT_HTTPHEADER => [
+                "authorization: Q6BoCfJIKi05yDOvm8aSgUGbYrLpER7NseA93cuFxWTXZVkq2h3h1n57sJNfZtRGkS8LyqI2VBrKPEYv",
+                "accept: */*",
+                "cache-control: no-cache",
+                "content-type: application/json",
+            ],
+        ]);
+        $response = curl_exec($curl);
+        GENERATELOGS_API($response, "[fast to smms response]", 1);
+        $err = curl_error($curl);
+        curl_close($curl);
+        if ($response) {
+            echo "<script>
                 window.location.href = 'loginverification.php?mob='+$mobilenumber;
             </script>";
-    }
-} ?>
+        }
+    } ?>
     <section id="loginfo">
         <div class="container-fluid">
             <div class="row p-5" id="signmob">

@@ -13,18 +13,22 @@
         </div>
         <div class="owl-carousel owl-carousel-12 owl-theme col-12">
             <?php
-      $queryBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' ");
-      while ($brandData = mysqli_fetch_assoc($queryBrand)) {
-      ?>
+            $queryBrand = mysqli_query(
+                $con,
+                "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `top` = 'active' AND `category_id` = '1' "
+            );
+            while ($brandData = mysqli_fetch_assoc($queryBrand)) { ?>
             <div class="item my-3">
-                <a
-                    href="/sell-old-mobile-phones/sell-old-<?= strtolower($brandData['subcategory_name']) ?>/<?php echo $brandData['id'];  ?>">
-                    <img src="admin/img/<?php echo $brandData['subcategory_image'];  ?>" class="img-fluid box1" alt="">
+                <a href="/sell-old-mobile-phones/sell-old-<?= strtolower(
+                        $brandData["subcategory_name"]
+                    ) ?>/<?php echo $brandData["id"]; ?>">
+                    <img src="admin/img/<?php echo $brandData[
+                        "subcategory_image"
+                    ]; ?>" class="img-fluid box1" alt="">
                 </a>
             </div>
-            <?php
-      }
-      ?>
+            <?php }
+            ?>
 
         </div>
     </div>
@@ -46,25 +50,50 @@
         <!-- </div>
   <div class="container mb-5"> -->
         <div class="owl-carousel owl-carousel-12 owl-theme col-12">
-            <?php 
-        $selectModel = mysqli_query($con, "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'");
-      while ($modelData = mysqli_fetch_assoc($selectModel)) {
-        $topsubcatid = $modelData['subcategoryid'];
-        $topsubcatname = mysqli_fetch_assoc(mysqli_query($con,"select * from `subcategory` WHERE `id` = '$topsubcatid' "));
-     ?>
+            <?php
+            $selectModel = mysqli_query(
+                $con,
+                "SELECT * FROM `product` WHERE `status` = 'active' AND `best` = 'active' AND `categoryid` = '1'"
+            );
+            while ($modelData = mysqli_fetch_assoc($selectModel)) {
+
+                $topsubcatid = $modelData["subcategoryid"];
+                $topsubcatname = mysqli_fetch_assoc(
+                    mysqli_query(
+                        $con,
+                        "select * from `subcategory` WHERE `id` = '$topsubcatid' "
+                    )
+                );
+                ?>
             <div class="item my-3">
-                <a
-                    href="/sell-old-phones/sell-old-<?= strtolower($topsubcatname['subcategory_name'].'-'.strtolower(str_replace(' ','-',$modelData['product_name']))).'/'.$modelData['id'].'_'.$modelData['subcategoryid'] ?>">
+                <a href="/sell-old-phones/sell-old-<?= strtolower(
+                        $topsubcatname["subcategory_name"] .
+                            "-" .
+                            strtolower(
+                                str_replace(
+                                    " ",
+                                    "-",
+                                    $modelData["product_name"]
+                                )
+                            )
+                    ) .
+                        "/" .
+                        $modelData["id"] .
+                        "_" .
+                        $modelData["subcategoryid"] ?>">
                     <div class="text-center" id="md">
-                        <img src="admin/img/<?php echo $modelData['product_image'];  ?>" class="img-fluid" alt="">
-                        <span class="sum-heading1 text-center"
-                            style="color:black;"><?php echo $modelData['product_name'] ?></span>
+                        <img src="admin/img/<?php echo $modelData[
+                            "product_image"
+                        ]; ?>" class="img-fluid" alt="">
+                        <span class="sum-heading1 text-center" style="color:black;"><?php echo $modelData[
+                                "product_name"
+                            ]; ?></span>
                     </div>
                 </a>
             </div>
             <?php
-      }
-      ?>
+            }
+            ?>
         </div>
     </div>
 </section>
@@ -142,9 +171,11 @@
     <div class="container">
         <div class="owl-carousel owl-theme ">
             <?php
-        $fetchreview = mysqli_query($con, "SELECT * FROM `product_reviews` WHERE `status` = 'active'  ");
-        while ($arrrev = mysqli_fetch_assoc($fetchreview)) {
-        ?>
+            $fetchreview = mysqli_query(
+                $con,
+                "SELECT * FROM `product_reviews` WHERE `status` = 'active'  "
+            );
+            while ($arrrev = mysqli_fetch_assoc($fetchreview)) { ?>
             <div class="col-12 my-3 mx-1">
                 <div class="row p-3 nice" style="margin-top:10px; border-radius: 20px;
          margin-left:1px; margin-right:1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -154,8 +185,12 @@
                         <img src="assets/images/face.png" alt="" class="img-fluid" width="59px">
                     </div>
                     <div class="col-lg-5 col-8 mb-0  pb-0">
-                        <h6 class="reviwer-name"><?php echo $arrrev['rname'] ?></h6>
-                        <h3 class="reviewer-heading"><?php echo $arrrev['rcity'] ?></h3>
+                        <h6 class="reviwer-name"><?php echo $arrrev[
+                            "rname"
+                        ]; ?></h6>
+                        <h3 class="reviewer-heading"><?php echo $arrrev[
+                            "rcity"
+                        ]; ?></h3>
                     </div>
                     <div class="col-4 col-lg-5 reviewer-rating d-flex justify-content-end px-0">
                         <i class="fas fa-star"></i>
@@ -166,35 +201,28 @@
                     </div>
                     <div class="col-12">
                         <p class="why-sell-detail text-justify">
-                            <?php echo $arrrev['rmsg'] ?>
+                            <?php echo $arrrev["rmsg"]; ?>
                         </p>
                     </div>
                 </div>
             </div>
-            <?php
-        }
-        ?>
+            <?php }
+            ?>
         </div>
         <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
         <div class="elfsight-app-bd76e8ba-7f84-42bb-86fb-eaacb15615d1"></div>
     </div>
-    <?php
-if(isset($_SESSION['user'])){
-?>
+    <?php if (isset($_SESSION["user"])) { ?>
     <div class="text-center d-none" style="margin-top: 40px;">
         <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal"
             data-target=".bd-example-modal-lg">Write Review</button>
     </div>
-    <?php
-}else{
-  ?>
+    <?php } else { ?>
     <div class="text-center d-none" style="margin-top: 40px;">
         <button class="btn brand-btn sm-brand mt-3" style="background-color: #fff; color: black;" data-toggle="modal"
             data-target=".bd-example-modal-lg">Write Review</button>
     </div>
-    <?php 
-}
-?>
+    <?php } ?>
     </div>
 </section>
 
@@ -460,14 +488,14 @@ $('.owl-carousel').owlCarousel({
     }
 })
 </script>
-<?php 
-        $httpHost = $_SERVER['HTTP_HOST'];
-        if($httpHost==="localhost"){
-            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
-        } else{
-            echo '<script src="/admin/js/imageReplace.js"></script>';
-        }
-    ?>
+<?php
+$httpHost = $_SERVER["HTTP_HOST"];
+if ($httpHost === "localhost") {
+    echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+} else {
+    echo '<script src="/admin/js/imageReplace.js"></script>';
+}
+?>
 </body>
 
 </html>

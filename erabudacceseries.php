@@ -1,26 +1,32 @@
-<?php include 'header.php'; ?>
-<?php 
-$bid = $_REQUEST['bid'];
-$mid = $_REQUEST['mid'];
-$selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-include 'include/earpodecalculation.php';
-if(isset($_POST['earage'])){
-    $speaker = $_POST['screenin'];
-    $connectivity = $_POST['bodyin'];
-    $switch = $_POST['callin'];
-    $physicalissue = $_POST['warin']; 
-    $warrenty = $_POST['warrenty']; 
-    $condition = $_POST['condition']; 
-    $earbudage = $_POST['age']; 
-  }
+<?php include "header.php"; ?>
+<?php
+$bid = $_REQUEST["bid"];
+$mid = $_REQUEST["mid"];
+$selectModel = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' ")
+);
+$selectquery = mysqli_fetch_assoc(
+    mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' ")
+);
+include "include/earpodecalculation.php";
+if (isset($_POST["earage"])) {
+    $speaker = $_POST["screenin"];
+    $connectivity = $_POST["bodyin"];
+    $switch = $_POST["callin"];
+    $physicalissue = $_POST["warin"];
+    $warrenty = $_POST["warrenty"];
+    $condition = $_POST["condition"];
+    $earbudage = $_POST["age"];
+}
 ?>
 <section class="sell-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <h1 class="sell-header">Sell Old <span class="sell-title-head">
-                        <?php echo $selectquery['subcategory_name'] ?> </span> Earbuds</h1>
+                        <?php echo $selectquery[
+                            "subcategory_name"
+                        ]; ?> </span> Earbuds</h1>
             </div>
 
         </div>
@@ -31,10 +37,13 @@ if(isset($_POST['earage'])){
         <div class="row">
             <div class="col-lg-5 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel['product_image'] ?>"
-                            class="img-fluid" width="75%" alt=""></div>
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel[
+                        "product_image"
+                    ]; ?>" class="img-fluid" width="75%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectModel['product_name'] ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectModel[
+                            "product_name"
+                        ]; ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>
@@ -92,9 +101,7 @@ if(isset($_POST['earage'])){
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <?php
-                        if(isset($_SESSION['user'])){
-                            ?>
+                        <?php if (isset($_SESSION["user"])) { ?>
                         <form method="POST">
                             <div class="form-group">
                                 <input type="hidden" id="callin" name="switch" value="<?= $switch ?>">
@@ -119,14 +126,10 @@ if(isset($_POST['earage'])){
                                         class="fas fa-arrow-right"></i></button>
                             </div>
                         </form>
-                        <?php
-                        }else{
-                      ?>
+                        <?php } else { ?>
                         <a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn" type="submit"
                                 name="questions"> Continue <i class="fas fa-arrow-right"></i></button></a>
-                        <?php
-                      }
-                      ?>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -230,7 +233,7 @@ if(isset($_POST['earage'])){
 </div>
 
 
-<?php include 'footer1.php' ?>
+<?php include "footer1.php"; ?>
 <!-- open another model script-->
 <script>
 $(document).ready(function() {
@@ -319,7 +322,7 @@ $(document).ready(function() {
                 $('#billimeiin').val(
                     "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>invoice"
                 );
-                $('#warrenty').val("<?php echo $warrenty ?>");
+                $('#warrenty').val("<?php echo $warrenty; ?>");
             }
         } else {
             $('#dohave').html("Do you have the following?");
@@ -337,7 +340,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     var billimei = $("input[type=checkbox][name=billimei]:checked").val();
     if (billimei == "yes") {
-        $("#warrenty").val("<?php echo $warrenty ?>");
+        $("#warrenty").val("<?php echo $warrenty; ?>");
     } else {
         $('#warrenty').val(
             "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"

