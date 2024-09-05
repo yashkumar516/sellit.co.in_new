@@ -1,8 +1,8 @@
 <?php include 'hideheader.php' ?>
 <?php include 'include/haveitem1.php'; ?>
 <?php include 'include/calenquiry.php' ?>
-<?php 
-$selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHERE `id` = '$mid' "));
+<?php
+$selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 
 <?php
@@ -10,7 +10,7 @@ $selectModel = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `product` WHE
 include_once "./classes/checkModelValue.php";
 $modelManager = new CheckModelValue($con);
 $selectquery = $modelManager->getProductBrandValue($bid, $mid);
-        
+
 // $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
@@ -135,40 +135,40 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
                     </div>
                     <div class="text-center mt-4">
                         <?php
-                        if(isset($_SESSION['user'])){
-                            ?>
-                        <form method="POST">
-                            <div class="form-group">
-                                <input type="hidden" id="warin" name="warin">
-                                <input type="hidden" id="war" name="war">
-                                <!-- accesries start -->
-                                <input type="hidden" id="charger" name="charger" value="">
-                                <input type="hidden" id="chargerin" name="chargerin" value="">
-                                <input type="hidden" id="earphone" name="earphone" value="">
-                                <input type="hidden" id="earphonein" name="earphonein" value="">
-                                <input type="hidden" id="boximei" name="boximei" value="">
-                                <input type="hidden" id="boximeiin" name="boximeiin" value="">
-                                <input type="hidden" id="billimei" name="billimei" value="">
-                                <input type="hidden" id="billimeiin" name="billimeiin" value="">
-                                <input type="hidden" id="mobilevalue" name="mobile" value="">
-                                <input type="hidden" id="userid" name="uid" value="" required>
-                                <input type="hidden" class="form-control py-2 px-2 my-3" name="name" id="name"
-                                    placeholder=" Enter your Name" required>
+                        if (isset($_SESSION['user'])) {
+                        ?>
+                            <form method="POST">
+                                <div class="form-group">
+                                    <input type="hidden" id="warin" name="warin">
+                                    <input type="hidden" id="war" name="war">
+                                    <!-- accesries start -->
+                                    <input type="hidden" id="charger" name="charger" value="">
+                                    <input type="hidden" id="chargerin" name="chargerin" value="">
+                                    <input type="hidden" id="earphone" name="earphone" value="">
+                                    <input type="hidden" id="earphonein" name="earphonein" value="">
+                                    <input type="hidden" id="boximei" name="boximei" value="">
+                                    <input type="hidden" id="boximeiin" name="boximeiin" value="">
+                                    <input type="hidden" id="billimei" name="billimei" value="">
+                                    <input type="hidden" id="billimeiin" name="billimeiin" value="">
+                                    <input type="hidden" id="mobilevalue" name="mobile" value="">
+                                    <input type="hidden" id="userid" name="uid" value="" required>
+                                    <input type="hidden" class="form-control py-2 px-2 my-3" name="name" id="name"
+                                        placeholder=" Enter your Name" required>
 
-                                <input type="hidden" id="code" name="code" class="form-control py-2 px-2 my-3"
-                                    placeholder=" Code" required>
-                                <button type="submit" name="otpverify" class="btn contin-btn text-white">Continue <i
-                                        class="fas fa-arrow-right"></i></button>
-                            </div>
-                        </form>
+                                    <input type="hidden" id="code" name="code" class="form-control py-2 px-2 my-3"
+                                        placeholder=" Code" required>
+                                    <button type="submit" name="otpverify" class="btn contin-btn text-white">Continue <i
+                                            class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
                         <?php
-                        }else{
-                      ?>
-                        <a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn" type="submit"
-                                name="questions"> Continue <i class="fas fa-arrow-right"></i></button></a>
+                        } else {
+                        ?>
+                            <a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn" type="submit"
+                                    name="questions"> Continue <i class="fas fa-arrow-right"></i></button></a>
                         <?php
-                      }
-                      ?>
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -269,175 +269,175 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
 <?php include 'footer1.php' ?>
 <!-- open another model script-->
 <script>
-$(document).ready(function() {
-    $("#myformmobile").on('submit', function(e) {
-        $('#myModal2').modal('hide');
-        $('#myModal1').modal('show');
-        e.preventDefault();
-        var mob = $("#mobile").val();
-        $('#mobilevalue').val(mob);
-        if (mob != null) {
-            jQuery.ajax({
-                method: "post",
-                url: "mobileverify.php",
-                data: {
-                    mobile: mob
-                },
-                dataType: "html",
-                success: function(result) {
-                    if (result != '') {
-                        $('.loginuser').addClass('d-none');
-                        $('.loginuser').removeAttr('required');
-                        $('#userid').val(result);
+    $(document).ready(function() {
+        $("#myformmobile").on('submit', function(e) {
+            $('#myModal2').modal('hide');
+            $('#myModal1').modal('show');
+            e.preventDefault();
+            var mob = $("#mobile").val();
+            $('#mobilevalue').val(mob);
+            if (mob != null) {
+                jQuery.ajax({
+                    method: "post",
+                    url: "mobileverify.php",
+                    data: {
+                        mobile: mob
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        if (result != '') {
+                            $('.loginuser').addClass('d-none');
+                            $('.loginuser').removeAttr('required');
+                            $('#userid').val(result);
+                        }
                     }
-                }
-            });
-            //         jQuery.ajax({
-            //               method: "post",
-            //               url : "createuser.php",
-            //               data:{mobile:mob,name:uname},
-            //   dataType: "html",
-            //   success:function(result)
-            //   {
-            //       alert(result);
-            // 	 $('#userid').val(result); 
-            //   }
-            //         });
-        }
+                });
+                //         jQuery.ajax({
+                //               method: "post",
+                //               url : "createuser.php",
+                //               data:{mobile:mob,name:uname},
+                //   dataType: "html",
+                //   success:function(result)
+                //   {
+                //       alert(result);
+                // 	 $('#userid').val(result); 
+                //   }
+                //         });
+            }
+        });
     });
-});
 </script>
 <!-- open another model script end -->
 <script>
-$(document).ready(function() {
-    // Scratches start
-    $('.acceseries').click(function() {
-        var charger = $("input[type=checkbox][name=charger]:checked").val();
-        if (charger == "yes") {
-            $('#dohave').html("Do you have the following?");
-            $('#chargerHtml').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Charger of Device"
-            );
-            $('#chargerin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Charger of Device"
-            );
-            $('#charger').val("yes");
-        } else {
-            $('#dohave').html("Do you have the following?");
-            $('#chargerHtml').html("");
-            $('#chargerin').val("");
-            $('#charger').val("");
-        }
-
-        var earphone = $("input[type=checkbox][name=earphone]:checked").val();
-        if (earphone == "yes") {
-            $('#dohave').html("Do you have the following?");
-            $('#earphoneHtml').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Earphones of Device"
-            );
-            $('#earphonein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Earphones of Device"
-            );
-            $('#earphone').val("yes");
-        } else {
-            $('#dohave').html("Do you have the following?");
-            $('#earphoneHtml').html("");
-            $('#earphonein').val("");
-            $('#earphone').val("");
-        }
-
-        var boximei = $("input[type=checkbox][name=boximei]:checked").val();
-        if (boximei == "yes") {
-            $('#dohave').html("Do you have the following?");
-            $('#boximeiHtml').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Box with same IMEI"
-            );
-            $('#boximeiin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Box with same IMEI"
-            );
-            $('#boximei').val("yes");
-        } else {
-            $('#dohave').html("Do you have the following?");
-            $('#boximeiHtml').html("");
-            $('#boximeiin').val("");
-            $('#boximei').val("");
-        }
-
-        var billimei = $("input[type=checkbox][name=billimei]:checked").val();
-        if (billimei != null) {
-            if (billimei == "yes") {
-                var waren = $("#warHtml").html();
-                var war = "<?php echo $war ?>";
-                console.log({
-                    waren,
-                    war
-                }, "--1--");
+    $(document).ready(function() {
+        // Scratches start
+        $('.acceseries').click(function() {
+            var charger = $("input[type=checkbox][name=charger]:checked").val();
+            if (charger == "yes") {
                 $('#dohave').html("Do you have the following?");
-                $('#billimeiHtml').html(
-                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bill with same IMEI"
+                $('#chargerHtml').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Charger of Device"
                 );
-                $('#billimeiin').val(
-                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bill with same IMEI"
+                $('#chargerin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Charger of Device"
                 );
-                $('#billimei').val("yes");
-                if (war === "yes") {
-                    console.log({
-                        waren
-                    }, "--2--");
-                    $("#warHtml").html(
-                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Under Warranty"
-                    );
-                    $("#warin").val(
-                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Under Warranty"
-                    );
-                    $("#war").val(war);
-                } else if (war === "no") {
-                    console.log({
-                        waren
-                    }, "--3--");
-                    $("#warHtml").html(
-                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Out of Warranty"
-                    );
-                    $("#warin").val(
-                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Out of Warranty"
-                    );
-                    $("#war").val(war);
-                }
-
+                $('#charger').val("yes");
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#chargerHtml').html("");
+                $('#chargerin').val("");
+                $('#charger').val("");
             }
-        } else {
-            $('#dohave').html("Do you have the following?");
-            $('#billimeiHtml').html("");
-            $('#billimeiin').val("");
-            $('#billimei').val("");
-            $("#warHtml").html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-            );
-            $("#warin").val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-            );
 
-            $("#war").val("no");
-        }
+            var earphone = $("input[type=checkbox][name=earphone]:checked").val();
+            if (earphone == "yes") {
+                $('#dohave').html("Do you have the following?");
+                $('#earphoneHtml').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Earphones of Device"
+                );
+                $('#earphonein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Original Earphones of Device"
+                );
+                $('#earphone').val("yes");
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#earphoneHtml').html("");
+                $('#earphonein').val("");
+                $('#earphone').val("");
+            }
+
+            var boximei = $("input[type=checkbox][name=boximei]:checked").val();
+            if (boximei == "yes") {
+                $('#dohave').html("Do you have the following?");
+                $('#boximeiHtml').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Box with same IMEI"
+                );
+                $('#boximeiin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Box with same IMEI"
+                );
+                $('#boximei').val("yes");
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#boximeiHtml').html("");
+                $('#boximeiin').val("");
+                $('#boximei').val("");
+            }
+
+            var billimei = $("input[type=checkbox][name=billimei]:checked").val();
+            if (billimei != null) {
+                if (billimei == "yes") {
+                    var waren = $("#warHtml").html();
+                    var war = "<?php echo $war ?>";
+                    console.log({
+                        waren,
+                        war
+                    }, "--1--");
+                    $('#dohave').html("Do you have the following?");
+                    $('#billimeiHtml').html(
+                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bill with same IMEI"
+                    );
+                    $('#billimeiin').val(
+                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Bill with same IMEI"
+                    );
+                    $('#billimei').val("yes");
+                    if (war === "yes") {
+                        console.log({
+                            waren
+                        }, "--2--");
+                        $("#warHtml").html(
+                            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Under Warranty"
+                        );
+                        $("#warin").val(
+                            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Under Warranty"
+                        );
+                        $("#war").val(war);
+                    } else if (war === "no") {
+                        console.log({
+                            waren
+                        }, "--3--");
+                        $("#warHtml").html(
+                            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Out of Warranty"
+                        );
+                        $("#warin").val(
+                            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' aria-hidden='true'></i>Mobile Out of Warranty"
+                        );
+                        $("#war").val(war);
+                    }
+
+                }
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#billimeiHtml').html("");
+                $('#billimeiin').val("");
+                $('#billimei').val("");
+                $("#warHtml").html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
+                );
+                $("#warin").val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
+                );
+
+                $("#war").val("no");
+            }
+        });
     });
-});
 </script>
 <!-- question calculation start here -->
 
 <script>
-$(document).ready(function() {
-    var billimei = $("input[type=checkbox][name=billimei]:checked").val();
-    if (billimei == "yes") {
-        // $("#war").html("<php echo $war ?>");
-        //     $("#warin").val("<php echo $war ?>");
-    } else {
-        $('#warHtml').html(
-            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-        );
-        $('#warin').val(
-            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
-        );
-        $('#war').val("no");
-    }
-});
+    $(document).ready(function() {
+        var billimei = $("input[type=checkbox][name=billimei]:checked").val();
+        if (billimei == "yes") {
+            // $("#war").html("<php echo $war ?>");
+            //     $("#warin").val("<php echo $war ?>");
+        } else {
+            $('#warHtml').html(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
+            );
+            $('#warin').val(
+                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Mobile Out of Warranty"
+            );
+            $('#war').val("no");
+        }
+    });
 </script>

@@ -4,23 +4,23 @@ $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
 $vid = $_REQUEST['vid'];
 $selectmodel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
-$selectBrand =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-if(isset($_POST['functionquestions'])){
-  $switch  = $_POST['switch'];
-  $touchscreen = $_POST['touchscreen'];
-  $battery = $_POST['battery'];
-  $wifi = $_POST['wifi'];
-  $speaker = $_POST['speaker'];
-  $charging = $_POST['charging'];
-  $dc = $_POST['dc'];
-  $button = $_POST['button'];
-  $optical = $_POST['optical'];
-  $bluetooth = $_POST['bluetooth'];
-  $war = $_POST['warin'];
-//   new
-  $bt = $_POST['bt'];
-  $finger = $_POST['finger'];
-  $gps = $_POST['gps'];
+$selectBrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+if (isset($_POST['functionquestions'])) {
+    $switch  = $_POST['switch'];
+    $touchscreen = $_POST['touchscreen'];
+    $battery = $_POST['battery'];
+    $wifi = $_POST['wifi'];
+    $speaker = $_POST['speaker'];
+    $charging = $_POST['charging'];
+    $dc = $_POST['dc'];
+    $button = $_POST['button'];
+    $optical = $_POST['optical'];
+    $bluetooth = $_POST['bluetooth'];
+    $war = $_POST['warin'];
+    //   new
+    $bt = $_POST['bt'];
+    $finger = $_POST['finger'];
+    $gps = $_POST['gps'];
 }
 ?>
 <section class="sell-section">
@@ -134,51 +134,51 @@ if(isset($_POST['functionquestions'])){
 
 <?php include 'footer1.php' ?>
 <script>
-$(document).ready(function() {
-    $(".war").click(function() {
+    $(document).ready(function() {
+        $(".war").click(function() {
 
-        var war = $("input[type=radio][name=war]:checked").val();
-        if (war == "under3") {
-            $('#mobage').html("Tablet Age");
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "under6") {
-            $('#mobage').html("Tablet Age");
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "under11") {
-            $('#mobage').html("Tablet Age");
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "above11") {
-            $('#mobage').html("Tablet Age");
-            $('#warin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
-            );
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
-            );
-        }
+            var war = $("input[type=radio][name=war]:checked").val();
+            if (war == "under3") {
+                $('#mobage').html("Tablet Age");
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "under6") {
+                $('#mobage').html("Tablet Age");
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "under11") {
+                $('#mobage').html("Tablet Age");
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "above11") {
+                $('#mobage').html("Tablet Age");
+                $('#warin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>out of Warranty"
+                );
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
+                );
+            }
+        });
     });
-});
 </script>
 <!-- <script>
   $(document).ready(function() {

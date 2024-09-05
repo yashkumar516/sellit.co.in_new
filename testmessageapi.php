@@ -1,9 +1,9 @@
 <?php
 
 $fields = array(
-    "variables_values" => "5599",
-    "route" => "otp",
-    "numbers" => "9992333184",
+  "variables_values" => "5599",
+  "route" => "otp",
+  "numbers" => "9992333184",
 );
 
 $curl = curl_init();

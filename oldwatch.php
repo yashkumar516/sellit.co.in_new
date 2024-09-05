@@ -19,25 +19,21 @@ $selectseries = mysqli_query(
 );
 $row = mysqli_num_rows($selectseries);
 if ($row >= 1) { ?>
-<section class="galaxy">
-    <div class="container">
-        <div class="col-lg-12 mx-auto">
-            <h6 class="select mb-3">Select Watch Series</h6>
+    <section class="galaxy">
+        <div class="container">
+            <div class="col-lg-12 mx-auto">
+                <h6 class="select mb-3">Select Watch Series</h6>
 
-            <div class="row">
-                <?php while ($arseries = mysqli_fetch_assoc($selectseries)) { ?>
-                <div class="col-lg-2 col-6"><button class="box2" onclick="return getmodel(<?php echo $arseries[
-                            "id"
-                        ]; ?>)"> <b>
-                            <?php echo $arseries[
-                                "childcategory"
-                            ]; ?> </b></button></div>
-                <?php } ?>
+                <div class="row">
+                    <?php while ($arseries = mysqli_fetch_assoc($selectseries)) { ?>
+                        <div class="col-lg-2 col-6"><button class="box2" onclick="return getmodel(<?php echo $arseries["id"]; ?>)"> <b>
+                                    <?php echo $arseries["childcategory"]; ?> </b></button></div>
+                    <?php } ?>
+                </div>
+
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 <?php }
 ?>
 
@@ -53,26 +49,20 @@ if ($row >= 1) { ?>
                     "SELECT * FROM `product` WHERE `status` = 'active' AND `subcategoryid` = '$id'"
                 );
                 while ($modelData = mysqli_fetch_assoc($queryModel)) { ?>
-                <div class="col-lg-2 col-4 mt-2 px-1">
-                    <a href="watchsold.php?id=<?php echo $modelData[
-                        "id"
-                    ]; ?>&&bid=<?php echo $id; ?>">
-                        <div class="text-center" id="md">
-                            <img style="margin-top: 15px;" src="admin/img/<?php echo $modelData[
-                                "product_image"
-                            ]; ?>" width="100%" class="img-fluid" alt="">
-                            <div class="container mn px-1">
-                                <div class="row h-100 ">
-                                    <div class="col-12 my-auto">
-                                        <span class="sum-heading1 text-center mt-3"><?php echo $modelData[
-                                                "product_name"
-                                            ]; ?></span>
+                    <div class="col-lg-2 col-4 mt-2 px-1">
+                        <a href="watchsold.php?id=<?php echo $modelData["id"]; ?>&&bid=<?php echo $id; ?>">
+                            <div class="text-center" id="md">
+                                <img style="margin-top: 15px;" src="admin/img/<?php echo $modelData["product_image"]; ?>" width="100%" class="img-fluid" alt="">
+                                <div class="container mn px-1">
+                                    <div class="row h-100 ">
+                                        <div class="col-12 my-auto">
+                                            <span class="sum-heading1 text-center mt-3"><?php echo $modelData["product_name"]; ?></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
 
                 <?php }
                 ?>
@@ -85,21 +75,21 @@ if ($row >= 1) { ?>
 <?php include "footerwatch.php"; ?>
 
 <script>
-function getmodel(gid) {
-    var sid = gid;
-    if (sid != null) {
-        $.ajax({
-            method: "post",
-            url: "ajaxwatch.php",
-            data: {
-                series: sid
-            },
-            dataType: "html",
-            success: function(result) {
-                $("#ajaxrespon").html('');
-                $("#ajaxrespon").html(result);
-            }
-        });
+    function getmodel(gid) {
+        var sid = gid;
+        if (sid != null) {
+            $.ajax({
+                method: "post",
+                url: "ajaxwatch.php",
+                data: {
+                    series: sid
+                },
+                dataType: "html",
+                success: function(result) {
+                    $("#ajaxrespon").html('');
+                    $("#ajaxrespon").html(result);
+                }
+            });
+        }
     }
-}
 </script>

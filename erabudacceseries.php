@@ -24,9 +24,7 @@ if (isset($_POST["earage"])) {
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <h1 class="sell-header">Sell Old <span class="sell-title-head">
-                        <?php echo $selectquery[
-                            "subcategory_name"
-                        ]; ?> </span> Earbuds</h1>
+                        <?php echo $selectquery["subcategory_name"]; ?> </span> Earbuds</h1>
             </div>
 
         </div>
@@ -37,13 +35,9 @@ if (isset($_POST["earage"])) {
         <div class="row">
             <div class="col-lg-5 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel[
-                        "product_image"
-                    ]; ?>" class="img-fluid" width="75%" alt=""></div>
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel["product_image"]; ?>" class="img-fluid" width="75%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectModel[
-                            "product_name"
-                        ]; ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectModel["product_name"]; ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>
@@ -102,33 +96,33 @@ if (isset($_POST["earage"])) {
                     </div>
                     <div class="text-center mt-4">
                         <?php if (isset($_SESSION["user"])) { ?>
-                        <form method="POST">
-                            <div class="form-group">
-                                <input type="hidden" id="callin" name="switch" value="<?= $switch ?>">
-                                <input type="hidden" id="screenin" name="speaker" value="<?= $speaker ?>">
-                                <input type="hidden" id="bodyin" name="connectivity" value="<?= $connectivity ?>">
-                                <input type="hidden" id="warin" name="physicalissue" value="<?= $physicalissue ?>">
-                                <input type="hidden" id="warrenty" name="warrenty" value="<?= $warrenty ?>">
-                                <input type="hidden" id="conditionin" name="condition" value="<?= $condition ?>">
-                                <input type="hidden" id="agein" name="age" value="<?= $earbudage ?>">
+                            <form method="POST">
+                                <div class="form-group">
+                                    <input type="hidden" id="callin" name="switch" value="<?= $switch ?>">
+                                    <input type="hidden" id="screenin" name="speaker" value="<?= $speaker ?>">
+                                    <input type="hidden" id="bodyin" name="connectivity" value="<?= $connectivity ?>">
+                                    <input type="hidden" id="warin" name="physicalissue" value="<?= $physicalissue ?>">
+                                    <input type="hidden" id="warrenty" name="warrenty" value="<?= $warrenty ?>">
+                                    <input type="hidden" id="conditionin" name="condition" value="<?= $condition ?>">
+                                    <input type="hidden" id="agein" name="age" value="<?= $earbudage ?>">
 
-                                <!-- accesries start -->
-                                <input type="hidden" id="chargerin" name="charger" value="">
-                                <input type="hidden" id="earphonein" name="cable" value="">
-                                <input type="hidden" id="billimeiin" name="invoice" value="">
-                                <input type="hidden" id="mobilevalue" name="mobile" value="">
-                                <input type="hidden" id="userid" name="uid" value="" required>
-                                <input type="hidden" class="form-control py-2 px-2 my-3" name="name" id="name"
-                                    placeholder=" Enter your Name" required>
-                                <input type="hidden" id="code" name="code" class="form-control py-2 px-2 my-3"
-                                    placeholder=" Code" required>
-                                <button type="submit" name="otpverify" class="btn contin-btn text-white">Continue <i
-                                        class="fas fa-arrow-right"></i></button>
-                            </div>
-                        </form>
+                                    <!-- accesries start -->
+                                    <input type="hidden" id="chargerin" name="charger" value="">
+                                    <input type="hidden" id="earphonein" name="cable" value="">
+                                    <input type="hidden" id="billimeiin" name="invoice" value="">
+                                    <input type="hidden" id="mobilevalue" name="mobile" value="">
+                                    <input type="hidden" id="userid" name="uid" value="" required>
+                                    <input type="hidden" class="form-control py-2 px-2 my-3" name="name" id="name"
+                                        placeholder=" Enter your Name" required>
+                                    <input type="hidden" id="code" name="code" class="form-control py-2 px-2 my-3"
+                                        placeholder=" Code" required>
+                                    <button type="submit" name="otpverify" class="btn contin-btn text-white">Continue <i
+                                            class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
                         <?php } else { ?>
-                        <a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn" type="submit"
-                                name="questions"> Continue <i class="fas fa-arrow-right"></i></button></a>
+                            <a data-toggle="modal" data-target="#myModal2"><button class="btn contin-btn" type="submit"
+                                    name="questions"> Continue <i class="fas fa-arrow-right"></i></button></a>
                         <?php } ?>
                     </div>
                 </div>
@@ -236,115 +230,115 @@ if (isset($_POST["earage"])) {
 <?php include "footer1.php"; ?>
 <!-- open another model script-->
 <script>
-$(document).ready(function() {
-    $("#myformmobile").on('submit', function(e) {
-        $('#myModal2').modal('hide');
-        $('#myModal1').modal('show');
-        e.preventDefault();
-        var mob = $("#mobile").val();
-        $('#mobilevalue').val(mob);
-        if (mob != null) {
-            jQuery.ajax({
-                method: "post",
-                url: "mobileverify.php",
-                data: {
-                    mobile: mob
-                },
-                dataType: "html",
-                success: function(result) {
-                    if (result != '') {
-                        $('.loginuser').addClass('d-none');
-                        $('.loginuser').removeAttr('required');
-                        $('#userid').val(result);
+    $(document).ready(function() {
+        $("#myformmobile").on('submit', function(e) {
+            $('#myModal2').modal('hide');
+            $('#myModal1').modal('show');
+            e.preventDefault();
+            var mob = $("#mobile").val();
+            $('#mobilevalue').val(mob);
+            if (mob != null) {
+                jQuery.ajax({
+                    method: "post",
+                    url: "mobileverify.php",
+                    data: {
+                        mobile: mob
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        if (result != '') {
+                            $('.loginuser').addClass('d-none');
+                            $('.loginuser').removeAttr('required');
+                            $('#userid').val(result);
+                        }
                     }
-                }
-            });
-            //         jQuery.ajax({
-            //               method: "post",
-            //               url : "createuser.php",
-            //               data:{mobile:mob},
-            //   dataType: "html",
-            //   success:function(result)
-            //   {
-            // 	 $('#userid').val(result); 
-            //   }
-            //         });
-        }
+                });
+                //         jQuery.ajax({
+                //               method: "post",
+                //               url : "createuser.php",
+                //               data:{mobile:mob},
+                //   dataType: "html",
+                //   success:function(result)
+                //   {
+                // 	 $('#userid').val(result); 
+                //   }
+                //         });
+            }
+        });
     });
-});
 </script>
 <!-- open another model script end -->
 
 
 <script>
-$(document).ready(function() {
-    // Scratches start
-    $('.acceseries').click(function() {
-        var charger = $("input[type=checkbox][name=charger]:checked").val();
-        if (charger == "yes") {
-            $('#dohave').html("Do you have the following?");
-            $('#charger').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>original charging case"
-            );
-            $('#chargerin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>original charging case"
-            );
-        } else {
-            $('#dohave').html("Do you have the following?");
-            $('#charger').html("");
-            $('#chargerin').val("");
-            $('#warrenty').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-        }
-
-        var earphone = $("input[type=checkbox][name=earphone]:checked").val();
-        if (earphone == "yes") {
-            $('#dohave').html("Do you have the following?");
-            $('#earphone').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>charging cable"
-            );
-            $('#earphonein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>charging cable"
-            );
-        } else {
-            $('#dohave').html("Do you have the following?");
-            $('#earphone').html("");
-            $('#earphonein').val("");
-        }
-        var billimei = $("input[type=checkbox][name=billimei]:checked").val();
-        if (billimei != null) {
-            if (billimei == "yes") {
+    $(document).ready(function() {
+        // Scratches start
+        $('.acceseries').click(function() {
+            var charger = $("input[type=checkbox][name=charger]:checked").val();
+            if (charger == "yes") {
                 $('#dohave').html("Do you have the following?");
-                $('#billimei').html(
-                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>invoice"
+                $('#charger').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>original charging case"
                 );
-                $('#billimeiin').val(
-                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>invoice"
+                $('#chargerin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>original charging case"
                 );
-                $('#warrenty').val("<?php echo $warrenty; ?>");
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#charger').html("");
+                $('#chargerin').val("");
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
             }
+
+            var earphone = $("input[type=checkbox][name=earphone]:checked").val();
+            if (earphone == "yes") {
+                $('#dohave').html("Do you have the following?");
+                $('#earphone').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>charging cable"
+                );
+                $('#earphonein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>charging cable"
+                );
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#earphone').html("");
+                $('#earphonein').val("");
+            }
+            var billimei = $("input[type=checkbox][name=billimei]:checked").val();
+            if (billimei != null) {
+                if (billimei == "yes") {
+                    $('#dohave').html("Do you have the following?");
+                    $('#billimei').html(
+                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>invoice"
+                    );
+                    $('#billimeiin').val(
+                        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>invoice"
+                    );
+                    $('#warrenty').val("<?php echo $warrenty; ?>");
+                }
+            } else {
+                $('#dohave').html("Do you have the following?");
+                $('#billimei').html("");
+                $('#billimeiin').val("");
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+            }
+        });
+    });
+</script>
+<!-- question calculation start here -->
+<script>
+    $(document).ready(function() {
+        var billimei = $("input[type=checkbox][name=billimei]:checked").val();
+        if (billimei == "yes") {
+            $("#warrenty").val("<?php echo $warrenty; ?>");
         } else {
-            $('#dohave').html("Do you have the following?");
-            $('#billimei').html("");
-            $('#billimeiin').val("");
             $('#warrenty').val(
                 "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
             );
         }
     });
-});
-</script>
-<!-- question calculation start here -->
-<script>
-$(document).ready(function() {
-    var billimei = $("input[type=checkbox][name=billimei]:checked").val();
-    if (billimei == "yes") {
-        $("#warrenty").val("<?php echo $warrenty; ?>");
-    } else {
-        $('#warrenty').val(
-            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-        );
-    }
-});
 </script>

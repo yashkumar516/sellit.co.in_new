@@ -95,6 +95,7 @@ if (isset($_POST["otp"])) {
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -124,6 +125,7 @@ if (isset($_POST["otp"])) {
     <script src="https://kit.fontawesome.com/695826c815.js" crossorigin="anonymous"></script>
     <title>Sell it</title>
 </head>
+
 <body>
     <section>
         <div class="container-fluid">
@@ -137,10 +139,10 @@ if (isset($_POST["otp"])) {
                             <form method="POST">
                                 <div class="form-group">
                                     <?php if (empty($exit)) { ?>
-                                    <input type="text" class="form-control py-2 px-2 my-3" name="name" id="name"
-                                        placeholder=" Enter your Name" required>
-                                    <input type="email" class="form-control py-2 px-2 my-3" name="email" id="email"
-                                        placeholder=" Enter your Email" required>
+                                        <input type="text" class="form-control py-2 px-2 my-3" name="name" id="name"
+                                            placeholder=" Enter your Name" required>
+                                        <input type="email" class="form-control py-2 px-2 my-3" name="email" id="email"
+                                            placeholder=" Enter your Email" required>
                                     <?php } ?>
                                     <input type="text" class="form-control py-2 px-2 my-3" name="otpverify" id="mobile"
                                         value="" placeholder=" Enter your otp" required>

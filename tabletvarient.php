@@ -38,18 +38,18 @@ $selectBrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
                         while ($variantData = mysqli_fetch_assoc($selectVariant)) {
                         ?>
 
-                        <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-4 variant-col ">
+                            <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-4 variant-col ">
                                 <input id="toggle1" class="varient" name="varient" type="radio" value=" " required>
                                 <label for="toggle1"> </label>
                             </div> -->
 
-                        <div class="col-lg-4 col-md-3 col-sm-4 col-6 my-1 variant-col ">
-                            <label>
-                                <input id="toggle1" class="varient" name="varient" type="radio"
-                                    value="<?php echo $variantData['vid'] ?>">
-                                <span><?php echo $variantData['varient'] ?></span>
-                            </label>
-                        </div>
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-6 my-1 variant-col ">
+                                <label>
+                                    <input id="toggle1" class="varient" name="varient" type="radio"
+                                        value="<?php echo $variantData['vid'] ?>">
+                                    <span><?php echo $variantData['varient'] ?></span>
+                                </label>
+                            </div>
                         <?php
                         }
                         ?>
@@ -65,12 +65,12 @@ $selectBrand = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
 <?php include 'footer1.php' ?>
 
 <script>
-$(document).ready(function() {
-    $('.varient').click(function() {
-        var varient = $("input[type=radio][name=varient]:checked").val();
-        var mid = $("#mid").val();
-        var bid = $("#bid").val();
-        window.location.href = "tabletsold.php?vid=" + varient + "&&bid=" + bid + "&&mid=" + mid;
+    $(document).ready(function() {
+        $('.varient').click(function() {
+            var varient = $("input[type=radio][name=varient]:checked").val();
+            var mid = $("#mid").val();
+            var bid = $("#bid").val();
+            window.location.href = "tabletsold.php?vid=" + varient + "&&bid=" + bid + "&&mid=" + mid;
+        });
     });
-});
 </script>

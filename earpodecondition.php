@@ -3,13 +3,13 @@
 $bid = $_REQUEST['bid'];
 $mid = $_REQUEST['mid'];
 $selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-if(isset($_POST['query'])){
+$selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+if (isset($_POST['query'])) {
     $speaker = $_POST['screenin'];
     $connectivity = $_POST['bodyin'];
     $switch = $_POST['callin'];
-    $physicalissue = $_POST['warin']; 
-    $warrenty = $_POST['warrenty']; 
+    $physicalissue = $_POST['warin'];
+    $warrenty = $_POST['warrenty'];
 }
 ?>
 <section class="sell-section">
@@ -123,54 +123,54 @@ if(isset($_POST['query'])){
 
 <?php include 'footer1.php' ?>
 <script>
-$(document).ready(function() {
-    $(".war").click(function() {
+    $(document).ready(function() {
+        $(".war").click(function() {
 
-        var war = $("input[type=radio][name=war]:checked").val();
-        if (war == "flawless") {
-            $('#watchcondion').html("Earbud Condition");
-            $('#condition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
-            );
-            $('#conditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "good") {
-            $('#watchcondion').html("Earbud Condition");
-            $('#condition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
-            );
-            $('#conditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "averege") {
-            $('#watchcondion').html("Earbud Condition");
-            $('#warrenty').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-            $('#condition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
-            );
-            $('#conditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
-            );
-            // $('#war').html('<php echo $war ?>');
-        } else if (war == "below averege") {
-            $('#watchcondion').html("Earbud Condition");
-            $('#warrenty').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-            $('#condition').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
-            );
-            $('#conditionin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
-            );
-        }
+            var war = $("input[type=radio][name=war]:checked").val();
+            if (war == "flawless") {
+                $('#watchcondion').html("Earbud Condition");
+                $('#condition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
+                );
+                $('#conditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>flawless"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "good") {
+                $('#watchcondion').html("Earbud Condition");
+                $('#condition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
+                );
+                $('#conditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>good"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "averege") {
+                $('#watchcondion').html("Earbud Condition");
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+                $('#condition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
+                );
+                $('#conditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>averege"
+                );
+                // $('#war').html('<php echo $war ?>');
+            } else if (war == "below averege") {
+                $('#watchcondion').html("Earbud Condition");
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+                $('#condition').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
+                );
+                $('#conditionin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>below averege"
+                );
+            }
+        });
     });
-});
 </script>
 <!-- <script>
   $(document).ready(function() {

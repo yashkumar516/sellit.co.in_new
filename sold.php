@@ -4,16 +4,16 @@
 if (session_status() == PHP_SESSION_NONE) {
     // Start the session
     session_start();
-} 
+}
 // Unset session variables by key
- 
+
 
 foreach ($_SESSION as $key => $value) {
-    if($key!=="user"){
+    if ($key !== "user") {
         unset($_SESSION[$key]);
-    } 
-} 
- 
+    }
+}
+
 ?>
 
 <?php

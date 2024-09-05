@@ -11,9 +11,12 @@ if (isset($_POST['series']) && isset($_POST['subcatid'])) {
 ?>
 
     <div class="col-lg-2 col-4 mt-4">
-      <a href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ', '-', $subcatname['subcategory_name']) . '-' . strtolower(str_replace(' ', '-', $armodel['product_name']))) . '/' . $armodel['id'] . '_' . $armodel['subcategoryid'] ?>">
+      <a
+        href="../../sell-old-phones/sell-old-<?= strtolower(str_replace(' ', '-', $subcatname['subcategory_name']) . '-' . strtolower(str_replace(' ', '-', $armodel['product_name']))) . '/' . $armodel['id'] . '_' . $armodel['subcategoryid'] ?>">
         <div class="text-center" id="md">
-          <img style="margin-top: 15px;" src="<?php echo $armodel['image_url'] === "external" ?  $armodel['product_image'] :   "../../admin/img/" . $armodel['product_image'] ?>" width="100%" class="img-fluid" alt="">
+          <img style="margin-top: 15px;"
+            src="<?php echo $armodel['image_url'] === "external" ?  $armodel['product_image'] :   "../../admin/img/" . $armodel['product_image'] ?>"
+            width="100%" class="img-fluid" alt="">
 
           <!-- <img style="margin-top: 15px;" src="../../admin/img/<?php echo $armodel['product_image'] ?>" width="100%"
                 class="img-fluid" alt=""> -->

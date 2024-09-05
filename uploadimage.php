@@ -58,9 +58,7 @@ if (isset($_POST["submit"])) {
                                 <p class="charges">Base Price</p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                <p class="rate"> <strong> ₹<?php echo $enquirydetail[
-                                "offerprice"
-                            ]; ?></strong></p>
+                                <p class="rate"> <strong> ₹<?php echo $enquirydetail["offerprice"]; ?></strong></p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2">
                                 <p class="charges">Pickup Charges</p>
@@ -73,9 +71,7 @@ if (isset($_POST["submit"])) {
                                 <p class="charges">Total Amount</p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                <p class="rate"><strong>₹<?php echo $enquirydetail[
-                                "offerprice"
-                            ]; ?></strong></p>
+                                <p class="rate"><strong>₹<?php echo $enquirydetail["offerprice"]; ?></strong></p>
                             </div>
                         </div>
                         <div class="text-center mt-3">
@@ -92,22 +88,22 @@ if (isset($_POST["submit"])) {
 <?php include "footer1.php"; ?>
 
 <script>
-const myfile = document.getElementById("myfile");
-const previewContainer = document.getElementById("imagepreview");
-const previewimage = previewContainer.querySelector(".image-preview_image");
-const image = previewContainer.querySelector(".deviceimage");
-myfile.addEventListener("change", function() {
-    const file = this.files[0];
-    var element = document.getElementById("imagepreview");
-    element.classList.remove("d-none");
-    if (file) {
-        const reader = new FileReader();
-        reader.addEventListener("load", function() {
-            previewimage.setAttribute("src", this.result);
-            image.setAttribute("value", this.result);
-        });
+    const myfile = document.getElementById("myfile");
+    const previewContainer = document.getElementById("imagepreview");
+    const previewimage = previewContainer.querySelector(".image-preview_image");
+    const image = previewContainer.querySelector(".deviceimage");
+    myfile.addEventListener("change", function() {
+        const file = this.files[0];
+        var element = document.getElementById("imagepreview");
+        element.classList.remove("d-none");
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener("load", function() {
+                previewimage.setAttribute("src", this.result);
+                image.setAttribute("value", this.result);
+            });
 
-        reader.readAsDataURL(file);
-    }
-});
+            reader.readAsDataURL(file);
+        }
+    });
 </script>
