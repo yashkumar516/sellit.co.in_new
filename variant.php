@@ -54,14 +54,14 @@ if (isset($_SESSION['user'])) {
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYH2D4QESB"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'G-DYH2D4QESB');
+        gtag('config', 'G-DYH2D4QESB');
     </script>
     <meta name="google-site-verification" content="XcbXug-z0EtzkdTsIB7RGWJ5SIBGOILe_5kUiuwdp_0"   />
 </head>
@@ -115,18 +115,18 @@ if (isset($_SESSION['user'])) {
                                 <?php
                                 if ($number == null) {
                                 ?>
-                                <div class="col-6">
-                                    <a href="../../login.php" class="text-primary"><img
-                                            src="../../assets/images/login-1.png " width="60%"
-                                            class="img-fluid newimg22"></a>
-                                </div>
+                                    <div class="col-6">
+                                        <a href="../../login.php" class="text-primary"><img
+                                                src="../../assets/images/login-1.png " width="60%"
+                                                class="img-fluid newimg22"></a>
+                                    </div>
                                 <?php
                                 } else {
                                 ?>
-                                <div class="col-6">
-                                    <a href="../../logout.php" class="text-primary"><img
-                                            src="../../assets/images/log-out.png" width="60%" class="img-fluid"></a>
-                                </div>
+                                    <div class="col-6">
+                                        <a href="../../logout.php" class="text-primary"><img
+                                                src="../../assets/images/log-out.png" width="60%" class="img-fluid"></a>
+                                    </div>
                                 <?php
                                 }
                                 ?>
@@ -149,15 +149,15 @@ if (isset($_SESSION['user'])) {
                     <?php
                     if ($number == null) {
                     ?>
-                    <a href="../../login.php">
-                        <p><i class="fas fa-sign-in-alt"></i> Login</p>
-                    </a>
+                        <a href="../../login.php">
+                            <p><i class="fas fa-sign-in-alt"></i> Login</p>
+                        </a>
                     <?php
                     } else {
                     ?>
-                    <a href="../../userdashboard.php">
-                        <p><i class="fas fa-user"></i> Profile</p>
-                    </a>
+                        <a href="../../userdashboard.php">
+                            <p><i class="fas fa-user"></i> Profile</p>
+                        </a>
                     <?php
                     }
                     ?>
@@ -166,20 +166,20 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
     <?php
-$id = mysqli_real_escape_string($con,$_REQUEST['id']);
-$bid = mysqli_real_escape_string($con,$_REQUEST['bid']);
-$idarr = explode('_',$id);
-if (isset($idarr[1]) && !empty($idarr[1])) {
-    $bid = $idarr[1];
-} 
-// $bid = $idarr[1];
-$id = $idarr[0];
- 
-?>
+    $id = mysqli_real_escape_string($con, $_REQUEST['id']);
+    $bid = mysqli_real_escape_string($con, $_REQUEST['bid']);
+    $idarr = explode('_', $id);
+    if (isset($idarr[1]) && !empty($idarr[1])) {
+        $bid = $idarr[1];
+    }
+    // $bid = $idarr[1];
+    $id = $idarr[0];
+
+    ?>
 
     <?php
-$selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
-?>
+    $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+    ?>
     <section class="sell-section">
         <div class="container">
             <div class="row">
@@ -197,8 +197,8 @@ $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
             <div class="row">
                 <div class="col-lg-4 text-center" id="varimg">
                     <?php
-                $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id`='$id' "));
-                ?>
+                    $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id`='$id' "));
+                    ?>
                     <img src="../../admin/img/<?php echo $selectquery['product_image'] ?>" class="img-fluid" width="50%"
                         alt="">
                 </div>
@@ -208,25 +208,25 @@ $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
                     <div class="card">
                         <div class="row pt-3">
                             <?php
-                        $selectvarient = mysqli_query($con, "SELECT * FROM `varient` WHERE `product_name`='$id' AND `status`='active' ");
-                        while ($arvariant = mysqli_fetch_assoc($selectvarient)) {
-                        ?>
+                            $selectvarient = mysqli_query($con, "SELECT * FROM `varient` WHERE `product_name`='$id' AND `status`='active' ");
+                            while ($arvariant = mysqli_fetch_assoc($selectvarient)) {
+                            ?>
 
-                            <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-4 variant-col ">
+                                <!-- <div class="col-lg-3 col-md-3 col-sm-4 col-4 variant-col ">
                                 <input id="toggle1" class="varient" name="varient" type="radio" value=" " required>
                                 <label for="toggle1"> </label>
                             </div> -->
 
-                            <div class="col-lg-4 col-md-3 col-sm-4 col-6 my-1 variant-col ">
-                                <label>
-                                    <input id="toggle1" class="varient" name="varient" type="radio"
-                                        value="<?php echo $arvariant['id'] ?>">
-                                    <span><?php echo $arvariant['varient'] ?></span>
-                                </label>
-                            </div>
+                                <div class="col-lg-4 col-md-3 col-sm-4 col-6 my-1 variant-col ">
+                                    <label>
+                                        <input id="toggle1" class="varient" name="varient" type="radio"
+                                            value="<?php echo $arvariant['id'] ?>">
+                                        <span><?php echo $arvariant['varient'] ?></span>
+                                    </label>
+                                </div>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
                             <input type="hidden" id="bid" value="<?php echo $bid ?>">
                             <input type="hidden" id="mid" value="<?php echo $id  ?>">
                         </div>
@@ -403,294 +403,294 @@ $selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <!-- rating script -->
     <script>
-    $(function() {
-        $("#rating").rateYo({
-            ratedFill: "#23699D"
-        });
+        $(function() {
+            $("#rating").rateYo({
+                ratedFill: "#23699D"
+            });
 
-    })
+        })
     </script>
     <script>
-    $(function() {
-        $(".rateyo").rateYo().on("rateyo.change", function(e, data) {
-            var rating = data.rating;
-            $(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
-            $(this).parent().find('.result').text('Rating :' + rating);
-            $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
-        });
+        $(function() {
+            $(".rateyo").rateYo().on("rateyo.change", function(e, data) {
+                var rating = data.rating;
+                $(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
+                $(this).parent().find('.result').text('Rating :' + rating);
+                $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
+            });
 
-    });
+        });
     </script>
 
     <!-- rating script end -->
 
     <script>
-    $('.owl-carousel-12').owlCarousel({
-        loop: true,
-        margin: 12,
-        // nav:true,
-        responsive: {
-            0: {
-                items: 3
-            },
-            600: {
-                items: 4
-            },
-            1000: {
-                items: 6
+        $('.owl-carousel-12').owlCarousel({
+            loop: true,
+            margin: 12,
+            // nav:true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
             }
-        }
-    })
+        })
     </script>
 
     <script>
-    $('.owl-carousel').owlCarousel({
-        // loop:true,
-        margin: 12,
-        // nav:true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 3
+        $('.owl-carousel').owlCarousel({
+            // loop:true,
+            margin: 12,
+            // nav:true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
             }
-        }
-    })
+        })
     </script>
 
-    <?php 
-        $httpHost = $_SERVER['HTTP_HOST'];
-        if($httpHost==="localhost"){
-            echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
-        } else{
-            echo '<script src="/admin/js/imageReplace.js"></script>';
-        }
+    <?php
+    $httpHost = $_SERVER['HTTP_HOST'];
+    if ($httpHost === "localhost") {
+        echo '<script src="/sellit/admin/js/imageReplace.js"></script>';
+    } else {
+        echo '<script src="/admin/js/imageReplace.js"></script>';
+    }
     ?>
 </body>
 
 </html>
 <!-- ajax data start -->
 <script>
-$(document).ready(function() {
-    $("#modalsearch").keyup(function() {
-        var search = $("#modalsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../modalfound.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('#ajaxresponse').fadeIn();
-                    $("#filter").css("display", "block");
-                    $('#ajaxresponse').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#modalsearch").keyup(function() {
+            var search = $("#modalsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../modalfound.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('#ajaxresponse').fadeIn();
+                        $("#filter").css("display", "block");
+                        $('#ajaxresponse').html(result);
+                    }
+                });
+            } else {
+                $('#ajaxresponse').fadeOut();
+                $("#filter").css("display", "none");
+                $('#ajaxresponse').html("");
+            }
+        });
+        $("#modalsearch").focusout(function() {
             $('#ajaxresponse').fadeOut();
-            $("#filter").css("display", "none");
-            $('#ajaxresponse').html("");
-        }
+            $('#modalsearch').val("");
+        })
     });
-    $("#modalsearch").focusout(function() {
-        $('#ajaxresponse').fadeOut();
-        $('#modalsearch').val("");
-    })
-});
 </script>
 <!-- model start -->
 <script>
-$(document).ready(function() {
-    $("#searchmobile").keyup(function() {
-        var search = $("#searchmobile").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../modalfound1.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter').fadeIn();
-                    $(".filter").css("display", "block");
-                    $('.response').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#searchmobile").keyup(function() {
+            var search = $("#searchmobile").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../modalfound1.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter').fadeIn();
+                        $(".filter").css("display", "block");
+                        $('.response').html(result);
+                    }
+                });
+            } else {
+                $('.filter').fadeOut();
+                $(".filter").css("display", "none");
+                $('.response').html("");
+            }
+        })
+        $("#searchmobile").focusout(function() {
             $('.filter').fadeOut();
-            $(".filter").css("display", "none");
-            $('.response').html("");
-        }
-    })
-    $("#searchmobile").focusout(function() {
-        $('.filter').fadeOut();
-        $('#searchmobile').val("");
-    })
-});
+            $('#searchmobile').val("");
+        })
+    });
 </script>
 <!-- model end -->
 <!--earbud start-->
 <script>
-$(document).ready(function() {
-    $("#earbudsearch").keyup(function() {
-        var search = $("#earbudsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../foundearbud.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filterear').fadeIn();
-                    $(".filterear").css("display", "block");
-                    $('.responseear').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#earbudsearch").keyup(function() {
+            var search = $("#earbudsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../foundearbud.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filterear').fadeIn();
+                        $(".filterear").css("display", "block");
+                        $('.responseear').html(result);
+                    }
+                });
+            } else {
+                $('.filterear').fadeOut();
+                $(".filterear").css("display", "none");
+                $('.responseear').html("");
+            }
+        })
+        $("#tabletsearch").focusout(function() {
             $('.filterear').fadeOut();
-            $(".filterear").css("display", "none");
-            $('.responseear').html("");
-        }
-    })
-    $("#tabletsearch").focusout(function() {
-        $('.filterear').fadeOut();
-        $('#earbudsearch').val("");
-    })
-});
+            $('#earbudsearch').val("");
+        })
+    });
 </script>
 <!--eaerbud end-->
 <!-- tablet started -->
 <script>
-$(document).ready(function() {
-    $("#tabletsearch").keyup(function() {
-        var search = $("#tabletsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../foundtablet.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter1').fadeIn();
-                    $(".filter1").css("display", "block");
-                    $('.response1').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#tabletsearch").keyup(function() {
+            var search = $("#tabletsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../foundtablet.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter1').fadeIn();
+                        $(".filter1").css("display", "block");
+                        $('.response1').html(result);
+                    }
+                });
+            } else {
+                $('.filter1').fadeOut();
+                $(".filter1").css("display", "none");
+                $('.response1').html("");
+            }
+        })
+        $("#tabletsearch").focusout(function() {
             $('.filter1').fadeOut();
-            $(".filter1").css("display", "none");
-            $('.response1').html("");
-        }
-    })
-    $("#tabletsearch").focusout(function() {
-        $('.filter1').fadeOut();
-        $('#tabletsearch').val("");
-    })
-});
+            $('#tabletsearch').val("");
+        })
+    });
 </script>
 <!-- tablet end -->
 <!-- watch started -->
 <script>
-$(document).ready(function() {
-    $("#watchsearch").keyup(function() {
-        var search = $("#watchsearch").val();
-        if (search != '') {
-            $.ajax({
-                method: "post",
-                url: "../../foundwatch.php",
-                data: {
-                    search: search
-                },
-                dataType: "html",
-                success: function(result) {
-                    $('.filter2').fadeIn();
-                    $(".filter2").css("display", "block");
-                    $('.response2').html(result);
-                }
-            });
-        } else {
+    $(document).ready(function() {
+        $("#watchsearch").keyup(function() {
+            var search = $("#watchsearch").val();
+            if (search != '') {
+                $.ajax({
+                    method: "post",
+                    url: "../../foundwatch.php",
+                    data: {
+                        search: search
+                    },
+                    dataType: "html",
+                    success: function(result) {
+                        $('.filter2').fadeIn();
+                        $(".filter2").css("display", "block");
+                        $('.response2').html(result);
+                    }
+                });
+            } else {
+                $('.filter2').fadeOut();
+                $(".filter2").css("display", "none");
+                $('.response2').html("");
+            }
+        })
+        $("#watchsearch").focusout(function() {
             $('.filter2').fadeOut();
-            $(".filter2").css("display", "none");
-            $('.response2').html("");
-        }
-    })
-    $("#watchsearch").focusout(function() {
-        $('.filter2').fadeOut();
-        $('#watchsearch').val("");
-    })
-});
+            $('#watchsearch').val("");
+        })
+    });
 </script>
 <!-- watch end -->
 <!-- ajax data end -->
 
 <script>
-$(document).ready(function() {
-    $("#userpic").on('click', function() {
-        $("#prof").toggle();
-    });
-});
-</script>
-<script>
-// Instantiate the Bootstrap carousel
-$('.multi-item-carousel').carousel({
-    interval: false
-});
-
-// for every slide in carousel, copy the next slide's item in the slide.
-// Do the same for the next, next item.
-$('.multi-item-carousel .item').each(function() {
-    var next = $(this).next();
-    if (!next.length) {
-        next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
-
-    if (next.next().length > 0) {
-        next.next().children(':first-child').clone().appendTo($(this));
-    } else {
-        $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-    }
-});
-</script>
-
-<script>
-function getmodel(gid) {
-    var sid = gid;
-    if (sid != null) {
-        $.ajax({
-            method: "post",
-            url: "../../ajaxmodel.php",
-            data: {
-                series: sid
-            },
-            dataType: "html",
-            success: function(result) {
-                $("#ajaxrespon").html('');
-                $("#ajaxrespon").html(result);
-            }
+    $(document).ready(function() {
+        $("#userpic").on('click', function() {
+            $("#prof").toggle();
         });
-    }
-}
+    });
+</script>
+<script>
+    // Instantiate the Bootstrap carousel
+    $('.multi-item-carousel').carousel({
+        interval: false
+    });
+
+    // for every slide in carousel, copy the next slide's item in the slide.
+    // Do the same for the next, next item.
+    $('.multi-item-carousel .item').each(function() {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        if (next.next().length > 0) {
+            next.next().children(':first-child').clone().appendTo($(this));
+        } else {
+            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        }
+    });
 </script>
 
 <script>
-$(document).ready(function() {
-    $('.varient').click(function() {
-        var varient = $("input[type=radio][name=varient]:checked").val();
-        var mid = $("#mid").val();
-        var bid = $("#bid").val();
-        window.location.href = "../../sold.php?vid=" + varient + "&&bid=" + bid + "&&mid=" + mid;
+    function getmodel(gid) {
+        var sid = gid;
+        if (sid != null) {
+            $.ajax({
+                method: "post",
+                url: "../../ajaxmodel.php",
+                data: {
+                    series: sid
+                },
+                dataType: "html",
+                success: function(result) {
+                    $("#ajaxrespon").html('');
+                    $("#ajaxrespon").html(result);
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.varient').click(function() {
+            var varient = $("input[type=radio][name=varient]:checked").val();
+            var mid = $("#mid").val();
+            var bid = $("#bid").val();
+            window.location.href = "../../sold.php?vid=" + varient + "&&bid=" + bid + "&&mid=" + mid;
+        });
     });
-});
 </script>

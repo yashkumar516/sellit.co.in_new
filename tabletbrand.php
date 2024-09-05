@@ -19,17 +19,16 @@
         <h1 class="select-brand-heading pb-3">Select Brand</h1>
         <div class="row">
             <?php
-           $selectBrand = mysqli_query($con,"SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '3' ");
-           while($artop = mysqli_fetch_assoc( $selectBrand ))
-           {
-          ?>
-            <div class="col-lg-2 col-3 mt-4">
-                <a href="oldtablet.php?id=<?php echo $artop['id'] ?>"> <img
-                        src="admin/img/<?php echo $artop['subcategory_image'] ?>" class="img-fluid box1" alt=""></a>
-            </div>
+            $selectBrand = mysqli_query($con, "SELECT * FROM `subcategory` WHERE `status` = 'active' AND `category_id` = '3' ");
+            while ($artop = mysqli_fetch_assoc($selectBrand)) {
+            ?>
+                <div class="col-lg-2 col-3 mt-4">
+                    <a href="oldtablet.php?id=<?php echo $artop['id'] ?>"> <img
+                            src="admin/img/<?php echo $artop['subcategory_image'] ?>" class="img-fluid box1" alt=""></a>
+                </div>
             <?php
-           }
-           ?>
+            }
+            ?>
 
 
         </div>

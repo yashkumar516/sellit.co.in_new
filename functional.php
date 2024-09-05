@@ -12,7 +12,7 @@ $selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WH
 include_once "./classes/checkModelValue.php";
 $modelManager = new CheckModelValue($con);
 $selectquery = $modelManager->getProductBrandValue($bid, $mid);
-            
+
 // $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
@@ -349,339 +349,339 @@ $selectquery = $modelManager->getProductBrandValue($bid, $mid);
 <?php include 'footer1.php' ?>
 
 <script>
-$(document).ready(function() {
-    function handleSubmit(event) {
-        event.preventDefault(); // Prevent default form submission
+    $(document).ready(function() {
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        // Get form element by ID
+            // Get form element by ID
+            var form = document.getElementById("myForm");
+
+            // Create empty object to store form data
+            var formData = {};
+
+            // Loop through each form element and add its name and value to the formData object
+            for (var i = 0; i < form.elements.length; i++) {
+                var element = form.elements[i];
+                if (element.type !== "submit") { // Exclude submit button
+                    formData[element.name] = element.value;
+                }
+            }
+            formData["page"] = "functionalPage";
+            // Display the form data
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: "session/set_session_all_question.php", // Replace with the path to your PHP script
+                data: formData,
+                success: function(response) {
+                    // Handle success response if needed
+                    console.log({
+                        response
+                    });
+                    // window.location.href = "functional.php?vid=" + vid + "&mid=" + mid + "&bid=" + bid;
+                    window.location.replace(
+                        "haveitem.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
+                    );
+
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response if needed
+                    console.error({
+                        error
+                    });
+                }
+            });
+            // You can now send this formData to a server using AJAX or perform any other operation with it.
+        }
+
+        // Attach form submission event listener
         var form = document.getElementById("myForm");
+        form.addEventListener("submit", handleSubmit);
 
-        // Create empty object to store form data
-        var formData = {};
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        console.log("--------------------copydisplay-------------");
+        const iconString =
+            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;'></i>"
+        // Scratches start
+        function outOfWarranty() {
 
-        // Loop through each form element and add its name and value to the formData object
-        for (var i = 0; i < form.elements.length; i++) {
-            var element = form.elements[i];
-            if (element.type !== "submit") { // Exclude submit button
-                formData[element.name] = element.value;
-            }
+            $('#warHtml').html(
+                iconString + "Mobile Out of Warranty"
+            );
+            $('#warin').val(
+                iconString + "Mobile Out of Warranty"
+            );
+            $('#war').val("no");
         }
-        formData["page"] = "functionalPage";
-        // Display the form data
-        console.log(formData);
-        $.ajax({
-            type: "POST",
-            url: "session/set_session_all_question.php", // Replace with the path to your PHP script
-            data: formData,
-            success: function(response) {
-                // Handle success response if needed
-                console.log({
-                    response
-                });
-                // window.location.href = "functional.php?vid=" + vid + "&mid=" + mid + "&bid=" + bid;
-                window.location.replace(
-                    "haveitem.php?vid=<?php echo $vid ?>&bid=<?php echo $bid ?>&mid=<?php echo $mid ?>"
-                );
 
-            },
-            error: function(xhr, status, error) {
-                // Handle error response if needed
-                console.error({
-                    error
-                });
+        function setOnClickValue(id, value, htmlValue) {
+            $('#functionalHtml').html("Functional Condition");
+            $(`#${id}Html`).html(
+                htmlValue !== "" ? `${iconString} ${htmlValue}` : ""
+            );
+            $(`#${id}in`).val(
+                htmlValue !== "" ? `${iconString} ${htmlValue}` : ""
+            );
+            $(`#${id}`).val(value);
+        }
+
+        function CheckedInput() {
+            var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
+            if (frontcam == "yes") {
+                setOnClickValue("frontcam", "yes", "Front Camera not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("frontcam", "", "");
             }
+
+            var backcam = $("input[type=checkbox][name=backcam]:checked").val();
+            if (backcam == "yes") {
+                setOnClickValue("backcam", "yes", "Back Camera not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("backcam", "", "");
+            }
+
+            var volume = $("input[type=checkbox][name=volume]:checked").val();
+            if (volume == "yes") {
+                setOnClickValue("volume", "yes", "Volume Button not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("volume", "", "");
+            }
+
+            var fingertouch = $("input[type=checkbox][name=fingertouch]:checked").val();
+            if (fingertouch == "yes") {
+                setOnClickValue("fingertouch", "yes", "Finger Touch not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("fingertouch", "", "");
+            }
+
+            var speaker = $("input[type=checkbox][name=speaker]:checked").val();
+            if (speaker == "yes") {
+                setOnClickValue("speaker", "yes", "Speaker not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("speaker", "", "");
+            }
+
+            var power = $("input[type=checkbox][name=power]:checked").val();
+            if (power == "yes") {
+                setOnClickValue("power", "yes", "Power Button not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("power", "", "");
+            }
+
+            var charging = $("input[type=checkbox][name=charging]:checked").val();
+            if (charging == "yes") {
+                setOnClickValue("charging", "yes", "Charging Port not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("charging", "", "");
+            }
+
+            var face = $("input[type=checkbox][name=face]:checked").val();
+            if (face == "yes") {
+                setOnClickValue("face", "yes", "Face Sensor not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("face", "", "");
+            }
+            var audio = $("input[type=checkbox][name=audio]:checked").val();
+            if (audio == "yes") {
+                setOnClickValue("audio", "yes", "Audio Receiver not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("audio", "", "");
+            }
+
+            var camglass = $("input[type=checkbox][name=camglass]:checked").val();
+            if (camglass == "yes") {
+                setOnClickValue("camglass", "yes", "Camera Glass Broken");
+                outOfWarranty();
+            } else {
+                setOnClickValue("camglass", "", "");
+            }
+
+            var wifi = $("input[type=checkbox][name=wifi]:checked").val();
+            if (wifi == "yes") {
+                setOnClickValue("wifi", "yes", "WiFi not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("wifi", "", "");
+            }
+
+            var silent = $("input[type=checkbox][name=silent]:checked").val();
+            if (silent == "yes") {
+                setOnClickValue("silent", "yes", "Silent Button not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("silent", "", "");
+            }
+
+            var battery = $("input[type=checkbox][name=battery]:checked").val();
+            if (battery == "yes") {
+                setOnClickValue("battery", "yes", "Battery not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("battery", "", "");
+            }
+
+            var bluetooth = $("input[type=checkbox][name=bluetooth]:checked").val();
+            if (bluetooth == "yes") {
+                setOnClickValue("bluetooth", "yes", "Bluetooth not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("bluetooth", "", "");
+            }
+
+            var vibrate = $("input[type=checkbox][name=vibrate]:checked").val();
+            if (vibrate == "yes") {
+                setOnClickValue("vibrate", "yes", "Vibrator is not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("vibrate", "", "");
+            }
+
+            var micro = $("input[type=checkbox][name=micro]:checked").val();
+            if (micro == "yes") {
+                setOnClickValue("micro", "yes", "Microphone is not working");
+                outOfWarranty();
+            } else {
+                setOnClickValue("micro", "", "");
+            }
+
+            //new question start 
+            var copydisplay = $("input[type=checkbox][name=copydisplay]:checked").val();
+            if (copydisplay == "yes") {
+                setOnClickValue("copydisplay", "yes", "Copy Display");
+                outOfWarranty();
+            } else {
+                setOnClickValue("copydisplay", "", "");
+            }
+
+            if (frontcam != "yes" && backcam != "yes" && volume != "yes" && fingertouch != "yes" &&
+                speaker != "yes" && power != "yes" && charging != "yes" && face != "yes" && audio !=
+                "yes" && camglass != "yes" &&
+                wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
+                "yes" && micro != "yes" && copydisplay != "yes") {
+
+                var warintyValue = "<?php echo $war ?>";
+
+                var warinValue = iconString + "Mobile Out of Warranty"
+                if (warintyValue === "yes") {
+                    var warinValue = iconString + "Mobile Under Warranty"
+                }
+                $('#warHtml').html(warinValue);
+                $('#war').val("<?php echo $war ?>");
+                $('#warin').val(warinValue);
+                console.log("all false", "<?php echo $war ?>", warinValue)
+            }
+            //new question end
+
+
+        }
+
+        $('.functional').click(function() {
+            CheckedInput()
         });
-        // You can now send this formData to a server using AJAX or perform any other operation with it.
-    }
-
-    // Attach form submission event listener
-    var form = document.getElementById("myForm");
-    form.addEventListener("submit", handleSubmit);
-
-})
-</script>
-<script>
-$(document).ready(function() {
-    console.log("--------------------copydisplay-------------");
-    const iconString =
-        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;'></i>"
-    // Scratches start
-    function outOfWarranty() {
-
-        $('#warHtml').html(
-            iconString + "Mobile Out of Warranty"
-        );
-        $('#warin').val(
-            iconString + "Mobile Out of Warranty"
-        );
-        $('#war').val("no");
-    }
-
-    function setOnClickValue(id, value, htmlValue) {
-        $('#functionalHtml').html("Functional Condition");
-        $(`#${id}Html`).html(
-            htmlValue !== "" ? `${iconString} ${htmlValue}` : ""
-        );
-        $(`#${id}in`).val(
-            htmlValue !== "" ? `${iconString} ${htmlValue}` : ""
-        );
-        $(`#${id}`).val(value);
-    }
-
-    function CheckedInput() {
-        var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
-        if (frontcam == "yes") {
-            setOnClickValue("frontcam", "yes", "Front Camera not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("frontcam", "", "");
-        }
-
-        var backcam = $("input[type=checkbox][name=backcam]:checked").val();
-        if (backcam == "yes") {
-            setOnClickValue("backcam", "yes", "Back Camera not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("backcam", "", "");
-        }
-
-        var volume = $("input[type=checkbox][name=volume]:checked").val();
-        if (volume == "yes") {
-            setOnClickValue("volume", "yes", "Volume Button not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("volume", "", "");
-        }
-
-        var fingertouch = $("input[type=checkbox][name=fingertouch]:checked").val();
-        if (fingertouch == "yes") {
-            setOnClickValue("fingertouch", "yes", "Finger Touch not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("fingertouch", "", "");
-        }
-
-        var speaker = $("input[type=checkbox][name=speaker]:checked").val();
-        if (speaker == "yes") {
-            setOnClickValue("speaker", "yes", "Speaker not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("speaker", "", "");
-        }
-
-        var power = $("input[type=checkbox][name=power]:checked").val();
-        if (power == "yes") {
-            setOnClickValue("power", "yes", "Power Button not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("power", "", "");
-        }
-
-        var charging = $("input[type=checkbox][name=charging]:checked").val();
-        if (charging == "yes") {
-            setOnClickValue("charging", "yes", "Charging Port not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("charging", "", "");
-        }
-
-        var face = $("input[type=checkbox][name=face]:checked").val();
-        if (face == "yes") {
-            setOnClickValue("face", "yes", "Face Sensor not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("face", "", "");
-        }
-        var audio = $("input[type=checkbox][name=audio]:checked").val();
-        if (audio == "yes") {
-            setOnClickValue("audio", "yes", "Audio Receiver not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("audio", "", "");
-        }
-
-        var camglass = $("input[type=checkbox][name=camglass]:checked").val();
-        if (camglass == "yes") {
-            setOnClickValue("camglass", "yes", "Camera Glass Broken");
-            outOfWarranty();
-        } else {
-            setOnClickValue("camglass", "", "");
-        }
-
-        var wifi = $("input[type=checkbox][name=wifi]:checked").val();
-        if (wifi == "yes") {
-            setOnClickValue("wifi", "yes", "WiFi not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("wifi", "", "");
-        }
-
-        var silent = $("input[type=checkbox][name=silent]:checked").val();
-        if (silent == "yes") {
-            setOnClickValue("silent", "yes", "Silent Button not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("silent", "", "");
-        }
-
-        var battery = $("input[type=checkbox][name=battery]:checked").val();
-        if (battery == "yes") {
-            setOnClickValue("battery", "yes", "Battery not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("battery", "", "");
-        }
-
-        var bluetooth = $("input[type=checkbox][name=bluetooth]:checked").val();
-        if (bluetooth == "yes") {
-            setOnClickValue("bluetooth", "yes", "Bluetooth not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("bluetooth", "", "");
-        }
-
-        var vibrate = $("input[type=checkbox][name=vibrate]:checked").val();
-        if (vibrate == "yes") {
-            setOnClickValue("vibrate", "yes", "Vibrator is not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("vibrate", "", "");
-        }
-
-        var micro = $("input[type=checkbox][name=micro]:checked").val();
-        if (micro == "yes") {
-            setOnClickValue("micro", "yes", "Microphone is not working");
-            outOfWarranty();
-        } else {
-            setOnClickValue("micro", "", "");
-        }
-
-        //new question start 
-        var copydisplay = $("input[type=checkbox][name=copydisplay]:checked").val();
-        if (copydisplay == "yes") {
-            setOnClickValue("copydisplay", "yes", "Copy Display");
-            outOfWarranty();
-        } else {
-            setOnClickValue("copydisplay", "", "");
-        }
-
-        if (frontcam != "yes" && backcam != "yes" && volume != "yes" && fingertouch != "yes" &&
-            speaker != "yes" && power != "yes" && charging != "yes" && face != "yes" && audio !=
-            "yes" && camglass != "yes" &&
-            wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
-            "yes" && micro != "yes" && copydisplay != "yes") {
-
-            var warintyValue = "<?php echo $war ?>";
-
-            var warinValue = iconString + "Mobile Out of Warranty"
-            if (warintyValue === "yes") {
-                var warinValue = iconString + "Mobile Under Warranty"
-            }
-            $('#warHtml').html(warinValue);
-            $('#war').val("<?php echo $war ?>");
-            $('#warin').val(warinValue);
-            console.log("all false", "<?php echo $war ?>", warinValue)
-        }
-        //new question end
-
-
-    }
-
-    $('.functional').click(function() {
-        CheckedInput()
+        $('.functional').ready(function() {
+            console.log("--------------------functional-------------");
+            CheckedInput()
+        });
     });
-    $('.functional').ready(function() {
-        console.log("--------------------functional-------------");
-        CheckedInput()
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        var $warrenty = $('#warHtml').html();
+        $("#warin").val($warrenty);
+        $("#war").val("<?php echo $war; ?>");
     });
-});
 </script>
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    var $warrenty = $('#warHtml').html();
-    $("#warin").val($warrenty);
-    $("#war").val("<?php echo $war;?>");
-});
-</script>
+        const iconString =
+            "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;'></i>"
+        $('.functional').click(function() {
+            var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
+            var backcam = $("input[type=checkbox][name=backcam]:checked").val();
+            var volume = $("input[type=checkbox][name=volume]:checked").val();
+            var finertouch = $("input[type=checkbox][name=fingertouch]:checked").val();
+            var speaker = $("input[type=checkbox][name=speaker]:checked").val();
+            var power = $("input[type=checkbox][name=power]:checked").val();
+            var charging = $("input[type=checkbox][name=charging]:checked").val();
+            var face = $("input[type=checkbox][name=face]:checked").val();
+            var audio = $("input[type=checkbox][name=audio]:checked").val();
+            var camglass = $("input[type=checkbox][name=camglass]:checked").val();
+            var wifi = $("input[type=checkbox][name=wifi]:checked").val();
+            var silent = $("input[type=checkbox][name=silent]:checked").val();
+            var battery = $("input[type=checkbox][name=battery]:checked").val();
+            var bluetooth = $("input[type=checkbox][name=bluetooth]:checked").val();
+            var vibrate = $("input[type=checkbox][name=vibrate]:checked").val();
+            var micro = $("input[type=checkbox][name=micro]:checked").val();
+            var copydisplay = $("input[type=checkbox][name=copydisplay]:checked").val();
+            if (frontcam != "yes" && backcam != "yes" && volume != "yes" && finertouch != "yes" &&
+                speaker != "yes" && power != "yes" && charging != "yes" && face != "yes" && audio !=
+                "yes" && camglass != "yes" &&
+                wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
+                "yes" && micro != "yes" && copydisplay != "yes") {
 
-<script>
-$(document).ready(function() {
+                var warintyValue = "<?php echo $war ?>";
 
-    const iconString =
-        "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;'></i>"
-    $('.functional').click(function() {
-        var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
-        var backcam = $("input[type=checkbox][name=backcam]:checked").val();
-        var volume = $("input[type=checkbox][name=volume]:checked").val();
-        var finertouch = $("input[type=checkbox][name=fingertouch]:checked").val();
-        var speaker = $("input[type=checkbox][name=speaker]:checked").val();
-        var power = $("input[type=checkbox][name=power]:checked").val();
-        var charging = $("input[type=checkbox][name=charging]:checked").val();
-        var face = $("input[type=checkbox][name=face]:checked").val();
-        var audio = $("input[type=checkbox][name=audio]:checked").val();
-        var camglass = $("input[type=checkbox][name=camglass]:checked").val();
-        var wifi = $("input[type=checkbox][name=wifi]:checked").val();
-        var silent = $("input[type=checkbox][name=silent]:checked").val();
-        var battery = $("input[type=checkbox][name=battery]:checked").val();
-        var bluetooth = $("input[type=checkbox][name=bluetooth]:checked").val();
-        var vibrate = $("input[type=checkbox][name=vibrate]:checked").val();
-        var micro = $("input[type=checkbox][name=micro]:checked").val();
-        var copydisplay = $("input[type=checkbox][name=copydisplay]:checked").val();
-        if (frontcam != "yes" && backcam != "yes" && volume != "yes" && finertouch != "yes" &&
-            speaker != "yes" && power != "yes" && charging != "yes" && face != "yes" && audio !=
-            "yes" && camglass != "yes" &&
-            wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
-            "yes" && micro != "yes" && copydisplay != "yes") {
-
-            var warintyValue = "<?php echo $war ?>";
-
-            var warinValue = iconString + "Mobile Out of Warranty"
-            if (warintyValue === "yes") {
-                var warinValue = iconString + "Mobile Under Warranty"
+                var warinValue = iconString + "Mobile Out of Warranty"
+                if (warintyValue === "yes") {
+                    var warinValue = iconString + "Mobile Under Warranty"
+                }
+                $('#warHtml').html(warinValue);
+                $('#war').val("<?php echo $war ?>");
+                $('#warin').val(warinValue);
             }
-            $('#warHtml').html(warinValue);
-            $('#war').val("<?php echo $war ?>");
-            $('#warin').val(warinValue);
-        }
 
-    })
-    $('.functional').ready(function() {
-        var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
-        var backcam = $("input[type=checkbox][name=backcam]:checked").val();
-        var volume = $("input[type=checkbox][name=volume]:checked").val();
-        var finertouch = $("input[type=checkbox][name=fingertouch]:checked").val();
-        var speaker = $("input[type=checkbox][name=speaker]:checked").val();
-        var power = $("input[type=checkbox][name=power]:checked").val();
-        var charging = $("input[type=checkbox][name=charging]:checked").val();
-        var face = $("input[type=checkbox][name=face]:checked").val();
-        var audio = $("input[type=checkbox][name=audio]:checked").val();
-        var camglass = $("input[type=checkbox][name=camglass]:checked").val();
-        var wifi = $("input[type=checkbox][name=wifi]:checked").val();
-        var silent = $("input[type=checkbox][name=silent]:checked").val();
-        var battery = $("input[type=checkbox][name=battery]:checked").val();
-        var bluetooth = $("input[type=checkbox][name=bluetooth]:checked").val();
-        var vibrate = $("input[type=checkbox][name=vibrate]:checked").val();
-        var micro = $("input[type=checkbox][name=micro]:checked").val();
-        var copydisplay = $("input[type=checkbox][name=copydisplay]:checked").val();
-        if (frontcam != "yes" && backcam != "yes" && volume != "yes" && finertouch != "yes" &&
-            speaker != "yes" && power != "yes" && charging != "yes" && face != "yes" && audio !=
-            "yes" && camglass != "yes" &&
-            wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
-            "yes" && micro != "yes" && copydisplay != "yes") {
+        })
+        $('.functional').ready(function() {
+            var frontcam = $("input[type=checkbox][name=frontcam]:checked").val();
+            var backcam = $("input[type=checkbox][name=backcam]:checked").val();
+            var volume = $("input[type=checkbox][name=volume]:checked").val();
+            var finertouch = $("input[type=checkbox][name=fingertouch]:checked").val();
+            var speaker = $("input[type=checkbox][name=speaker]:checked").val();
+            var power = $("input[type=checkbox][name=power]:checked").val();
+            var charging = $("input[type=checkbox][name=charging]:checked").val();
+            var face = $("input[type=checkbox][name=face]:checked").val();
+            var audio = $("input[type=checkbox][name=audio]:checked").val();
+            var camglass = $("input[type=checkbox][name=camglass]:checked").val();
+            var wifi = $("input[type=checkbox][name=wifi]:checked").val();
+            var silent = $("input[type=checkbox][name=silent]:checked").val();
+            var battery = $("input[type=checkbox][name=battery]:checked").val();
+            var bluetooth = $("input[type=checkbox][name=bluetooth]:checked").val();
+            var vibrate = $("input[type=checkbox][name=vibrate]:checked").val();
+            var micro = $("input[type=checkbox][name=micro]:checked").val();
+            var copydisplay = $("input[type=checkbox][name=copydisplay]:checked").val();
+            if (frontcam != "yes" && backcam != "yes" && volume != "yes" && finertouch != "yes" &&
+                speaker != "yes" && power != "yes" && charging != "yes" && face != "yes" && audio !=
+                "yes" && camglass != "yes" &&
+                wifi != "yes" && silent != "yes" && battery != "yes" && bluetooth != "yes" && vibrate !=
+                "yes" && micro != "yes" && copydisplay != "yes") {
 
-            var warintyValue = "<?php echo $war ?>";
+                var warintyValue = "<?php echo $war ?>";
 
-            var warinValue = iconString + "Mobile Out of Warranty"
-            if (warintyValue === "yes") {
-                var warinValue = iconString + "Mobile Under Warranty"
+                var warinValue = iconString + "Mobile Out of Warranty"
+                if (warintyValue === "yes") {
+                    var warinValue = iconString + "Mobile Under Warranty"
+                }
+                $('#warHtml').html(warinValue);
+                $('#war').val("<?php echo $war ?>");
+                $('#warin').val(warinValue);
             }
-            $('#warHtml').html(warinValue);
-            $('#war').val("<?php echo $war ?>");
-            $('#warin').val(warinValue);
-        }
 
-    })
-});
+        })
+    });
 </script>

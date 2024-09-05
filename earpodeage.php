@@ -15,9 +15,7 @@ $selectquery = mysqli_fetch_assoc(
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <h1 class="sell-header">Sell Old <span class="sell-title-head">
-                        <?php echo $selectquery[
-                            "subcategory_name"
-                        ]; ?> </span> Earbuds</h1>
+                        <?php echo $selectquery["subcategory_name"]; ?> </span> Earbuds</h1>
             </div>
 
         </div>
@@ -28,13 +26,9 @@ $selectquery = mysqli_fetch_assoc(
         <div class="row">
             <div class="col-lg-6 px-0" id="selllimg">
                 <div class="row pt-2 px-2 ">
-                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel[
-                        "product_image"
-                    ]; ?>" class="img-fluid" width="75%" alt=""></div>
+                    <div class="col-4 text-right"> <img src="admin/img/<?php echo $selectModel["product_image"]; ?>" class="img-fluid" width="75%" alt=""></div>
                     <div class="col-6">
-                        <h1 class="sum-heading pt-4 "><?php echo $selectModel[
-                            "product_name"
-                        ]; ?></h1>
+                        <h1 class="sum-heading pt-4 "><?php echo $selectModel["product_name"]; ?></h1>
                         <p class="qty ">215+ Device Sold with us</p>
                     </div>
                 </div>
@@ -111,51 +105,51 @@ $selectquery = mysqli_fetch_assoc(
 
 
 <script>
-$(document).ready(function() {
-    $(".war").click(function() {
+    $(document).ready(function() {
+        $(".war").click(function() {
 
-        var war = $("input[type=radio][name=eage]:checked").val();
-        if (war == "under3") {
-            $('#mobage').html("Earbud Age");
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
-            );
-            $('#war').html('');
-        } else if (war == "under6") {
-            $('#mobage').html("Earbud Age");
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
-            );
-            $('#war').html('');
-        } else if (war == "under11") {
-            $('#mobage').html("Earbud Age");
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
-            );
-            $('#warrenty').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-        } else if (war == "above11") {
-            $('#mobage').html("Earbud Age");
-            $('#warrenty').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-            $('#age').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
-            );
-            $('#agein').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
-            );
-        }
+            var war = $("input[type=radio][name=eage]:checked").val();
+            if (war == "under3") {
+                $('#mobage').html("Earbud Age");
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Under 3 Months"
+                );
+                $('#war').html('');
+            } else if (war == "under6") {
+                $('#mobage').html("Earbud Age");
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>3 To 6 Months"
+                );
+                $('#war').html('');
+            } else if (war == "under11") {
+                $('#mobage').html("Earbud Age");
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>6 To 11 Months"
+                );
+                $('#warrenty').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+            } else if (war == "above11") {
+                $('#mobage').html("Earbud Age");
+                $('#warrenty').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+                $('#age').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
+                );
+                $('#agein').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Above 11 Months"
+                );
+            }
+        });
     });
-});
 </script>

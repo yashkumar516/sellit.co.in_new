@@ -5,7 +5,7 @@ $bid = $_REQUEST['bid'];
 $selectModel = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `product` WHERE `id` = '$mid' "));
 ?>
 <?php
-$selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
+$selectquery = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory` WHERE `id`='$bid' "));
 ?>
 <section class="sell-section">
     <div class="container">
@@ -102,114 +102,114 @@ $selectquery =mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subcategory`
 
 <?php include 'footer1.php' ?>
 <script>
-$("input:radio").change(function() {
-    $("#postGender").prop("disabled", false);
-});
+    $("input:radio").change(function() {
+        $("#postGender").prop("disabled", false);
+    });
 </script>
 
 <script>
-$(document).ready(function() {
-    $('.submit').click(function() {
-        var mid = $("#mid").val();
-        var bid = $("#bid").val();
-        var war = $("input[type=radio][name=war]:checked").val();
-        if (war == "yes") {
-            document.form.action = "earpodecondition.php?mid=" + mid + "&&bid=" + bid;
-        } else {
-            document.form.action = "earpodeage.php?mid=" + mid + "&&bid=" + bid;
-        }
+    $(document).ready(function() {
+        $('.submit').click(function() {
+            var mid = $("#mid").val();
+            var bid = $("#bid").val();
+            var war = $("input[type=radio][name=war]:checked").val();
+            if (war == "yes") {
+                document.form.action = "earpodecondition.php?mid=" + mid + "&&bid=" + bid;
+            } else {
+                document.form.action = "earpodeage.php?mid=" + mid + "&&bid=" + bid;
+            }
 
+        })
     })
-})
 </script>
 <script>
-$(document).ready(function() {
-    //    call start
-    $('.call').click(function() {
-        var call = $("input[type=radio][name=call]:checked").val();
-        if (call == "yes") {
-            $('#devicedetail').html("Device Details");
-            $('#call').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To switch on"
-            );
-            $('#callin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To switch on"
-            );
-        } else if (call == "no") {
-            $('#devicedetail').html("Device Details");
-            $('#call').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To switch on"
-            );
-            $('#callin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To switch on"
-            );
-            $('#warrenty').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-        }
-    })
-    // screen start
-    $('.screen').click(function() {
-        var screenvalue = $("input[type=radio][name=screen]:checked").val();
-        if (screenvalue == "yes") {
-            $('#screen').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in speaker/mic"
-            );
-            $('#screenin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in speaker/mic"
-            );
-            $('#warrenty').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-        } else if (screenvalue == "no") {
-            $('#screen').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in speaker/mic"
-            );
-            $('#screenin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in speaker/mic"
-            );
-        }
-    })
-    // body start
-    $('.body').click(function() {
-        var body = $("input[type=radio][name=body]:checked").val();
-        if (body == "yes") {
-            $('#body').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in connectivity"
-            );
-            $('#bodyin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in connectivity"
-            );
-            $('#warrenty').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
-            );
-        } else if (body == "no") {
-            $('#body').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in connectivity"
-            );
-            $('#bodyin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in connectivity"
-            );
-        }
-    })
-    // warrenty start
-    $('.war').click(function() {
-        var war = $("input[type=radio][name=war]:checked").val();
-        if (war == "yes") {
-            $('#war').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>physical issues"
-            );
-            $('#warin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>physical issues"
-            );
-        } else if (war == "no") {
-            $('#war').html(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no physical issues"
-            );
-            $('#warin').val(
-                "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no physical issues"
-            );
-        }
-    })
-});
+    $(document).ready(function() {
+        //    call start
+        $('.call').click(function() {
+            var call = $("input[type=radio][name=call]:checked").val();
+            if (call == "yes") {
+                $('#devicedetail').html("Device Details");
+                $('#call').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To switch on"
+                );
+                $('#callin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Able To switch on"
+                );
+            } else if (call == "no") {
+                $('#devicedetail').html("Device Details");
+                $('#call').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To switch on"
+                );
+                $('#callin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Not Able To switch on"
+                );
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+            }
+        })
+        // screen start
+        $('.screen').click(function() {
+            var screenvalue = $("input[type=radio][name=screen]:checked").val();
+            if (screenvalue == "yes") {
+                $('#screen').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in speaker/mic"
+                );
+                $('#screenin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in speaker/mic"
+                );
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+            } else if (screenvalue == "no") {
+                $('#screen').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in speaker/mic"
+                );
+                $('#screenin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in speaker/mic"
+                );
+            }
+        })
+        // body start
+        $('.body').click(function() {
+            var body = $("input[type=radio][name=body]:checked").val();
+            if (body == "yes") {
+                $('#body').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in connectivity"
+                );
+                $('#bodyin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>issues in connectivity"
+                );
+                $('#warrenty').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>Earbud Out of Warranty"
+                );
+            } else if (body == "no") {
+                $('#body').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in connectivity"
+                );
+                $('#bodyin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no issues in connectivity"
+                );
+            }
+        })
+        // warrenty start
+        $('.war').click(function() {
+            var war = $("input[type=radio][name=war]:checked").val();
+            if (war == "yes") {
+                $('#war').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>physical issues"
+                );
+                $('#warin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>physical issues"
+                );
+            } else if (war == "no") {
+                $('#war').html(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no physical issues"
+                );
+                $('#warin').val(
+                    "<i class='fas fa-dot-circle' style='font-size:10px;margin-right:12px;color:#1B6C9E;' ></i>no physical issues"
+                );
+            }
+        })
+    });
 </script>

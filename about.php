@@ -30,7 +30,7 @@ if (isset($_POST["adadres"])) {
     $curl = curl_init();
     curl_setopt_array($curl, [
         CURLOPT_URL =>
-            "https://maps.googleapis.com/maps/api/geocode/json?address=" .
+        "https://maps.googleapis.com/maps/api/geocode/json?address=" .
             str_replace(" ", "+", $location) .
             "&key=AIzaSyB0ge8coHlvzVp2NPuc3a7-K-20c6SLSc8",
         CURLOPT_RETURNTRANSFER => true,
@@ -96,30 +96,22 @@ if (isset($_POST["adadres"])) {
                         </div>
                     </div>
                     <?php while (
-                        $araddress = mysqli_fetch_assoc($selquery)
-                    ) { ?>
+                            $araddress = mysqli_fetch_assoc($selquery)
+                        ) { ?>
                     <div class="card">
                         <label class="radio-addr ">
-                            <input type="radio" name="addtype" value="<?php echo $araddress[
-                                "id"
-                            ]; ?>" required>
+                            <input type="radio" name="addtype" value="<?php echo $araddress["id"]; ?>" required>
                             <?php echo $araddress["addtype"]; ?>
-                            <p class="address"><?php echo $araddress[
-                                "location"
-                            ]; ?>, <?php echo $araddress["flatno"]; ?>,
+                            <p class="address"><?php echo $araddress["location"]; ?>,
+                                <?php echo $araddress["flatno"]; ?>,
                                 <?php echo $araddress["landmark"]; ?>,
-                                <?php echo $araddress[
-                                    "pincode"
-                                ]; ?>, <?php echo $araddress["city"]; ?>,
+                                <?php echo $araddress["pincode"]; ?>, <?php echo $araddress["city"]; ?>,
                                 <?php echo $araddress["state"]; ?></p>
-                            <a href="editaddress.php?id=<?php echo $araddress[
-                                "id"
-                            ]; ?>&&enid=<?php echo $enqid; ?>&&uid=<?php echo $uid; ?>" class=" px-2" id="deleteadd">
+                            <a href="editaddress.php?id=<?php echo $araddress["id"]; ?>&&enid=<?php echo $enqid; ?>&&uid=<?php echo $uid; ?>"
+                                class=" px-2" id="deleteadd">
                                 Edit </a>
-                            <a href="deleteaaddress.php?id=<?php echo $araddress[
-                                "id"
-                            ]; ?>&&enid=<?php echo $enqid; ?>&&uid=<?php echo $uid; ?>" class="mx-2 px-2"
-                                id="deleteadd"> Delete </a>
+                            <a href="deleteaaddress.php?id=<?php echo $araddress["id"]; ?>&&enid=<?php echo $enqid; ?>&&uid=<?php echo $uid; ?>"
+                                class="mx-2 px-2" id="deleteadd"> Delete </a>
                         </label>
                     </div>
                     <?php } ?>
@@ -134,9 +126,7 @@ if (isset($_POST["adadres"])) {
                                 <p class="charges">Base Price</p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                <p class="rate">₹<?php echo $enquirydetail[
-                                    "offerprice"
-                                ]; ?></p>
+                                <p class="rate">₹<?php echo $enquirydetail["offerprice"]; ?></p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2">
                                 <p class="charges">Pickup Charges</p>
@@ -149,9 +139,7 @@ if (isset($_POST["adadres"])) {
                                 <p class="charges">Total Amount</p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                <p class="rate">₹<?php echo $enquirydetail[
-                                    "offerprice"
-                                ]; ?></p>
+                                <p class="rate">₹<?php echo $enquirydetail["offerprice"]; ?></p>
                             </div>
                         </div>
                         <div class="text-center mt-4">
@@ -216,9 +204,7 @@ if (isset($_POST["adadres"])) {
                                     <p class="charges">Base Price</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                    <p class="rate">₹<?php echo $enquirydetail[
-                                        "offerprice"
-                                    ]; ?></p>
+                                    <p class="rate">₹<?php echo $enquirydetail["offerprice"]; ?></p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2">
                                     <p class="charges">Pickup Charges</p>
@@ -231,9 +217,7 @@ if (isset($_POST["adadres"])) {
                                     <p class="charges">Total Amount</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-6 py-2 d-flex justify-content-end">
-                                    <p class="rate">₹<?php echo $enquirydetail[
-                                        "offerprice"
-                                    ]; ?></p>
+                                    <p class="rate">₹<?php echo $enquirydetail["offerprice"]; ?></p>
                                 </div>
                             </div>
                             <div class="text-center mt-4">
@@ -283,7 +267,6 @@ $(document).ready(function() {
     })
 })
 </script>
-
 <script>
 function validateInput(event) {
     var input = event.target;

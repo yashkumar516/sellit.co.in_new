@@ -51,8 +51,11 @@ if (isset($_POST['mobileverification'])) {
           <div class="col-11 col-lg-4 mx-auto">
             <form action="" method="post" id="myformmobile">
               <div class="form-group">
-                <input type="text" class="form-control py-2 px-2 my-3" name="phone" id="mobile" placeholder=" Enter your Mobile Number" required>
-                <button type="submit" name="mobileverification" class="form-control col-lg-6 col-8 py-2 px-2 mx-auto my-3"> <b> Continue </b></button>
+                <input type="text" class="form-control py-2 px-2 my-3" name="phone" id="mobile"
+                  placeholder=" Enter your Mobile Number" required>
+                <button type="submit" name="mobileverification"
+                  class="form-control col-lg-6 col-8 py-2 px-2 mx-auto my-3"> <b> Continue
+                  </b></button>
               </div>
             </form>
           </div>
