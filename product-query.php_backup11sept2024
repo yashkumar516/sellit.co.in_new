@@ -90,7 +90,7 @@ if (
                 <form action="" method="post" name="form" id="myForm">
                     <div class="questionborder">
                         <h1 class="pro-det">Tell us a few things about your device!</h1>
-                        <h1 class="ques">1. Is your sim card slots working?</h1>
+                        <h1 class="ques">1. Are you able to make and receive calls?</h1>
                         <p class="check">Check your device for cellular network connectivity issues.</p>
                         <div class="row pl-4" id="ynrow">
                             <div class="col-lg-5 col-6"><input id="toggle-on" class="call" name="call" type="radio"

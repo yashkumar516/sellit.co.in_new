@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+ 
+RewriteRule ^sell-old-mobile-phones/([a-zA-Z0-9\-=&_@\.\,\)\(]*)$ mobile.php?id=$1 [NC,L]
+RewriteRule ^sell-old-mobile-phones/sell-old-([a-zA-Z0-9\-=&_@\.\,\)\(]*)/([a-zA-Z0-9\-=&_@\.\,\)\(]*)$ oldmobile.php?id=$2 [NC,L]
+RewriteRule ^sell-old-phones/sell-old-([a-zA-Z0-9\-=&_@\.\,\)\(]*)/([a-zA-Z0-9\-=&_@\.\,\)\(]*)$ variant.php?id=$2 [NC,L]
+
+</IfModule>
